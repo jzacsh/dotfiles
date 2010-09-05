@@ -32,7 +32,7 @@ dropx() {
   sta='dropbox status'
   $stp
   $str
-  for i in 1 2 3 4 5; do $sta; done
+  for i in {1..15}; do $sta; done
 }
 
 ###############################
