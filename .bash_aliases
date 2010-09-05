@@ -2,6 +2,7 @@
 set +o histexpand
 set -o vi
 alias l='ls -laFH'
+alias la='clear; ls -aFH'
 alias ca='clear; ls -laFH' 
 alias cl='clear; ls -lFH'
 alias m='nautilus --browser'
