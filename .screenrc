@@ -1,0 +1,13 @@
+##	basic screen start-up file
+################################################################
+
+#key bindings
+# defescape ^]
+# bind ^[
+bind ^y paste .
+
+vbell on
+caption always
+# caption string "                                                       S%n %t        %Y-%m-%d        %H        %u            %w"	#default: %3n %t
+caption string "S%n %t :: %Y-%m-%d ::  %H :: %u :: %w"	#default: %3n %t
+msgwait 0

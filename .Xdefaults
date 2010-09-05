@@ -1,0 +1,10 @@
+rxvt*scrollBar_right:	false
+rxvt*scrollBar:	false
+rxvt*borderLess:	true
+
+rxvt*inheritPixmap:	true
+rxvt*tintColor:	black
+rxvt*shading:	80
+
+# rxvt*transparent:	true
+# inheritPixma: boolean

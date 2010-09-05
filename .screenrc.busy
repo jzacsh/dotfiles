@@ -1,0 +1,15 @@
+##	screen start-up file
+#	specify name (-t), number, and process to kick off with:
+################################################################
+
+# read in normal config:
+source ~/.screenrc
+
+screen -t daemon	tail -f -80 /var/log/messages
+screen -t top		top
+#screen -t mid.c		mc
+screen -t irssi		irssi
+#	these don't work:
+#screen -t work		/bin/bash -c "cd ~/bus/; clear; ls -laF"
+#screen -t school	/bin/bash -c "cd ~/Dropbox/Public/edu/; clear; ls -laF"
+screen -t bash

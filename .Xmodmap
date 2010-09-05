@@ -1,0 +1,20 @@
+! original findings 2010-03-13 in `showkey`:
+! [enter] [caps]  [Lctrl] [Rctrl] !key
+! 28      58      29      97      !keycode
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! original findings 2010-03-13 in `xev`:
+! state 0x12, keycode 66 (keysym 0xffe5, Caps_Lock), same_screen YES,
+! state 0x10, keycode 37 (keysym 0xffe3, Control_L), same_screen YES,
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+!swap caps w/left-ctrl
+!keycode 58 = Control_L
+!keycode 29 = Caps_Lock
+
+! Switch caps lock and (left) control
+remove Lock = Caps_Lock
+remove Control = Control_L
+keysym Control_L = Caps_Lock
+keysym Caps_Lock = Control_L
+add Lock = Caps_Lock
+add Control = Control_L
