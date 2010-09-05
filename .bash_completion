@@ -1,0 +1,22 @@
+#!/bin/bash
+
+_git_commit () {
+  local cur prev ng_set
+
+  # do nothing if we're not in a repo
+  git rev-parse 2>/dev/null || return 0
+
+  COMPREPLY=()
+  cur=${COMP_WORDS[COMP_CWORD]}
+  prev=${COMP_WORDS[COMP_CWORD-1]}
+
+  # complete uncommitted files
+  if [[ ${COMP_WORDS[1]} = "commit" ]]; then
+    COMPREPLY=( $(compgen -W "\
+                $( while read file; do
+                     echo ${file:2}
+                   done < <(git status -s) )" -- $cur ) )
+  fi
+}
+
+complete -o filenames -F _pacman spp pp
