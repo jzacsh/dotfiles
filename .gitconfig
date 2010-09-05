@@ -1,10 +1,26 @@
 [user]
   name = Jonathan Zacsh
   email = jzacsh@gmail.com
+[alias]
+  co = checkout
+[core]
+   pager = less -FRSX
+   editor = vim
+[pager]
+   status = true
+[merge]
+  tool = vimdiff
+  conflictstyle = diff3
 [color]
-  ui = true
-  status = true
-  branch = true
+  ui = auto
+  status = auto
+  branch = auto
+[color "diff"]
+  plain = white
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
 [color "branch"]
   current = yellow reverse
   local = yellow
