@@ -62,6 +62,7 @@ hc() ( hg commit -m ${1}; )
 hgdiff() ( hg cat $1 | vim - -c  ":vert diffsplit $1" -c "map q :qa!<CR>"; )
 
 alias themer?='drush pm-list | grep -i "devel_themer"'
+
 themer() {
   nm='devel_themer'
   [[ $(drush pm-list | grep ${nm} | grep 'Enabled') ]] && drush -y dis ${nm} || drush -y en ${nm}
