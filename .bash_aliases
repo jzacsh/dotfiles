@@ -5,6 +5,12 @@ alias l='ls -laFH'
 alias la='clear; ls -aFH'
 alias ca='clear; ls -laFH' 
 alias cl='clear; ls -lFH'
+alias ls='ls --group-directories-first --color'
+alias diff='colordiff'
+alias pfetch='drush -y fra && drush -y cc all && drush -y updb'
+alias mi="wget -qO - http://checkip.dyndns.org/ | sed -e 's/.*Current IP: //' -e 's/<.*$//'"
+
+# x env #######################
 alias m='nautilus --browser'
 alias ff='firefox'
 alias gc='google-chrome'
@@ -12,9 +18,6 @@ alias kflash='sudo killall npviewer.bin'
 alias rw="echo 'rebooting mysql and apache' && sudo service apache2 restart && sudo service mysql restart"
 alias xt='xterm -bg black -fg white -maximized'
 alias rx='rxvt -bg black -fg white -geometry 300x100 -face10'
-alias diff='colordiff'
-alias pfetch='drush -y fra && drush -y cc all && drush -y updb'
-alias mi="wget -qO - http://checkip.dyndns.org/ | sed -e 's/.*Current IP: //' -e 's/<.*$//'"
 
 # DRUPAL CONTRIB STUFF ########
 # export CVSROOT=:pserver:jzacsh@cvs.drupal.org:/cvs/drupal-contrib
@@ -38,7 +41,7 @@ dropx() {
 ###############################
 # functions ###################
 ident() ( identify -verbose $1 | grep modify; )
-g() ( IFS=+; firefox "http://www.google.com/search?q=${*}"; )
+g() ( IFS=+; $BROWSER "http://www.google.com/search?q=${*}"; )
 
 ### zagat specific: ###########
 hgk() {
@@ -50,7 +53,7 @@ tarl() ( tar -tf ${*}  | less; )
 
 beans() ( /usr/local/netbeans-6.9/bin/netbeans $* & disown 2> /dev/null; )
 
-xdebug() ( ff ${1}?XDEBUG_SESSION_START=1; )
+xdebug() ( $BROWSER ${1}?XDEBUG_SESSION_START=1; )
 
 hc() ( hg commit -m ${1}; )
 
