@@ -115,21 +115,20 @@ chatnets = {
 };
 
 channels = (
-  { name = "#jquery"; chatnet = "freenode"; autojoin = "yes"; },
-  { name = "#drupal"; chatnet = "freenode"; autojoin = "yes"; },
   { name = "#httpd"; chatnet = "freenode"; autojoin = "no"; },
   { name = "#open_atrium"; chatnet = "freenode"; autojoin = "no"; },
   { name = "##networking"; chatnet = "freenode"; autojoin = "no"; },
-  { name = "#drupal-nyc"; chatnet = "freenode"; autojoin = "yes"; },
+  { name = "#drupal-nyc"; chatnet = "freenode"; autojoin = "no"; },
+  { name = "#drupal"; chatnet = "freenode"; autojoin = "yes"; },
   { name = "#drupal-nj"; chatnet = "freenode"; autojoin = "yes"; },
+  { name = "#bash"; chatnet = "freenode"; autojoin = "yes"; },
+  { name = "#archlinux"; chatnet = "freenode"; autojoin = "yes"; },
+  { name = "#zagat"; chatnet = "freenode"; autojoin = "yes"; },
   { name = "#drupal-support"; chatnet = "freenode"; autojoin = "no"; },
   { name = "#drupal-themes"; chatnet = "freenode"; autojoin = "no"; },
-  { name = "#zagat"; chatnet = "freenode"; autojoin = "yes"; },
-  { name = "#archlinux"; chatnet = "freenode"; autojoin = "no"; },
   { name = "#ubuntu"; chatnet = "freenode"; autojoin = "no"; },
   { name = "#inkscape"; chatnet = "freenode"; autojoin = "no"; },
-  { name = "#bash"; chatnet = "freenode"; autojoin = "yes"; },
-  { name = "#wordpress"; chatnet = "freenode"; autojoin = "no"; },
+  { name = "#jquery"; chatnet = "freenode"; autojoin = "no"; },
   { name = "#debian"; chatnet = "freenode"; autojoin = "no"; },
   { name = "##php"; chatnet = "freenode"; autojoin = "no"; }
 );
