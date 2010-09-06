@@ -23,12 +23,20 @@ col_end='\[\e[m\]'
 # ps1_end="${col_blu}\$${col_end} "
 # export PS1=${ps1_sys}${ps1_spc}${ps1_pwd}${ps1_end}
 #export PS1='$(uname -n)::$(pwd | tail -c 23)$ '
-export PS1='\[\e[1;31m\]$(uname -n)\[\e[m\]\[\e[1;34m\]::\[\e[m\]\[\e[1;32m\]$(pwd | tail -c 23)\[\e[m\]\[\e[1;34m\]$\[\e[m\] '
 
-export PATH=$PATH:$HOME/bin
-export LESS=' -XFRr '
-export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
 export EDITOR=vim
+export PATH=$PATH:$HOME/bin
+if [[ $(uname -n) == "jznix" ]];then
+    export PS1='\[\e[1;33m\]$(uname -n)\[\e[m\]\[\e[1;34m\]::\[\e[m\]\[\e[1;32m\]$(pwd | tail -c 23)\[\e[m\]\[\e[1;34m\]$\[\e[m\] '
+    export LESSOPEN="| lesspipe.sh %s"
+#    export LESSOPEN="| /usr/bin/source-highlight %s"
+#    export LESSOPEN="| /usr/bin/lesspipe.sh %s| /usr/bin/source-highlight %s"
+elif [[ $(uname -n) == "penguinix" || $(uname -n) == "cnyitjza" ]];then
+    export PS1='\[\e[1;31m\]$(uname -n)\[\e[m\]\[\e[1;34m\]::\[\e[m\]\[\e[1;32m\]$(pwd | tail -c 23)\[\e[m\]\[\e[1;34m\]$\[\e[m\] '
+    export LESSOPEN="|lesspipe.sh %s"
+    export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
+fi
+export LESS=' -XFRr '
 
 # shell opts
 shopt -s cdspell

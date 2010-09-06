@@ -56,6 +56,7 @@ if has("autocmd")
   augroup module
     autocmd BufRead,BufNewFile *.module set filetype=php
     autocmd BufRead,BufNewFile *.install set filetype=php
+    autocmd BufRead,BufNewFile *.admin.inc set filetype=php
     autocmd BufRead,BufNewFile *.test set filetype=php
   augroup END
 endif
