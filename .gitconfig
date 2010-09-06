@@ -4,11 +4,12 @@
 [alias]
   co = checkout
 [core]
-   pager = less -FRSX
-   editor = vim
+  pager = less -FRSX
+  editor = vim
   excludesFile = ~/.gitignore
+;  notesRef = refs/notes/*
 [pager]
-   status = true
+  status = true
 [merge]
   tool = vimdiff
   conflictstyle = diff3
