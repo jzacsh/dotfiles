@@ -3,6 +3,11 @@
   email = jzacsh@gmail.com
 [alias]
   co = checkout
+  br = branch
+  ci = commit
+  st = status
+  unstage = reset HEAD --
+  last = log -1 HEAD
 [core]
   pager = less -FRSX
   editor = vim
