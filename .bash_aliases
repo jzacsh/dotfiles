@@ -8,7 +8,7 @@ alias cl='clear; ls -lFH'
 alias ls='ls --group-directories-first --color'
 alias diff='colordiff'
 alias pfetch='drush -y fra && drush -y cc all && drush -y updb'
-alias mi="wget -qO - http://checkip.dyndns.org/ | sed -e 's/.*Current IP: //' -e 's/<.*$//'"
+alias mi="wget -qO- http://checkip.dyndns.org | sed -e 's/^.*Address:\ //' -e 's/<\/body.*//'"
 
 # x env #######################
 alias m='nautilus --browser'
