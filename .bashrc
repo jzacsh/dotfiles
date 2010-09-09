@@ -27,7 +27,7 @@ col_end='\[\e[m\]'
 #export PS1='$(uname -n)::$(pwd | tail -c 23)$ '
 
 export EDITOR=vim
-export PATH=$PATH:$HOME/bin
+export PATH=$PATH:$HOME/bin:/opt/java/jre/bin/
 if [[ $(uname -n) == "jznix" ]];then
     export PS1='\[\e[1;33m\]$(uname -n)\[\e[m\]\[\e[1;34m\]::\[\e[m\]\[\e[1;32m\]$(pwd | tail -c 23)\[\e[m\]\[\e[1;34m\]$\[\e[m\] '
     export LESSOPEN="| lesspipe.sh %s"
