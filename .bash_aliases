@@ -1,11 +1,11 @@
 # aliases #####################
 set +o histexpand
 set -o vi
+alias ls='ls --group-directories-first --color'
 alias l='ls -laFH'
 alias la='clear; ls -aFH'
 alias ca='clear; ls -laFH' 
 alias cl='clear; ls -lFH'
-alias ls='ls --group-directories-first --color'
 alias diff='colordiff'
 alias pfetch='drush -y fra && drush -y cc all && drush -y updb'
 alias mi="wget -qO- http://checkip.dyndns.org | sed -e 's/^.*Address:\ //' -e 's/<\/body.*//'"

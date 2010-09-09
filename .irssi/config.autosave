@@ -1,6 +1,7 @@
 servers = (
   { address = "irc.ubuntu.com"; chatnet = "Ubuntu"; port = "8001"; },
   { address = "eu.irc6.net"; chatnet = "IRCnet"; port = "6667"; },
+  { address = "irc.oftc.net"; chatnet = "OFTC"; port = "6667"; },
   { 
     address = "irc.freenode.net";
     chatnet = "freenode";
@@ -45,7 +46,7 @@ chatnets = {
   };
   freenode = {
     type = "IRC";
-    autosendcmd = "/msg nickserv IDENTIFY jzacsh lunch";
+    autosendcmd = "/HILIGHT jzacsh";
     max_kicks = "4";
     max_msgs = "5";
     max_whois = "4";
@@ -110,16 +111,20 @@ chatnets = {
 };
 
 channels = (
-  { name = "#httpd"; chatnet = "freenode"; autojoin = "no"; },
-  { name = "#drupal"; chatnet = "freenode"; autojoin = "yes"; },
-  { name = "#drupal-support"; chatnet = "freenode"; autojoin = "yes"; },
-  { name = "#drupal-themes"; chatnet = "freenode"; autojoin = "yes"; },
-  { name = "#archlinux"; chatnet = "freenode"; autojoin = "no"; },
-  { name = "#ubuntu"; chatnet = "freenode"; autojoin = "yes"; },
   { name = "#bash"; chatnet = "freenode"; autojoin = "no"; },
-  { name = "#wordpress"; chatnet = "freenode"; autojoin = "no"; },
-  { name = "#debian"; chatnet = "freenode"; autojoin = "no"; },
-  { name = "##php"; chatnet = "freenode"; autojoin = "no"; }
+  { name = "#php"; chatnet = "freenode"; autojoin = "no"; },
+  { name = "#networking"; chatnet = "freenode"; autojoin = "no"; },
+  { name = "#ubuntu"; chatnet = "freenode"; autojoin = "no"; },
+  { name = "#ubuntu-us-nj"; chatnet = "freenode"; autojoin = "yes"; },
+  { name = "#httpd"; chatnet = "freenode"; autojoin = "no"; },
+  { name = "#drupal-support"; chatnet = "freenode"; autojoin = "no"; },
+  { name = "#open_atrium"; chatnet = "freenode"; autojoin = "no"; },
+  { name = "#drupal-nyc"; chatnet = "freenode"; autojoin = "yes"; },
+  { name = "#drupal-nj"; chatnet = "freenode"; autojoin = "yes"; },
+  { name = "#drupal-themes"; chatnet = "freenode"; autojoin = "no"; },
+  { name = "#drupal"; chatnet = "freenode"; autojoin = "yes"; },
+  { name = "#jquery"; chatnet = "freenode"; autojoin = "yes"; },
+  { name = "#zagat"; chatnet = "freenode"; autojoin = "yes"; }
 );
 
 aliases = {
@@ -291,20 +296,28 @@ settings = {
   };
   "fe-text" = { actlist_sort = "refnum"; };
   "fe-common/core" = {
-    bell_beeps = "ON";
+    beep_when_window_active = "ON";
+    beep_when_away = "ON";
     beep_msg_level = "MSGS NOTICES DCC DCCMSGS HILIGHT";
+    bell_beeps = "ON";
   };
 };
 ignores = (
-  { level = "JOINS QUITS"; channels = ( "#channel" ); },
-  { level = "JOINS QUITS"; channels = ( "#ubuntu" ); },
-  { level = "JOINS QUITS"; channels = ( "#debian" ); },
-  { level = "JOINS QUITS"; channels = ( "#bash" ); },
-  { level = "JOINS QUITS"; channels = ( "##php" ); },
-  { level = "JOINS QUITS"; channels = ( "#drupal-themes" ); },
-  { level = "JOINS QUITS"; channels = ( "#drupal-support" ); },
-  { level = "JOINS QUITS"; channels = ( "#drupal" ); },
-  { level = "JOINS QUITS"; channels = ( "#httpd" ); },
-  { level = "JOINS QUITS"; channels = ( "#archlinux" ); },
-  { mask = "karan"; level = "ALL"; }
+  { level = "JOINS"; channels = ( "#channel" ); },
+  { level = "JOINS"; channels = ( "#ubuntu" ); },
+  { level = "JOINS"; channels = ( "#ubuntu-us-nj" ); },
+  { level = "JOINS"; channels = ( "##networking" ); },
+  { level = "JOINS"; channels = ( "#debian" ); },
+  { level = "JOINS"; channels = ( "#bash" ); },
+  { level = "JOINS"; channels = ( "##php" ); },
+  { level = "JOINS"; channels = ( "#jquery" ); },
+  { level = "JOINS"; channels = ( "#open_atrium" ); },
+  { level = "JOINS"; channels = ( "#drupal-themes" ); },
+  { level = "JOINS"; channels = ( "#drupal-support" ); },
+  { level = "JOINS"; channels = ( "#drupal" ); },
+  { level = "JOINS"; channels = ( "#drupal-nj" ); },
+  { level = "JOINS"; channels = ( "#drupal-nyc" ); },
+  { level = "JOINS"; channels = ( "#httpd" ); },
+  { level = "JOINS"; channels = ( "#archlinux" ); }
 );
+hilights = ( { text = "jzacsh"; nick = "yes"; word = "yes"; } );
