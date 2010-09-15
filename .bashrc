@@ -26,6 +26,7 @@ col_end='\[\e[m\]'
 # export PS1=${ps1_sys}${ps1_spc}${ps1_pwd}${ps1_end}
 #export PS1='$(uname -n)::$(pwd | tail -c 23)$ '
 
+export CLASSPATH=$CLASSPATH:$HOME/docs/edu/he/bcc/2010-2011/fall2010/comp171/src/:$HOME/docs/edu/comp171/src/
 export EDITOR=vim
 export PATH=$PATH:$HOME/bin:/opt/java/jre/bin/
 if [[ $(uname -n) == "jznix" ]];then
@@ -66,3 +67,5 @@ if [[ $(who | grep -v jzacsh) ]]; then
 	who -H | grep -v jzacsh
 	echo #spacer
 fi
+
+echo "Segmentation Fault"
