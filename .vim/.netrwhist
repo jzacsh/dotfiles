@@ -1,7 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =5
-let g:netrw_dirhist_1='/home/jzacsh/code/web5-jzacsh/sites/all/themes/zagat/css'
-let g:netrw_dirhist_2='/home/jzacsh/code/web5-jzacsh/sites/all/modules/custom/zagat_key_rating'
-let g:netrw_dirhist_3='/home/jzacsh/code/web5-jzacsh/sites/all/modules/custom/zagat_key_rating/inc'
-let g:netrw_dirhist_4='/home/jzacsh/code/web5-jzacsh/sites/all/modules/custom/zagat_popup/inc'
-let g:netrw_dirhist_5='/home/jzacsh/code/web5-jzacsh/sites/all/themes/zagat/img'
