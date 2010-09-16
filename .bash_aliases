@@ -7,7 +7,7 @@ alias la='clear; ls -aFH'
 alias ca='clear; ls -laFH' 
 alias cl='clear; ls -lFH'
 alias diff='colordiff'
-alias pfetch='drush -y fra && drush -y cc all && drush -y updb'
+alias pfetch='drush cc all && drush -y fra && drush -y cc all && drush -y updb'
 alias mi="wget -qO- http://checkip.dyndns.org | sed -e 's/^.*Address:\ //' -e 's/<\/body.*//'"
 
 # x env #######################
@@ -51,11 +51,28 @@ hgk() {
 	disown
 }
 
+newrepo() {
+  conf="$HOME/code/conf/web5"
+  repo="$HOME/code/web5-jzacsh"
+  cd $repo/sites/
+    [[ $? -ne 0 ]] && echo 'FAILURE: unsuccessful local repo linking' && return 1
+  ln -s $conf/default
+    [[ $? -ne 0 ]] && echo 'FAILURE: unsuccessful local repo linking' && return 1
+  cd $repo/sites/all/modules
+    [[ $? -ne 0 ]] && echo 'FAILURE: unsuccessful local repo linking' && return 1
+  ln -s $conf/local
+    [[ $? -ne 0 ]] && echo 'FAILURE: unsuccessful local repo linking' && return 1
+  cd $repo
+  echo -e 'SUCCESS: Finished linking local settings to Drupal repo.'
+  ls -laFh
+}
+
 tarl() ( tar -tf ${*}  | less; )
 
 beans() ( /usr/local/netbeans-6.9/bin/netbeans $* & disown 2> /dev/null; )
 
 xdebug() ( $BROWSER ${1}?XDEBUG_SESSION_START=1; )
+xdbgstp() ( $BROWSER ${1}?XDEBUG_SESSION_STOP=1; )
 
 hc() ( hg commit -m ${1}; )
 

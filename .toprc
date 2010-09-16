@@ -4,7 +4,7 @@ Def	fieldscur=AEHIOQTWKNMbcDfGjplrsuvyzX
 	winflags=129305, sortindx=0, maxtasks=0
 	summclr=1, msgsclr=1, headclr=3, taskclr=1
 Job	fieldscur=ABcefgjlrstuvyzMKNHIWOPQDX
-	winflags=32121, sortindx=0, maxtasks=0
+	winflags=32121, sortindx=10, maxtasks=0
 	summclr=6, msgsclr=6, headclr=7, taskclr=6
 Mem	fieldscur=ANOPQRSTUVbcdefgjlmyzWHIKX
 	winflags=64953, sortindx=13, maxtasks=0

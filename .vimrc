@@ -11,6 +11,23 @@ set number
 set laststatus=2
 " set mouse=a	"annoying
 
+"variables
+"-----------------------
+let maplocalleader = ","
+
+"keymapping
+"-----------------------
+map <LocalLeader>t  <Esc>:tabnew<CR>
+map <LocalLeader>1  1gt
+map <LocalLeader>2  2gt
+map <LocalLeader>3  3gt
+map <LocalLeader>4  4gt
+map <LocalLeader>5  5gt
+map <LocalLeader>6  6gt
+map <LocalLeader>7  7gt
+map <LocalLeader>8  8gt
+map <LocalLeader>9  9gt
+
 set cmdheight=2
 
 set background=dark
