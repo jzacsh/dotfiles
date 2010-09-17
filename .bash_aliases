@@ -9,6 +9,7 @@ alias cl='clear; ls -lFH'
 alias diff='colordiff'
 alias pfetch='drush cc all && drush -y fra && drush -y cc all && drush -y updb'
 alias mi="wget -qO- http://checkip.dyndns.org | sed -e 's/^.*Address:\ //' -e 's/<\/body.*//'"
+alias tas="tmux attach-session"
 
 # x env #######################
 alias m='nautilus --browser'
