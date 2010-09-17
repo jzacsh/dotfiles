@@ -68,4 +68,4 @@ if [[ $(who | grep -v jzacsh) ]]; then
 	echo #spacer
 fi
 
-echo "Segmentation Fault"
+echo "AMG ! Segmentation Fault"

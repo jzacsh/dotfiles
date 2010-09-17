@@ -119,6 +119,7 @@ channels = (
   { name = "#open_atrium"; chatnet = "freenode"; autojoin = "no"; },
   { name = "##networking"; chatnet = "freenode"; autojoin = "no"; },
   { name = "#drupal-nyc"; chatnet = "freenode"; autojoin = "no"; },
+  { name = "#diaspora-dev"; chatnet = "freenode"; autojoin = "yes"; },
   { name = "#drupal"; chatnet = "freenode"; autojoin = "yes"; },
   { name = "#drupal-nj"; chatnet = "freenode"; autojoin = "yes"; },
   { name = "#bash"; chatnet = "freenode"; autojoin = "yes"; },
