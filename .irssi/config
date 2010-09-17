@@ -299,6 +299,7 @@ settings = {
   core = {
     real_name = "Jonathan Zacsh";
     user_name = "jzacsh";
+    password = "jzacsh:lunch!0";
     nick = "jzacsh";
   };
   "fe-text" = { actlist_sort = "refnum"; };
