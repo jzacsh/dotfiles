@@ -28,7 +28,7 @@ col_end='\[\e[m\]'
 
 export CLASSPATH=.:$CLASSPATH:$HOME/docs/edu/he/bcc/2010-2011/fall2010/comp171/comp/jzacsh/:$HOME/docs/edu/comp171/comp/jzacsh
 export EDITOR=vim
-export PATH=$PATH:$HOME/bin:/opt/java/jre/bin/
+export PATH=$PATH:$HOME/bin:/opt/java/jre/bin/:/srv/http/global/bin/dev
 if [[ $(uname -n) == "jznix" ]];then
     export PS1='\[\e[1;33m\]$(uname -n)\[\e[m\]\[\e[1;34m\]::\[\e[m\]\[\e[1;32m\]$(pwd | tail -c 23)\[\e[m\]\[\e[1;34m\]$\[\e[m\] '
     export LESSOPEN="| lesspipe.sh %s"
