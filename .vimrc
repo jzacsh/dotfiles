@@ -2,15 +2,6 @@
 " comments in double-quotes (`"')
 " awesome reference:		http://amix.dk/vim/vimrc.html
 
-set ff=unix
-set autoindent
-set history=400
-set nosi
-set ruler
-set number
-set laststatus=2
-" set mouse=a	"annoying
-
 "variables
 "-----------------------
 let maplocalleader = ","
@@ -87,3 +78,13 @@ let php_parent_error_close = 1
 let php_parent_error_open = 1
 let php_folding =1
 let php_sync_method = 0
+
+set ff=unix
+set autoindent
+set ai
+set history=400
+set nosi
+set ruler
+set number
+set laststatus=2
+" set mouse=a	"annoying

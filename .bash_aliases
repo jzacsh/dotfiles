@@ -81,6 +81,7 @@ hc() ( hg commit -m ${1}; )
 hgdiff() ( hg cat $1 | vim - -c  ":vert diffsplit $1" -c "map q :qa!<CR>"; )
 
 alias themer?='drush pm-list | grep -i "devel_themer"'
+alias cleardd='sudo rm -v /tmp/drupal_debug.txt  && sudo -u www-data touch /tmp/drupal_debug.txt'
 
 themer() {
   nm='devel_themer'
