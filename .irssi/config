@@ -51,6 +51,7 @@ chatnets = {
   freenode = {
     type = "IRC";
     autosendcmd = "/msg nickserv set hidemail on";
+    autosendcmd = "/hilight jzacsh";
     max_kicks = "4";
     max_msgs = "5";
     max_whois = "4";
