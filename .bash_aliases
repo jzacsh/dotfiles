@@ -82,6 +82,8 @@ hgdiff() ( hg cat $1 | vim - -c  ":vert diffsplit $1" -c "map q :qa!<CR>"; )
 
 alias themer?='drush pm-list | grep -i "devel_themer"'
 alias cleardd='sudo rm -v /tmp/drupal_debug.txt  && sudo -u www-data touch /tmp/drupal_debug.txt'
+# export codez="~/code/web5-jzacsh/sites/all/modules/features/ ~/code/web5-jzacsh/sites/all/modules/custom/ ~/code/web5-jzacsh/sites/all/themes/zagat/"
+alias rmorig="find ~/code/web5-jzacsh/ -name '*.orig' -delete"
 
 themer() {
   nm='devel_themer'
