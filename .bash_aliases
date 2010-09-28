@@ -83,7 +83,9 @@ hgdiff() ( hg cat $1 | vim - -c  ":vert diffsplit $1" -c "map q :qa!<CR>"; )
 alias themer?='drush pm-list | grep -i "devel_themer"'
 
 cleardd() {
-  [[ -z ${1} ]] && { echo -e "fail: no params\n" && return 1; } || file="${1}"
+  def_file="/tmp/drupal_debug.txt"
+  [[ -z ${1} ]] && echo "no params defaulting to: ${def_file}" || file="${1}"
+  [[ -z ${file} ]] && file="${def_file}"
   usr=$(stat -c %u ${file})
   echo -e "owner of ${file} is: ${usr}\n" #debug info
   sudo rm -v ${file} && sudo -u#${usr} touch ${file}
