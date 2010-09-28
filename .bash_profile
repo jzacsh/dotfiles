@@ -15,6 +15,7 @@ col_end='\[\e[m\]'
 export EDITOR=vim
 export LESS=' -XFRr '
 export BROWSER=firefox
+export GREP_OPTIONS='--color=auto'
 
 #if interactive, source .bashrc
 [[ -n $PS1 && -f ~/.bashrc ]] && source ~/.bashrc

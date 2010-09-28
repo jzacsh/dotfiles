@@ -81,7 +81,15 @@ hc() ( hg commit -m ${1}; )
 hgdiff() ( hg cat $1 | vim - -c  ":vert diffsplit $1" -c "map q :qa!<CR>"; )
 
 alias themer?='drush pm-list | grep -i "devel_themer"'
-alias cleardd='sudo rm -v /tmp/drupal_debug.txt  && sudo -u www-data touch /tmp/drupal_debug.txt'
+
+cleardd() {
+  [[ -z ${1} ]] && { echo -e "fail: no params\n" && return 1; } || file="${1}"
+  usr=$(stat -c %u ${file})
+  echo -e "owner of ${file} is: ${usr}\n" #debug info
+  sudo rm -v ${file} && sudo -u#${usr} touch ${file}
+  tail -f ${file}
+}
+
 # export codez="~/code/web5-jzacsh/sites/all/modules/features/ ~/code/web5-jzacsh/sites/all/modules/custom/ ~/code/web5-jzacsh/sites/all/themes/zagat/"
 alias rmorig="find ~/code/web5-jzacsh/ -name '*.orig' -delete -print"
 
