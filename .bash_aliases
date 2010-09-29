@@ -93,7 +93,7 @@ cleardd() {
   usr=$(stat -c %u ${file} || echo ${def_usr})
   echo -e "owner of ${file} is: ${usr}\n" #debug info
   sudo rm -v ${file}
-  sudo -u"${usr}" touch ${file} && tail -f ${file}
+  sudo -u#"${usr}" touch ${file} && tail -f ${file}
 }
 
 # export codez="~/code/web5-jzacsh/sites/all/modules/features/ ~/code/web5-jzacsh/sites/all/modules/custom/ ~/code/web5-jzacsh/sites/all/themes/zagat/"
