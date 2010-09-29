@@ -58,6 +58,9 @@ set sw=2
 " xdebug port
 let g:debuggerPort = 9001
 
+" make files
+autocmd FileType make set noexpandtab
+
 "drupal.org suggestions:
 if has("autocmd")
   " Drupal *.module and *.install files.
