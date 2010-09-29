@@ -49,7 +49,7 @@ ident() ( identify -verbose $1 | grep modify; )
 g() ( IFS=+; $BROWSER "http://www.google.com/search?q=${*}"; )
 
 ### zagat specific: ###########
-export CDPATH='~/code/web5-jzacsh/sites/all/themes/:~/code/web5-jzacsh/sites/all/modules/'
+export CDPATH='~/code/web5-jzacsh/sites/all/themes/:~/code/web5-jzacsh/sites/all/modules/custom/:~/code/web5-jzacsh/sites/all/modules/features/'
 
 hgk() {
 	hgview 2> /dev/null &
@@ -91,8 +91,8 @@ cleardd() {
   [[ -z ${file} ]] && file="${def_file}"
   usr=$(stat -c %u ${file})
   echo -e "owner of ${file} is: ${usr}\n" #debug info
-  sudo rm -v ${file} && sudo -u#${usr} touch ${file}
-  tail -f ${file}
+  sudo rm -v ${file}
+  sudo -u#${usr} touch ${file} && tail -f ${file}
 }
 
 # export codez="~/code/web5-jzacsh/sites/all/modules/features/ ~/code/web5-jzacsh/sites/all/modules/custom/ ~/code/web5-jzacsh/sites/all/themes/zagat/"
