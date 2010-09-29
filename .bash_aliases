@@ -49,6 +49,8 @@ ident() ( identify -verbose $1 | grep modify; )
 g() ( IFS=+; $BROWSER "http://www.google.com/search?q=${*}"; )
 
 ### zagat specific: ###########
+export CDPATH=$CDPATH:/code/web5-jzacsh/sites/all/themes/:~/code/web5-jzacsh/sites/all/modules/
+
 hgk() {
 	hgview 2> /dev/null &
 	disown
@@ -82,6 +84,19 @@ hc() ( hg commit -m ${1}; )
 hgdiff() ( hg cat $1 | vim - -c  ":vert diffsplit $1" -c "map q :qa!<CR>"; )
 
 alias themer?='drush pm-list | grep -i "devel_themer"'
+
+cleardd() {
+  def_file="/tmp/drupal_debug.txt"
+  [[ -z ${1} ]] && echo "no params defaulting to: ${def_file}" || file="${1}"
+  [[ -z ${file} ]] && file="${def_file}"
+  usr=$(stat -c %u ${file})
+  echo -e "owner of ${file} is: ${usr}\n" #debug info
+  sudo rm -v ${file} && sudo -u#${usr} touch ${file}
+  tail -f ${file}
+}
+
+# export codez="~/code/web5-jzacsh/sites/all/modules/features/ ~/code/web5-jzacsh/sites/all/modules/custom/ ~/code/web5-jzacsh/sites/all/themes/zagat/"
+alias rmorig="find ~/code/web5-jzacsh/ -name '*.orig' -delete -print"
 
 themer() {
   nm='devel_themer'

@@ -3,5 +3,6 @@
 .viminfo
 .muttrc
 .msmtprc
+.irssi/saved_colors
 *.swp
 a.out
