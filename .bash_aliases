@@ -48,7 +48,7 @@ ident() ( identify -verbose $1 | grep modify; )
 g() ( IFS=+; $BROWSER "http://www.google.com/search?q=${*}"; )
 
 ### zagat specific: ###########
-export CDPATH=$CDPATH:/code/web5-jzacsh/sites/all/themes/:~/code/web5-jzacsh/sites/all/modules/
+export CDPATH='~/code/web5-jzacsh/sites/all/themes/:~/code/web5-jzacsh/sites/all/modules/'
 
 hgk() {
 	hgview 2> /dev/null &
