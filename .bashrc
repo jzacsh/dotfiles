@@ -15,11 +15,15 @@ esac
 #export PS1='$(uname -n)::$(pwd | tail -c 23)$ '
 #
 #colors:
-col_red='\[\e[1;31m\]'
-col_grn='\[\e[1;32m\]'
-col_ylw='\[\e[1;33m\]'
-col_blu='\[\e[1;34m\]'
-col_end='\[\e[m\]'
+local col_end='\[\033[0m\]'
+
+local col_blk='\[\e[1;30m\]'
+local col_red='\[\e[1;31m\]'
+local col_grn='\[\e[1;32m\]'
+local col_ylw='\[\e[1;33m\]'
+local col_blu='\[\e[1;34m\]'
+local col_usr='\[\e[0;37m\]'
+[[ $UID -eq "0" ]] && col_usr=$col_red #root's color
 
 export CLASSPATH=.:$CLASSPATH:$HOME/docs/edu/he/bcc/2010-2011/fall2010/comp171/comp/jzacsh/:$HOME/docs/edu/comp171/comp/jzacsh
 export EDITOR=vim
@@ -32,9 +36,6 @@ elif [[ $(uname -n) == "penguinix" || $(uname -n) == "cnyitjza" ]];then
     export LESSOPEN="|lesspipe.sh %s"
     export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
 fi
-RET_VALUE='$(if [[ $RET -ne 0 ]];then echo -n ":\[\033[1;31m\]$RET\[\033[0m\]";fi)'
-PS1="$TITLEBAR ${EMK}┌┤${UC}\u${EMK}@${UC}\h${RET_VALUE}"'$(__git_ps1 " \[\033[0;32m\]%s\[\033[0m\]")'" ${EMB}\w${NONE}${EMK}${UC}\n ${EMK}└╼${NONE} "
-PS4='+$BASH_SOURCE:$LINENO:$FUNCNAME: '
 export LESS=' -XFRr '
 
 # shell opts
@@ -64,4 +65,12 @@ if [[ $(who | grep -v jzacsh) ]]; then
 	echo #spacer
 fi
 
+RET_VALUE='$(if [[ $RET -ne 0 ]];then echo -n ":\[\033[1;31m\]$RET\[\033[0m\]";fi)'
+PS1="$TITLEBAR
+${col_blk}┌┤${col_usr}\u${col_blk}@${col_usr}\h${RET_VALUE}"'$(__git_ps1 " \[\033[0;32m\]%s\[\033[0m\]")'" ${col_blu}\w${col_end}${col_blk}${col_usr}\n ${col_blk}└╼${col_end} "
+PS4='+$BASH_SOURCE:$LINENO:$FUNCNAME: '
+
+PROMPT_COMMAND='RET=$?'
+
 echo "AhMG!! SEGMENTATION FAULT"
+
