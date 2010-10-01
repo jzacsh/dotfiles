@@ -20,6 +20,7 @@ alias kflash='echo "killing flash..." && sudo killall npviewer.bin'
 alias rw="echo 'rebooting mysql and apache' && sudo service apache2 restart && sudo service mysql restart"
 alias xt='xterm -bg black -fg white -maximized'
 alias rx='rxvt -bg black -fg white -geometry 300x100 -face10'
+alias urx='rxvt-unicode -bg rgba:1111/1111/1111/bbbb -fg white -fn "xft:Droid Sans Mono:pixelsize=10"'
 alias djo="alias djo-admin='/srv/http/subs/ofas/inc/djo/django/bin/django-admin.py'"
 
 # DRUPAL CONTRIB STUFF ########
