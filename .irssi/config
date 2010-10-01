@@ -1,11 +1,7 @@
 servers = (
   { address = "irc.ubuntu.com"; chatnet = "Ubuntu"; port = "8001"; },
   { address = "eu.irc6.net"; chatnet = "IRCnet"; port = "6667"; },
-  { 
-    address = "irc.oftc.net";
-    chatnet = "OFTC";
-    port = "6667";
-  },
+  { address = "irc.oftc.net"; chatnet = "OFTC"; port = "6667"; },
   { 
     address = "irc.freenode.net";
     chatnet = "freenode";
@@ -50,7 +46,6 @@ chatnets = {
   };
   freenode = {
     type = "IRC";
-    autosendcmd = "/msg nickserv set hidemail on";
     autosendcmd = "/hilight jzacsh";
     max_kicks = "4";
     max_msgs = "5";
@@ -322,3 +317,4 @@ ignores = (
   { level = "JOINS"; channels = ( "#httpd" ); },
   { level = "JOINS"; channels = ( "#archlinux" ); }
 );
+hilights = ( { text = "jzacsh"; nick = "yes"; word = "yes"; } );

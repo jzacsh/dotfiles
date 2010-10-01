@@ -58,12 +58,16 @@ set sw=2
 " xdebug port
 let g:debuggerPort = 9001
 
+" make files
+autocmd FileType make set noexpandtab
+
 "drupal.org suggestions:
 if has("autocmd")
   " Drupal *.module and *.install files.
   augroup module
     autocmd BufRead,BufNewFile *.module set filetype=php
     autocmd BufRead,BufNewFile *.install set filetype=php
+    autocmd BufRead,BufNewFile *.theme.inc set filetype=php
     autocmd BufRead,BufNewFile *.admin.inc set filetype=php
     autocmd BufRead,BufNewFile *.test set filetype=php
   augroup END
@@ -88,3 +92,7 @@ set ruler
 set number
 set laststatus=2
 " set mouse=a	"annoying
+
+
+"xdebug in vim
+let g:debuggerPort = 9000

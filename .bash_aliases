@@ -10,6 +10,7 @@ alias diff='colordiff'
 alias pfetch='drush cc all && drush -y fra && drush -y cc all && drush -y updb && hg push && hg stat'
 alias mi="wget -qO- http://checkip.dyndns.org | sed -e 's/^.*Address:\ //' -e 's/<\/body.*//'"
 alias tas="tmux attach-session"
+alias cower='cower -c'
 
 # x env #######################
 alias m='nautilus --browser'
@@ -48,6 +49,10 @@ ident() ( identify -verbose $1 | grep modify; )
 g() ( IFS=+; $BROWSER "http://www.google.com/search?q=${*}"; )
 
 ### zagat specific: ###########
+alias pp='vi ~/tmp/bl && ff ~/tmp/bl && rm ~/tmp/bl'
+
+export CDPATH='~/code/web5-jzacsh/sites/all/themes/:~/code/web5-jzacsh/sites/all/modules/custom/:~/code/web5-jzacsh/sites/all/modules/features/'
+
 hgk() {
 	hgview 2> /dev/null &
 	disown
@@ -81,7 +86,20 @@ hc() ( hg commit -m ${1}; )
 hgdiff() ( hg cat $1 | vim - -c  ":vert diffsplit $1" -c "map q :qa!<CR>"; )
 
 alias themer?='drush pm-list | grep -i "devel_themer"'
-alias cleardd='sudo rm -v /tmp/drupal_debug.txt  && sudo -u www-data touch /tmp/drupal_debug.txt'
+
+cleardd() {
+  def_file="/tmp/drupal_debug.txt"
+  def_usr="33"
+  [[ -z ${1} ]] && echo "no params defaulting to: ${def_file}" || file="${1}"
+  [[ -z ${file} ]] && file="${def_file}"
+  usr=$(stat -c %u ${file} || echo ${def_usr})
+  echo -e "owner of ${file} is: ${usr}\n" #debug info
+  sudo rm -v ${file}
+  sudo -u#${usr} touch ${file} && tail -f ${file}
+}
+
+# export codez="~/code/web5-jzacsh/sites/all/modules/features/ ~/code/web5-jzacsh/sites/all/modules/custom/ ~/code/web5-jzacsh/sites/all/themes/zagat/"
+alias rmorig="find ~/code/web5-jzacsh/ -name '*.orig' -delete -print"
 
 themer() {
   nm='devel_themer'
