@@ -28,7 +28,7 @@ if [[ $(uname -n) == "jznix" ]];then
     PS1="${col_red}$(uname -n)${col_end}"
     PS1="${PS1}${col_blu}::${col_end}"
     PS1="${PS1}${col_grn}$(pwd | tail -c 23)${col_end}"
-    PS1="${PS1}${col_blu}$${col_end} "
+    PS1="${PS1}${col_blu}\$${col_end} "
     export PS1
     export LESSOPEN="| lesspipe.sh %s"
 #    export LESSOPEN="| /usr/bin/source-highlight %s"
@@ -37,7 +37,7 @@ elif [[ $(uname -n) == "penguinix" || $(uname -n) == "cnyitjza" ]];then
     PS1="${col_red}$(uname -n)${col_end}"
     PS1="${PS1}${col_blu}::${col_end}"
     PS1="${PS1}${col_grn}$(pwd | tail -c 23)${col_end}"
-    PS1="${PS1}${col_blu}$${col_end} "
+    PS1="${PS1}${col_blu}\$${col_end} "
     export PS1
     export LESSOPEN="|lesspipe.sh %s"
     export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
