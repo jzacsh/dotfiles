@@ -25,21 +25,22 @@ export CLASSPATH=.:$CLASSPATH:$HOME/docs/edu/he/bcc/2010-2011/fall2010/comp171/c
 export EDITOR=vim
 export PATH=$PATH:$HOME/bin:/opt/java/jre/bin/:/srv/http/global/bin/dev/
 if [[ $(uname -n) == "jznix" ]];then
-    PS1="${col_ylw}$(uname -n)${col_end}"
+    PS1="${col_ylw}$(uname -n)${col_end}${col_blu}::${col_end}${col_grn}$(pwd | tail -c 23)${col_end}${col_blu}\$${col_end} "
+    export PS1
     export LESSOPEN="| lesspipe.sh %s"
 #    export LESSOPEN="| /usr/bin/source-highlight %s"
 #    export LESSOPEN="| /usr/bin/lesspipe.sh %s| /usr/bin/source-highlight %s"
 elif [[ $(uname -n) == "penguinix" || $(uname -n) == "cnyitjza" ]];then
-    PS1="${col_red}$(uname -n)${col_end}"
     export LESSOPEN="|lesspipe.sh %s"
     export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
   else
-    PS1="${col_ylw}$(uname -n)${col_end}"
+    PS1="${col_red}$(uname -n)${col_end}${col_blu}::${col_end}${col_grn}$(pwd | tail -c 23)${col_end}${col_blu}\$${col_end} "
+    export PS1
 fi
-PS1="${PS1}${col_blu}::${col_end}"
-PS1="${PS1}${col_grn}$(pwd | tail -c 23)${col_end}"
-PS1="${PS1}${col_blu}\$${col_end} "
-export PS1
+#PS1="${PS1}${col_blu}::${col_end}"
+#PS1="${PS1}${col_grn}$(pwd | tail -c 23)${col_end}"
+#PS1="${PS1}${col_blu}\$${col_end} "
+#export PS1
 export LESS=' -XFRr '
 
 # shell opts
