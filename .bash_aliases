@@ -65,20 +65,13 @@ hgk() {
 	disown
 }
 
-newrepo() {
+newcny() {
+  loc='cnyitjza'
   conf="$HOME/code/conf/web5"
   repo="$HOME/code/web5-jzacsh"
-  cd $repo/sites/
-    [[ $? -ne 0 ]] && echo 'FAILURE: unsuccessful local repo linking' && return 1
-  ln -s $conf/default
-    [[ $? -ne 0 ]] && echo 'FAILURE: unsuccessful local repo linking' && return 1
-  cd $repo/sites/all/modules
-    [[ $? -ne 0 ]] && echo 'FAILURE: unsuccessful local repo linking' && return 1
-  ln -s $conf/local
-    [[ $? -ne 0 ]] && echo 'FAILURE: unsuccessful local repo linking' && return 1
-  cd $repo
-  echo -e 'SUCCESS: Finished linking local settings to Drupal repo.'
-  ls -laFh
+  ln -s $conf/local $repo/sites/all/modules/local
+  ln -s $conf/default $repo/sites/default
+  w3m "http://${loc}/"
 }
 
 tarl() ( tar -tf ${*}  | less; )
