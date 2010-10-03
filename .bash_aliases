@@ -49,6 +49,12 @@ dropx() {
 ident() ( identify -verbose $1 | grep modify; )
 g() ( IFS=+; $BROWSER "http://www.google.com/search?q=${*}"; )
 
+
+gencscope() {
+  local DIRS=(/srv/http/subs/notes/www/{sites/all/{modules/contrib,themes},includes,modules})
+  cscope -b -i <(find "${DIRS[@]}" \( -name '*.inc' -or -name '*.php' -or -name '*.module' \) > "$CSCOPE_INPUT")
+}
+
 ### zagat specific: ###########
 alias pp='vi ~/tmp/bl && ff ~/tmp/bl && rm ~/tmp/bl'
 
