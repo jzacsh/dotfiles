@@ -15,7 +15,7 @@ alias cower='cower -c'
 # x env #######################
 alias m='nautilus --browser'
 alias ff='firefox'
-alias gc='google-chrome'
+alias ch='chromium-browser'
 alias kflash='echo "killing flash..." && sudo killall npviewer.bin'
 alias rw="echo 'rebooting mysql and apache' && sudo service apache2 restart && sudo service mysql restart"
 alias xt='xterm -bg black -fg white -maximized'
