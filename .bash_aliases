@@ -74,9 +74,6 @@ tarl() ( tar -tf ${*}  | less; )
 
 beans() ( /usr/local/netbeans-6.9/bin/netbeans $* & disown 2> /dev/null; )
 
-xdebug() ( $BROWSER ${1}?XDEBUG_SESSION_START=1; )
-xdbgstp() ( $BROWSER ${1}?XDEBUG_SESSION_STOP=1; )
-
 hc() ( hg commit -m ${1}; )
 
 hgdiff() ( hg cat $1 | vim - -c  ":vert diffsplit $1" -c "map q :qa!<CR>"; )
