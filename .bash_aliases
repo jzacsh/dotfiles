@@ -34,12 +34,7 @@ alias office='ooffice'
 
 ## dropbox can suck: ##########
 dropx() {
-  str='dropbox start'
-  stp='dropbox stop'
-  sta='dropbox status'
-  $stp
-  $str
-  $sta
+  dropbox st{art,op,atus}
   for i in {1..5}; do sleep 1 && $sta; done
   for i in {1..15}; do sleep 2 && $sta; done
 }
