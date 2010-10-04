@@ -17,9 +17,8 @@ export EDITOR=vim
 PATH=.:$HOME/bin:$HOME/bin/share:$HOME/bin/local:$HOME/bin/dist:$PATH
 PATH=$PATH:/opt/java/jre/bin/:/srv/http/global/bin/dev/
 export PATH
-export LESSOPEN="| lesspipe.sh %s"
-export LESSOPEN="| /usr/bin/source-highlight %s"
-export LESS=' -XFRr '
+export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
+export LESS=' -XFR '
 
 # shell opts
 shopt -s cdspell
