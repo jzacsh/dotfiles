@@ -24,7 +24,8 @@ set cmdheight=2
 
 set background=dark
 " colorscheme ir_black
-colorscheme merged
+" colorscheme merged
+colorscheme dante
 
 " set which wraps
 set whichwrap+=<,>,h,l
