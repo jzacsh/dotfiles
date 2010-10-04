@@ -8,6 +8,7 @@ let maplocalleader = ","
 
 "keymapping
 "-----------------------
+map <LocalLeader>f  <Esc>:TlistToggle<CR>
 map <LocalLeader>t  <Esc>:tabnew<CR>
 map <LocalLeader>1  1gt
 map <LocalLeader>2  2gt

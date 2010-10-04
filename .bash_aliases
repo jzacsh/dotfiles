@@ -34,20 +34,22 @@ alias office='ooffice'
 
 ## dropbox can suck: ##########
 dropx() {
-  str='dropbox start'
-  stp='dropbox stop'
-  sta='dropbox status'
-  $stp
-  $str
-  $sta
-  for i in {1..5}; do sleep 1 && $sta; done
-  for i in {1..15}; do sleep 2 && $sta; done
+  db="dropbox"
+  for act in {op,art,atus}; do $db st${act}; done
+  for i in {1..5}; do sleep 1 && $db status; done
+  for i in {1..15}; do sleep 2 && $db status; done
 }
 
 ###############################
 # functions ###################
 ident() ( identify -verbose $1 | grep modify; )
 g() ( IFS=+; $BROWSER "http://www.google.com/search?q=${*}"; )
+
+
+gencscope() {
+  local DIRS=(/srv/http/subs/notes/www/{sites/all/{modules/contrib,themes},includes,modules})
+  cscope -b -i <(find "${DIRS[@]}" \( -name '*.inc' -or -name '*.php' -or -name '*.module' \))
+}
 
 ### zagat specific: ###########
 alias pp='vi ~/tmp/bl && ff ~/tmp/bl && rm ~/tmp/bl'
@@ -59,20 +61,13 @@ hgk() {
 	disown
 }
 
-newrepo() {
+newcny() {
+  loc='cnyitjza'
   conf="$HOME/code/conf/web5"
   repo="$HOME/code/web5-jzacsh"
-  cd $repo/sites/
-    [[ $? -ne 0 ]] && echo 'FAILURE: unsuccessful local repo linking' && return 1
-  ln -s $conf/default
-    [[ $? -ne 0 ]] && echo 'FAILURE: unsuccessful local repo linking' && return 1
-  cd $repo/sites/all/modules
-    [[ $? -ne 0 ]] && echo 'FAILURE: unsuccessful local repo linking' && return 1
-  ln -s $conf/local
-    [[ $? -ne 0 ]] && echo 'FAILURE: unsuccessful local repo linking' && return 1
-  cd $repo
-  echo -e 'SUCCESS: Finished linking local settings to Drupal repo.'
-  ls -laFh
+  ln -s $conf/local $repo/sites/all/modules/local
+  ln -s $conf/default $repo/sites/default
+  w3m "http://${loc}/"
 }
 
 tarl() ( tar -tf ${*}  | less; )

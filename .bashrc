@@ -14,15 +14,11 @@ esac
 
 export CLASSPATH=.:$CLASSPATH:$HOME/docs/edu/he/bcc/2010-2011/fall2010/comp171/comp/jzacsh/:$HOME/docs/edu/comp171/comp/jzacsh
 export EDITOR=vim
-export PATH=$PATH:$HOME/bin:/opt/java/jre/bin/:/srv/http/global/bin/dev/
-if [[ $(uname -n) == "jznix" ]];then
-    export LESSOPEN="| lesspipe.sh %s"
-#    export LESSOPEN="| /usr/bin/source-highlight %s"
-#    export LESSOPEN="| /usr/bin/lesspipe.sh %s| /usr/bin/source-highlight %s"
-elif [[ $(uname -n) == "penguinix" || $(uname -n) == "cnyitjza" ]];then
-    export LESSOPEN="|lesspipe.sh %s"
-    export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
-fi
+PATH=.:$HOME/bin:$HOME/bin/share:$HOME/bin/local:$HOME/bin/dist:$PATH
+PATH=$PATH:/opt/java/jre/bin/:/srv/http/global/bin/dev/
+export PATH
+export LESSOPEN="| lesspipe.sh %s"
+export LESSOPEN="| /usr/bin/source-highlight %s"
 export LESS=' -XFRr '
 
 # shell opts
