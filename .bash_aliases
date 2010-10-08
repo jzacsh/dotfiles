@@ -15,7 +15,7 @@ alias cower='cower -c'
 # x env #######################
 alias m='nautilus --browser'
 alias ff='firefox'
-alias gc='google-chrome'
+alias ch='chromium-browser'
 alias kflash='echo "killing flash..." && sudo killall npviewer.bin'
 alias rw="echo 'rebooting mysql and apache' && sudo service apache2 restart && sudo service mysql restart"
 alias xt='xterm -bg black -fg white -maximized'
@@ -34,14 +34,10 @@ alias office='ooffice'
 
 ## dropbox can suck: ##########
 dropx() {
-  str='dropbox start'
-  stp='dropbox stop'
-  sta='dropbox status'
-  $stp
-  $str
-  $sta
-  for i in {1..5}; do sleep 1 && $sta; done
-  for i in {1..15}; do sleep 2 && $sta; done
+  db="dropbox"
+  for act in {op,art,atus}; do $db st${act}; done
+  for i in {1..5}; do sleep 1 && $db status; done
+  for i in {1..15}; do sleep 2 && $db status; done
 }
 
 ###############################
@@ -52,7 +48,7 @@ g() ( IFS=+; $BROWSER "http://www.google.com/search?q=${*}"; )
 
 gencscope() {
   local DIRS=(/srv/http/subs/notes/www/{sites/all/{modules/contrib,themes},includes,modules})
-  cscope -b -i <(find "${DIRS[@]}" \( -name '*.inc' -or -name '*.php' -or -name '*.module' \) > "$CSCOPE_INPUT")
+  cscope -b -i <(find "${DIRS[@]}" \( -name '*.inc' -or -name '*.php' -or -name '*.module' \))
 }
 
 ### zagat specific: ###########
@@ -77,9 +73,6 @@ newcny() {
 tarl() ( tar -tf ${*}  | less; )
 
 beans() ( /usr/local/netbeans-6.9/bin/netbeans $* & disown 2> /dev/null; )
-
-xdebug() ( $BROWSER ${1}?XDEBUG_SESSION_START=1; )
-xdbgstp() ( $BROWSER ${1}?XDEBUG_SESSION_STOP=1; )
 
 hc() ( hg commit -m ${1}; )
 

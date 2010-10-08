@@ -3,3 +3,6 @@
 .w3m/w3m*
 .w3m/history
 .irssi/saved_colors
+cscope.inc
+cscope.out
+cscope.files

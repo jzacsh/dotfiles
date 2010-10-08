@@ -17,6 +17,7 @@ export LESS=' -XFRr '
 export BROWSER=firefox
 export GREP_OPTIONS='--color=auto'
 export CDPATH=$CDPATH:.:~
+export CSCOPE_DB=$HOME/.vim/cscope.out
 
 #if interactive, source .bashrc
 [[ -n $PS1 && -f ~/.bashrc ]] && source ~/.bashrc
