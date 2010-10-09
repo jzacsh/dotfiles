@@ -8,7 +8,8 @@ let maplocalleader = ","
 
 "keymapping
 "-----------------------
-map <LocalLeader>d  <Esc>:r!date --rfc-3339=ns<CR>
+map <LocalLeader>s  <Esc>:r!date --rfc-3339=seconds<CR>
+map <LocalLeader>d  <Esc>:r!date --rfc-3339=date<CR>
 map <LocalLeader>f  <Esc>:TlistToggle<CR>
 map <LocalLeader>t  <Esc>:tabnew<CR>
 map <LocalLeader>1  1gt
