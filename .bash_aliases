@@ -11,6 +11,7 @@ alias pfetch='drush cc all && drush -y fra && drush -y cc all && drush -y updb &
 alias mi="wget -qO- http://checkip.dyndns.org | sed -e 's/^.*Address:\ //' -e 's/<\/body.*//'"
 alias tas="tmux attach-session"
 alias cower='cower -c'
+alias udevinfo='udevadm info -q all -n'
 
 # x env #######################
 alias m='nautilus --browser'
