@@ -46,19 +46,28 @@ dropx() {
 ident() ( identify -verbose $1 | grep modify; )
 g() ( IFS=+; $BROWSER "http://www.google.com/search?q=${*}"; )
 
-dgo() {
-  #see http://dgo.to/ for possible params
-  param="$1"
-  search="${*}"
-  if [[ $(echo $param | head -c 1) == "-" ]];then
-    key="$(echo $param | sed -e 's/.//')/"
-    search="${@:2}"
-  else
-    key='' #default search projects
-  fi
-  IFS=' '; $BROWSER "http://dgo.to/${key}${search}"
-}
+# dgo() {
+#   #see http://dgo.to/ for possible params
+#   param="$1"
+#   search="${*}"
+#   if [[ ${param:0:1} == "-" ]];then
+#     key="$(echo $param | sed -e 's/.//')/"
+#     search="${@:2}"
+#   else
+#     key='' #default search projects
+#   fi
+#   IFS=' '; $BROWSER "http://dgo.to/${key}${search}"
+# }
 
+dgo() {
+  if [[ ${1:0:1} = - ]]; then
+    key="${1//./}"
+    shift 2;
+  fi
+
+  search="$@"
+  $BROWSER "http://dgo.to/$key$search"
+}
 
 gencscope() {
   if [[ $(uname -n) == "jznix" ]];then
