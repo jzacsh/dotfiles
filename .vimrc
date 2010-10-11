@@ -23,9 +23,9 @@ map <LocalLeader>9  9gt
 set cmdheight=2
 
 set background=dark
-" colorscheme ir_black
+ colorscheme ir_black
 " colorscheme merged
- colorscheme dante
+" colorscheme dante
 
 " set which wraps
 set whichwrap+=<,>,h,l
@@ -68,6 +68,7 @@ autocmd FileType make set noexpandtab
 if has("autocmd")
   " Drupal *.module and *.install files.
   augroup module
+    autocmd BufRead,BufNewFile *.php set filetype=php
     autocmd BufRead,BufNewFile *.module set filetype=php
     autocmd BufRead,BufNewFile *.install set filetype=php
     autocmd BufRead,BufNewFile *.theme.inc set filetype=php
@@ -77,6 +78,10 @@ if has("autocmd")
   augroup END
 endif
 syntax on
+
+" causes xdebug to insert on <F12>; too annoying:
+" set omnifunc=phpcomplete#CompletePHP
+" imap <buffer> <C-d> <C-\><C-O>:call drupal6complete#Map()<CR><C-X><C-O>
 
 let php_sql_query = 1
 let php_baselib = 1

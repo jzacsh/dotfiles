@@ -47,7 +47,11 @@ g() ( IFS=+; $BROWSER "http://www.google.com/search?q=${*}"; )
 
 
 gencscope() {
-  local DIRS=(/srv/http/subs/notes/www/{sites/all/{modules/contrib,themes},includes,modules})
+  if [[ $(uname -n) == "jznix" ]];then
+    local DIRS=(/srv/http/subs/notes/www/{sites/all/{modules/contrib,themes},includes,modules})
+  else
+    local DIRS=(~/code/web5-jzacsh/{sites/all/{modules/contrib,themes},includes,modules})
+  fi
   cscope -b -i <(find "${DIRS[@]}" \( -name '*.inc' -or -name '*.php' -or -name '*.module' \))
 }
 
@@ -74,7 +78,7 @@ tarl() ( tar -tf ${*}  | less; )
 
 beans() ( /usr/local/netbeans-6.9/bin/netbeans $* & disown 2> /dev/null; )
 
-hc() ( hg commit -m ${1}; )
+hc() ( hg commit -m ${@}; )
 
 hgdiff() ( hg cat $1 | vim - -c  ":vert diffsplit $1" -c "map q :qa!<CR>"; )
 
