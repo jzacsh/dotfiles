@@ -455,6 +455,14 @@ description	latexhelp.txt	/*description*
 diacritic-mappings	latex-suite.txt	/*diacritic-mappings*
 displaymath	latexhelp.txt	/*displaymath*
 draft	latexhelp.txt	/*draft*
+drupal6complete-configuration	drupal6complete.txt	/*drupal6complete-configuration*
+drupal6complete-ctags	drupal6complete.txt	/*drupal6complete-ctags*
+drupal6complete-developers	drupal6complete.txt	/*drupal6complete-developers*
+drupal6complete-help	drupal6complete.txt	/*drupal6complete-help*
+drupal6complete-intro	drupal6complete.txt	/*drupal6complete-intro*
+drupal6complete-support	drupal6complete.txt	/*drupal6complete-support*
+drupal6complete-usage	drupal6complete.txt	/*drupal6complete-usage*
+drupal6complete.txt	drupal6complete.txt	/*drupal6complete.txt*
 editing-folding	latex-suite.txt	/*editing-folding*
 empty	latexhelp.txt	/*empty*
 enabling-searching	latex-suite.txt	/*enabling-searching*

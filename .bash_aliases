@@ -46,9 +46,37 @@ dropx() {
 ident() ( identify -verbose $1 | grep modify; )
 g() ( IFS=+; $BROWSER "http://www.google.com/search?q=${*}"; )
 
+dgo() {
+  #see http://dgo.to/ for possible params
+  param="$1"
+  search="${*}"
+  if [[ ${param:0:1} == "-" ]];then
+    key="$(echo $param | sed -e 's/.//')/"
+    search="${@:2}"
+  else
+    key='' #default search projects
+  fi
+  $BROWSER "http://dgo.to/${key}${search}"
+}
+
+## falconindy rewrite:
+# dgo() {
+#   local BROWSER="echo" #debugging
+#   if [[ ${1:0:1} = - ]]; then
+#     key=${1:1}/
+#     shift 2;
+#   fi
+# 
+#   search="$@"
+#   $BROWSER "http://dgo.to/$key$search"
+# }
 
 gencscope() {
-  local DIRS=(/srv/http/subs/notes/www/{sites/all/{modules/contrib,themes},includes,modules})
+  if [[ $(uname -n) == "jznix" ]];then
+    local DIRS=(/srv/http/subs/notes/www/{sites/all/{modules/contrib,themes},includes,modules})
+  else
+    local DIRS=(~/code/web5-jzacsh/{sites/all/{modules/contrib,themes},includes,modules})
+  fi
   cscope -b -i <(find "${DIRS[@]}" \( -name '*.inc' -or -name '*.php' -or -name '*.module' \))
 }
 
@@ -75,7 +103,7 @@ tarl() ( tar -tf ${*}  | less; )
 
 beans() ( /usr/local/netbeans-6.9/bin/netbeans $* & disown 2> /dev/null; )
 
-hc() ( hg commit -m ${1}; )
+hc() ( hg commit -m ${@}; )
 
 hgdiff() ( hg cat $1 | vim - -c  ":vert diffsplit $1" -c "map q :qa!<CR>"; )
 
