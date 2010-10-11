@@ -1,0 +1,54 @@
+[ui]
+username = Jonathan Zacsh <jzacsh@zagat.com>
+merge = internal:merge
+
+[defaults]
+#suppress noisy extdiff header message
+cdiff = -q
+
+[extensions]
+hgext.fetch=
+hgext.mq=
+hgext.extdiff=
+hgext.purge=
+color= 
+hgext.pager=
+hgext.highlight=
+hgext.progress=
+# hgext.inotify=
+hgext.hgshelve=
+hgext.graphlog=
+hgext.eol = 
+hgext.record = 
+
+[repository]
+native = LF
+
+[eol]
+only-consistent = False
+
+
+[pager]
+pager = /usr/bin/less
+#attend = annotate, log, in
+#ignore = 
+
+[inotify]
+log = '/home/jzacsh/docs/logs/hginotify.log'
+
+[extdiff]
+cmd.cdiff = colordiff
+opts.cdiff = -uprN
+
+[paths]
+int = http://codelibrary.zagat.com/hg/integration/web5-integration/
+jz = http://codelibrary.zagat.com/hg/integration/web5-jzacsh/
+qa = http://codelibrary.zagat.com/hg/qa/web5-qa/
+prod = http://codelibrary.zagat.com/hg/prod/web5-prod/
+
+# [tortoisehg]
+# postpull = fetch
+
+[alias]
+push = push --new-branch
+changelog = outgoing --no-merges --template "Revision {node|short} by {author} on {date|shortdate}:\n{desc}\n\n"
