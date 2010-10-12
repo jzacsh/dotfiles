@@ -90,6 +90,49 @@ hgk() {
 	disown
 }
 
+urlhg() {
+  echo -en 'Error: not yet implemented.\n'
+  echo -en '       this function will return a line-specific url\n'
+  echo -en '       to codelibrary given a local file.\n'
+  echo -en "       eg.: 'http://codelibrary.zagat.com/hg/integration/web5-jzacsh/file/5d56162a25f8/index.php#l4'\n"
+  return 1
+}
+
+urlocal() {
+  echo -en 'Error: not yet implemented.\n'
+  echo -en '       this function will return a local-url\n'
+  echo -en '       to this host given a local file.\n'
+  echo -en "       eg.: 'http://cnyitjza.zagat.com/sites/all/themes/zagat/css/global.css'\n"
+  return 1
+}
+
+fu() {
+  if [[ $(echo ${1} | grep tar$) ]];then
+    download=$1 
+  else
+    echo -en 'usage: fu feature_name-X.x-#.#.tar\n'
+    return 1
+  fi
+
+  echo -en 'unpacking feature: \n'
+  tar xvf ${download}
+  echo -en 'finished unpacking.\n'
+
+  dirname=$(tar tf $download | head -1 | sed -e 's/\/.*$/\//')
+  for file in $(find ${dirname} -type f);do 
+    mv -v $file $(echo "${file}" | sed -e 's/${file}\///'); 
+  done
+
+  echo -en "junk: ${dirname} ${download} \n"
+  echo -en 'cleanup junk, here? [y/N] '
+  read answ
+  if [[ $answ == 'y' || $answ == 'yes' ]]; then
+    rm -rfv ${download} ${dirname} 
+  else
+    exit 0
+  fi
+}
+
 newcny() {
   loc='cnyitjza'
   conf="$HOME/code/conf/web5"
