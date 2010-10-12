@@ -19,7 +19,7 @@ export EDITOR=vim
 export LESS=' -XFRr '
 export BROWSER=$(cat ~/.browser)
 export GREP_OPTIONS='--color=auto'
-export CDPATH=$CDPATH:.:~
+export CDPATH=.:$CDPATH:~
 export CSCOPE_DB=$HOME/.vim/cscope.out
 export COWER='cower --color=auto'
 
