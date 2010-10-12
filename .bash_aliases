@@ -118,18 +118,21 @@ fu() {
   tar xvf ${download}
   echo -en 'finished unpacking.\n'
 
-  dirname=$(tar tf $download | head -1 | sed -e 's/\/.*$/\//')
-  for file in $(find ${dirname} -type f);do 
-    mv -v $file $(echo "${file}" | sed -e 's/${file}\///'); 
+  echo -en '\nupdating feature:\n'
+  dirname=$(tar tf $download | sed -e '1s|/.*$/||;q')
+  for file in $(find $dirname -type f);do 
+    mv -v $file $(echo $file | sed -e "s|$dirname||"); 
   done
+  echo -en 'finished updating.\n'
 
-  echo -en "junk: ${dirname} ${download} \n"
-  echo -en 'cleanup junk, here? [y/N] '
+  echo -en "\njunk: ${dirname} ${download} \n"
+  echo -en 'cleanup junk, here? [Y/n] '
   read answ
-  if [[ $answ == 'y' || $answ == 'yes' ]]; then
-    rm -rfv ${download} ${dirname} 
+  if [[ $answ == 'n' || $answ == 'no' ]]; then
+    return 0
   else
-    exit 0
+    rm -rfv ${download}
+    rm -rfv ${dirname} 
   fi
 }
 
