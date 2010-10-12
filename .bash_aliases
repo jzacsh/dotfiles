@@ -83,8 +83,6 @@ gencscope() {
 ### zagat specific: ###########
 alias pp='vi ~/tmp/bl && ff ~/tmp/bl && rm ~/tmp/bl'
 
-export CDPATH='~/code/web5-jzacsh/sites/all/themes/:~/code/web5-jzacsh/sites/all/modules/custom/:~/code/web5-jzacsh/sites/all/modules/features/'
-
 hgk() {
 	hgview 2> /dev/null &
 	disown
