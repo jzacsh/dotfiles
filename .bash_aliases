@@ -46,6 +46,12 @@ dropx() {
 ident() ( identify -verbose $1 | grep modify; )
 g() ( IFS=+; $BROWSER "http://www.google.com/search?q=${*}"; )
 
+xdb() {
+  uri_append='?XDEBUG_SESSION_STOP'
+  [[ -z $1 ]] && uri_append='?XDEBUG_SESSION_START=1'
+  echo -en $uri_append
+}
+
 dgo() {
   #see http://dgo.to/ for possible params
   param="$1"
@@ -58,18 +64,6 @@ dgo() {
   fi
   $BROWSER "http://dgo.to/${key}${search}"
 }
-
-## falconindy rewrite:
-# dgo() {
-#   local BROWSER="echo" #debugging
-#   if [[ ${1:0:1} = - ]]; then
-#     key=${1:1}/
-#     shift 2;
-#   fi
-# 
-#   search="$@"
-#   $BROWSER "http://dgo.to/$key$search"
-# }
 
 gencscope() {
   if [[ $(uname -n) == "jznix" ]];then
