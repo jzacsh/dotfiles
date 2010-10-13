@@ -52,6 +52,19 @@ xdb() {
   echo -en $uri_append
 }
 
+dgo() {
+  #see http://dgo.to/ for possible params
+  param="$1"
+  search="${*}"
+  if [[ ${param:0:1} == "-" ]];then
+    key="$(echo $param | sed -e 's/.//')/"
+    search="${@:2}"
+  else
+    key='' #default search projects
+  fi
+  $BROWSER "http://dgo.to/${key}${search}"
+}
+
 gencscope() {
   if [[ $(uname -n) == "jznix" ]];then
     local DIRS=(/srv/http/subs/notes/www/{sites/all/{modules/contrib,themes},includes,modules})
@@ -64,11 +77,55 @@ gencscope() {
 ### zagat specific: ###########
 alias pp='vi ~/tmp/bl && ff ~/tmp/bl && rm ~/tmp/bl'
 
-export CDPATH='~/code/web5-jzacsh/sites/all/themes/:~/code/web5-jzacsh/sites/all/modules/custom/:~/code/web5-jzacsh/sites/all/modules/features/'
-
 hgk() {
 	hgview 2> /dev/null &
 	disown
+}
+
+urlhg() {
+  echo -en 'Error: not yet implemented.\n'
+  echo -en '       this function will return a line-specific url\n'
+  echo -en '       to codelibrary given a local file.\n'
+  echo -en "       eg.: 'http://codelibrary.zagat.com/hg/integration/web5-jzacsh/file/5d56162a25f8/index.php#l4'\n"
+  return 1
+}
+
+urlocal() {
+  echo -en 'Error: not yet implemented.\n'
+  echo -en '       this function will return a local-url\n'
+  echo -en '       to this host given a local file.\n'
+  echo -en "       eg.: 'http://cnyitjza.zagat.com/sites/all/themes/zagat/css/global.css'\n"
+  return 1
+}
+
+fu() {
+  if [[ $(echo ${1} | grep tar$) ]];then
+    download=$1 
+  else
+    echo -en 'usage: fu feature_name-X.x-#.#.tar\n'
+    return 1
+  fi
+
+  echo -en 'unpacking feature: \n'
+  tar xvf ${download}
+  echo -en 'finished unpacking.\n'
+
+  echo -en '\nupdating feature:\n'
+  dirname=$(tar tf $download | sed -e '1s|/.*$/||;q')
+  for file in $(find $dirname -type f);do 
+    mv -v $file $(echo $file | sed -e "s|$dirname||"); 
+  done
+  echo -en 'finished updating.\n'
+
+  echo -en "\njunk: ${dirname} ${download} \n"
+  echo -en 'cleanup junk, here? [Y/n] '
+  read answ
+  if [[ $answ == 'n' || $answ == 'no' ]]; then
+    return 0
+  else
+    rm -rfv ${download}
+    rm -rfv ${dirname} 
+  fi
 }
 
 newcny() {
