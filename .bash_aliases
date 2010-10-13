@@ -46,6 +46,11 @@ dropx() {
 ident() ( identify -verbose $1 | grep modify; )
 g() ( IFS=+; $BROWSER "http://www.google.com/search?q=${*}"; )
 
+xdb() {
+  uri_append='?XDEBUG_SESSION_STOP'
+  [[ -z $1 ]] && uri_append='?XDEBUG_SESSION_START=1'
+  echo -en $uri_append
+}
 
 gencscope() {
   if [[ $(uname -n) == "jznix" ]];then
