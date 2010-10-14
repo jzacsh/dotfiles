@@ -16,6 +16,7 @@ col_end='\[\e[m\]'
 
 # progs
 export EDITOR=vim
+export DIFF=' -up '
 export LESS=' -XFRr '
 export BROWSER=$(cat ~/.browser)
 export GREP_OPTIONS='--color=auto'
