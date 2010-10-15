@@ -18,7 +18,7 @@ alias m='nautilus --browser'
 alias ff='firefox'
 alias ch='chromium-browser'
 alias kflash='echo "killing flash..." && sudo killall npviewer.bin'
-alias rw="echo 'rebooting mysql and apache' && sudo service apache2 restart && sudo service mysql restart"
+alias rw="echo 'rebooting interwebs (mysql and apache)' && sudo service apache2 restart && sudo service mysql restart"
 alias xt='xterm -bg black -fg white -maximized'
 alias rx='rxvt -bg black -fg white -geometry 300x100 -face10'
 alias urx='rxvt-unicode -bg rgba:1111/1111/1111/bbbb -fg white -fn "xft:Droid Sans Mono:pixelsize=10"'
