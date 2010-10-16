@@ -15,7 +15,7 @@ alias udevinfo='udevadm info -q all -n'
 
 # x env #######################
 alias m='nautilus --browser'
-alias ff='firefox'
+alias br='$BROWSER'
 alias ch='chromium-browser'
 alias kflash='echo "killing flash..." && sudo killall npviewer.bin'
 alias rw="echo 'rebooting interwebs (mysql and apache)' && sudo service apache2 restart && sudo service mysql restart"
