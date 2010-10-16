@@ -1,6 +1,8 @@
 [user]
   name = Jonathan Zacsh
   email = jzacsh@gmail.com
+[help]
+	autocorrect = 1
 [alias]
   co = checkout
   br = branch
