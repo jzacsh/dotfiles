@@ -48,6 +48,7 @@ set incsearch
 
 " textwidth:
 set tw=79
+au BufRead ~/tmp/mutt-* set tw=72
 
 " always showtab:
 set showtabline=2
