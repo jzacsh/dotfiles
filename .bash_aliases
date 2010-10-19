@@ -112,9 +112,9 @@ fu() {
   echo -en 'finished unpacking.\n'
 
   echo -en '\nupdating feature:\n'
-  dirname=$(tar tf $download | sed -e '1s|/.*$/||;q')
+  dirname=$(tar tf $download | sed -e '1s|/.*$|/|;q')
   for file in $(find $dirname -type f);do 
-    mv -v $file $(echo $file | sed -e "s|$dirname||"); 
+    mv -v $file $(echo $file | sed -e "s|$dirname||")
   done
   echo -en 'finished updating.\n'
 
