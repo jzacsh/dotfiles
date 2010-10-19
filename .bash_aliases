@@ -23,7 +23,7 @@ alias xt='xterm -bg black -fg white -maximized'
 alias rx='rxvt -bg black -fg white -geometry 300x100 -face10'
 alias urx='rxvt-unicode -bg rgba:1111/1111/1111/bbbb -fg white -fn "xft:Droid Sans Mono:pixelsize=10"'
 alias djo="alias djo-admin='/srv/http/subs/ofas/inc/djo/django/bin/django-admin.py'"
-mutt="pidof '/usr/bin/mutt' && mutt -R || mutt"
+alias mutt="pidof '/usr/bin/mutt' && mutt -R || mutt"
 
 # DRUPAL CONTRIB STUFF ########
 # export CVSROOT=:pserver:jzacsh@cvs.drupal.org:/cvs/drupal-contrib
