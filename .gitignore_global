@@ -2,6 +2,7 @@
 .lesshst
 .viminfo
 .muttrc
+.netrc
 .msmtprc
 .irssi/saved_colors
 *.swp
