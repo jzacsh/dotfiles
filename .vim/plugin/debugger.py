@@ -661,7 +661,7 @@ class Debugger:
   #################################################################################################################
   # Internal functions
   #
-  def __init__(self, port = 9000, max_children = '32', max_data = '1024', max_depth = '1', minibufexpl = '0', debug = 0):
+  def __init__(self, port = 9000, max_children = '32', max_data = '1024', max_depth = '9', minibufexpl = '0', debug = 0):
     """ initialize Debugger """
     socket.setdefaulttimeout(5)
     self.port       = port
@@ -1054,7 +1054,7 @@ def debugger_init(debug = 0):
 
   max_depth = vim.eval('debuggerMaxDepth')
   if max_depth == '':
-    max_depth = '1'
+    max_depth = '5'
 
   minibufexpl = int(vim.eval('debuggerMiniBufExpl'))
   if minibufexpl == 0:
