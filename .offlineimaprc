@@ -21,19 +21,19 @@ type = Gmail
 remoteuser = jzacsh@gmail.com
 realdelete = no
 #remotepass = password #in ~/.netrc
-nametrans = lambda foldername: re.sub ('^\[gmail\]', 'bak',
+nametrans = lambda foldername: re.sub ('^\[gmail\]', 'gmail',
                                re.sub ('sent_mail', 'sent',
                                re.sub ('starred', 'flagged',
                                re.sub (' ', '_', foldername.lower()))))
 #folderfilter = lambda foldername: foldername not in '[Gmail]/All Mail'
 folderfilter = lambda foldername: foldername in '[Gmail]/All Mail'
 
-# [mbnames]
-# enabled = yes
-# #filename = ~/.mutt/muttrc.mailboxes
-# header = "mailboxes "
-# peritem = "+%(accountname)s/%(foldername)s"
-# sep = " "
-# footer = "\n"
+[mbnames]
+enabled = yes
+#filename = ~/.mutt/muttrc.mailboxes
+header = "mailboxes "
+peritem = "+%(accountname)s/%(foldername)s"
+sep = " "
+footer = "\n"
 
 # vim: ft=cfg tw=0

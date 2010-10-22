@@ -40,9 +40,9 @@
 # maildir settings
   set mbox_type           = Maildir                               # mailbox type
   set folder              = ~/mail/                               # mailbox location
-  set spoolfile           = "+bak.all_mail"                       # GMail is default inbox
-  set postponed           = "+drafts"
-  set record              = "+sent"
+  set spoolfile           = "+gmail/inbox"                        # GMail is default inbox
+  set postponed           = "+gmail/drafts"
+  set record              = "+gmail/sent"
 
 # main options
 unset confirmappend                                               # don't ask, just do
@@ -51,9 +51,10 @@ unset confirmappend                                               # don't ask, j
 unset markers                                                     # no ugly plus signs
 unset mark_old                                                    # read/new is good enough for me
   set menu_scroll                                                 # scroll in menus
-  set pager_index_lines   = 10                                    # number of index lines to show
+  set pager_index_lines   = 8                                     # number of index lines to show
   set pager_context       = 5                                     # number of context lines to show
   set pager_stop                                                  # don't go to next message automatically
+  set smart_wrap                                                  # don't split words
   set pipe_decode                                                 # strip headers and eval mimes when piping
   set reverse_alias                                               # show names from alias file in index
   set sort                = threads                               # like gmail
@@ -82,6 +83,8 @@ alternative_order text/plain text/enriched text/html              # but save it 
   set fast_reply                                                  # skip to compose when replying
   set forward_format      = "Fwd: %s"                             # format for subject when forwarding
   set forward_quote                                               # include message in forwards
+  set fcc_attach                                                  # save attachments with the body
+unset mime_forward                                                # forward attachments as part of body
   set include                                                     # include message in replies
   set realname            = "Jonathan Zacsh"                      # who am i?
   set reply_to                                                    # reply to Reply-to: field, not From:
@@ -93,7 +96,7 @@ hdr_order from: to: cc: date: subject:                            # and in this 
 
 # lists and boxes
 #subscribe arch-announce arch-dev-public arch-general xmonad
-mailboxes +--gmail---- +gmail/inbox +gmail/all_mail +gmail/sent +gmail/drafts +gmail/trash #+GMail/arch_lists +GMail/xmonad_list
+mailboxes +--gmail---- +gmail/inbox +gmail/all +gmail/sent +gmail/drafts +gmail/trash #+GMail/arch_lists +GMail/xmonad_list
 
 # conditionally source a 256 colors file
 #source `FILE=$HOME/.mutt/colors.muttrc; [[ $TERM =~ 256 ]] && FILE=$HOME/.mutt/256colors.muttrc; echo $FILE`
