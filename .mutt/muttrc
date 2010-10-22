@@ -40,9 +40,10 @@
 # maildir settings
   set mbox_type           = Maildir                               # mailbox type
   set folder              = ~/mail/                               # mailbox location
-  set spoolfile           = "+gmail/inbox"                        # GMail is default inbox
-  set postponed           = "+gmail/drafts"
-  set record              = "+gmail/sent"
+  set spoolfile           = imaps://imap.gmail.com/INBOX          # GMail is default inbox
+  set imap_user           = jzacsh@gmail.com                      # gmail username
+  set postponed           = "+[Gmail]/drafts" 
+  set record              = "+[Gmail]/sent"
 
 # main options
 unset confirmappend                                               # don't ask, just do
@@ -96,7 +97,7 @@ hdr_order from: to: cc: date: subject:                            # and in this 
 
 # lists and boxes
 #subscribe arch-announce arch-dev-public arch-general xmonad
-mailboxes +--gmail---- +gmail/inbox +gmail/all +gmail/sent +gmail/drafts +gmail/trash #+GMail/arch_lists +GMail/xmonad_list
+mailboxes =INBOX =sent =drafts =trash =all
 
 # conditionally source a 256 colors file
 #source `FILE=$HOME/.mutt/colors.muttrc; [[ $TERM =~ 256 ]] && FILE=$HOME/.mutt/256colors.muttrc; echo $FILE`
