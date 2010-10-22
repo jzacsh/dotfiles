@@ -40,7 +40,7 @@
 # maildir settings
   set mbox_type           = Maildir                               # mailbox type
   set folder              = ~/mail/                               # mailbox location
-  set spoolfile           = imaps://imap.gmail.com/INBOX          # GMail is default inbox
+  set spoolfile           = gmail                                 # GMail is default inbox
   set imap_user           = jzacsh@gmail.com                      # gmail username
   set postponed           = "+[Gmail]/drafts" 
   set record              = "+[Gmail]/sent"
