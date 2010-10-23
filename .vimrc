@@ -2,12 +2,15 @@
 " comments in double-quotes (`"')
 " awesome reference:		http://amix.dk/vim/vimrc.html
 
+let $VIM = '$HOME/.vim'
+
 "variables
 "-----------------------
 let maplocalleader = ","
 
 "keymapping
 "-----------------------
+map <LocalLeader>r  <Esc>:MRU<CR>
 map <LocalLeader>s  <Esc>:r!date --rfc-3339=seconds<CR>
 map <LocalLeader>d  <Esc>:r!date --rfc-3339=date<CR>
 map <LocalLeader>f  <Esc>:TlistToggle<CR>
@@ -105,6 +108,11 @@ set number
 set laststatus=2
 " set mouse=a	"annoying
 
+"plugin specific stuff:
+"let MRU_File = "$VIM/plugin/mru.vim"
+let MRU_Exclude_Files = '$HOME/tmp/.*'
+let MRU_Auto_Close = 0
+let MRU_Max_Entries = 10
 
 "xdebug in vim
 let g:debuggerPort = 9000
