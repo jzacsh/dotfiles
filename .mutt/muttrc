@@ -38,12 +38,13 @@
   set print_command       = "enscript -p - | psselect -r | lp"    # print email in reverse page order
 
 # maildir settings
+  set imap_user           = @gmail.com                            # gmail username
   set mbox_type           = Maildir                               # mailbox type
   set folder              = ~/mail/                               # mailbox location
-  set spoolfile           = gmail                                 # GMail is default inbox
-  set imap_user           = @gmail.com                      # gmail username
-  set postponed           = "+gmail/drafts" 
-  set record              = "+gmail/sent"
+  set mbox                = "+archive"                            # GMail is default inbox
+  set spoolfile           = "+inbox"                              # GMail is default inbox
+  set postponed           = "+drafts" 
+  set record              = "+sent"
 
 # main options
 unset confirmappend                                               # don't ask, just do
@@ -97,7 +98,7 @@ hdr_order from: to: cc: date: subject:                            # and in this 
 
 # lists and boxes
 #subscribe arch-announce arch-dev-public arch-general xmonad
-mailboxes =inbox =sent =drafts =trash
+mailboxes =inbox =sent =drafts =archive
 
 # conditionally source a 256 colors file
 #source `FILE=$HOME/.mutt/colors.muttrc; [[ $TERM =~ 256 ]] && FILE=$HOME/.mutt/256colors.muttrc; echo $FILE`
