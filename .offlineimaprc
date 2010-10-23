@@ -14,20 +14,19 @@ quick = 10
 
 [Repository gmail-local]
 type = Maildir
-localfolders = ~/mail/gmail
+localfolders = ~/mail/
 
 [Repository gmail-remote]
 type = Gmail
 remoteuser = jzacsh@gmail.com
 realdelete = no
 #remotepass = password #in ~/.netrc
-nametrans = lambda folder: re.sub ('^\[gmail\]', 'gmail',
-                               re.sub ('.*All Mail$', 'archive',
-                               re.sub ('.*Sent Mail$', 'sent',
-                               re.sub ('.*Drafts$', 'drafts',
-                               re.sub ('.*Spam$', 'spam',
-                               re.sub ('.*Starred$', 'flagged',
-                               re.sub (' ', '_', foldername.lower())))))))
+nametrans = lambda foldername: re.sub('.*All Mail$', 'archive',
+                               re.sub('.*Sent Mail$', 'sent',
+                               re.sub('.*Drafts$', 'drafts',
+                               re.sub('.*Spam$', 'spam',
+                               re.sub('.*Starred$', 'flagged',
+                               re.sub(' ', '_', foldername.lower()))))))
 #folderfilter = lambda foldername: foldername not in '[Gmail]/All Mail'
 folderfilter = lambda foldername: foldername in '[Gmail]/All Mail'
 

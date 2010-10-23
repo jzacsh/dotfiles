@@ -98,7 +98,7 @@ hdr_order from: to: cc: date: subject:                            # and in this 
 
 # lists and boxes
 #subscribe arch-announce arch-dev-public arch-general xmonad
-mailboxes =inbox =sent =drafts =archive
+mailboxes +inbox +archive +sent +drafts +spam
 
 # conditionally source a 256 colors file
 #source `FILE=$HOME/.mutt/colors.muttrc; [[ $TERM =~ 256 ]] && FILE=$HOME/.mutt/256colors.muttrc; echo $FILE`
