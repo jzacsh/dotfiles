@@ -30,7 +30,7 @@ folderfilter = lambda foldername: foldername in '[Gmail]/All Mail'
 
 [mbnames]
 enabled = yes
-#filename = ~/.mutt/muttrc.mailboxes
+filename = ~/.mutt/muttrc.mailboxes
 header = "mailboxes "
 peritem = "+%(accountname)s/%(foldername)s"
 sep = " "

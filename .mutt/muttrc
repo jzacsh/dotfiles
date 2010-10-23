@@ -41,9 +41,9 @@
   set mbox_type           = Maildir                               # mailbox type
   set folder              = ~/mail/                               # mailbox location
   set spoolfile           = gmail                                 # GMail is default inbox
-  set imap_user           = jzacsh@gmail.com                      # gmail username
-  set postponed           = "+[Gmail]/drafts" 
-  set record              = "+[Gmail]/sent"
+  set imap_user           = @gmail.com                      # gmail username
+  set postponed           = "+gmail/drafts" 
+  set record              = "+gmail/sent"
 
 # main options
 unset confirmappend                                               # don't ask, just do
@@ -97,7 +97,7 @@ hdr_order from: to: cc: date: subject:                            # and in this 
 
 # lists and boxes
 #subscribe arch-announce arch-dev-public arch-general xmonad
-mailboxes =INBOX =sent =drafts =trash =all
+mailboxes =inbox =sent =drafts =trash
 
 # conditionally source a 256 colors file
 #source `FILE=$HOME/.mutt/colors.muttrc; [[ $TERM =~ 256 ]] && FILE=$HOME/.mutt/256colors.muttrc; echo $FILE`
@@ -108,10 +108,10 @@ source `FILE=$HOME/.mutt/sidebar.muttrc; mutt -v | grep -Fq sidebar || FILE=/dev
 
 # these are always sourced
 source $alias_file                                                # required for functionality
-source ~/.mutt/gmail.muttrc                                       # source gmail as default
+#source ~/.mutt/gmail.muttrc                                       # source gmail as default
 
 # override with account specific folder-hooks
-folder-hook GMail/*      source ~/.mutt/gmail.muttrc
+#folder-hook gmail/*      source ~/.mutt/gmail.muttrc
 
 # alternate "me"s
 alternates (@gmail.com|.*@.com)
