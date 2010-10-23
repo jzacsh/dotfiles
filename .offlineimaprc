@@ -28,12 +28,12 @@ nametrans = lambda foldername: re.sub ('^\[gmail\]', 'gmail',
 #folderfilter = lambda foldername: foldername not in '[Gmail]/All Mail'
 folderfilter = lambda foldername: foldername in '[Gmail]/All Mail'
 
-[mbnames]
-enabled = yes
-filename = ~/.mutt/muttrc.mailboxes
-header = "mailboxes "
-peritem = "+%(accountname)s/%(foldername)s"
-sep = " "
-footer = "\n"
+# [mbnames]
+# enabled = yes
+# filename = ~/.mutt/muttrc.mailboxes
+# header = "mailboxes "
+# peritem = "+%(accountname)s/%(foldername)s"
+# sep = " "
+# footer = "\n"
 
 # vim: ft=cfg tw=0
