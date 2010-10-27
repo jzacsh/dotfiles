@@ -130,12 +130,15 @@ fu() {
 }
 
 newcny() {
-  loc='cnyitjza'
+  vb=1
+  loc=$(uname -n)
   conf="$HOME/code/conf/web5"
   repo="$HOME/code/web5-jzacsh"
-  ln -s $conf/local $repo/sites/all/modules/local
-  ln -s $conf/default $repo/sites/default
-  w3m "http://${loc}/"
+  [[ $vb ]] && echo -en '\ninserting link to local-only modules\n'
+  ln -sv $conf/local $repo/sites/all/modules/local
+  [[ $vb ]] && echo -en '\ninserting link to \'default\' directory\n'
+  ln -sv $conf/default $repo/sites/default
+  $BROWSER "http://${loc}/"
 }
 
 tarl() ( tar -tf ${*}  | less; )
