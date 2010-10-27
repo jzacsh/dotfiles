@@ -127,6 +127,7 @@ channels = (
   { name = "#jquery"; chatnet = "freenode"; autojoin = "no"; },
   { name = "#debian"; chatnet = "freenode"; autojoin = "no"; },
   { name = "#xdebug"; chatnet = "freenode"; autojoin = "yes"; },
+  { name = "#linuxwacom"; chatnet = "freenode"; autojoin = "yes"; },
   { name = "#zagat"; chatnet = "freenode"; autojoin = "yes"; },
   { name = "##php"; chatnet = "freenode"; autojoin = "no"; }
 );
