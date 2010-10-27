@@ -100,10 +100,15 @@ urlocal() {
 }
 
 fu() {
+  local dbg=
   if [[ $(echo ${1} | grep tar$) ]];then
+    [[ $dbg ]] && echo "DEBUG: found tarball to be ${download}"
     download=$1 
   else
     echo -en 'usage: fu feature_name-X.x-#.#.tar\n'
+    echo -en ' eg.: step 1: `cd /path/to/exact/feature/` \n'
+    echo -en '      step 2: `cp /path/to/tarball .` \n'
+    echo -en '      step 3: `fu ./name-of-tarball` \n'
     return 1
   fi
 
@@ -113,7 +118,9 @@ fu() {
 
   echo -en '\nupdating feature:\n'
   dirname=$(tar tf $download | sed -e '1s|/.*$|/|;q')
+  [[ $dbg ]] && echo "DEBUG: found local directory to be: ${dirname}"
   for file in $(find $dirname -type f);do 
+    [[ $dbg ]] && echo "DEBUG: found local directory to be: ${dirname}"
     mv -v $file $(echo $file | sed -e "s|$dirname||")
   done
   echo -en 'finished updating.\n'
@@ -136,7 +143,7 @@ newcny() {
   repo="$HOME/code/web5-jzacsh"
   [[ $vb ]] && echo -en '\ninserting link to local-only modules\n'
   ln -sv $conf/local $repo/sites/all/modules/local
-  [[ $vb ]] && echo -en '\ninserting link to \'default\' directory\n'
+  [[ $vb ]] && echo -en '\ninserting link to "default" directory\n'
   ln -sv $conf/default $repo/sites/default
   $BROWSER "http://${loc}/"
 }
