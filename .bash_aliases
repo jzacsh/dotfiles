@@ -76,7 +76,7 @@ gencscope() {
 }
 
 ### zagat specific: ###########
-alias pp='vi ~/tmp/bl && $BROWSER ~/tmp/bl && rm ~/tmp/bl'
+alias tm='vi ~/tmp/bl && $BROWSER ~/tmp/bl && rm ~/tmp/bl'
 
 hgk() {
 	hgview 2> /dev/null &
