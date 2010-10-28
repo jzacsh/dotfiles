@@ -54,7 +54,7 @@ nametrans = lambda foldername: re.sub('.*All Mail$', 'archive',
                                re.sub('.*Spam$', 'spam',
                                re.sub('.*Starred$', 'flagged', 
                                  foldername))))))))))))))))))))))))))))))))
-#folderfilter = lambda foldername: foldername not in ['[Gmail]/All Mail']
+folderfilter = lambda foldername: foldername not in ['[Gmail]/All Mail']
 #folderfilter = lambda foldername: foldername in ['[Gmail]/All Mail']
 
 # [mbnames]
