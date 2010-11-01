@@ -53,6 +53,16 @@ xdb() {
   echo -en $uri_append
 }
 
+trans() {
+  local orig="$1"
+  local targ="$2"
+  shift;shift
+  local text="$*"
+  local google_api='http://ajax.googleapis.com/ajax/services/language/translate?v=1.0&q='
+  local url="${google_api}${text// /+}&langpair=${orig}|${targ}"
+  curl ${url} 2>/dev/null #| sed 's/.*"translatedText":"\([^"]*\)".*}/\1\n/'
+}
+
 dgo() {
   #see http://dgo.to/ for possible params
   param="$1"
