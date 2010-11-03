@@ -13,7 +13,7 @@
 # xsetroot -cursor_name left_ptr
 
 # # autostart
-# urxvtd -q -o -f
+urxvtd -q -o -f
 # urxvtc -name tmux -geometry 122x77 -e tmux -L main attach
 # urxvtc -name htop -e htop
 # urxvtc -name ncmpcpp -e ncmpcpp

@@ -7,6 +7,7 @@ alias la='clear; ls -aFH'
 alias ca='clear; ls -laFH' 
 alias cl='clear; ls -lFH'
 alias diff='colordiff'
+alias nc='ncmpcpp'
 alias pfetch='drush cc all && drush -y fra && drush -y cc all && drush -y updb && hg push && hg stat'
 alias mi="wget -qO- http://checkip.dyndns.org | sed -e 's/^.*Address:\ //' -e 's/<\/body.*//'"
 alias tas="tmux attach-session"
@@ -52,6 +53,16 @@ xdb() {
   uri_append='?XDEBUG_SESSION_STOP'
   [[ -z $1 ]] && uri_append='?XDEBUG_SESSION_START=1'
   echo -en $uri_append
+}
+
+trans() {
+  local orig="$1"
+  local targ="$2"
+  shift;shift
+  local text="$*"
+  local google_api='http://ajax.googleapis.com/ajax/services/language/translate?v=1.0&q='
+  local url="${google_api}${text// /+}&langpair=${orig}|${targ}"
+  curl ${url} 2>/dev/null #| sed 's/.*"translatedText":"\([^"]*\)".*}/\1\n/'
 }
 
 dgo() {
