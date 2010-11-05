@@ -78,6 +78,14 @@ dgo() {
   $BROWSER "http://dgo.to/${key}${search}"
 }
 
+tmp() {
+  if [[ $2 == 'c' ]]; then
+    $EDITOR ~/tmp/bl && $BROWSER ~/tmp/bl && rm ~/tmp/bl
+  else
+    $EDITOR ~/tmp/bl && dpaste < ~/tmp/bl && rm ~/tmp/bl
+  fi
+}
+
 gencscope() {
   if [[ $(uname -n) == "jznix" ]];then
     local DIRS=(/srv/http/subs/notes/www/{sites/all/{modules/contrib,themes},includes,modules})
@@ -88,8 +96,6 @@ gencscope() {
 }
 
 ### zagat specific: ###########
-alias tm='vi ~/tmp/bl && $BROWSER ~/tmp/bl && rm ~/tmp/bl'
-
 hgk() {
 	hgview 2> /dev/null &
 	disown
