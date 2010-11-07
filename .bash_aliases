@@ -26,6 +26,7 @@ alias urx='rxvt-unicode -bg rgba:1111/1111/1111/bbbb -fg white -fn "xft:Droid Sa
 alias djo="alias djo-admin='/srv/http/subs/ofas/inc/djo/django/bin/django-admin.py'"
 alias mutt='pgrep mutt && mutt -R || mutt'
 alias d="dict $@ | less"
+alias ws="echo ${@} | espeak 2>/dev/null" #webscale-talk #doesn't work :(
 
 # DRUPAL CONTRIB STUFF ########
 # export CVSROOT=:pserver:jzacsh@cvs.drupal.org:/cvs/drupal-contrib
