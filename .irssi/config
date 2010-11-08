@@ -118,6 +118,7 @@ channels = (
   { name = "#diaspora-dev"; chatnet = "freenode"; autojoin = "yes"; },
   { name = "#drupal"; chatnet = "freenode"; autojoin = "yes"; },
   { name = "#drupal-nj"; chatnet = "freenode"; autojoin = "yes"; },
+  { name = "#drupal-geo"; chatnet = "freenode"; autojoin = "yes"; },
   { name = "#bash"; chatnet = "freenode"; autojoin = "yes"; },
   { name = "#archlinux"; chatnet = "freenode"; autojoin = "yes"; },
   { name = "#drupal-support"; chatnet = "freenode"; autojoin = "no"; },
@@ -319,4 +320,7 @@ ignores = (
   { level = "JOINS"; channels = ( "#httpd" ); },
   { level = "JOINS"; channels = ( "#archlinux" ); }
 );
-hilights = ( { text = "jzacsh"; nick = "yes"; word = "yes"; } );
+hilights = (
+  { text = "jzacsh"; nick = "yes"; word = "yes"; },
+  { text = "\"invites you to\""; nick = "yes"; word = "yes"; }
+);
