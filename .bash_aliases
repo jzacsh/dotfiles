@@ -80,7 +80,7 @@ dgo() {
 }
 
 tmp() {
-  if [[ $2 == 'c' ]]; then
+  if [[ $1 == 'c' ]]; then
     $EDITOR ~/tmp/bl && $BROWSER ~/tmp/bl && rm ~/tmp/bl
   else
     $EDITOR ~/tmp/bl && dpaste < ~/tmp/bl && rm ~/tmp/bl
