@@ -321,6 +321,6 @@ ignores = (
   { level = "JOINS"; channels = ( "#archlinux" ); }
 );
 hilights = (
-  { text = "jzacsh"; nick = "yes"; word = "yes"; },
-  { text = "\"invites you to\""; nick = "yes"; word = "yes"; }
+  { text = "\"invites you to\""; nick = "yes"; word = "yes"; },
+  { text = "jzacsh"; nick = "yes"; word = "yes"; }
 );
