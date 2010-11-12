@@ -15,7 +15,6 @@ alias cower='cower -c'
 alias udevinfo='udevadm info -q all -n'
 alias rw="echo 'rebooting interwebs (mysql and apache)' && sudo service apache2 restart && sudo service mysql restart"
 alias mutt='pgrep mutt && mutt -R || mutt'
-alias ws="echo ${@} | espeak 2>/dev/null" #webscale-talk #doesn't work :(
 alias ipt="sudo iptraf"
 
 # x env #######################
@@ -48,6 +47,8 @@ dropx() {
 ###############################
 # functions ###################
 lu() ( dict ${@} | less; )
+
+speak() { echo ${@} | espeak 2>/dev/null; }
 
 ident() ( identify -verbose $1 | grep modify; )
 g() ( IFS=+; $BROWSER "http://www.google.com/search?q=${*}"; )
