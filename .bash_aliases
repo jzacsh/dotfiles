@@ -49,6 +49,10 @@ dropx() {
 # functions ###################
 lu() ( dict ${@} | less; )
 
+xfw() {
+  DISPLAY=:10 ${@}
+}
+
 ident() ( identify -verbose $1 | grep modify; )
 g() ( IFS=+; $BROWSER "http://www.google.com/search?q=${*}"; )
 
