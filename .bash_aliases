@@ -48,6 +48,10 @@ dropx() {
 # functions ###################
 lu() ( dict ${@} | less; )
 
+xfw() {
+  DISPLAY=:10 ${@}
+}
+
 speak() { echo ${@} | espeak 2>/dev/null; }
 
 ident() ( identify -verbose $1 | grep modify; )
