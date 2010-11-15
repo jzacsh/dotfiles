@@ -1,0 +1,38 @@
+hg_ps1() {
+  if [ "$1" = yes ]; then
+    redColor='\[\033[1;31m\]'
+    greyColor='\[\033[0;37m\]'
+    noColor='\[\033[00m\]'
+    hgStatus="<${redColor}<status>>"
+    hgStatus+=$hgStatus
+    hg prompt --angle-brackets "<[${greyColor}<branch>${hgStatus}${noColor}]>" 2> /dev/null
+  else
+    hg prompt "{[{branch}{{status}}]}" 2> /dev/null
+  fi
+}
+
+# If this is an xterm set the title to user@host:dir
+case "$TERM" in
+xterm*|rxvt*)
+    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+    ;;
+*)
+    ;;
+esac
+
+function myPromptCommand {
+  #$PROMPT_COMMAND
+  PS1="${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$(hg_ps1 yes)\$ "
+  echo -ne "\033]0;${HOSTNAME}: ${PWD}\007"
+}
+
+if [ "$color_prompt" = yes ]; then
+  PROMPT_COMMAND=myPromptCommand
+  #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+else
+    export PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w$(hg_ps1)$ '
+    #PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+fi
+unset color_prompt force_color_prompt
+
+

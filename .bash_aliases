@@ -15,7 +15,6 @@ alias cower='cower -c'
 alias udevinfo='udevadm info -q all -n'
 alias rw="echo 'rebooting interwebs (mysql and apache)' && sudo service apache2 restart && sudo service mysql restart"
 alias mutt='pgrep mutt && mutt -R || mutt'
-alias ws="echo ${@} | espeak 2>/dev/null" #webscale-talk #doesn't work :(
 alias ipt="sudo iptraf"
 
 # x env #######################
@@ -52,6 +51,8 @@ lu() ( dict ${@} | less; )
 xfw() {
   DISPLAY=:10 ${@}
 }
+
+speak() { echo ${@} | espeak 2>/dev/null; }
 
 ident() ( identify -verbose $1 | grep modify; )
 g() ( IFS=+; $BROWSER "http://www.google.com/search?q=${*}"; )
@@ -166,11 +167,11 @@ newcny() {
   loc=$(uname -n)
   conf="$HOME/code/conf/web5"
   repo="$HOME/code/web5-jzacsh"
-  [[ $vb ]] && echo -en '\ninserting link to local-only modules\n'
+  [[ $vb ]] && echo -e '\ninserting link to local-only modules'
   ln -sv $conf/local $repo/sites/all/modules/local
-  [[ $vb ]] && echo -en '\ninserting link to "default" directory\n'
+  [[ $vb ]] && echo -e '\ninserting link to "default" directory'
   ln -sv $conf/default $repo/sites/default
-  $BROWSER "http://${loc}/"
+  $BROWSER "http://${loc}.zagat.com/"
 }
 
 tarl() ( tar -tf ${*}  | less; )

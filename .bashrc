@@ -35,7 +35,7 @@ set -o notify
 stty -ctlecho
 
 # history options
-export HISTIGNORE="&:ls:[bf]g:exit:reset:clear:cd*"
+export HISTIGNORE="&:ls:[bf]g:exit:hg in:hg out:reset:clear:ca:cl:l:cd*"
 export HISTFILESIZE=2000
 export HISTCONTROL="ignoreboth"
 export HISTSIZE=500
