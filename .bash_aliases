@@ -192,7 +192,15 @@ cleardd() {
 }
 
 # export codez="~/code/web5-jzacsh/sites/all/modules/features/ ~/code/web5-jzacsh/sites/all/modules/custom/ ~/code/web5-jzacsh/sites/all/themes/zagat/"
-alias rmorig="find ~/code/web5-jzacsh/ -name '*.orig' -delete -print"
+origrm() {
+  if [[ $1 == "-n" ]]; then
+    opt='-delete -print'
+  else
+    opt=''
+  fi
+
+  find ~/code/web5-jzacsh/ -name '*.orig' ${opt}
+}
 
 themer() {
   nm='devel_themer'
