@@ -49,7 +49,7 @@ dropx() {
 lu() ( dict ${@} | less; )
 
 xfw() {
-  DISPLAY=:10 ${@}
+  DISPLAY=localhost:10 ${@}
 }
 
 speak() { echo ${@} | espeak 2>/dev/null; }
