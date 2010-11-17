@@ -11,6 +11,7 @@ alias nc='ncmpcpp'
 alias pfetch='drush cc all && drush -y fra && drush -y cc all && drush -y updb && hg push && hg stat'
 alias mi="wget -qO- http://checkip.dyndns.org | sed -e 's/^.*Address:\ //' -e 's/<\/body.*//'"
 alias tas="tmux attach-session"
+alias tds="tmux detach-client"
 alias cower='cower -c'
 alias udevinfo='udevadm info -q all -n'
 alias rw="echo 'rebooting interwebs (mysql and apache)' && sudo service apache2 restart && sudo service mysql restart"
