@@ -1,0 +1,27 @@
+#!/bin/bash
+case $(uname -n) in
+  "jzcl")
+    # netbook
+    return 0
+    ;;
+  "jznix")
+    # jzacsh.com
+    return 0
+    ;;
+  "blackbox")
+    # home.jzacsh.com
+    return 0
+    ;;
+  "penguinix")
+    # thinkpad laptop
+    return 0
+    ;;
+  "cnyitjza")
+    # zagat work station
+    return 0
+    ;;
+esac
+
+if [[ -e ~/.browser ]]; then
+  export BROWSER=$(cat ~/.browser)
+fi
