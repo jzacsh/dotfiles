@@ -226,9 +226,9 @@ cleardd() {
 # export codez="~/code/web5-jzacsh/sites/all/modules/features/ ~/code/web5-jzacsh/sites/all/modules/custom/ ~/code/web5-jzacsh/sites/all/themes/zagat/"
 origrm() {
   if [[ $1 == "-n" ]]; then
-    opt='-delete -print'
-  else
     opt=''
+  else
+    opt='-delete -print'
   fi
 
   find ~/code/web5-jzacsh/ -name '*.orig' ${opt}
