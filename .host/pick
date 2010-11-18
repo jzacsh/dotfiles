@@ -1,30 +1,17 @@
 #!/bin/bash
-case $(uname -n) in
-  jzcl)
-    # netbook
-    export BROWSER=w3m
-    return 0
-    ;;
-  jznix)
-    # jzacsh.com
-    return 0
-    ;;
-  blackbox)
-    # home.jzacsh.com
-    return 0
-    ;;
-  penguinix)
-    # thinkpad laptop
-    return 0
-    ;;
-  cnyitjza)
-    # zagat work station
-    return 0
-    ;;
-esac
 
-
-
-if [[ -e ~/.browser ]]; then
-  export BROWSER=$(cat ~/.browser)
+dir="~/.host"
+hostfile="$dir/$HOSTNAME"
+if [[ -f $hostfile ]]; then 
+  source $hostfile
+else
+  #fall back on general distro-only config
+  if [[ -f /etc/arch-release ]]; then
+     [[ -f $dir/distro.arch ]] && source $dir/distro.arch
+  elif [[ -f /etc/lsb-release ]]; then
+    deb_distro=$dir/distro.$(awk -F'=' '/^DISTRIB_ID/{print tolower($2)}' /etc/lsb-release)
+    [[ -f $deb_distro ]] && source $deb_distro
+  fi
 fi
+
+echo "DISTRO=$distro"
