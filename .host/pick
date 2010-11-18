@@ -15,5 +15,3 @@ else
     [[ -f $deb_distro ]] && source $deb_distro
   fi
 fi
-
-echo "DISTRO=$distro"
