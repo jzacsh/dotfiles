@@ -11,6 +11,7 @@ alias nc='ncmpcpp'
 alias pfetch='drush cc all && drush -y fra && drush -y cc all && drush -y updb && hg push && hg stat'
 alias mi="wget -qO- http://checkip.dyndns.org | sed -e 's/^.*Address:\ //' -e 's/<\/body.*//'"
 alias tas="tmux attach-session"
+alias tds="tmux detach-client"
 alias cower='cower -c'
 alias udevinfo='udevadm info -q all -n'
 alias rw="echo 'rebooting interwebs (mysql and apache)' && sudo service apache2 restart && sudo service mysql restart"
@@ -49,7 +50,7 @@ dropx() {
 lu() ( dict ${@} | less; )
 
 xfw() {
-  DISPLAY=:10 ${@}
+  DISPLAY=localhost:10 ${@}
 }
 
 speak() { echo ${@} | espeak 2>/dev/null; }
@@ -101,6 +102,33 @@ gencscope() {
     local DIRS=(~/code/web5-jzacsh/{sites/all/{modules/contrib,themes},includes,modules})
   fi
   cscope -b -i <(find "${DIRS[@]}" \( -name '*.inc' -or -name '*.php' -or -name '*.module' \))
+}
+
+wfls() {
+  [[ $1 == 'l' ]] && view='less' || view='grep ESSID'
+  echo "printing available wifi networks:"
+  sudo ifconfig wlan0 up
+  sudo iwlist wlan0 scan | $view
+}
+
+wfon() {
+  [[ $# == 0 ]] && return 2
+  echo "setting a wifi network... '$@'"
+  sudo iwconfig wlan0 essid "$@"
+}
+
+wfnp() {
+  echo "releasing ip..."
+  sudo dhcpcd -k wlan0
+}
+
+wfip() {
+  if [[ $1 == 'f' ]]; then
+    echo -en "\t"
+    wfnp
+  fi
+  echo "requesting an IP from dhcpc server..."
+  sudo dhcpcd wlan0
 }
 
 ### zagat specific: ###########
