@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# host-specific configuration
+
 dir="~/.host"
 hostfile="$dir/$HOSTNAME"
 if [[ -f $hostfile ]]; then 
