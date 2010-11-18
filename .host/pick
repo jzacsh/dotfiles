@@ -1,26 +1,29 @@
 #!/bin/bash
 case $(uname -n) in
-  "jzcl")
+  jzcl)
     # netbook
+    export BROWSER=w3m
     return 0
     ;;
-  "jznix")
+  jznix)
     # jzacsh.com
     return 0
     ;;
-  "blackbox")
+  blackbox)
     # home.jzacsh.com
     return 0
     ;;
-  "penguinix")
+  penguinix)
     # thinkpad laptop
     return 0
     ;;
-  "cnyitjza")
+  cnyitjza)
     # zagat work station
     return 0
     ;;
 esac
+
+
 
 if [[ -e ~/.browser ]]; then
   export BROWSER=$(cat ~/.browser)
