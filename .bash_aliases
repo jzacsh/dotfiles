@@ -104,6 +104,33 @@ gencscope() {
   cscope -b -i <(find "${DIRS[@]}" \( -name '*.inc' -or -name '*.php' -or -name '*.module' \))
 }
 
+wfls() {
+  [[ $1 == 'l' ]] && view='less' || view='grep ESSID'
+  echo "printing available wifi networks:"
+  sudo ifconfig wlan0 up
+  sudo iwlist wlan0 scan | $view
+}
+
+wfon() {
+  [[ $# == 0 ]] && return 2
+  echo "setting a wifi network... '$@'"
+  sudo iwconfig wlan0 essid "$@"
+}
+
+wfnp() {
+  echo "releasing ip..."
+  sudo dhcpcd -k wlan0
+}
+
+wfip() {
+  if [[ $1 == 'f' ]]; then
+    echo -en "\t"
+    wfnp
+  fi
+  echo "requesting an IP from dhcpc server..."
+  sudo dhcpcd wlan0
+}
+
 ### zagat specific: ###########
 hgk() {
 	hgview 2> /dev/null &
@@ -199,9 +226,9 @@ cleardd() {
 # export codez="~/code/web5-jzacsh/sites/all/modules/features/ ~/code/web5-jzacsh/sites/all/modules/custom/ ~/code/web5-jzacsh/sites/all/themes/zagat/"
 origrm() {
   if [[ $1 == "-n" ]]; then
-    opt='-delete -print'
-  else
     opt=''
+  else
+    opt='-delete -print'
   fi
 
   find ~/code/web5-jzacsh/ -name '*.orig' ${opt}
