@@ -214,7 +214,7 @@ alias themer?='drush pm-list | grep -i "devel_themer"'
 
 cleardd() {
   def_file="/tmp/drupal_debug.txt"
-  def_usr="33"
+  def_usr="33" # uid for www-data
   [[ -z ${1} ]] && echo "no params defaulting to: ${def_file}" || file="${1}"
   [[ -z ${file} ]] && file="${def_file}"
   usr=$(stat -c %u ${file} || echo ${def_usr})
