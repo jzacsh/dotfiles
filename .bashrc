@@ -85,4 +85,3 @@ unset bash_prompt
 # resize -s 400 400
 echo 'AhMG!! SEGMENTATION FAULT'
 
-
