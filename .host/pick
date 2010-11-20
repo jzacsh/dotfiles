@@ -1,17 +1,16 @@
 #!/bin/bash
 
 # host-specific configuration
-
-dir="~/.host"
+dir="$HOME/.host"
 hostfile="$dir/$HOSTNAME"
 if [[ -f $hostfile ]]; then 
   source $hostfile
-else
-  #fall back on general distro-only config
-  if [[ -f /etc/arch-release ]]; then
-     [[ -f $dir/distro.arch ]] && source $dir/distro.arch
-  elif [[ -f /etc/lsb-release ]]; then
-    deb_distro=$dir/distro.$(awk -F'=' '/^DISTRIB_ID/{print tolower($2)}' /etc/lsb-release)
-    [[ -f $deb_distro ]] && source $deb_distro
-  fi
+if
+
+# generic distro-specific config
+if [[ -f /etc/arch-release ]]; then
+   [[ -f $dir/distro.arch ]] && source $dir/distro.arch
+elif [[ -f /etc/lsb-release ]]; then
+  deb_distro=distro.$(awk -F'=' '/^DISTRIB_ID/{print tolower($2)}' /etc/lsb-release)
+  [[ -f $deb_distro ]] && source $dir/$deb_distro
 fi
