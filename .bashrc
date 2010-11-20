@@ -30,6 +30,8 @@ shopt -s dirspell
 
 # notify of completed background jobs immediately
 set -o notify
+set +o histexpand
+# set -o vi
 
 # turn off control character echoing
 stty -ctlecho

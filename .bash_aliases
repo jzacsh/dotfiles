@@ -1,6 +1,4 @@
 # aliases #####################
-set +o histexpand
-set -o vi
 alias ls='ls --group-directories-first --color'
 alias l='ls -laFH'
 alias la='clear; ls -aFH'
