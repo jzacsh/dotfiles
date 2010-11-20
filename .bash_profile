@@ -24,8 +24,8 @@ export CDPATH=.:~/code/web5-jzacsh/sites/all/modules/custom/:~/code/web5-jzacsh/
 export CSCOPE_DB=$HOME/.vim/cscope.out
 export COWER='cower --color=auto'
 
-#host-specific config:
-source ~/.host/pick
-
 #if interactive, source .bashrc
 [[ -n $PS1 && -f ~/.bashrc ]] && source ~/.bashrc
+
+#host-specific config:
+source ~/.host/pick
