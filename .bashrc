@@ -18,6 +18,7 @@ export PAGER=less
 PATH=.:$HOME/bin:$HOME/bin/share:$HOME/bin/local:$HOME/bin/dist:$PATH
 PATH=$PATH:/opt/java/jre/bin/:/srv/http/global/bin/dev/
 export PATH
+export BROWSER=w3m
 export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
 export LESS=' -XFR '
 
