@@ -12,6 +12,6 @@ prefix=$dir/distro.
 if [[ -f /etc/arch-release ]]; then
    [[ -f ${prefix}arch ]] && source ${prefix}arch
 elif [[ -f /etc/lsb-release ]]; then
-  deb_distro=$(awk -F'=' '/^DISTRIB_ID/{print tolower($2)}' /etc/lsb-release)
-  [[ -f $deb_distro ]] && source ${prefix}$deb_distro
+  deb_dist_file=${prefix}$(awk -F'=' '/^DISTRIB_ID/{print tolower($2)}' /etc/lsb-release)
+  [[ -f $deb_dist_file ]] && source $deb_dist_file
 fi
