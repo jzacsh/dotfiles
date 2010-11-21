@@ -12,15 +12,6 @@ esac
 [[ -r ~/.bash_aliases ]] && . ~/.bash_aliases
 [[ -r ~/.dircolors && -x /bin/dircolors ]] && eval $(dircolors -b ~/.dircolors)
 
-export CLASSPATH=.:$CLASSPATH:$HOME/docs/edu/he/bcc/2010-2011/fall2010/comp171/comp/jzacsh/:$HOME/docs/edu/comp171/comp/jzacsh
-export EDITOR=vim
-#export PAGER=less
-export PAGER=vimpager
-PATH=.:$HOME/bin:$HOME/bin/share:$HOME/bin/local:$HOME/bin/dist:$PATH
-PATH=$PATH:/opt/java/jre/bin/:/srv/http/global/bin/dev/
-export PATH
-export LESS=' -XFR '
-
 # shell opts
 shopt -s cdspell
 shopt -s extglob

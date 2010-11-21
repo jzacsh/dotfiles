@@ -18,11 +18,20 @@ col_end='\[\e[m\]'
 export EDITOR=vim
 export DIFF=' -up '
 export LESS=' -XFRr '
-export BROWSER=$(cat ~/.browser)
 export GREP_OPTIONS='--color=auto'
 export CDPATH=.:~/code/web5-jzacsh/sites/all/modules/custom/:~/code/web5-jzacsh/sites/all/modules/features/:~/code/web5-jzacsh/sites/all/themes/zagat
+export PAGER=less
+export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
+ PATH=.:$HOME/bin:$HOME/bin/local:$HOME/bin/share:$HOME/bin/dist:$PATH
+ PATH=$PATH:/opt/java/jre/bin/:/srv/http/global/bin/dev/
+export PATH
+
+export CLASSPATH=.:$CLASSPATH
 export CSCOPE_DB=$HOME/.vim/cscope.out
 export COWER='cower --color=auto'
+export BROWSER=w3m
+#
+
 
 #if interactive, source .bashrc
 [[ -n $PS1 && -f ~/.bashrc ]] && source ~/.bashrc
