@@ -3,7 +3,7 @@ pidof dropboxd &> /dev/null || ~/bin/dist/dropbox start
 
 keychain /home/jzacsh/.ssh/add/*.add
 source ~/.keychain/$HOSTNAME-sh
-# to load keys on this machine setup in ~.ssh/add/:
+# to load keys on this machine setup in ~/.ssh/add/:
 # lrwxrwxrwx   jzlut.add -> ../jzlut
 # lrwxrwxrwx   jzlut.add.pub -> ../jzlut.pub
 
