@@ -26,6 +26,3 @@ export COWER='cower --color=auto'
 
 #if interactive, source .bashrc
 [[ -n $PS1 && -f ~/.bashrc ]] && source ~/.bashrc
-
-#host-specific config:
-source ~/.host/pick

@@ -82,6 +82,9 @@ PROMPT_COMMAND='RET=$?'
 bash_prompt
 unset bash_prompt
 
+#dynamic config:
+source $HOME/.host/pick
+
 # resize -s 400 400
 echo 'AhMG!! SEGMENTATION FAULT'
 
