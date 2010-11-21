@@ -1,1 +1,2 @@
 export BROWSER=chromium
+unalias goh
