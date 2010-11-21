@@ -32,7 +32,7 @@ map <LocalLeader>9  9gt
 set cmdheight=2
 
 " set background=dark
-" colorscheme ir_black
+  colorscheme ir_black
 " colorscheme merged
 " colorscheme dante
 
