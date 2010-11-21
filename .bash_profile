@@ -20,7 +20,8 @@ export DIFF=' -up '
 export LESS=' -XFRr '
 export GREP_OPTIONS='--color=auto'
 export CDPATH=.:~/code/web5-jzacsh/sites/all/modules/custom/:~/code/web5-jzacsh/sites/all/modules/features/:~/code/web5-jzacsh/sites/all/themes/zagat
-export PAGER=less
+#export PAGER=less
+export PAGER=vimpager
 export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
  PATH=.:$HOME/bin:$HOME/bin/local:$HOME/bin/share:$HOME/bin/dist:$PATH
  PATH=$PATH:/opt/java/jre/bin/:/srv/http/global/bin/dev/
