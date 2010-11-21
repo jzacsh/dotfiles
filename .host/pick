@@ -4,11 +4,6 @@ srcthis() {
   [[ -f $1 ]] && source $1
 }
 
-# host-specific configuration
-dir="$HOME/.host"
-hostfile="$dir/host.$HOSTNAME"
-srcthis $hostfile
-
 # generic distro-specific config
 prefix=$dir/distro.
 if [[ -f /etc/arch-release ]]; then
@@ -17,3 +12,9 @@ elif [[ -f /etc/lsb-release ]]; then
   deb_dist_file=${prefix}$(awk -F'=' '/^DISTRIB_ID/{print tolower($2)}' /etc/lsb-release)
   srcthis $deb_dist_file
 fi
+
+# host-specific configuration
+dir="$HOME/.host"
+hostfile="$dir/host.$HOSTNAME"
+srcthis $hostfile
+
