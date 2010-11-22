@@ -13,7 +13,6 @@ if [[ -f /etc/arch-release ]]; then
 elif [[ -f /etc/lsb-release ]]; then
   deb_dist_file=${prefix}$(awk -F'=' '/^DISTRIB_ID/{print tolower($2)}' /etc/lsb-release)
   srcthis $deb_dist_file
-  echo $deb_dist_file
 fi
 
 # host-specific configuration
