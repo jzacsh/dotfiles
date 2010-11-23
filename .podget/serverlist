@@ -1,0 +1,4 @@
+# SERVERS:
+# <url> <category> <name>
+
+http://www.lullabot.com/podcast/feed drupal lullabot_%%YY%%-%%MM%%-%%DD%%
