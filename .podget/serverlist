@@ -1,4 +1,7 @@
 # SERVERS:
 # <url> <category> <name>
 
-http://www.lullabot.com/podcast/feed drupal lullabot_%%YY%%-%%MM%%-%%DD%%
+'http://www.lullabot.com/podcast/feed' drupal lullabot
+'http://www.npr.org/rss/podcast.php?id=510286' science npr
+'http://leoville.tv/podcasts/floss.xml' foss floss-weekly
+'http://podcasts.jonmasters.org/kernel/kernel.xml' foss lkml-summary
