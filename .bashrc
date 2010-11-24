@@ -78,6 +78,6 @@ source $HOME/.host/pick
 
 # resize -s 400 400
 #echo 'AhMG!! SEGMENTATION FAULT'
-echo ":: commit msg:"
-lynx -dump http://whatthecommit.com/
+msg=$(lynx -dump http://whatthecommit.com/ 2>/dev/null)
+(( $? == 0 )) && echo ":: commit msg:" || echo 'no interwebs...'
 
