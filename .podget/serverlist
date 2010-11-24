@@ -1,7 +1,9 @@
 # SERVERS:
 # <url> <category> <name>
-
 'http://www.lullabot.com/podcast/feed' drupal lullabot
 'http://www.npr.org/rss/podcast.php?id=510286' science npr
 'http://leoville.tv/podcasts/floss.xml' foss floss-weekly
 'http://podcasts.jonmasters.org/kernel/kernel.xml' foss lkml-summary
+'http://thisweekindjango.com/feeds/netcast/twid/' python django
+'http://djangodose.com/everything/feed/' python djangodose
+'http://www.awaretek.com/python/index.xml' python python411
