@@ -1,6 +1,3 @@
-
-pidof dropboxd &> /dev/null || ~/bin/dist/dropbox start
-
 keychain /home/jzacsh/.ssh/add/*.add
 source ~/.keychain/$HOSTNAME-sh
 # to load keys on this machine setup in ~/.ssh/add/:
@@ -32,6 +29,7 @@ export COWER='cower --color=auto'
 export BROWSER=w3m
 #
 
+pidof dropboxd &> /dev/null || ~/bin/dist/dropbox start
 
 #if interactive, source .bashrc
 [[ -n $PS1 && -f ~/.bashrc ]] && source ~/.bashrc
