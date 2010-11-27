@@ -18,7 +18,7 @@ alias ipt="sudo iptraf"
 alias goh="ssh home.jzacsh.com"
 
 # x env #######################
-alias m='nautilus --browser'
+alias m='mutt'
 alias br='$BROWSER'
 alias ch='chromium-browser'
 alias kflash='echo "killing flash..." && sudo killall npviewer.bin'
