@@ -79,3 +79,4 @@ source $HOME/.host/pick
 # resize -s 400 400
 echo 'AhMG!! SEGMENTATION FAULT'
 
+export PATH=.:$HOME/bin/:$HOME/bin/local:$HOME/bin/share:$HOME/bin/dist:$PATH
