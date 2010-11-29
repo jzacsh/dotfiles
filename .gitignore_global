@@ -7,3 +7,11 @@
 .irssi/saved_colors
 *.swp
 a.out
+.DS_Store
+*.orig
+*.swp
+*.rej
+.settings/org.eclipse.php.core.prefs
+*.kpf
+*.tmproj
+._*
