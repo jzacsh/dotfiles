@@ -81,3 +81,4 @@ source $HOME/.host/pick
 msg=$(lynx -dump http://whatthecommit.com/ 2>/dev/null)
 (( $? == 0 )) && echo ":: commit msg:" || echo 'no interwebs...'
 
+export PATH=.:$HOME/bin/:$HOME/bin/local:$HOME/bin/share:$HOME/bin/dist:$PATH
