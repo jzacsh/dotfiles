@@ -87,9 +87,9 @@ endif
 
 " make files
 autocmd FileType make set noexpandtab
-" drupal files
-autocmd FileType drupal set ts=2
-autocmd FileType drupal set sw=2
+" drupal files - i can't refer to augroup 'drupal'?
+autocmd FileType php set ts=2
+autocmd FileType php set sw=2
 
 " syntax hilighting
 syntax on
