@@ -65,19 +65,16 @@ set showtabline=2
 set et
 
 " 4 spaces in tabs:
-set ts=2
-set sw=2
+set ts=4
+set sw=4
 
 " xdebug port
 let g:debuggerPort = 9001
 
-" make files
-autocmd FileType make set noexpandtab
-
 "drupal.org suggestions:
 if has("autocmd")
   " Drupal *.module and *.install files.
-  augroup module
+  augroup drupal
     autocmd BufRead,BufNewFile *.php set filetype=php
     autocmd BufRead,BufNewFile *.module set filetype=php
     autocmd BufRead,BufNewFile *.install set filetype=php
@@ -87,6 +84,14 @@ if has("autocmd")
     autocmd BufRead,BufNewFile *.test set filetype=php
   augroup END
 endif
+
+" make files
+autocmd FileType make set noexpandtab
+" drupal files
+autocmd FileType drupal set ts=2
+autocmd FileType drupal set sw=2
+
+" syntax hilighting
 syntax on
 
 " causes xdebug to insert on <F12>; too annoying:
