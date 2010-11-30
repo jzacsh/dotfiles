@@ -15,8 +15,8 @@ col_end='\[\e[m\]'
 export EDITOR=vim
 export DIFF=' -up '
 export LESS=' -XFRr '
-export CDPATH=.:~/code/web5-jzacsh/sites/all/modules/custom/:~/code/web5-jzacsh/sites/all/modules/features/:~/code/web5-jzacsh/sites/all/themes/zagat
 export PAGER=less
+export CDPATH=.:~/down/
  PATH=.:$HOME/bin:$HOME/bin/local:$HOME/bin/share:$HOME/bin/dist:$PATH
  PATH=$PATH:/opt/java/jre/bin/:/srv/http/global/bin/dev/
 export PATH
