@@ -13,8 +13,8 @@ col_end='\[\e[m\]'
 
 # progs
 export EDITOR=vim
-export DIFF=' -up '
-export LESS=' -XFRr '
+export DIFF=' up '
+export LESS=' XFRr '
 export PAGER=less
 export CDPATH=.:~/down/
  PATH=.:$HOME/bin:$HOME/bin/local:$HOME/bin/share:$HOME/bin/dist:$PATH
