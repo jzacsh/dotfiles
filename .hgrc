@@ -29,7 +29,8 @@ only-consistent = False
 
 
 [pager]
-pager = /usr/bin/less
+#pager = LESS=$LESS less
+pager = LESS='XFR' less
 #attend = annotate, log, in
 #ignore = 
 
