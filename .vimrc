@@ -11,6 +11,7 @@ let maplocalleader = ","
 "keymapping
 "-----------------------
 map <LocalLeader>g  <Esc>:set paste<CR>
+map <LocalLeader>g  <Esc>:%s/jzacsh/myuser/g<CR>
 map <LocalLeader>G  <Esc>:set nopaste<CR>
 map <LocalLeader>r  <Esc>:MRU<CR>
 map <LocalLeader>s  <Esc>:r!date --rfc-3339=seconds<CR>
