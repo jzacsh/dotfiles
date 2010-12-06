@@ -1,4 +1,5 @@
-keychain /home/jzacsh/.ssh/add/*.add
+keychain --clear
+keychain --timeout 30 /home/jzacsh/.ssh/add/*.add
 source ~/.keychain/$HOSTNAME-sh
 # to load keys on this machine setup in ~/.ssh/add/:
 # lrwxrwxrwx   jzlut.add -> ../jzlut
