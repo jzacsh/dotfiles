@@ -35,9 +35,9 @@ export HISTCONTROL="ignoreboth"
 export HISTSIZE=500
 
 #`who` else loged in:
-if [[ $(who | grep -v jzacsh) ]]; then
+if [[ $(who | grep -v $(whoami)) ]]; then
 	echo "Currently on `uname -snr`, other than you:"
-	who -H | grep -v jzacsh
+    who -H | grep -v $(whoami)
 	echo #spacer
 fi
 
