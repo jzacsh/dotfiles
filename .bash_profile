@@ -1,5 +1,8 @@
 keychain --clear
-keychain --timeout 240 /home/jzacsh/.ssh/add/*.add # 4 hours
+for key  in ~/.ssh/add/*.add ; do
+  keychain --timeout 240 $key # 4 hours
+done
+unset key
 source ~/.keychain/$HOSTNAME-sh
 # to load keys on this machine setup in ~/.ssh/add/:
 # lrwxrwxrwx   jzlut.add -> ../jzlut
