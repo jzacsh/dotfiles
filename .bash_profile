@@ -1,6 +1,6 @@
 keychain --clear
 for key  in ~/.ssh/add/*.add ; do
-  keychain --timeout 240 $key # 4 hours
+  keychain --quiet --timeout 240 $key # 4 hours
 done
 unset key
 source ~/.keychain/$HOSTNAME-sh
