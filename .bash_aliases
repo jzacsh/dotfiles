@@ -93,6 +93,16 @@ tmp() {
   fi
 }
 
+#easy "project" stuff:
+fs() {
+    if [[ -z $CODEBASE ]];then
+      echo '$CODEBASE env var not set.' >&2
+      return 1
+    fi
+
+    grep ${@} ${CODEBASE//\'//}
+}
+
 gencscope() {
   if [[ $(uname -n) == "jznix" ]];then
     local DIRS=(/srv/http/subs/notes/www/{sites/all/{modules/contrib,themes},includes,modules})

@@ -1,2 +1,7 @@
 export BROWSER=firefox
-export CDPATH=.:~/code/web5-jzacsh/sites/all/modules/custom/:~/code/web5-jzacsh/sites/all/modules/features/:~/code/web5-jzacsh/sites/all/themes/zagat
+
+base="$HOME/code/web5-jzacsh/sites/all"
+export CODEBASE="'${base}/modules/custom' '${base}/themes/zagat' '${base}/modules/features'"
+unset base
+
+echo "done running host.cnyitjza"
