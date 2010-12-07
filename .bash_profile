@@ -1,4 +1,3 @@
-keychain --clear
 for key  in ~/.ssh/add/*.add ; do
   keychain --quiet --timeout 240 $key # 4 hours
 done
