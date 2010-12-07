@@ -1,7 +1,7 @@
 export BROWSER=firefox
 
 base="$HOME/code/web5-jzacsh/sites/all"
-export CODEBASE="'${base}/modules/custom' '${base}/themes/zagat' '${base}/modules/features'"
+export CB="'${base}/modules/custom' '${base}/themes/zagat' '${base}/modules/features'"
 unset base
 
 echo "done running host.cnyitjza"

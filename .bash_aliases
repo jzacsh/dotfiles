@@ -92,14 +92,14 @@ tmp() {
   fi
 }
 
-#easy "project" stuff:
+#easy "project" searching
 fs() {
-    if [[ -z $CODEBASE ]];then
-      echo '$CODEBASE env var not set.' >&2
+    if [[ -z $CB ]];then
+      echo '$CB env var not set.' >&2
       return 1
     fi
 
-    grep ${@} ${CODEBASE//\'//}
+    grep $@ ${CB//\'//}
 }
 
 gencscope() {
