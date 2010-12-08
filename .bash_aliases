@@ -99,7 +99,7 @@ fs() {
       return 1
     fi
 
-    grep $@ ${CB//\'//}
+    grep "$@" ${CB//\'/}
 }
 
 gencscope() {
