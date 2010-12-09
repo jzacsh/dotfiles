@@ -92,16 +92,6 @@ tmp() {
   fi
 }
 
-#easy "project" searching
-fs() {
-    if [[ -z $CB ]];then
-      echo '$CB env var not set.' >&2
-      return 1
-    fi
-
-    grep "$@" ${CB//\'/}
-}
-
 gencscope() {
   if [[ $(uname -n) == "jznix" ]];then
     local DIRS=(/srv/http/subs/notes/www/{sites/all/{modules/contrib,themes},includes,modules})
