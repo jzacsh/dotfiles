@@ -5,7 +5,6 @@ alias la='clear; ls -aFH'
 alias ca='clear; ls -laFH' 
 alias cl='clear; ls -lFH'
 alias diff='colordiff'
-alias nc='ncmpcpp'
 alias pfetch='drush cc all && drush -y fra && drush -y cc all && drush -y updb && hg push && hg stat'
 alias mi="wget -qO- http://checkip.dyndns.org | sed -e 's/^.*Address:\ //' -e 's/<\/body.*//'"
 alias tas="tmux attach-session"
@@ -91,6 +90,16 @@ tmp() {
   else
     $EDITOR ~/tmp/bl && dpaste < ~/tmp/bl && rm ~/tmp/bl
   fi
+}
+
+#easy "project" searching
+fs() {
+    if [[ -z $CB ]];then
+      echo '$CB env var not set.' >&2
+      return 1
+    fi
+
+    grep "$@" ${CB//\'/}
 }
 
 gencscope() {
