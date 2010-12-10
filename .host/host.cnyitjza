@@ -2,7 +2,7 @@ export BROWSER=firefox
 
 export PROJECT_BASE="$HOME/code/web5-jzacsh"
 base="$PROJECT_BASE/sites/all"
-export CB="'${base}/modules/custom' '${base}/themes/zagat' '${base}/modules/features'"
+export CB=("$base"/{modules/{features,custom},/themes/zagat})
 unset base
 
 w5() {
