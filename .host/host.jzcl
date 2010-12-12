@@ -1,3 +1,6 @@
 export BROWSER=w3m
 pkill dropboxd
+
+#specific configs:
 ln -sf ~/.host/src/host.jzcl/.xinitrc
+ln -sf ~/.host/src/host.jzcl/.Xdefaults
