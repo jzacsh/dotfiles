@@ -1,6 +1,8 @@
 export BROWSER=w3m
 pkill dropboxd
 
+alias e='thunar'
+
 #specific configs:
 ln -sf ~/.host/src/host.jzcl/.xinitrc
 ln -sf ~/.host/src/host.jzcl/.Xdefaults
