@@ -67,15 +67,6 @@ xdb() {
   echo -en $uri_append
 }
 
-fs() {
-  if [[ -z $CB ]];then
-    echo '$CB env var not set.' >&2
-    exit 1
-  fi
-
-  grep "$@" "${CB[@]}"
-}
-
 trans() {
   local orig="$1"
   local targ="$2"
