@@ -1,3 +1,4 @@
 export BROWSER=chromium
 unalias goh
 alias nc='ncmpcpp'
+ln -sf ~/.host/src/host.blackbox/.Xdefaults
