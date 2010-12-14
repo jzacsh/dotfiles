@@ -22,6 +22,8 @@
 [merge]
   tool = vimdiff
   conflictstyle = diff3
+; how do i save the below in config?
+;   git-diff --exit-code
 [color]
   ui = auto
   status = auto

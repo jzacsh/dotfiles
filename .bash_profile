@@ -32,7 +32,7 @@ export COWER='cower --color=auto'
 export BROWSER=w3m
 #
 
-pidof dropboxd &> /dev/null || ~/bin/dist/dropbox start
+pidof dropbox &> /dev/null || ~/bin/dist/dropbox start
 
 #if interactive, source .bashrc
 [[ -n $PS1 && -f ~/.bashrc ]] && source ~/.bashrc

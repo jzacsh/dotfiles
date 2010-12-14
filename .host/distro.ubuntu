@@ -2,3 +2,4 @@ set -o vi
 export BROWSER=firefox
 alias python='python3' # aiming for bleeding edge on wrong distro
 alias e='nautilus --browser'
+[[ -h ~/.Xmodmap ]] && rm -v ~/.Xmodmap
