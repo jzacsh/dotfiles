@@ -9,7 +9,7 @@ Xft.antialias: true
 
 ! --[ Rodent ]----------------------------------------------
 Xcursor.theme: Vanilla-DMZ
-Xcursor.size:  18
+Xcursor.size:  24
 
 ! --[ URxvt - General ]-------------------------------------
 URxvt.depth: 32
