@@ -1,3 +1,2 @@
 # www.jzacsh.com
 export BROWSER=w3m
-keychain --clear
