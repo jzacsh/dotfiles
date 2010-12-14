@@ -61,6 +61,15 @@ xdb() {
   echo -en $uri_append
 }
 
+fs() {
+  if [[ -z $CB ]];then
+    echo '$CB env var not set.' >&2
+    exit 1
+  fi
+
+  grep "$@" "${CB[@]}"
+}
+
 trans() {
   local orig="$1"
   local targ="$2"
@@ -222,13 +231,14 @@ cleardd() {
 
 # export codez="~/code/web5-jzacsh/sites/all/modules/features/ ~/code/web5-jzacsh/sites/all/modules/custom/ ~/code/web5-jzacsh/sites/all/themes/zagat/"
 origrm() {
+  [[ -z $PROJECT_BASE ]] && return 1
   if [[ $1 == "-n" ]]; then
     opt=''
   else
     opt='-delete -print'
   fi
 
-  find ~/code/web5-jzacsh/ -name '*.orig' ${opt}
+  find $PROJECT_BASE -name '*.orig' ${opt}
 }
 
 themer() {
