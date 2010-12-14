@@ -38,7 +38,6 @@ export HISTSIZE=500
 if [[ $(who | grep -v $(whoami)) ]]; then
 	echo "Currently on `uname -snr`, other than you:"
     who -H | grep -v $(whoami)
-	echo #spacer
 fi
 
 bash_prompt() {
