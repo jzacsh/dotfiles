@@ -9,7 +9,6 @@ alias pfetch='drush cc all && drush -y fra && drush -y cc all && drush -y updb &
 alias mi="wget -qO- http://checkip.dyndns.org | sed -e 's/^.*Address:\ //' -e 's/<\/body.*//'"
 alias tas="tmux attach-session"
 alias tds="tmux detach-client"
-alias cower='cower -c'
 alias udevinfo='udevadm info -q all -n'
 alias rw="echo 'rebooting interwebs (mysql and apache)' && sudo service apache2 restart && sudo service mysql restart"
 alias mutt='pgrep mutt && mutt -R || mutt'
@@ -44,16 +43,23 @@ dropx() {
 
 ###############################
 # functions ###################
+#one liners
 lu() ( dict ${@} | less; )
+tarl() ( tar -tf ${*}  | less; )
+hc() ( hg commit -m ${@}; )
+hgdiff() ( hg cat $1 | vim - -c  ":vert diffsplit $1" -c "map q :qa!<CR>"; )
+speak() { echo ${@} | espeak 2>/dev/null; }
+ident() ( identify -verbose $1 | grep modify; )
+g() ( IFS=+; $BROWSER "http://www.google.com/search?q=${*}"; )
+
+hgk() {
+	hgview 2> /dev/null &
+	disown
+}
 
 xfw() {
   DISPLAY=localhost:10 ${@}
 }
-
-speak() { echo ${@} | espeak 2>/dev/null; }
-
-ident() ( identify -verbose $1 | grep modify; )
-g() ( IFS=+; $BROWSER "http://www.google.com/search?q=${*}"; )
 
 xdb() {
   uri_append='?XDEBUG_SESSION_STOP'
@@ -110,39 +116,6 @@ gencscope() {
   cscope -b -i <(find "${DIRS[@]}" \( -name '*.inc' -or -name '*.php' -or -name '*.module' \))
 }
 
-wfls() {
-  [[ $1 == 'l' ]] && view='less' || view='grep ESSID'
-  echo "printing available wifi networks:"
-  sudo ifconfig wlan0 up
-  sudo iwlist wlan0 scan | $view
-}
-
-wfon() {
-  [[ $# == 0 ]] && return 2
-  echo "setting a wifi network... '$@'"
-  sudo iwconfig wlan0 essid "$@"
-}
-
-wfnp() {
-  echo "releasing ip..."
-  sudo dhcpcd -k wlan0
-}
-
-wfip() {
-  if [[ $1 == 'f' ]]; then
-    echo -en "\t"
-    wfnp
-  fi
-  echo "requesting an IP from dhcpc server..."
-  sudo dhcpcd wlan0
-}
-
-### zagat specific: ###########
-hgk() {
-	hgview 2> /dev/null &
-	disown
-}
-
 urlhg() {
   echo -en 'Error: not yet implemented.\n'
   echo -en '       this function will return a line-specific url\n'
@@ -157,6 +130,25 @@ urlocal() {
   echo -en '       to this host given a local file.\n'
   echo -en "       eg.: 'http://cnyitjza.zagat.com/sites/all/themes/zagat/css/global.css'\n"
   return 1
+}
+
+# drupal stuff:
+alias themer?='drush pm-list | grep -i "devel_themer"'
+
+themer() {
+  nm='devel_themer'
+  [[ $(drush pm-list | grep ${nm} | grep 'Enabled') ]] && drush -y dis ${nm} || drush -y en ${nm}
+}
+
+cleardd() {
+  def_file="/tmp/drupal_debug.txt"
+  def_usr="33" # uid for www-data
+  [[ -z ${1} ]] && echo "no params defaulting to: ${def_file}" || file="${1}"
+  [[ -z ${file} ]] && file="${def_file}"
+  usr=$(stat -c %u ${file} || echo ${def_usr})
+  echo -e "owner of ${file} is: ${usr}\n" #debug info
+  sudo rm -v ${file}
+  sudo -u#${usr} touch ${file} && tail -f ${file}
 }
 
 fu() {
@@ -196,39 +188,6 @@ fu() {
   fi
 }
 
-newcny() {
-  vb=1
-  loc=$(uname -n)
-  conf="$HOME/code/conf/web5"
-  repo="$HOME/code/web5-jzacsh"
-  [[ $vb ]] && echo -e '\ninserting link to local-only modules'
-  ln -sv $conf/local $repo/sites/all/modules/local
-  [[ $vb ]] && echo -e '\ninserting link to "default" directory'
-  ln -sv $conf/default $repo/sites/default
-  $BROWSER "http://${loc}.zagat.com/"
-}
-
-tarl() ( tar -tf ${*}  | less; )
-
-beans() ( /usr/local/netbeans-6.9/bin/netbeans $* & disown 2> /dev/null; )
-
-hc() ( hg commit -m ${@}; )
-
-hgdiff() ( hg cat $1 | vim - -c  ":vert diffsplit $1" -c "map q :qa!<CR>"; )
-
-alias themer?='drush pm-list | grep -i "devel_themer"'
-
-cleardd() {
-  def_file="/tmp/drupal_debug.txt"
-  def_usr="33" # uid for www-data
-  [[ -z ${1} ]] && echo "no params defaulting to: ${def_file}" || file="${1}"
-  [[ -z ${file} ]] && file="${def_file}"
-  usr=$(stat -c %u ${file} || echo ${def_usr})
-  echo -e "owner of ${file} is: ${usr}\n" #debug info
-  sudo rm -v ${file}
-  sudo -u#${usr} touch ${file} && tail -f ${file}
-}
-
 # export codez="~/code/web5-jzacsh/sites/all/modules/features/ ~/code/web5-jzacsh/sites/all/modules/custom/ ~/code/web5-jzacsh/sites/all/themes/zagat/"
 origrm() {
   [[ -z $PROJECT_BASE ]] && return 1
@@ -239,11 +198,6 @@ origrm() {
   fi
 
   find $PROJECT_BASE -name '*.orig' ${opt}
-}
-
-themer() {
-  nm='devel_themer'
-  [[ $(drush pm-list | grep ${nm} | grep 'Enabled') ]] && drush -y dis ${nm} || drush -y en ${nm}
 }
 
 mp() {
