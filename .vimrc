@@ -67,7 +67,7 @@ set et
 
 " 4 spaces in tabs:
 set ts=4
-set sw=2
+set sw=4
 
 " xdebug port
 let g:debuggerPort = 9001
@@ -89,8 +89,9 @@ endif
 " make files
 autocmd FileType make set noexpandtab
 " drupal files - i can't refer to augroup 'drupal'?
-autocmd FileType php set ts=2
 autocmd FileType js set ts=2
+autocmd FileType js set sw=2
+autocmd FileType php set ts=2
 autocmd FileType php set sw=2
 
 " syntax hilighting
