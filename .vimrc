@@ -32,6 +32,8 @@ map <LocalLeader>9  9gt
 
 set cmdheight=2
 
+set wildmode=longest,list
+
 " set background=dark
   colorscheme ir_black
 " colorscheme merged
