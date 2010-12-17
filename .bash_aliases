@@ -160,22 +160,29 @@ fu() {
   echo -en 'finished unpacking.\n'
 
   echo -en '\nupdating feature:\n'
-  dirname=$(tar tf $download | sed -e '1s|/.*$|/|;q')
-  [[ $dbg ]] && echo "DEBUG: found local directory to be: ${dirname}"
-  for file in $(find $dirname -type f);do 
-    [[ $dbg ]] && echo "DEBUG: found local directory to be: ${dirname}"
-    mv -v $file $(echo $file | sed -e "s|$dirname||")
+  local feature=$(tar tf $download | sed -e '1s|/.*$|/|;q')
+  # sanity check:
+  local current=$(pwd | sed -e 's|.*/||g')
+  if [[ $curent != $feature ]]; then
+      echo -en 'looks like you are unpacking in the WRONG directory....\n'
+      echo -en 'are you SURE you want to continue? [y/N] '; read answ
+      [[ $answ == 'y' || $answ == 'Y' ]] || exit 1
+  fi
+  
+  [[ $dbg ]] && echo "DEBUG: found local directory to be: ${feature}"
+  for file in $(find $feature -type f);do 
+    [[ $dbg ]] && echo "DEBUG: found local directory to be: ${feature}"
+    mv -v $file $(echo $file | sed -e "s|$feature||")
   done
   echo -en 'finished updating.\n'
 
-  echo -en "\njunk: ${dirname} ${download} \n"
-  echo -en 'cleanup junk, here? [Y/n] '
-  read answ
-  if [[ $answ == 'n' || $answ == 'no' ]]; then
+  echo -en "\njunk: ${feature} ${download} \n"
+  echo -en 'cleanup junk, here? [Y/n] '; read answ
+  if [[ $answ == 'n' || $answ == 'N' ]]; then
     return 0
   else
     rm -rfv ${download}
-    rm -rfv ${dirname} 
+    rm -rfv ${feature} 
   fi
 }
 
