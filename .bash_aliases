@@ -162,7 +162,7 @@ fu() {
   local feature=$(tar tf $download | sed -e '1s|/.*$|/|;q')
   # sanity check:
   local current="$(pwd | sed -e 's|.*/||g')/"
-  if [[ $curent -ne $feature ]]; then
+  if [[ $current != $feature ]]; then
       echo -en 'looks like you are unpacking in the WRONG directory....\n'
       echo -en "  feature being unpacked: $feature\n"
       echo -en "  your current directory: $current\n"
