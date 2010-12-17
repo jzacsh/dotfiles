@@ -127,16 +127,16 @@ urlocal() {
 alias themer?='drush pm-list | grep -i "devel_themer"'
 
 themer() {
-  nm='devel_themer'
+  local nm='devel_themer'
   [[ $(drush pm-list | grep ${nm} | grep 'Enabled') ]] && drush -y dis ${nm} || drush -y en ${nm}
 }
 
 cleardd() {
-  def_file="/tmp/drupal_debug.txt"
-  def_usr="33" # uid for www-data
+  local def_file="/tmp/drupal_debug.txt"
+  local def_usr="33" # uid for www-data
   [[ -z ${1} ]] && echo "no params defaulting to: ${def_file}" || file="${1}"
   [[ -z ${file} ]] && file="${def_file}"
-  usr=$(stat -c %u ${file} || echo ${def_usr})
+  local usr=$(stat -c %u ${file} || echo ${def_usr})
   echo -e "owner of ${file} is: ${usr}\n" #debug info
   sudo rm -v ${file}
   sudo -u#${usr} touch ${file} && tail -f ${file}
@@ -146,7 +146,7 @@ fu() {
   local dbg=
   if [[ $(echo ${1} | grep tar$) ]];then
     [[ $dbg ]] && echo "DEBUG: found tarball to be ${download}"
-    download=$1 
+    local download=$1 
   else
     echo -en 'usage: fu feature_name-X.x-#.#.tar\n'
     echo -en ' eg.: step 1: `cd /path/to/exact/feature/` \n'
