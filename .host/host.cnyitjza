@@ -12,6 +12,11 @@ w5() {
 }
 
 newcny() {
+  if [[ $1 == '-h' || $1 == '--help' ]];then
+      echo 'no args'
+      type newcny
+      return 1
+  fi
   vb=1
   loc=$(uname -n)
   conf="$HOME/code/conf/web5"
