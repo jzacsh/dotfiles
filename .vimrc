@@ -120,7 +120,8 @@ set nosi
 set ruler
 set number
 set laststatus=2
-" set mouse=a	"annoying
+
+set mouse=a	"annoying
 
 "plugin specific stuff:
 "let MRU_File = "$VIM/plugin/mru.vim"
