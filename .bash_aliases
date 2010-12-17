@@ -161,11 +161,13 @@ fu() {
   echo -en '\nupdating feature:\n'
   local feature=$(tar tf $download | sed -e '1s|/.*$|/|;q')
   # sanity check:
-  local current=$(pwd | sed -e 's|.*/||g')
-  if [[ $curent != $feature ]]; then
+  local current="$(pwd | sed -e 's|.*/||g')/"
+  if [[ $curent -ne $feature ]]; then
       echo -en 'looks like you are unpacking in the WRONG directory....\n'
-      echo -en 'are you SURE you want to continue? [y/N] '; read answ
-      [[ $answ == 'y' || $answ == 'Y' ]] || exit 1
+      echo -en "  feature being unpacked: $feature\n"
+      echo -en "  your current directory: $current\n"
+      echo -en 'Are you SURE you want to continue? [y/N] '; read answ
+      [[ $answ == 'y' || $answ == 'Y' ]] || return 1
   fi
   
   [[ $dbg ]] && echo "DEBUG: found local directory to be: ${feature}"
