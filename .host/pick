@@ -10,15 +10,15 @@ src_all() {
     # generic distro-specific config
     prefix=$dir/distro.
     if [[ -f /etc/arch-release ]]; then
-        srcthis ${prefix}arch
+        src_this ${prefix}arch
     elif [[ -f /etc/lsb-release ]]; then
         deb_dist_file=${prefix}$(awk -F'=' '/^DISTRIB_ID/{print tolower($2)}' /etc/lsb-release)
-        srcthis $deb_dist_file
+        src_this $deb_dist_file
     fi
 
     # host-specific configuration
     hostfile="$dir/host.$HOSTNAME"
-    srcthis $hostfile
+    src_this $hostfile
 }
 
 src_all
