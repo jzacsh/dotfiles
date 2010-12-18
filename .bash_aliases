@@ -34,7 +34,7 @@ alias office='ooffice'
 
 ## dropbox can suck: ##########
 dropx() {
-  db="dropbox"
+  local db="dropbox"
   for act in {op,art,atus}; do $db st${act}; done
   for i in {1..5}; do sleep 1 && $db status; done
   for i in {1..15}; do sleep 2 && $db status; done
@@ -62,7 +62,7 @@ xfw() {
 }
 
 xdb() {
-  uri_append='?XDEBUG_SESSION_STOP'
+  local uri_append='?XDEBUG_SESSION_STOP'
   [[ -z $1 ]] && uri_append='?XDEBUG_SESSION_START=1'
   echo -en $uri_append
 }
@@ -79,13 +79,13 @@ trans() {
 
 dgo() {
   #see http://dgo.to/ for possible params
-  param="$1"
-  search="${*}"
+  local param="$1"
+  local search="${*}"
   if [[ ${param:0:1} == "-" ]];then
-    key="$(echo $param | sed -e 's/.//')/"
+    local key="$(echo $param | sed -e 's/.//')/"
     search="${@:2}"
   else
-    key='' #default search projects
+    local key='' #default search projects
   fi
   $BROWSER "http://dgo.to/${key}${search}"
 }
@@ -192,9 +192,9 @@ fu() {
 origrm() {
   [[ -z $PROJECT_BASE ]] && return 1
   if [[ $1 == "-n" ]]; then
-    opt=''
+    local opt=''
   else
-    opt='-delete -print'
+    local opt='-delete -print'
   fi
 
   find $PROJECT_BASE -name '*.orig' ${opt}
