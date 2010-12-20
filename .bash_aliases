@@ -10,7 +10,6 @@ alias mi="wget -qO- http://checkip.dyndns.org | sed -e 's/^.*Address:\ //' -e 's
 alias tas="tmux attach-session"
 alias tds="tmux detach-client"
 alias udevinfo='udevadm info -q all -n'
-alias rw="echo 'rebooting interwebs (mysql and apache)' && sudo service apache2 restart && sudo service mysql restart"
 alias mutt='pgrep mutt && mutt -R || mutt'
 alias ipt="sudo iptraf"
 alias goh="ssh home.jzacsh.com"
