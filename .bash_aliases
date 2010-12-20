@@ -131,6 +131,7 @@ themer() {
 }
 
 cleardd() {
+  local file
   local def_file="/tmp/drupal_debug.txt"
   local def_usr="33" # uid for www-data
   [[ -z ${1} ]] && echo "no params defaulting to: ${def_file}" || file="${1}"
