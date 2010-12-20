@@ -33,7 +33,7 @@ alias office='ooffice'
 
 ## dropbox can suck: ##########
 dropx() {
-  db="dropbox"
+  local db="dropbox"
   for act in {op,art,atus}; do $db st${act}; done
   for i in {1..5}; do sleep 1 && $db status; done
   for i in {1..15}; do sleep 2 && $db status; done
@@ -49,6 +49,7 @@ hgdiff() ( hg cat $1 | vim - -c  ":vert diffsplit $1" -c "map q :qa!<CR>"; )
 speak() { echo ${@} | espeak 2>/dev/null; }
 ident() ( identify -verbose $1 | grep modify; )
 g() ( IFS=+; $BROWSER "http://www.google.com/search?q=${*}"; )
+rfc() { wget -cqO- "http://tools.ietf.org/rfc/rfc${1}.txt" | $PAGER +/-.[0-9]*.-.*RFC\ \#${1}; }
 
 hgk() {
 	hgview 2> /dev/null &
@@ -60,7 +61,7 @@ xfw() {
 }
 
 xdb() {
-  uri_append='?XDEBUG_SESSION_STOP'
+  local uri_append='?XDEBUG_SESSION_STOP'
   [[ -z $1 ]] && uri_append='?XDEBUG_SESSION_START=1'
   echo -en $uri_append
 }
@@ -77,13 +78,13 @@ trans() {
 
 dgo() {
   #see http://dgo.to/ for possible params
-  param="$1"
-  search="${*}"
+  local param="$1"
+  local search="${*}"
   if [[ ${param:0:1} == "-" ]];then
-    key="$(echo $param | sed -e 's/.//')/"
+    local key="$(echo $param | sed -e 's/.//')/"
     search="${@:2}"
   else
-    key='' #default search projects
+    local key='' #default search projects
   fi
   $BROWSER "http://dgo.to/${key}${search}"
 }
@@ -125,16 +126,16 @@ urlocal() {
 alias themer?='drush pm-list | grep -i "devel_themer"'
 
 themer() {
-  nm='devel_themer'
+  local nm='devel_themer'
   [[ $(drush pm-list | grep ${nm} | grep 'Enabled') ]] && drush -y dis ${nm} || drush -y en ${nm}
 }
 
 cleardd() {
-  def_file="/tmp/drupal_debug.txt"
-  def_usr="33" # uid for www-data
+  local def_file="/tmp/drupal_debug.txt"
+  local def_usr="33" # uid for www-data
   [[ -z ${1} ]] && echo "no params defaulting to: ${def_file}" || file="${1}"
   [[ -z ${file} ]] && file="${def_file}"
-  usr=$(stat -c %u ${file} || echo ${def_usr})
+  local usr=$(stat -c %u ${file} || echo ${def_usr})
   echo -e "owner of ${file} is: ${usr}\n" #debug info
   sudo rm -v ${file}
   sudo -u#${usr} touch ${file} && tail -f ${file}
@@ -144,7 +145,7 @@ fu() {
   local dbg=
   if [[ $(echo ${1} | grep tar$) ]];then
     [[ $dbg ]] && echo "DEBUG: found tarball to be ${download}"
-    download=$1 
+    local download=$1 
   else
     echo -en 'usage: fu feature_name-X.x-#.#.tar\n'
     echo -en ' eg.: step 1: `cd /path/to/exact/feature/` \n'
@@ -158,22 +159,31 @@ fu() {
   echo -en 'finished unpacking.\n'
 
   echo -en '\nupdating feature:\n'
-  dirname=$(tar tf $download | sed -e '1s|/.*$|/|;q')
-  [[ $dbg ]] && echo "DEBUG: found local directory to be: ${dirname}"
-  for file in $(find $dirname -type f);do 
-    [[ $dbg ]] && echo "DEBUG: found local directory to be: ${dirname}"
-    mv -v $file $(echo $file | sed -e "s|$dirname||")
+  local feature=$(tar tf $download | sed -e '1s|/.*$|/|;q')
+  # sanity check:
+  local current="$(pwd | sed -e 's|.*/||g')/"
+  if [[ $current != $feature ]]; then
+      echo -en 'looks like you are unpacking in the WRONG directory....\n'
+      echo -en "  feature being unpacked: $feature\n"
+      echo -en "  your current directory: $current\n"
+      echo -en 'Are you SURE you want to continue? [y/N] '; read answ
+      [[ $answ == 'y' || $answ == 'Y' ]] || return 1
+  fi
+  
+  [[ $dbg ]] && echo "DEBUG: found local directory to be: ${feature}"
+  for file in $(find $feature -type f);do 
+    [[ $dbg ]] && echo "DEBUG: found local directory to be: ${feature}"
+    mv -v $file $(echo $file | sed -e "s|$feature||")
   done
   echo -en 'finished updating.\n'
 
-  echo -en "\njunk: ${dirname} ${download} \n"
-  echo -en 'cleanup junk, here? [Y/n] '
-  read answ
-  if [[ $answ == 'n' || $answ == 'no' ]]; then
+  echo -en "\njunk: ${feature} ${download} \n"
+  echo -en 'cleanup junk, here? [Y/n] '; read answ
+  if [[ $answ == 'n' || $answ == 'N' ]]; then
     return 0
   else
     rm -rfv ${download}
-    rm -rfv ${dirname} 
+    rm -rfv ${feature} 
   fi
 }
 
@@ -181,9 +191,9 @@ fu() {
 origrm() {
   [[ -z $PROJECT_BASE ]] && return 1
   if [[ $1 == "-n" ]]; then
-    opt=''
+    local opt=''
   else
-    opt='-delete -print'
+    local opt='-delete -print'
   fi
 
   find $PROJECT_BASE -name '*.orig' ${opt}

@@ -12,10 +12,15 @@ w5() {
 }
 
 newcny() {
-  vb=1
-  loc=$(uname -n)
-  conf="$HOME/code/conf/web5"
-  repo="$HOME/code/web5-jzacsh"
+  if [[ $1 == '-h' || $1 == '--help' ]];then
+      echo 'no args'
+      type newcny
+      return 1
+  fi
+  local vb=1
+  local loc=$(uname -n)
+  local conf="$HOME/code/conf/web5"
+  local repo="$HOME/code/web5-jzacsh"
   [[ $vb ]] && echo -e '\ninserting link to local-only modules'
   ln -sv $conf/local $repo/sites/all/modules/local
   [[ $vb ]] && echo -e '\ninserting link to "default" directory'
