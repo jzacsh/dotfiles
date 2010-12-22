@@ -24,6 +24,7 @@ export CDPATH=.:~/down/
  PATH=$PATH:/opt/java/jre/bin/:/srv/http/global/bin/dev/
 export PATH
 
+export PYTHONDOCS=/usr/share/doc/python/html/
 export RUBYOPT='w' #helpful ruby warnings
 export GREP_OPTIONS='--color=auto'
 export CLASSPATH=.:$CLASSPATH
