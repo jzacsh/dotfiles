@@ -47,10 +47,10 @@ chatnets = {
   freenode = {
     type = "IRC";
     autosendcmd = "/hilight jzacsh";
+    max_query_chans = "5";
     max_kicks = "4";
     max_msgs = "5";
     max_whois = "4";
-    max_query_chans = "5";
   };
   EFNet = { 
     type = "IRC";
@@ -119,8 +119,9 @@ channels = (
   { name = "#drupal"; chatnet = "freenode"; autojoin = "yes"; },
   { name = "#drupal-nj"; chatnet = "freenode"; autojoin = "yes"; },
   { name = "#drupal-geo"; chatnet = "freenode"; autojoin = "yes"; },
-  { name = "#bash"; chatnet = "freenode"; autojoin = "yes"; },
   { name = "#archlinux"; chatnet = "freenode"; autojoin = "yes"; },
+  { name = "#python"; chatnet = "freenode"; autojoin = "yes"; },
+  { name = "#bash"; chatnet = "freenode"; autojoin = "yes"; },
   { name = "#drupal-support"; chatnet = "freenode"; autojoin = "no"; },
   { name = "#drupal-themes"; chatnet = "freenode"; autojoin = "no"; },
   { name = "#ubuntu"; chatnet = "freenode"; autojoin = "no"; },

@@ -1,0 +1,1 @@
+keychain --clear

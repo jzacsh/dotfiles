@@ -9,15 +9,12 @@ alias pfetch='drush cc all && drush -y fra && drush -y cc all && drush -y updb &
 alias mi="wget -qO- http://checkip.dyndns.org | sed -e 's/^.*Address:\ //' -e 's/<\/body.*//'"
 alias tas="tmux attach-session"
 alias tds="tmux detach-client"
-alias cower='cower -c'
 alias udevinfo='udevadm info -q all -n'
-alias rw="echo 'rebooting interwebs (mysql and apache)' && sudo service apache2 restart && sudo service mysql restart"
 alias mutt='pgrep mutt && mutt -R || mutt'
 alias ipt="sudo iptraf"
 alias goh="ssh home.jzacsh.com"
 
 # x env #######################
-alias m='mutt'
 alias br='$BROWSER'
 alias ch='chromium-browser'
 alias kflash='echo "killing flash..." && sudo killall npviewer.bin'
@@ -36,7 +33,7 @@ alias office='ooffice'
 
 ## dropbox can suck: ##########
 dropx() {
-  db="dropbox"
+  local db="dropbox"
   for act in {op,art,atus}; do $db st${act}; done
   for i in {1..5}; do sleep 1 && $db status; done
   for i in {1..15}; do sleep 2 && $db status; done
@@ -44,19 +41,27 @@ dropx() {
 
 ###############################
 # functions ###################
+#one liners
 lu() ( dict ${@} | less; )
+tarl() ( tar -tf ${*}  | less; )
+hc() ( hg commit -m ${@}; )
+hgdiff() ( hg cat $1 | vim - -c  ":vert diffsplit $1" -c "map q :qa!<CR>"; )
+speak() { echo ${@} | espeak 2>/dev/null; }
+ident() ( identify -verbose $1 | grep modify; )
+g() ( IFS=+; $BROWSER "http://www.google.com/search?q=${*}"; )
+rfc() { wget -cqO- "http://tools.ietf.org/rfc/rfc${1}.txt" | $PAGER +/-.[0-9]*.-.*RFC\ \#${1}; }
+
+hgk() {
+	hgview 2> /dev/null &
+	disown
+}
 
 xfw() {
   DISPLAY=localhost:10 ${@}
 }
 
-speak() { echo ${@} | espeak 2>/dev/null; }
-
-ident() ( identify -verbose $1 | grep modify; )
-g() ( IFS=+; $BROWSER "http://www.google.com/search?q=${*}"; )
-
 xdb() {
-  uri_append='?XDEBUG_SESSION_STOP'
+  local uri_append='?XDEBUG_SESSION_STOP'
   [[ -z $1 ]] && uri_append='?XDEBUG_SESSION_START=1'
   echo -en $uri_append
 }
@@ -73,13 +78,13 @@ trans() {
 
 dgo() {
   #see http://dgo.to/ for possible params
-  param="$1"
-  search="${*}"
+  local param="$1"
+  local search="${*}"
   if [[ ${param:0:1} == "-" ]];then
-    key="$(echo $param | sed -e 's/.//')/"
+    local key="$(echo $param | sed -e 's/.//')/"
     search="${@:2}"
   else
-    key='' #default search projects
+    local key='' #default search projects
   fi
   $BROWSER "http://dgo.to/${key}${search}"
 }
@@ -101,39 +106,6 @@ gencscope() {
   cscope -b -i <(find "${DIRS[@]}" \( -name '*.inc' -or -name '*.php' -or -name '*.module' \))
 }
 
-wfls() {
-  [[ $1 == 'l' ]] && view='less' || view='grep ESSID'
-  echo "printing available wifi networks:"
-  sudo ifconfig wlan0 up
-  sudo iwlist wlan0 scan | $view
-}
-
-wfon() {
-  [[ $# == 0 ]] && return 2
-  echo "setting a wifi network... '$@'"
-  sudo iwconfig wlan0 essid "$@"
-}
-
-wfnp() {
-  echo "releasing ip..."
-  sudo dhcpcd -k wlan0
-}
-
-wfip() {
-  if [[ $1 == 'f' ]]; then
-    echo -en "\t"
-    wfnp
-  fi
-  echo "requesting an IP from dhcpc server..."
-  sudo dhcpcd wlan0
-}
-
-### zagat specific: ###########
-hgk() {
-	hgview 2> /dev/null &
-	disown
-}
-
 urlhg() {
   echo -en 'Error: not yet implemented.\n'
   echo -en '       this function will return a line-specific url\n'
@@ -150,11 +122,31 @@ urlocal() {
   return 1
 }
 
+# drupal stuff:
+alias themer?='drush pm-list | grep -i "devel_themer"'
+
+themer() {
+  local nm='devel_themer'
+  [[ $(drush pm-list | grep ${nm} | grep 'Enabled') ]] && drush -y dis ${nm} || drush -y en ${nm}
+}
+
+cleardd() {
+  local file
+  local def_file="/tmp/drupal_debug.txt"
+  local def_usr="33" # uid for www-data
+  [[ -z ${1} ]] && echo "no params defaulting to: ${def_file}" || file="${1}"
+  [[ -z ${file} ]] && file="${def_file}"
+  local usr=$(stat -c %u ${file} || echo ${def_usr})
+  echo -e "owner of ${file} is: ${usr}\n" #debug info
+  sudo rm -v ${file}
+  sudo -u#${usr} touch ${file} && tail -f ${file}
+}
+
 fu() {
   local dbg=
   if [[ $(echo ${1} | grep tar$) ]];then
     [[ $dbg ]] && echo "DEBUG: found tarball to be ${download}"
-    download=$1 
+    local download=$1 
   else
     echo -en 'usage: fu feature_name-X.x-#.#.tar\n'
     echo -en ' eg.: step 1: `cd /path/to/exact/feature/` \n'
@@ -168,72 +160,44 @@ fu() {
   echo -en 'finished unpacking.\n'
 
   echo -en '\nupdating feature:\n'
-  dirname=$(tar tf $download | sed -e '1s|/.*$|/|;q')
-  [[ $dbg ]] && echo "DEBUG: found local directory to be: ${dirname}"
-  for file in $(find $dirname -type f);do 
-    [[ $dbg ]] && echo "DEBUG: found local directory to be: ${dirname}"
-    mv -v $file $(echo $file | sed -e "s|$dirname||")
+  local feature=$(tar tf $download | sed -e '1s|/.*$|/|;q')
+  # sanity check:
+  local current="$(pwd | sed -e 's|.*/||g')/"
+  if [[ $current != $feature ]]; then
+      echo -en 'looks like you are unpacking in the WRONG directory....\n'
+      echo -en "  feature being unpacked: $feature\n"
+      echo -en "  your current directory: $current\n"
+      echo -en 'Are you SURE you want to continue? [y/N] '; read answ
+      [[ $answ == 'y' || $answ == 'Y' ]] || return 1
+  fi
+  
+  [[ $dbg ]] && echo "DEBUG: found local directory to be: ${feature}"
+  for file in $(find $feature -type f);do 
+    [[ $dbg ]] && echo "DEBUG: found local directory to be: ${feature}"
+    mv -v $file $(echo $file | sed -e "s|$feature||")
   done
   echo -en 'finished updating.\n'
 
-  echo -en "\njunk: ${dirname} ${download} \n"
-  echo -en 'cleanup junk, here? [Y/n] '
-  read answ
-  if [[ $answ == 'n' || $answ == 'no' ]]; then
+  echo -en "\njunk: ${feature} ${download} \n"
+  echo -en 'cleanup junk, here? [Y/n] '; read answ
+  if [[ $answ == 'n' || $answ == 'N' ]]; then
     return 0
   else
     rm -rfv ${download}
-    rm -rfv ${dirname} 
+    rm -rfv ${feature} 
   fi
-}
-
-newcny() {
-  vb=1
-  loc=$(uname -n)
-  conf="$HOME/code/conf/web5"
-  repo="$HOME/code/web5-jzacsh"
-  [[ $vb ]] && echo -e '\ninserting link to local-only modules'
-  ln -sv $conf/local $repo/sites/all/modules/local
-  [[ $vb ]] && echo -e '\ninserting link to "default" directory'
-  ln -sv $conf/default $repo/sites/default
-  $BROWSER "http://${loc}.zagat.com/"
-}
-
-tarl() ( tar -tf ${*}  | less; )
-
-beans() ( /usr/local/netbeans-6.9/bin/netbeans $* & disown 2> /dev/null; )
-
-hc() ( hg commit -m ${@}; )
-
-hgdiff() ( hg cat $1 | vim - -c  ":vert diffsplit $1" -c "map q :qa!<CR>"; )
-
-alias themer?='drush pm-list | grep -i "devel_themer"'
-
-cleardd() {
-  def_file="/tmp/drupal_debug.txt"
-  def_usr="33" # uid for www-data
-  [[ -z ${1} ]] && echo "no params defaulting to: ${def_file}" || file="${1}"
-  [[ -z ${file} ]] && file="${def_file}"
-  usr=$(stat -c %u ${file} || echo ${def_usr})
-  echo -e "owner of ${file} is: ${usr}\n" #debug info
-  sudo rm -v ${file}
-  sudo -u#${usr} touch ${file} && tail -f ${file}
 }
 
 # export codez="~/code/web5-jzacsh/sites/all/modules/features/ ~/code/web5-jzacsh/sites/all/modules/custom/ ~/code/web5-jzacsh/sites/all/themes/zagat/"
 origrm() {
+  [[ -z $PROJECT_BASE ]] && return 1
   if [[ $1 == "-n" ]]; then
-    opt=''
+    local opt=''
   else
-    opt='-delete -print'
+    local opt='-delete -print'
   fi
 
-  find ~/code/web5-jzacsh/ -name '*.orig' ${opt}
-}
-
-themer() {
-  nm='devel_themer'
-  [[ $(drush pm-list | grep ${nm} | grep 'Enabled') ]] && drush -y dis ${nm} || drush -y en ${nm}
+  find $PROJECT_BASE -name '*.orig' ${opt}
 }
 
 mp() {

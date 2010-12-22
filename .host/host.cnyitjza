@@ -2,9 +2,28 @@ export BROWSER=firefox
 
 export PROJECT_BASE="$HOME/code/web5-jzacsh"
 base="$PROJECT_BASE/sites/all"
-export CB="'${base}/modules/custom' '${base}/themes/zagat' '${base}/modules/features'"
+export CB=("$base"/{modules/{features,custom},/themes/zagat})
 unset base
+
+beans() ( /usr/local/netbeans-6.9/bin/netbeans $* & disown 2> /dev/null; )
 
 w5() {
     cd $PROJECT_BASE/${@} || cd $PROJECT_BASE
+}
+
+newcny() {
+  if [[ $1 == '-h' || $1 == '--help' ]];then
+      echo 'no args'
+      type newcny
+      return 1
+  fi
+  local vb=1
+  local loc=$(uname -n)
+  local conf="$HOME/code/conf/web5"
+  local repo="$HOME/code/web5-jzacsh"
+  [[ $vb ]] && echo -e '\ninserting link to local-only modules'
+  ln -sv $conf/local $repo/sites/all/modules/local
+  [[ $vb ]] && echo -e '\ninserting link to "default" directory'
+  ln -sv $conf/default $repo/sites/default
+  $BROWSER "http://${loc}.zagat.com/"
 }

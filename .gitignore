@@ -3,6 +3,7 @@
 .w3m/w3m*
 .w3m/history
 .irssi/saved_colors
+.irssi/config
 .netrc
 cscope.inc
 cscope.out

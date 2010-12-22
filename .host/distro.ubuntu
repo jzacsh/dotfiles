@@ -1,6 +1,5 @@
 set -o vi
 export BROWSER=firefox
-find . -maxdepth 1 -name '.Xmodmap' -print -delete
 alias python='python3' # aiming for bleeding edge on wrong distro
 alias e='nautilus --browser'
-[[ -h ~/.Xmodmap ]] && rm -v ~/.Xmodmap
+alias rw="echo 'rebooting interwebs (mysql and apache)' && sudo service apache2 restart && sudo service mysql restart"

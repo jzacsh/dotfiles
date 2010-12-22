@@ -32,6 +32,8 @@ map <LocalLeader>9  9gt
 
 set cmdheight=2
 
+set wildmode=longest,list
+
 " set background=dark
   colorscheme ir_black
 " colorscheme merged
@@ -67,7 +69,7 @@ set et
 
 " 4 spaces in tabs:
 set ts=4
-set sw=2
+set sw=4
 
 " xdebug port
 let g:debuggerPort = 9001
@@ -89,8 +91,9 @@ endif
 " make files
 autocmd FileType make set noexpandtab
 " drupal files - i can't refer to augroup 'drupal'?
-autocmd FileType php set ts=2
 autocmd FileType js set ts=2
+autocmd FileType js set sw=2
+autocmd FileType php set ts=2
 autocmd FileType php set sw=2
 
 " syntax hilighting
@@ -117,7 +120,8 @@ set nosi
 set ruler
 set number
 set laststatus=2
-" set mouse=a	"annoying
+
+set mouse=a	"annoying
 
 "plugin specific stuff:
 "let MRU_File = "$VIM/plugin/mru.vim"
