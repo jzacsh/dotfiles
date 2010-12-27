@@ -23,6 +23,7 @@ export CDPATH=.:~/down/
  PATH=.:$HOME/bin:$HOME/bin/local:$HOME/bin/share:$HOME/bin/dist:$PATH
  PATH=$PATH:/opt/java/jre/bin/:/srv/http/global/bin/dev/
 export PATH
+export PYTHONVER=3
 
 export RUBYOPT='w' #helpful ruby warnings
 export GREP_OPTIONS='--color=auto'
