@@ -25,6 +25,7 @@ export CDPATH=.:~/down/
 export PATH
 export PYTHONVER=3
 
+export PYTHONDOCS=/usr/share/doc/python/html/
 export RUBYOPT='w' #helpful ruby warnings
 export GREP_OPTIONS='--color=auto'
 export CLASSPATH=.:$CLASSPATH
