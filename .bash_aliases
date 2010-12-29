@@ -131,15 +131,15 @@ themer() {
 }
 
 cleardd() {
-  local file
   # default values
   local def_file="/tmp/drupal_debug.txt"
   local def_usr="33" #uid for www-data
 
   # set values
   [[ -z ${1} ]] && echo "no params defaulting to: ${def_file}"
-  file=${1:-$def_file} #default param
-  local usr=$(stat -c %u ${file} >&/dev/null || echo ${def_usr})
+  local file=${1:-$def_file} #default param
+  local file_usr=$(stat -c %u ${file} 2>/dev/null)
+  local usr=${file_usr:-$def_usr}
 
   # actual actions
   echo -e "owner of ${file} is: ${usr}\n" #debug info
