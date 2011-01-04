@@ -212,8 +212,13 @@ mp() {
   echo smb://$(echo "${*}" | sed -e 's/\\/\//g' | sed -e 's/\ /\\\ /g')
 }
 
+## check which resources are loading #####################################################
+#
 # zcheck() {
-#    [[ $# -eq 0 ]] && echo -e "usage:\tzcheck [css | js] url\n\teg.:check css http://www.zagat.com/" && return 1
+#    if (( $# != 2 ));then
+#       echo -e "usage:\tzcheck [css | js] url\n\teg.:zcheck css http://www.zagat.com/" >&2
+#       return 1
+#    fi
 #    key=$1
 #    url=$2
 # 
