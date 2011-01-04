@@ -1,9 +1,8 @@
 export BROWSER=firefox
 
 export PROJECT_BASE="$HOME/code/web5-jzacsh"
-base="$PROJECT_BASE/sites/all"
-export CB=("$base"/{modules/{features,custom},/themes/zagat})
-unset base
+## this does not expand as expected ########################################
+export CB=("$PROJECT_BASE"/sites/all/{themes/zagat,modules/{features,custom}})
 
 beans() ( /usr/local/netbeans-6.9/bin/netbeans $* & disown 2> /dev/null; )
 
