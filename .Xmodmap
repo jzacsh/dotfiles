@@ -8,16 +8,16 @@
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 !swap caps w/left-ctrl
-keycode 66 = Control_L
-keycode 37 = Caps_Lock
+!  keycode 66 = Control_L
+!  keycode 37 = Caps_Lock
 
 ! Switch caps lock and (left) control
-!  remove Lock = Caps_Lock
-!  remove Control = Control_L
-!  keysym Control_L = Caps_Lock
-!  keysym Caps_Lock = Control_L
-!  add Lock = Caps_Lock
-!  add Control = Control_L
+remove Lock = Caps_Lock
+remove Control = Control_L
+keysym Control_L = Caps_Lock
+keysym Caps_Lock = Control_L
+add Lock = Caps_Lock
+add Control = Control_L
 
 !! GGAAHHH!! i didn't realize i had this file (above)...
 !
