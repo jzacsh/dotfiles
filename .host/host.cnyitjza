@@ -4,6 +4,10 @@ export PROJECT_BASE="$HOME/code/web5-jzacsh"
 ## this does not expand as expected ########################################
 export CB=("$PROJECT_BASE"/sites/all/{themes/zagat,modules/{features,custom}})
 
+export DB=$(grep '^\$db_url' $PROJECT_BASE/sites/default/settings.php | sed -e 's/.*\///g' | sed -e "s/';//")
+unset current_db
+alias db='echo $DB'
+
 beans() ( /usr/local/netbeans-6.9/bin/netbeans $* & disown 2> /dev/null; )
 
 w5() {
