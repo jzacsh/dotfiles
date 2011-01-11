@@ -8,7 +8,11 @@ export DB=$(grep '^\$db_url' $PROJECT_BASE/sites/default/settings.php | sed -e '
 unset current_db
 alias db='echo $DB'
 
-beans() ( /usr/local/netbeans-6.9/bin/netbeans $* & disown 2> /dev/null; )
+beans() {
+    local level="FINE"
+    local parse="-J-Dorg.netbeans.modules.parsing.impl.indexing.RepositoryUpdater.level=$level"
+    /usr/local/netbeans-6.9/bin/netbeans ${:-$parse} "${@}" & disown 2>/dev/null
+}
 
 w5() {
     cd $PROJECT_BASE/${@} || cd $PROJECT_BASE
