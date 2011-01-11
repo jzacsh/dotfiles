@@ -1,8 +1,4 @@
-for key  in ~/.ssh/add/*.add ; do
-  keychain --quiet --timeout 240 $key # 4 hours
-done
-unset key
-source ~/.keychain/$HOSTNAME-sh
+addkeys
 # to load keys on this machine setup in ~/.ssh/add/:
 # lrwxrwxrwx   jzlut.add -> ../jzlut
 # lrwxrwxrwx   jzlut.add.pub -> ../jzlut.pub

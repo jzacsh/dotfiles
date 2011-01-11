@@ -24,7 +24,8 @@ urxvtd -q -o -f
 # exec ~/bin/startdwm
 while true
 do
-  xsetroot -name "$(date) $(uptime | sed 's/.*,//')"
-  sleep 1
+    xsetroot -name "$(date) $(uptime | sed 's/.*,//')"
+    newdwmbg ~/dbox/Photos/desktops/django-pony.png
+    sleep 1
 done &
 exec dwm

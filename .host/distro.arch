@@ -26,3 +26,6 @@ wfip() {
   echo "requesting an IP from dhcpc server..."
   sudo dhcpcd wlan0
 }
+
+
+alias rw="echo 'rebooting interwebs (mysql and apache)' && sudo /etc/rc.d/httpd restart && sudo /etc/rc.d/mysqld restart"
