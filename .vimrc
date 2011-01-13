@@ -1,4 +1,4 @@
-" this is vim's rc
+"this is vim's rc
 " comments in double-quotes (`"')
 " awesome reference:		http://amix.dk/vim/vimrc.html
 
@@ -17,9 +17,10 @@ map <LocalLeader>r  <Esc>:MRU<CR>
 map <LocalLeader>s  <Esc>:r!date --rfc-3339=seconds<CR>
 map <LocalLeader>d  <Esc>:r!date --rfc-3339=date<CR>
 map <LocalLeader>f  <Esc>:TlistToggle<CR>
-map <LocalLeader>t  <Esc>:tabnew<CR>
 map <LocalLeader>n  <Esc>:tabnext<CR>
 map <LocalLeader>N  <Esc>:tabprevious<CR>
+map <LocalLeader>t  <Esc>:CommandT<CR>
+map <LocalLeader>w  <Esc>:tabnew<CR>
 map <LocalLeader>1  1gt
 map <LocalLeader>2  2gt
 map <LocalLeader>3  3gt
