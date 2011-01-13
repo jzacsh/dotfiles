@@ -1,5 +1,8 @@
 .irssi/scripts/autorun/notify.pl
 .vim/.netrwhist
+.vim/.VimballRecord
+.vim/ruby/command-t/*.o
+.vim/ruby/command-t/*.so
 .w3m/w3m*
 .w3m/history
 .irssi/config
