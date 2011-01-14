@@ -9,6 +9,7 @@ col_end='\[\e[m\]'
 export EDITOR=vim
 export DIFF=' up '
 export LESS=' XFRr '
+export RLWRAP=' AaN '
 export PAGER=less
 export CDPATH=.:~/down/
  PATH=.:$HOME/bin:$HOME/bin/local:$HOME/bin/share:$HOME/bin/dist:$PATH

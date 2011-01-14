@@ -2,13 +2,20 @@ export BROWSER=firefox
 
 export PROJECT_BASE="$HOME/code/web5-jzacsh"
 ## this does not expand as expected ########################################
-export CB=("$PROJECT_BASE"/sites/all/{themes/zagat,modules/{features,custom}})
+#  export CB=("$PROJECT_BASE"/sites/all/{themes/zagat,modules/{features,custom}})
+export CB="${PROJECT_BASE}/sites/all/themes/zagat ${PROJECT_BASE}/sites/all/modules/features ${PROJECT_BASE}/sites/all/modules/custom"
 
 export DB=$(grep '^\$db_url' $PROJECT_BASE/sites/default/settings.php | sed -e 's/.*\///g' | sed -e "s/';//")
 unset current_db
 alias db='echo $DB'
 
-beans() ( /usr/local/netbeans-6.9/bin/netbeans $* & disown 2> /dev/null; )
+f() { ge ${} $CB ; }
+
+beans() {
+    local level="FINE"
+    local parse="-J-Dorg.netbeans.modules.parsing.impl.indexing.RepositoryUpdater.level=$level"
+    /usr/local/netbeans-6.9/bin/netbeans ${:-$parse} "${@}" & disown 2>/dev/null
+}
 
 w5() {
     cd $PROJECT_BASE/${@} || cd $PROJECT_BASE

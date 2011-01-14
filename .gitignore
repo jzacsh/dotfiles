@@ -1,7 +1,11 @@
 .irssi/scripts/autorun/notify.pl
 .vim/.netrwhist
+.vim/.VimballRecord
+.vim/ruby/command-t/*.o
+.vim/ruby/command-t/*.so
 .w3m/w3m*
 .w3m/history
+.w3m/cookie
 .irssi/config
 .irssi/saved_colors
 .irssi/config
