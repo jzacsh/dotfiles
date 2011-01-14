@@ -1,8 +1,3 @@
-addkeys
-# to load keys on this machine setup in ~/.ssh/add/:
-# lrwxrwxrwx   jzlut.add -> ../jzlut
-# lrwxrwxrwx   jzlut.add.pub -> ../jzlut.pub
-
 #colors:
 col_red='\[\e[1;31m\]'
 col_grn='\[\e[1;32m\]'
@@ -30,6 +25,12 @@ export CSCOPE_DB=$HOME/.vim/cscope.out
 export COWER='cower --color=auto'
 export BROWSER=w3m
 #
+
+addkeys
+# to load keys on this machine setup in ~/.ssh/add/:
+# lrwxrwxrwx   jzlut.add -> ../jzlut
+# lrwxrwxrwx   jzlut.add.pub -> ../jzlut.pub
+
 
 pidof dropbox &> /dev/null || ~/bin/dist/dropbox start
 
