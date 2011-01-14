@@ -1,5 +1,8 @@
 set -o vi
 export BROWSER=firefox
+export DEBFULLNAME="Jonathan Zacsh"
+export DEBEMAIL="jzacsh@gmail.com"
+
 alias python='python3' # aiming for bleeding edge on wrong distro
 alias e='nautilus --browser'
 alias rw="echo 'rebooting interwebs (mysql and apache)' && sudo service apache2 restart && sudo service mysql restart"
