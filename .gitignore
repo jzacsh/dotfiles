@@ -3,6 +3,8 @@
 .vim/.VimballRecord
 .vim/ruby/command-t/*.o
 .vim/ruby/command-t/*.so
+.vim/ruby/command-t/Makefile
+.vim/ruby/command-t/mkmf.log
 .w3m/w3m*
 .w3m/history
 .w3m/cookie
