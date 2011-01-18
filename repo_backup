@@ -1,0 +1,14 @@
+#!/bin/bash
+job_name="Git Repo Backups"
+
+#array of contents to be tarballed
+contents=('/home/git/repositories')
+
+#directory for backups to land in
+land_dir='/home/jzacsh/back/code/repos/'
+
+#user to chown the files owned to
+chownusr='jzacsh'
+
+#group to chwon thefiles to
+chowngrp='users'
