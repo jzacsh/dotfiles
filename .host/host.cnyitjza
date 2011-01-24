@@ -5,9 +5,7 @@ export PROJECT_BASE="$HOME/code/web5-jzacsh"
 #  export CB=("$PROJECT_BASE"/sites/all/{themes/zagat,modules/{features,custom}})
 export CB="${PROJECT_BASE}/sites/all/themes/zagat ${PROJECT_BASE}/sites/all/modules/features ${PROJECT_BASE}/sites/all/modules/custom"
 
-export DB=$(grep '^\$db_url' $PROJECT_BASE/sites/default/settings.php | sed -e 's/.*\///g' | sed -e "s/';//")
 unset current_db
-alias db='echo $DB'
 
 f() { ge ${} $CB ; }
 
@@ -20,6 +18,8 @@ beans() {
 w5() {
     cd $PROJECT_BASE/${@} || cd $PROJECT_BASE
 }
+
+db() { grep '^\$db_url' $PROJECT_BASE/sites/default/settings.php | sed -e 's/.*\///g' | sed -e "s/';//" ; }
 
 newcny() {
   if [[ $1 == '-h' || $1 == '--help' ]];then

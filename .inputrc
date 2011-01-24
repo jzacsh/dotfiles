@@ -3,4 +3,4 @@ set echo-control-characters Off
 set expand-tilde Off
 set match-hidden-files On
 
-"\C-j": "|less\C-m"
+# "\C-j": "|less\C-m"
