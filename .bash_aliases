@@ -92,10 +92,11 @@ dgo() {
 }
 
 tmp() {
+  tmp=$(mktemp)
   if [[ $1 == 'c' ]]; then
-    $EDITOR ~/tmp/bl && $BROWSER ~/tmp/bl && rm ~/tmp/bl
+    $EDITOR $tmp && $BROWSER $tmp && rm $tmp
   else
-    $EDITOR ~/tmp/bl && dpaste < ~/tmp/bl && rm ~/tmp/bl
+    $EDITOR $tmp && dpaste < $tmp && rm $tmp
   fi
 }
 
