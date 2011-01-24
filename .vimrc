@@ -30,11 +30,16 @@ map <LocalLeader>6  6gt
 map <LocalLeader>7  7gt
 map <LocalLeader>8  8gt
 map <LocalLeader>9  9gt
+" no need to 'q:' anymore
+nnoremap ; :
 
 set cmdheight=2
 
 set wildmode=longest,list
 
+
+"color schemes
+"-----------------------
 " set background=dark
   colorscheme ir_black
 " colorscheme merged
