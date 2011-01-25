@@ -17,7 +17,7 @@ URxvt.scrollBar:false
 URxvt.saveLines:5000
 URxvt.cursorColor:#83C048
 URxvt.highlightColor:#4e4e4e
-URxvt.font: xft:DroidSansMono:pixelsize=10
+URxvt.font: xft:DroidSansMono:pixelsize=12
 URxvt.boldFont: xft:DroidSansMono:pixelsize=12:bold
 URxvt.loginshell: true
 URxvt.internalborder: 0
