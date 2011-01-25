@@ -26,7 +26,7 @@ export COWER='cower --color=auto'
 export BROWSER=w3m
 #
 
-addkeys
+source addkeys
 # to load keys on this machine setup in ~/.ssh/add/:
 # lrwxrwxrwx   jzlut.add -> ../jzlut
 # lrwxrwxrwx   jzlut.add.pub -> ../jzlut.pub

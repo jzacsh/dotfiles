@@ -13,7 +13,7 @@ alias udevinfo='udevadm info -q all -n'
 alias mutt='pgrep mutt && mutt -R || mutt'
 alias ipt="sudo iptraf"
 alias goh="ssh home.jzacsh.com"
-alias ak="addkeys"
+alias ak="source addkeys"
 
 # x env #######################
 alias br='$BROWSER'
