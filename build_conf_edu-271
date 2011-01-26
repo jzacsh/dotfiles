@@ -1,0 +1,9 @@
+#!/bin/bash
+
+git_server='int_jzacsh-www'
+# should expand to HostName [see ssh_config(5)] jzacsh.com in ~/.ssh/config:
+git_repo="${git_server}:edu/271"
+git_sshkey='/srv/http/inc/jzacsh_bot_id_rsa'
+gitland='mess_dir-www'
+http_dir='/home/jzacsh/var/ref/edu271'
+mess_dir="$(mktemp -d)"
