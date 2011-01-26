@@ -52,6 +52,7 @@ ident() ( identify -verbose $1 | grep modify; )
 g() ( IFS=+; $BROWSER "http://www.google.com/search?q=${*}"; )
 rfc() { wget -cqO- "http://tools.ietf.org/rfc/rfc${1}.txt" | $PAGER +/-.[0-9]*.-.*RFC\ \#${1}; }
 wless() ( wget -cqO- ${@} | less; )
+hth() { wget -qS -O /dev/null ${@}; } #http headers
 
 hgk() {
 	hgview 2> /dev/null &
