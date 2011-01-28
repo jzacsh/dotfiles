@@ -75,9 +75,12 @@ unset bash_prompt
 #dynamic config:
 source $HOME/.host/pick
 
+#drupal tools
+source $HOME/bin/lib/drupalsh
+
 # resize -s 400 400
 #echo 'AhMG!! SEGMENTATION FAULT'
 msg=$(lynx -dump http://whatthecommit.com/ 2>/dev/null)
 (( $? == 0 )) && echo ":: commit msg:" || echo 'no interwebs...'
 
-export PATH=.:$HOME/bin/:$HOME/bin/local:$HOME/bin/share:$HOME/bin/dist:$PATH
+export PATH=.:$HOME/bin/:$HOME/bin/local:$HOME/bin/share:$HOME/bin/lib:$HOME/bin/dist:$PATH
