@@ -43,15 +43,15 @@ dropx() {
 ###############################
 # functions ###################
 #one liners
-lu() ( dict ${@} | less; )
-tarl() ( tar -tf ${*}  | less; )
+lu() ( dict ${@} | $PAGER; )
+tarl() ( tar -tf ${*}  | $PAGER; )
 hc() ( hg commit -m ${@}; )
 hgdiff() ( hg cat $1 | vim - -c  ":vert diffsplit $1" -c "map q :qa!<CR>"; )
 speak() { echo ${@} | espeak 2>/dev/null; }
 ident() ( identify -verbose $1 | grep modify; )
 g() ( IFS=+; $BROWSER "http://www.google.com/search?q=${*}"; )
 rfc() { wget -cqO- "http://tools.ietf.org/rfc/rfc${1}.txt" | $PAGER +/-.[0-9]*.-.*RFC\ \#${1}; }
-wless() ( wget -cqO- ${@} | less; )
+wcat() ( wget -cqO- ${@} | $PAGER; )
 hh() { wget -qS -O /dev/null ${@}; } #Http Headers
 
 hgk() {
@@ -93,12 +93,16 @@ dgo() {
 }
 
 tmp() {
-  tmp=$(mktemp)
+  local tmpfile=$(mktemp)
+
   if [[ $1 == 'c' ]]; then
-    $EDITOR $tmp && $BROWSER $tmp && rm $tmp
+    $EDITOR $tmpfile && $BROWSER $tmpfile
   else
-    $EDITOR $tmp && dpaste < $tmp && rm $tmp
+    $EDITOR $tmpfile && dpaste < $tmpfile
   fi
+
+  #cleanup
+  sleep 5 && rm $tmpfile
 }
 
 gencscope() {
