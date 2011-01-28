@@ -11,7 +11,6 @@ let maplocalleader = ","
 "keymapping
 "-----------------------
 map <LocalLeader>g  <Esc>:set paste<CR>
-map <LocalLeader>c  <Esc>:%s/jzacsh/myuser/g<CR>
 map <LocalLeader>G  <Esc>:set nopaste<CR>
 map <LocalLeader>r  <Esc>:MRU<CR>
 map <LocalLeader>s  <Esc>:r!date --rfc-3339=seconds<CR>
@@ -20,6 +19,11 @@ map <LocalLeader>f  <Esc>:TlistToggle<CR>
 map <LocalLeader>n  <Esc>:tabnext<CR>
 map <LocalLeader>N  <Esc>:tabprevious<CR>
 map <LocalLeader>t  <Esc>:CommandT<CR>
+
+" clear trailing whitespace
+" map <LocalLeader>c  <Esc>:%s/\ |\t]$//g<CR>
+
+" easy tab handling
 map <LocalLeader>w  <Esc>:tabnew<CR>
 map <LocalLeader>1  1gt
 map <LocalLeader>2  2gt
