@@ -21,7 +21,7 @@ map <LocalLeader>N  <Esc>:tabprevious<CR>
 map <LocalLeader>t  <Esc>:CommandT<CR>
 
 " clear trailing whitespace
-" map <LocalLeader>c  <Esc>:%s/\ |\t]$//g<CR>
+" map <LocalLeader>c  <Esc>:%s/[[:space:]]$//g<CR>
 
 " easy tab handling
 map <LocalLeader>w  <Esc>:tabnew<CR>
