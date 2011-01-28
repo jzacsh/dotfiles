@@ -2,7 +2,7 @@
 alias ls='ls --group-directories-first --color'
 alias l='ls -laFH'
 alias la='clear; ls -aFH'
-alias ca='clear; ls -laFH' 
+alias ca='clear; ls -laFH'
 alias cl='clear; ls -lFH'
 alias diff='colordiff'
 alias pfetch='drush cc all && drush -y fra && drush -y cc all && drush -y updb && hg push && hg stat'
@@ -23,10 +23,65 @@ alias xt='xterm -bg black -fg white -maximized'
 alias rx='rxvt -bg black -fg white -geometry 300x100 -face10'
 alias urx='rxvt-unicode -bg rgba:1111/1111/1111/bbbb -fg white -fn "xft:Droid Sans Mono:pixelsize=10"'
 
-# DRUPAL CONTRIB STUFF ########
-# export CVSROOT=:pserver:jzacsh@cvs.drupal.org:/cvs/drupal-contrib
-# grab latest HEAD from cvs:
-alias dcup='cvs -z6 -d :pserver:anonymous:anonymous@cvs.drupal.org:/cvs/drupal checkout drupal'
+# drupal contrib stuff ########
+dcvs() {
+  if [[ -z $1 ]];then
+    echo -e "usage: dvcs module_name\n\tloads a drupal contrib module, module_name, from CVS HEAD." >&2
+    return 1
+  fi
+
+  local module_name="$1"
+  shift
+
+  cvs -z6 -d:pserver:anonymous:anonymous@cvs.drupal.org:/cvs/drupal-contrib\
+    checkout "contributions/modules/$module_name" ${@} #allow extra arguments
+}
+
+fu() {
+  local dbg=
+  if [[ $(echo ${1} | grep tar$) ]];then
+    [[ $dbg ]] && echo "DEBUG: found tarball to be ${download}"
+    local download=$1
+  else
+    echo -en 'usage: fu feature_name-X.x-#.#.tar\n'
+    echo -en ' eg.: step 1: `cd /path/to/exact/feature/` \n'
+    echo -en '      step 2: `cp /path/to/tarball .` \n'
+    echo -en '      step 3: `fu ./name-of-tarball` \n'
+    return 1
+  fi
+
+  echo -en 'unpacking feature: \n'
+  tar xvf ${download}
+  echo -en 'finished unpacking.\n'
+
+  echo -en '\nupdating feature:\n'
+  local feature=$(tar tf $download | sed -e '1s|/.*$|/|;q')
+  # sanity check:
+  local current="$(pwd | sed -e 's|.*/||g')/"
+  if [[ $current != $feature ]]; then
+      echo -en 'looks like you are unpacking in the WRONG directory....\n'
+      echo -en "  feature being unpacked: $feature\n"
+      echo -en "  your current directory: $current\n"
+      echo -en 'Are you SURE you want to continue? [y/N] '; read answ
+      [[ $answ == 'y' || $answ == 'Y' ]] || return 1
+  fi
+ 
+  [[ $dbg ]] && echo "DEBUG: found local directory to be: ${feature}"
+  for file in $(find $feature -type f);do
+    [[ $dbg ]] && echo "DEBUG: found local directory to be: ${feature}"
+    mv -v $file $(echo $file | sed -e "s|$feature||")
+  done
+  echo -en 'finished updating.\n'
+
+  echo -en "\njunk: ${feature} ${download} \n"
+  echo -en 'cleanup junk, here? [Y/n] '; read answ
+  if [[ $answ == 'n' || $answ == 'N' ]]; then
+    return 0
+  else
+    rm -rfv ${download}
+    rm -rfv ${feature}
+  fi
+}
 
 ## common spelling mistakes ###
 alias les='less'
@@ -157,52 +212,6 @@ cleardd() {
   sudo -u#${uid} touch ${file} && tail -f ${file}
 }
 
-fu() {
-  local dbg=
-  if [[ $(echo ${1} | grep tar$) ]];then
-    [[ $dbg ]] && echo "DEBUG: found tarball to be ${download}"
-    local download=$1 
-  else
-    echo -en 'usage: fu feature_name-X.x-#.#.tar\n'
-    echo -en ' eg.: step 1: `cd /path/to/exact/feature/` \n'
-    echo -en '      step 2: `cp /path/to/tarball .` \n'
-    echo -en '      step 3: `fu ./name-of-tarball` \n'
-    return 1
-  fi
-
-  echo -en 'unpacking feature: \n'
-  tar xvf ${download}
-  echo -en 'finished unpacking.\n'
-
-  echo -en '\nupdating feature:\n'
-  local feature=$(tar tf $download | sed -e '1s|/.*$|/|;q')
-  # sanity check:
-  local current="$(pwd | sed -e 's|.*/||g')/"
-  if [[ $current != $feature ]]; then
-      echo -en 'looks like you are unpacking in the WRONG directory....\n'
-      echo -en "  feature being unpacked: $feature\n"
-      echo -en "  your current directory: $current\n"
-      echo -en 'Are you SURE you want to continue? [y/N] '; read answ
-      [[ $answ == 'y' || $answ == 'Y' ]] || return 1
-  fi
-  
-  [[ $dbg ]] && echo "DEBUG: found local directory to be: ${feature}"
-  for file in $(find $feature -type f);do 
-    [[ $dbg ]] && echo "DEBUG: found local directory to be: ${feature}"
-    mv -v $file $(echo $file | sed -e "s|$feature||")
-  done
-  echo -en 'finished updating.\n'
-
-  echo -en "\njunk: ${feature} ${download} \n"
-  echo -en 'cleanup junk, here? [Y/n] '; read answ
-  if [[ $answ == 'n' || $answ == 'N' ]]; then
-    return 0
-  else
-    rm -rfv ${download}
-    rm -rfv ${feature} 
-  fi
-}
-
 # export codez="~/code/web5-jzacsh/sites/all/modules/features/ ~/code/web5-jzacsh/sites/all/modules/custom/ ~/code/web5-jzacsh/sites/all/themes/zagat/"
 origrm() {
   [[ -z $PROJECT_BASE ]] && return 1
@@ -229,7 +238,7 @@ mp() {
 #    fi
 #    key=$1
 #    url=$2
-# 
+#
 #    if [ $key == 'css' ]
 #    then
 #      narrow='link'
@@ -241,8 +250,8 @@ mp() {
 #      echo "ERROR: Improper key. Use 'css' or 'js'"
 #      return 1
 #    fi
-# 
+#
 #    echo "key is: $key"
-# 
+#
 #    wget -cqO- ${url} | grep 'zagat' | grep "${narrow}" | grep "${key}"
 # }
