@@ -21,6 +21,8 @@ urxvtd -q -o -f
 # # i'm running a reparenting WM, honest!
 # wmname LG3D
 
+xmodmap ~/.Xmodmap
+
 # exec ~/bin/startdwm
 while true
 do
