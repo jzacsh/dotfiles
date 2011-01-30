@@ -12,7 +12,7 @@ export LESS=' XFRr '
 export RLWRAP=' AaN '
 export PAGER=less
 export CDPATH=.:~/down/
- PATH=.:$HOME/bin:$HOME/bin/local:$HOME/bin/share:$HOME/bin/dist:$PATH
+ PATH=.:$HOME/bin:$HOME/bin/local:$HOME/bin/share:$HOME/bin/lib:$HOME/bin/dist:$PATH
  PATH=$PATH:/opt/java/jre/bin/:/srv/http/global/bin/dev/
 export PATH
 export PYTHONVER=3
