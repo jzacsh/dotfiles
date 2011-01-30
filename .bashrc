@@ -40,6 +40,10 @@ if [[ $(who | grep -v $(whoami)) ]]; then
     who -H | grep -v $(whoami)
 fi
 
+#simple version of bash prompt:
+PS1='[\u@\h $pwd] ${?}\n\$ '
+
+#vcs and color-aware version of bash prompt:
 bash_prompt() {
   case $TERM in
     xterm*|rxvt*)
