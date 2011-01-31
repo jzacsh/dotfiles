@@ -24,5 +24,7 @@ xscreensaver -no-splash &
 # # i'm running a reparenting WM, honest!
 # wmname LG3D
 
+xmodmap ~/.Xmodmap
+
 # exec ~/bin/startdwm
 exec ck-launch-session startxfce4
