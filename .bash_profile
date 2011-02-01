@@ -12,8 +12,7 @@ export LESS=' XFRr '
 export RLWRAP=' AaN '
 export PAGER=less
 export CDPATH=.:~/down/
- PATH=.:$HOME/bin:$HOME/bin/local:$HOME/bin/share:$HOME/bin/lib:$HOME/bin/dist:$PATH
- PATH=$PATH:/opt/java/jre/bin/:/srv/http/global/bin/dev/
+ PATH=.:$HOME/bin:$HOME/bin/local:$HOME/bin/share:$HOME/bin/lib:$HOME/bin/dist:/srv/http/global/bin/dev/:$PATH
 export PATH
 export PYTHONVER=3
 
@@ -26,11 +25,15 @@ export COWER='cower --color=auto'
 export BROWSER=w3m
 #
 
-source addkeys
+# source addkeys
+#keychain --clear #cleanup, first
+for key  in ~/.ssh/add/*.add ; do
+  echo "trying to add $key..."
+  keychain --timeout 240
+done
 # to load keys on this machine setup in ~/.ssh/add/:
 # lrwxrwxrwx   jzlut.add -> ../jzlut
 # lrwxrwxrwx   jzlut.add.pub -> ../jzlut.pub
-
 
 pidof dropbox &> /dev/null || ~/bin/dist/dropbox start
 
