@@ -32,7 +32,7 @@ newcny() {
   local vb=1
   local loc=$(uname -n)
   local conf="$HOME/code/conf/web5"
-  local repo="$HOME/code/web5-jzacsh"
+  local repo="$PROJECT_BASE"
 
   #link local modules
   [[ $vb ]] && echo -e '\ninserting link to local-only modules'

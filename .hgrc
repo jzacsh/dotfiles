@@ -18,7 +18,7 @@ hgext.progress=
 # hgext.inotify=
 hgext.hgshelve=
 hgext.graphlog=
-hgext.eol = 
+hgext.eol =
 hgext.record = 
 
 [repository]
