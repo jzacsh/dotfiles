@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 export BROWSER=chromium-browser
 
 export PROJECT_BASE="$HOME/code/web5-jzacsh"

@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 export PATH=$PATH:/opt/java/jre/bin/
 
 alias cower='cower -c'

@@ -1,2 +1,3 @@
+#!/usr/bin/env bash
 export PATH=/srv/http/global/bin/cli:$PATH
 pkill dropbox
