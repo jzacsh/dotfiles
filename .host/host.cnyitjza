@@ -19,13 +19,13 @@ beans() {
 w5() { cd $PROJECT_BASE/${@} || cd $PROJECT_BASE; }
 
 setpass() {
-    if [[$1 = '-h'  || $1 = '--help']];then
+    if [[ $1 = '-h'  || $1 = '--help' ]];then
         echo -e "usage [password] [db_name, ...]\n\tsets the password for your drupal admin users" >&2
         return 1
     fi
 
     local databases=(hamster kitten)
-    local password=${1:password}
+    local password=${1:-password}
     if (( $# > 1 ));then
         shift
         databases=("${@}")
