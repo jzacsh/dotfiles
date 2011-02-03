@@ -54,11 +54,11 @@ newcny() {
 
   #link local modules
   [[ $vb ]] && echo -e '\ninserting link to local-only modules'
-  ln -sv $conf/local $repo/sites/all/modules/local
+  ln -sv $conf/local $repo/sites/all/modules
 
   #link default/ dir
   [[ $vb ]] && echo -e '\ninserting link to "default" directory'
-  ln -sv $conf/default $repo/sites/default
+  ln -sv $conf/default $repo/sites
 
   $BROWSER "http://${loc}.zagat.com/"
 }
