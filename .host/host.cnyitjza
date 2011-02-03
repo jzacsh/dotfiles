@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 export BROWSER=chromium-browser
 
 export PROJECT_BASE="$HOME/code/web5-jzacsh"
@@ -15,14 +16,31 @@ beans() {
     /usr/local/netbeans-6.9/bin/netbeans ${:-$parse} "${@}" & disown 2>/dev/null
 }
 
-w5() {
-    cd $PROJECT_BASE/${@} || cd $PROJECT_BASE
+w5() { cd $PROJECT_BASE/${@} || cd $PROJECT_BASE; }
+
+setpass() {
+    if [[ $1 = '-h'  || $1 = '--help' ]];then
+        echo -e "usage [password] [db_name, ...]\n\tsets the password for your drupal admin users" >&2
+        return 1
+    fi
+
+    local databases=(hamster kitten)
+    local password=${1:-password}
+    if (( $# > 1 ));then
+        shift
+        databases=("${@}")
+    fi
+
+    for db in databases; do
+        mysql -u root --password=root -e \
+            "USE ${db}; UPDATE users SET pass = md5('${password}') WHERE uid=1;"
+    done
 }
 
 db() { grep '^\$db_url' $PROJECT_BASE/sites/default/settings.php | sed -e 's/.*\///g' | sed -e "s/';//" ; }
 
 newcny() {
-  if [[ $1 == '-h' || $1 == '--help' ]];then
+  if [[ $1 = '-h' || $1 = '--help' ]];then
       echo 'no args' >&2
       type newcny #show code
       return 1
@@ -36,11 +54,11 @@ newcny() {
 
   #link local modules
   [[ $vb ]] && echo -e '\ninserting link to local-only modules'
-  ln -sv $conf/local $repo/sites/all/modules/local
+  ln -sv $conf/local $repo/sites/all/modules
 
   #link default/ dir
   [[ $vb ]] && echo -e '\ninserting link to "default" directory'
-  ln -sv $conf/default $repo/sites/default
+  ln -sv $conf/default $repo/sites
 
   $BROWSER "http://${loc}.zagat.com/"
 }

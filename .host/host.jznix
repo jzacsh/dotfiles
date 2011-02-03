@@ -1,2 +1,3 @@
+#!/usr/bin/env bash
 # www.jzacsh.com
 export BROWSER=w3m
