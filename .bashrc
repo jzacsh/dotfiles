@@ -41,7 +41,7 @@ if [[ $(who | grep -v $(whoami)) ]]; then
 fi
 
 #simple version of bash prompt:
-PS1='[\u@\h $pwd] ${?}\n\$ '
+PS1='[\u@\h] ${?} $(vcprompt) $(pwd)\n\$ '
 
 #vcs and color-aware version of bash prompt:
 bash_prompt() {
