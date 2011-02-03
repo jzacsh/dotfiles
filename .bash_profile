@@ -26,11 +26,7 @@ export BROWSER=w3m
 #
 
 # source addkeys
-#keychain --clear #cleanup, first
-for key  in ~/.ssh/add/*.add ; do
-  echo "trying to add $key..."
-  keychain --timeout 240
-done
+addkeys
 # to load keys on this machine setup in ~/.ssh/add/:
 # lrwxrwxrwx   jzlut.add -> ../jzlut
 # lrwxrwxrwx   jzlut.add.pub -> ../jzlut.pub
