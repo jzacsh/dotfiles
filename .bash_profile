@@ -25,8 +25,7 @@ export COWER='cower --color=auto'
 export BROWSER=w3m
 #
 
-# source addkeys
-addkeys
+eval $(keychain --nogui --eval --timeout 240 ~/.ssh/add/*.add)
 # to load keys on this machine setup in ~/.ssh/add/:
 # lrwxrwxrwx   jzlut.add -> ../jzlut
 # lrwxrwxrwx   jzlut.add.pub -> ../jzlut.pub

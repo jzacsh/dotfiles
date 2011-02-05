@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # aliases #####################
 alias ls='ls --group-directories-first --color'
 alias l='ls -laFH'
@@ -48,6 +49,37 @@ g() ( IFS=+; $BROWSER "http://www.google.com/search?q=${*}"; )
 rfc() { wget -cqO- "http://tools.ietf.org/rfc/rfc${1}.txt" | $PAGER +/-.[0-9]*.-.*RFC\ \#${1}; }
 wat() ( wget -cqO- ${@} | $PAGER; )
 hh() { wget -qS -O /dev/null ${@}; } #Http Headers
+
+addkeys () {
+    local timeout nums
+
+    if [[ $1 = '-h' || $1 = '--help' ]];then
+        echo "
+        usage: $0 -t [timeout] [keys ...]
+        add sshkeys to keychain(1)
+        timeout is minutes until keys are cleared. defaults to 240
+        keys additional ssh keys you'd like added. defaults to ~/.ssh/add/*.add
+        " >&2
+        return 1
+    elif [[ ! $(type -p keychain) ]]; then
+        echo "error: keychain not found" >&2
+        return 2
+    fi
+
+    if [[ $1 = '-t' ]];then
+        nums='^[0-9]+([.][0-9]+)?$'
+        if [[ -n $2 && $2 =~ $nums ]];then
+            timeout=$2
+            shift 2
+        else
+            echo "error: numeric timeout value not passed." >&2
+            return 2
+        fi
+    fi
+
+    #actually do something:
+    eval $(keychain --nogui --eval --timeout ${timeout:-240} ~/.ssh/add/*.add ${@})
+}
 
 hgk() {
 	hgview 2> /dev/null &
