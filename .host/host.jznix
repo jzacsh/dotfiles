@@ -1,3 +1,7 @@
 #!/usr/bin/env bash
 # www.jzacsh.com
 export BROWSER=w3m
+
+#will never have a display _other_ than forwarded
+export DISPLAY=localhost:10.0
+unset xfw
