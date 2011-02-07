@@ -87,7 +87,7 @@ hgk() {
 }
 
 xfw() {
-  DISPLAY=localhost:10 ${@}
+  DISPLAY=localhost:10.0 ${@}
 }
 
 xdb() {
