@@ -30,5 +30,6 @@ wfip() {
   sudo dhcpcd wlan0
 }
 
+#alias skype='su skypeuser -c skype'
 
 alias rw="echo 'rebooting interwebs (mysql and apache)' && sudo /etc/rc.d/httpd restart && sudo /etc/rc.d/mysqld restart"
