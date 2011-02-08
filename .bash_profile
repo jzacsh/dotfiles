@@ -31,7 +31,7 @@ eval $(keychain --nogui --eval --timeout 240 ~/.ssh/add/*.add)
 # lrwxrwxrwx   jzlut.add.pub -> ../jzlut.pub
 
 #make sure dropbox is running
-pidof dropbox &> /dev/null || dropbox start
+pidof dropbox &> /dev/null || dropbox start & disown
 
 #if interactive, source .bashrc
 [[ -n $PS1 && -f ~/.bashrc ]] && source ~/.bashrc
