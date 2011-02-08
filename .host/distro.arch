@@ -2,6 +2,7 @@
 export PATH=$PATH:/opt/java/jre/bin/
 
 alias cower='cower -c'
+alias pdf="zathura"
 
 wfls() {
   [[ $1 == 'l' ]] && view='less' || view='grep ESSID'
