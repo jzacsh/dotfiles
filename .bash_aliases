@@ -6,7 +6,6 @@ alias la='clear; ls -aFH'
 alias ca='clear; ls -laFH'
 alias cl='clear; ls -lFH'
 alias diff='colordiff'
-alias pfetch='drush cc all && drush -y fra && drush -y cc all && drush -y updb && hg push && hg stat'
 alias mi="wget -qO- http://checkip.dyndns.org | sed -e 's/^.*Address:\ //' -e 's/<\/body.*//'"
 alias tas="tmux attach-session"
 alias td="tmux detach-client"
@@ -158,30 +157,3 @@ mp() {
 #  echo "smb://$(echo ${*} | sed -e 's/\\/\//g' | sed -e 's/\ /\\\ /g')"
   echo smb://$(echo "${*}" | sed -e 's/\\/\//g' | sed -e 's/\ /\\\ /g')
 }
-
-## check which resources are loading #####################################################
-#
-# zcheck() {
-#    if (( $# != 2 ));then
-#       echo -e "usage:\tzcheck [css | js] url\n\teg.:zcheck css http://www.zagat.com/" >&2
-#       return 1
-#    fi
-#    key=$1
-#    url=$2
-#
-#    if [ $key == 'css' ]
-#    then
-#      narrow='link'
-#    elif [ $key == 'js']
-#    then
-#        narrow='script'
-#        key='javascript'
-#    else
-#      echo "ERROR: Improper key. Use 'css' or 'js'"
-#      return 1
-#    fi
-#
-#    echo "key is: $key"
-#
-#    wget -cqO- ${url} | grep 'zagat' | grep "${narrow}" | grep "${key}"
-# }
