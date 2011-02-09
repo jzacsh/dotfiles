@@ -15,7 +15,7 @@ f() { ge ${} $CB ; }
 beans() {
     local level="FINE"
     local parse="-J-Dorg.netbeans.modules.parsing.impl.indexing.RepositoryUpdater.level=$level"
-    /usr/local/netbeans-6.9/bin/netbeans ${:-$parse} "${@}" & disown 2>/dev/null
+    /usr/local/netbeans-6.9/bin/netbeans $parse "${@}" & disown 2>/dev/null
 }
 
 w5() { cd $PROJECT_BASE/${@} || cd $PROJECT_BASE; }
