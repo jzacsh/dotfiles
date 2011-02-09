@@ -49,18 +49,18 @@ rfc() { wget -cqO- "http://tools.ietf.org/rfc/rfc${1}.txt" | $PAGER +/-.[0-9]*.-
 hh() { wget -qS -O /dev/null ${@}; } #Http Headers
 
 whatthe() {
-    local msg=$(mktemp); wget -cqO- http://whatthecommit.com/ > $msg
+    local msg=$(mktemp);
+    wget -cqO- http://whatthecommit.com/ > $msg
+    if (( $? ));then
+        echo 'no commit... no interwebs?'
+    fi
     local start_ln=$(grep -n 'id="content"' $msg | sed -e 's/:.*//')
     start_ln=$(($start_ln+1))
     local end_ln=$(grep -n 'p class="permalink"' $msg | sed -e 's/:.*//')
     end_ln=$(($end_ln-1))
     sed -i $start_ln,${end_ln}!d $msg
     mv $msg ${msg}.html; msg=${msg}.html
-    if (( $? ));then
-        echo 'no commit... no interwebs?'
-    else
-        echo -en ":: commit message of the day:\n$(w3m -dump $msg)"
-    fi
+    echo -en ":: commit message of the day:\n$(w3m -dump $msg)"
     rm $msg
 }
 
