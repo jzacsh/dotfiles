@@ -53,6 +53,7 @@ whatthe() {
     wget -cqO- http://whatthecommit.com/ > $msg
     if (( $? ));then
         echo 'no commit... no interwebs?'
+        return
     fi
     local start_ln=$(grep -n 'id="content"' $msg | sed -e 's/:.*//')
     start_ln=$(($start_ln+1))
