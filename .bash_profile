@@ -25,11 +25,6 @@ export COWER='cower --color=auto'
 export BROWSER=w3m
 #
 
-eval $(keychain --nogui --eval --timeout 240 ~/.ssh/add/*.add)
-# to load keys on this machine setup in ~/.ssh/add/:
-# lrwxrwxrwx   jzlut.add -> ../jzlut
-# lrwxrwxrwx   jzlut.add.pub -> ../jzlut.pub
-
 #make sure dropbox is running
 pidof dropbox &> /dev/null || dropbox start & disown
 
