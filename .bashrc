@@ -82,15 +82,13 @@ source $HOME/.host/pick
 #drupal tools
 source $HOME/bin/lib/drupalsh
 
-# resize -s 400 400
-#echo 'AhMG!! SEGMENTATION FAULT'
-msg=$(lynx -dump http://whatthecommit.com/ 2>/dev/null)
-(( $? == 0 )) && echo ":: commit msg:" || echo 'no interwebs...'
+#laughs:
+whatthe
 
 export PATH=.:$HOME/bin/:$HOME/bin/local:$HOME/bin/share:$HOME/bin/lib:$HOME/bin/dist:$PATH
 
 #load ssh keys
-eval $(keychain --nogui --eval --timeout 240 ~/.ssh/add/*.add)
+eval $(keychain --nogui --eval --timeout ${KEY_TIMEOUT:-240} ~/.ssh/add/*.add)
 # to load keys on this machine setup in ~/.ssh/add/:
 # lrwxrwxrwx   jzlut.add -> ../jzlut
 # lrwxrwxrwx   jzlut.add.pub -> ../jzlut.pub

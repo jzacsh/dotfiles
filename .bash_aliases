@@ -48,6 +48,23 @@ wat() ( wget -cqO- ${@} | $PAGER; )
 rfc() { wget -cqO- "http://tools.ietf.org/rfc/rfc${1}.txt" | $PAGER +/-.[0-9]*.-.*RFC\ \#${1}; }
 hh() { wget -qS -O /dev/null ${@}; } #Http Headers
 
+whatthe() {
+    local msg=$(mktemp); wget -cqO- http://whatthecommit.com/ > $msg
+    local start_ln=$(grep -n 'id="content"' $msg | sed -e 's/:.*//')
+    start_ln=$(($start_ln+1))
+    local end_ln=$(grep -n 'p class="permalink"' $msg | sed -e 's/:.*//')
+    end_ln=$(($end_ln-1))
+    local commit=$(mktemp); mv $commit ${commit}.html
+    commit=${commit}.html
+    sed -n $start_ln,${end_ln}p $msg > $commit
+    if (( $? ));then
+        echo 'no commit...'
+    else
+        echo -en ":: commit message of the day:\n$(w3m -dump $commit)"
+    fi
+    rm $commit $msg
+}
+
 addkeys () {
     local timeout nums
 
