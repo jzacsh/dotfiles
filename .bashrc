@@ -82,9 +82,6 @@ source $HOME/.host/pick
 #drupal tools
 source $HOME/bin/lib/drupalsh
 
-#laughs:
-whatthe
-
 export PATH=.:$HOME/bin/:$HOME/bin/local:$HOME/bin/share:$HOME/bin/lib:$HOME/bin/dist:$PATH
 
 #load ssh keys
@@ -92,3 +89,6 @@ eval $(keychain --nogui --eval --timeout ${KEY_TIMEOUT:-240} ~/.ssh/add/*.add)
 # to load keys on this machine setup in ~/.ssh/add/:
 # lrwxrwxrwx   jzlut.add -> ../jzlut
 # lrwxrwxrwx   jzlut.add.pub -> ../jzlut.pub
+
+#laughs:
+whatthe; echo
