@@ -54,15 +54,14 @@ whatthe() {
     start_ln=$(($start_ln+1))
     local end_ln=$(grep -n 'p class="permalink"' $msg | sed -e 's/:.*//')
     end_ln=$(($end_ln-1))
-    local commit=$(mktemp); mv $commit ${commit}.html
-    commit=${commit}.html
-    sed -n $start_ln,${end_ln}p $msg > $commit
+    sed -i $start_ln,${end_ln}!d $msg
+    mv $msg ${msg}.html; msg=${msg}.html
     if (( $? ));then
-        echo 'no commit...'
+        echo 'no commit... no interwebs?'
     else
-        echo -en ":: commit message of the day:\n$(w3m -dump $commit)"
+        echo -en ":: commit message of the day:\n$(w3m -dump $msg)"
     fi
-    rm $commit $msg
+    rm $msg
 }
 
 addkeys () {
