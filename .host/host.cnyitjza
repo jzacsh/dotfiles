@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 export BROWSER=chromium-browser
 
-export PROJECT_BASE="$HOME/code/web5-jzacsh"
+export PROJECT_STABLE="$HOME/code/web5-jzacsh"
+export PROJECT_EDGE="$HOME/code/web5-jzacsh-qa2"
+export PROJECT_BASE="$PROJECT_EDGE" #this should be my default work space
+
 ## this does not expand as expected ########################################
 #  export CB=("$PROJECT_BASE"/sites/all/{themes/zagat,modules/{features,custom}})
 export CB="${PROJECT_BASE}/sites/all/themes/zagat ${PROJECT_BASE}/sites/all/modules/features ${PROJECT_BASE}/sites/all/modules/custom"
@@ -10,7 +13,7 @@ unset current_db
 
 alias pfetch='time drush cc all && drush -y fra && drush -y cc all && drush -y updb && hg push && hg stat'
 
-f() { ge ${} $CB ; }
+f() { ge ${@} $CB ; }
 
 beans() {
     local level="FINE"
@@ -18,7 +21,14 @@ beans() {
     /usr/local/netbeans-6.9/bin/netbeans $parse "${@}" & disown 2>/dev/null
 }
 
-w5() { cd $PROJECT_BASE/${@} || cd $PROJECT_BASE; }
+w5() {
+    local repo=$PROJECT_BASE
+    if [[ $1 = 'stable' ]];then
+        repo=$PROJECT_STABLE
+        shift
+    fi
+    cd $repo/${@} || cd $repo;
+}
 
 setpass() {
     if [[ $1 = '-h'  || $1 = '--help' ]];then
@@ -50,9 +60,15 @@ newcny() {
 
   #inserts
   local vb=1
-  local loc=$(uname -n)
+  local loc="qa2.$(uname -n)"
   local conf="$HOME/code/conf/web5"
   local repo="$PROJECT_BASE"
+
+  if [[ $1 = 'stable' ]];then
+    [[ $vb ]] && echo -e '\nswitching to stable repository (careful!)'
+    repo="$PROJECT_STABLE"
+    loc=$(uname -n)
+  fi
 
   #link local modules
   [[ $vb ]] && echo -e '\ninserting link to local-only modules'
