@@ -6,4 +6,4 @@ git_repo="${git_server}:edu/271"
 git_sshkey='/srv/http/inc/jzacsh_bot_id_rsa'
 gitland='mess_dir-www'
 http_dir='/home/jzacsh/var/ref/edu271'
-mess_dir="$(mktemp -d)"
+mess_dir="/home/jzacsh/tmp/.int/edu271"
