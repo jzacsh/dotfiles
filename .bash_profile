@@ -26,7 +26,7 @@ export BROWSER=w3m
 #
 
 #make sure dropbox is running
-pidof dropbox &> /dev/null || dropbox start & disown
+pidof dropbox &> /dev/null || dropbox start > /dev/null & disown
 
 #if interactive, source .bashrc
 [[ -n $PS1 && -f ~/.bashrc ]] && source ~/.bashrc
