@@ -11,6 +11,7 @@ esac
 # External config
 [[ -r ~/.bash_aliases ]] && . ~/.bash_aliases
 [[ -r ~/.dircolors && -x /bin/dircolors ]] && eval $(dircolors -b ~/.dircolors)
+[[ -r ~/.hgbashrc ]] && . ~/.hgbashrc
 
 # shell opts
 shopt -s cdspell
