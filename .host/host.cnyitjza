@@ -61,14 +61,14 @@ newcny() {
 
   #inserts
   local vb=1
-  local loc="qa2.$(uname -n)"
+  local loc=$(uname -n)
   local conf="$HOME/code/conf/web5"
   local repo="$PROJECT_BASE"
 
   if [[ $1 = 'stable' ]];then
     [[ $vb ]] && echo -e '\nswitching to stable repository (careful!)'
     repo="$PROJECT_STABLE"
-    loc=$(uname -n)
+    loc="stable.$loc"
   fi
 
   #link local modules
