@@ -2,7 +2,7 @@
 # aliases #####################
 alias ls='ls --group-directories-first --color'
 alias l='ls -laFH'
-alias la='clear; ls -aFH'
+alias la='ls -aFH'
 alias ca='clear; ls -laFH'
 alias cl='clear; ls -lFH'
 alias diff='colordiff'
