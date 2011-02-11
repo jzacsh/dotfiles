@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 job_name="Git Repo Backups"
 
 #array of contents to be tarballed

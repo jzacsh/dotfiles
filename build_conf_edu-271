@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 git_server='int_jzacsh-www'
 # should expand to HostName [see ssh_config(5)] jzacsh.com in ~/.ssh/config:
