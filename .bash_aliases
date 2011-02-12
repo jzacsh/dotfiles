@@ -48,6 +48,15 @@ wat() ( wget -cqO- ${@} | $PAGER; )
 rfc() { wget -cqO- "http://tools.ietf.org/rfc/rfc${1}.txt" | $PAGER +/-.[0-9]*.-.*RFC\ \#${1}; }
 hh() { wget -qS -O /dev/null ${@}; } #Http Headers
 
+#tmux/ssh/console considerations
+xf() { DISPLAY=localhost:10.0 ${@}; }
+xl() { DISPLAY=:0.0 ${@}; }
+
+hgk() {
+	hgview 2> /dev/null &
+	disown
+}
+
 whatthe() {
     local msg=$(mktemp);
     wget -cqO- http://whatthecommit.com/ > $msg
@@ -94,15 +103,6 @@ addkeys () {
 
     #actually do something:
     eval $(keychain --nogui --eval --timeout ${timeout:-240} ~/.ssh/add/*.add ${@})
-}
-
-hgk() {
-	hgview 2> /dev/null &
-	disown
-}
-
-xfw() {
-  DISPLAY=localhost:10.0 ${@}
 }
 
 xdb() {
