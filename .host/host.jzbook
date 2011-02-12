@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-export BROWSER='links'
+export BROWSER='chromium'
 
 #specific configs:
 ln -sf ~/.host/src/host.jzbook/.xinitrc
+ln -sf ~/.host/src/host.jzbook/.tmux.conf

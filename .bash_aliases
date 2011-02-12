@@ -24,7 +24,12 @@ alias urx='rxvt-unicode -bg rgba:1111/1111/1111/bbbb -fg white -fn "xft:Droid Sa
 
 ## common spelling mistakes ###
 alias les='less'
-alias office='ooffice'
+if [[ $(type -p libreoffice) ]];then
+    alias office='libreoffice'
+else
+    # i never manage to type that extra 'o'
+    alias office='ooffice'
+fi
 
 ## dropbox can suck: ##########
 dropx() {
