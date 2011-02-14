@@ -25,6 +25,8 @@ alias urx='rxvt-unicode -bg rgba:1111/1111/1111/bbbb -fg white -fn "xft:Droid Sa
 
 ## common spelling mistakes ###
 alias les='less'
+alias :w='echo "yeahh... this is not vim... sooOoo., READ ONLY" >&2'
+alias :q='echo "gaAH!... that is no way to exit a terminal, READ ONLY, bro." >&2'
 if [[ $(type -p libreoffice) ]];then
     alias office='libreoffice'
 else
