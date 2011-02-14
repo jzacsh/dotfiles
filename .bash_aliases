@@ -7,12 +7,13 @@ alias ca='clear; ls -laFH'
 alias cl='clear; ls -lFH'
 alias diff='colordiff'
 alias mi="wget -qO- http://checkip.dyndns.org | sed -e 's/^.*Address:\ //' -e 's/<\/body.*//'"
-alias tas="tmux attach-session"
-alias td="tmux detach-client"
+alias tas='tmux attach-session'
+alias td='tmux detach-client'
 alias udevinfo='udevadm info -q all -n'
 alias mutt='pgrep mutt && mutt -R || mutt'
-alias ipt="sudo iptraf"
-alias goh="ssh home.jzacsh.com"
+alias ipt='sudo iptraf'
+alias goh='ssh home.jzacsh.com'
+alias pdf='xpdf'
 
 # x env #######################
 alias br='$BROWSER'
