@@ -16,7 +16,7 @@ export CDPATH=.:~/down/
 export PATH
 export PYTHONHOME=/usr/lib/python2.7/
 export PYTHONDOCS=/usr/share/doc/python/html/
-export PYTHONPATH=$HOME/bin/lib/python:$PYTHONPATH
+export PYTHONPATH=$HOME/bin/lib/python:/srv/http/subs/django/inc/bri/:$PYTHONPATH
 export PYTHONVER=2.7
 #export PYTHONSTARTUP=$HOME/.pythonrc.py
 export RUBYOPT='w' #helpful ruby warnings
