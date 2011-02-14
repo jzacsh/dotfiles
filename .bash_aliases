@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # aliases #####################
-alias ls='ls --group-directories-first --color'
+alias ls='ls --color'
 alias l='ls -laFH'
 alias la='ls -aFH'
 alias ca='clear; ls -laFH'
