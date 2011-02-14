@@ -20,7 +20,7 @@ export PYTHONVER=3
 export PYTHONSTARTUP=$HOME/.pythonrc.py
 export RUBYOPT='w' #helpful ruby warnings
 export GREP_OPTIONS='--color=auto'
-export CLASSPATH=.:$CLASSPATH
+export CLASSPATH=.:/home/jzacsh/docs/edu/271/src/pkg:$CLASSPATH
 export CSCOPE_DB=$HOME/.vim/cscope.out
 export COWER='cower --color=auto'
 export BROWSER=w3m
