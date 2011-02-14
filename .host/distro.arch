@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 export PATH=$PATH:/opt/java/jre/bin/
+export PYTHONHOME=/usr/lib/python2.7/
+export PYTHONDOCS=/usr/share/doc/python/html/
+export PYTHONPATH=$HOME/bin/lib/python:/srv/http/subs/django/inc/bri/:$PYTHONPATH
+export PYTHONVER=2.7
+#export PYTHONSTARTUP=$HOME/.pythonrc.py
 
 alias cower='cower -c'
 alias pdf="zathura"

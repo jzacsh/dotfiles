@@ -14,11 +14,6 @@ export PAGER=less
 export CDPATH=.:~/down/
  PATH=.:$HOME/bin:$HOME/bin/local:$HOME/bin/share:$HOME/bin/lib:$HOME/bin/dist:/srv/http/global/bin/dev/:$PATH
 export PATH
-export PYTHONHOME=/usr/lib/python2.7/
-export PYTHONDOCS=/usr/share/doc/python/html/
-export PYTHONPATH=$HOME/bin/lib/python:/srv/http/subs/django/inc/bri/:$PYTHONPATH
-export PYTHONVER=2.7
-#export PYTHONSTARTUP=$HOME/.pythonrc.py
 export RUBYOPT='w' #helpful ruby warnings
 export GREP_OPTIONS='--color=auto'
 export CLASSPATH=.:/home/jzacsh/docs/edu/271/src/pkg:$CLASSPATH
