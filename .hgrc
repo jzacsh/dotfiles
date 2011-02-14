@@ -1,6 +1,7 @@
 [ui]
 username = Jonathan Zacsh <jzacsh@zagat.com>
 merge = internal:merge
+ignore = ~/.hgignore
 
 [defaults]
 #suppress noisy extdiff header message
@@ -35,7 +36,7 @@ pager = LESS='XFR' less
 #ignore = 
 
 [inotify]
-log = '/home/jzacsh/docs/logs/hginotify.log'
+log = ~/docs/logs/hginotify.log
 
 [extdiff]
 cmd.cdiff = colordiff
