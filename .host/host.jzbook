@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 export BROWSER='chromium'
+export CLASSPATH=/home/jzacsh/docs/edu/271/src/pkg:$CLASSPATH
 
 #specific configs:
 ln -sf ~/.host/src/host.jzbook/.xinitrc
