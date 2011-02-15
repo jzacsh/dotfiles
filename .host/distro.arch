@@ -3,9 +3,10 @@ export PATH=$PATH:/opt/java/jre/bin/
 export PYTHONDOCS=/usr/share/doc/python/html/
 
 export PYTHONVER=3.1
-export PYTHONHOME=/usr/lib/python3.1/
-export PYTHONPATH=$HOME/bin/lib/python:/srv/http/subs/django/inc/bri/:$PYTHONPATH
-#export PYTHONSTARTUP=$HOME/.pythonrc.py
+#this breaks dropbox "import site" statement:
+#export PYTHONHOME=/usr/lib/python/
+export PYTHONPATH=$HOME/bin/lib/python:$PYTHONPATH
+export PYTHONSTARTUP=$HOME/.pythonrc.py
 
 alias cower='cower -c'
 alias pdf="zathura"

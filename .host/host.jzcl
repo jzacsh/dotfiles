@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 export BROWSER=w3m
-export PYTHONPATH=/srv/http/subs/django/inc/bri:$PYTHONPATH
 pkill dropboxd
 
 alias e='thunar'
