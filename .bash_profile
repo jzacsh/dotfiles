@@ -16,7 +16,7 @@ export CDPATH=.:~/down/
 export PATH
 export RUBYOPT='w' #helpful ruby warnings
 export GREP_OPTIONS='--color=auto'
-export CLASSPATH=.:/home/jzacsh/docs/edu/271/src/pkg:$CLASSPATH
+export CLASSPATH=.:$HOME/var/com/edu/comp271/:$CLASSPATH
 export CSCOPE_DB=$HOME/.vim/cscope.out
 export COWER='cower --color=auto'
 export BROWSER=w3m
