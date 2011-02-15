@@ -92,4 +92,5 @@ eval $(keychain --nogui --eval --timeout ${KEY_TIMEOUT:-240} ~/.ssh/add/*.add)
 # lrwxrwxrwx   jzlut.add.pub -> ../jzlut.pub
 
 #laughs:
-wget -cqO- http://whatthecommit.com/index.txt
+wget -cqO- http://whatthecommit.com/index.txt || \
+    echo "rrr.. no interwebs, no commits."
