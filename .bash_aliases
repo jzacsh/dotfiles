@@ -29,9 +29,16 @@ alias :w='echo "yeahh... this is not vim... sooOoo., READ ONLY" >&2'
 alias :q='echo "gaAH!... that is no way to exit a terminal, READ ONLY, bro." >&2'
 if [[ $(type -p libreoffice) ]];then
     alias office='libreoffice'
-else
+elif [[ $(type -p ooffice) ]];then
     # i never manage to type that extra 'o'
     alias office='ooffice'
+elif [[ $(type -p goffice) ]];then
+    alias office='gooffice'
+else
+    office() {
+        echo 'Sorry, no office suite installed!' >&2
+        return 1
+    }
 fi
 
 ## dropbox can suck: ##########
