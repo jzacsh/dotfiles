@@ -43,6 +43,7 @@ fi
 
 #simple version of bash prompt:
 PS1='[\u@\h] ${?} $(vcprompt) $(pwd)\n\$ '
+alias puttyp='PS1="[\u@\h] ${?} $(vcprompt) $(pwd)\n\$ "'
 
 #vcs and color-aware version of bash prompt:
 bash_prompt() {
