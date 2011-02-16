@@ -31,6 +31,9 @@ wfls() {
         return 1
     fi
 
+    sudo ifconfig wlan0 up
+    echo "printing available wifi networks:"
+
     if [[ $1 = 'e' ]];then
         #encryption table
         local cell=0
@@ -44,8 +47,6 @@ wfls() {
         done < <(sudo iwlist wlan0 scan)
     else
         [[ $1 = 'p' ]] && local view="$PAGER" || local view='grep ESSID'
-        echo "printing available wifi networks:"
-        sudo ifconfig wlan0 up
         sudo iwlist wlan0 scan | $view
     fi
 }
