@@ -11,31 +11,63 @@ export PYTHONSTARTUP=$HOME/.pythonrc.py
 alias cower='cower -c'
 alias pdf="zathura"
 
+
 wfls() {
-  [[ $1 == 'l' ]] && view='less' || view='grep ESSID'
-  echo "printing available wifi networks:"
-  sudo ifconfig wlan0 up
-  sudo iwlist wlan0 scan | $view
+    local fail=0
+
+    if (( $# ));then
+        if [[ $1 != 'e' && $1 != 'p' ]];then
+            fail=1
+        fi
+    fi
+
+    if (( $fail ));then
+        echo "
+    usage [$0] [e | p]
+        list broadcasted ESSIDs
+        e  listing by encryption
+        p  spill all available data to pager
+        " >&2
+        return 1
+    fi
+
+    if [[ $1 = 'e' ]];then
+        #encryption table
+        local cell=0
+        while read stuff; do
+            if (( cell == 2 ));then
+                cell=0
+                echo #readability
+            fi
+            echo $stuff | grep -i -e encryption -e essid
+            (( $? )) || (( ++cell ))
+        done < <(sudo iwlist wlan0 scan)
+    else
+        [[ $1 = 'p' ]] && local view="$PAGER" || local view='grep ESSID'
+        echo "printing available wifi networks:"
+        sudo ifconfig wlan0 up
+        sudo iwlist wlan0 scan | $view
+    fi
 }
 
 wfon() {
-  [[ $# == 0 ]] && return 2
-  echo "setting a wifi network... '$@'"
-  sudo iwconfig wlan0 essid "$@"
+    (( $# )) || return 2
+    echo "setting a wifi network... '$@'"
+    sudo iwconfig wlan0 essid "$@"
 }
 
 wfnp() {
-  echo "releasing ip..."
-  sudo dhcpcd -k wlan0
+    echo "releasing ip..."
+    sudo dhcpcd -k wlan0
 }
 
 wfip() {
-  if [[ $1 == 'f' ]]; then
-    echo -en "\t"
-    wfnp
-  fi
-  echo "requesting an IP from dhcpc server..."
-  sudo dhcpcd wlan0
+    if [[ $1 = 'f' ]]; then
+        echo -en "\t"
+        wfnp
+    fi
+    echo "requesting an IP from dhcpc server..."
+    sudo dhcpcd wlan0
 }
 
 #alias skype='su skypeuser -c skype'
