@@ -9,7 +9,7 @@ export PYTHONPATH=$HOME/bin/lib/python:$PYTHONPATH
 export PYTHONSTARTUP=$HOME/.pythonrc.py
 
 alias cower='cower -c'
-alias pdf="zathura"
+unalias pdf; alias pdf="zathura"
 
 
 wfls() {

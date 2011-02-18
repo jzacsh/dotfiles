@@ -18,10 +18,23 @@ alias pdf='xpdf'
 # x env #######################
 alias br='$BROWSER'
 alias ch='chromium-browser'
-alias kflash='echo "killing flash..." && sudo killall npviewer.bin'
-alias xt='xterm -bg black -fg white -maximized'
-alias rx='rxvt -bg black -fg white -geometry 300x100 -face10'
-alias urx='rxvt-unicode -bg rgba:1111/1111/1111/bbbb -fg white -fn "xft:Droid Sans Mono:pixelsize=10"'
+alias kflash='echo -n "killing flash..." && sudo killall npviewer.bin'
+if [[ $(type -p $DESKTOP_SESSION) ]];then
+    case $DESKTOP_SESSION in:
+        'DWM')
+            alias e='$BROWSER'
+            ;;
+        'gnome')
+            alias e='nautilus --browser'
+            ;;
+        'xfce')
+            alias e='thunar'
+            ;;
+        *)
+    esac
+else
+    e() { echo 'No DESKTOP_SESSION found, are you even running X?' >&2; }
+fi
 
 ## common spelling mistakes ###
 alias les='less'
