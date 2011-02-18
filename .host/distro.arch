@@ -31,7 +31,11 @@ wfls() {
         return 1
     fi
 
-    sudo ifconfig wlan0 up
+    if (( $(sudo ifconfig wlan0 up) ));then
+        local ret=$?
+        echo 'failed to bring up your wireless device!' >&2
+        return $ret
+    fi
     echo "printing available wifi networks:"
 
     if [[ $1 = 'e' ]];then

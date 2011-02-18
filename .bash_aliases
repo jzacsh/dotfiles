@@ -32,8 +32,8 @@ if [[ $(type -p libreoffice) ]];then
 elif [[ $(type -p ooffice) ]];then
     # i never manage to type that extra 'o'
     alias office='ooffice'
-elif [[ $(type -p goffice) ]];then
-    alias office='gooffice'
+elif [[ $(type -p abiword) ]];then
+    alias office='abiword'
 else
     office() {
         echo 'Sorry, no office suite installed!' >&2
@@ -159,7 +159,7 @@ urlocal() {
 
 origrm() {
   [[ -z $PROJECT_BASE ]] && return 1
-  if [[ $1 == "-n" ]]; then
+  if [[ $1 = "-n" ]]; then
     local opt=''
   else
     local opt='-delete -print'
@@ -169,6 +169,7 @@ origrm() {
 }
 
 mp() {
+  'error: this should take care of shitty microsoft paths, but it is broken.' >&2
 #  echo "smb://$(echo ${*} | sed -e 's/\\/\//g' | sed -e 's/\ /\\\ /g')"
   echo smb://$(echo "${*}" | sed -e 's/\\/\//g' | sed -e 's/\ /\\\ /g')
 }
