@@ -31,7 +31,6 @@ wfls() {
         return 1
     fi
 
-    sudo ifconfig wlan0 up
     local ret=$?
     if (( $ret ));then
         echo 'failed to bring up your wireless device!' >&2
@@ -43,6 +42,7 @@ wfls() {
     if [[ $1 = 'e' ]];then
         #encryption table
         local cell=0
+        sudo ifconfig wlan0 up
         while read stuff; do
             if (( cell == 2 ));then
                 cell=0
@@ -52,6 +52,7 @@ wfls() {
             (( $? )) || (( ++cell ))
         done < <(sudo iwlist wlan0 scan)
     else
+        sudo ifconfig wlan0 up
         [[ $1 = 'p' ]] && local view="$PAGER" || local view='grep ESSID'
         sudo iwlist wlan0 scan | $view
     fi
