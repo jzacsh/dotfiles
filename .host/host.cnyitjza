@@ -51,7 +51,7 @@ setpass() {
     done
 }
 
-db() { grep '^\$db_url' $PROJECT_BASE/sites/default/settings.php | sed -e 's/.*\///g' | sed -e "s/';//" ; }
+db() { grep '^\ \ \$db_url' ~/code/web5-jzacsh/sites/default/settings.php | tail -n 1 | sed -e 's/.*\///g' | sed -e "s/';//" ; }
 
 newcny() {
   if [[ $1 = '-h' || $1 = '--help' ]];then
