@@ -21,7 +21,7 @@ wfls() {
         fi
     fi
 
-    if (( $fail ));then
+    if (( fail ));then
         echo "
     usage [$0] [e | p]
         list broadcasted ESSIDs
@@ -31,12 +31,14 @@ wfls() {
         return 1
     fi
 
-    if (( $(sudo ifconfig wlan0 up) ));then
-        local ret=$?
+    sudo ifconfig wlan0 up
+    local ret=$?
+    if (( $ret ));then
         echo 'failed to bring up your wireless device!' >&2
         return $ret
+    else
+        echo "printing available wifi networks:"
     fi
-    echo "printing available wifi networks:"
 
     if [[ $1 = 'e' ]];then
         #encryption table
