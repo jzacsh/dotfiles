@@ -23,6 +23,15 @@ beans() {
     /usr/local/netbeans-6.9/bin/netbeans $parse "${@}" & disown 2>/dev/null
 }
 
+dpipe() {
+    #vpnconnect, disconnect
+    if [[ $1 = 'd' ]];then
+        sudo vpnc-disconnect
+    else
+        sudo vpnc datapipe.conf
+    fi
+}
+
 w5() {
     local repo=$PROJECT_BASE
     if [[ $1 = 'stable' ]];then
