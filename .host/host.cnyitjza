@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-export BROWSER=chromium-browser
+[[ -n $DISPLAY ]] && export BROWSER='chromium-browser' || export BROWSER='w3m'
 export PATH=.:$HOME/code/server-bin/:$PATH
 
 export PROJECT_STABLE="$HOME/code/web5-jzacsh"

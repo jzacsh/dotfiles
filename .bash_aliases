@@ -19,7 +19,7 @@ alias pdf='xpdf'
 alias br='$BROWSER'
 alias ch='chromium-browser'
 alias kflash='echo -n "killing flash..." && sudo killall npviewer.bin'
-if [[ $(type -p $DESKTOP_SESSION) ]];then
+if [[ -n $DISPLAY ]];then
     case $DESKTOP_SESSION in
         'DWM')
             alias e='$BROWSER'

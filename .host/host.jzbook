@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-export BROWSER='chromium'
+[[ -n $DISPLAY ]] && export BROWSER='chromium' || export BROWSER='w3m'
 
 #specific configs:
 ln -sf ~/.host/src/host.jzbook/.xinitrc
