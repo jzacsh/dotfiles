@@ -61,7 +61,13 @@ wfls() {
 wfon() {
     (( $# )) || return 2
     echo "setting a wifi network... '$@'"
-    sudo iwconfig wlan0 essid "$@"
+    if [[ $1 = '-a' ]];then
+        local attr='ap'
+        shift
+    else
+        local attr='essid'
+    fi
+    sudo iwconfig wlan0 $attr "$@"
 }
 
 wfnp() {
