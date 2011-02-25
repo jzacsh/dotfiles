@@ -14,6 +14,7 @@ alias mutt='pgrep mutt && mutt -R || mutt'
 alias ipt='sudo iptraf'
 alias goh='ssh home.jzacsh.com'
 alias pdf='xpdf'
+alias da='django-admin.py'
 
 # x env #######################
 alias br='$BROWSER'
