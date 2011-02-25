@@ -4,7 +4,7 @@ export PATH=.:$HOME/code/server-bin/:$PATH
 
 export PROJECT_STABLE="$HOME/code/web5-jzacsh"
 export PROJECT_EDGE="$HOME/code/web5-jzacsh-qa2"
-export PROJECT_BASE="$PROJECT_EDGE" #this should be my default work space
+export PROJECT_BASE="$PROJECT_STABLE" #this should be my default work space
 
 ## this does not expand as expected ########################################
 #  export CB=("$PROJECT_BASE"/sites/all/{themes/zagat,modules/{features,custom}})
@@ -34,8 +34,8 @@ dpipe() {
 
 w5() {
     local repo=$PROJECT_BASE
-    if [[ $1 = 'stable' ]];then
-        repo=$PROJECT_STABLE
+    if [[ $1 = 'edge' ]];then
+        repo=$PROJECT_EDGE
         shift
     fi
     cd $repo/${@} || cd $repo;
