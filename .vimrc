@@ -138,5 +138,9 @@ let MRU_Exclude_Files = '$HOME/tmp/.*'
 let MRU_Auto_Close = 0
 let MRU_Max_Entries = 10
 
+"highlight redundant whitespace.
+highlight RedundantSpaces ctermbg=red guibg=red
+match RedundantSpaces /\s\+$\| \+\ze\t\|\t/
+
 "xdebug in vim
 let g:debuggerPort = 9000
