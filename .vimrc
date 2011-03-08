@@ -86,6 +86,7 @@ let g:debuggerPort = 9001
 if has("autocmd")
   " Drupal *.module and *.install files.
   augroup drupal
+    autocmd!
     autocmd BufRead,BufNewFile *.php set filetype=php
     autocmd BufRead,BufNewFile *.module set filetype=php
     autocmd BufRead,BufNewFile *.install set filetype=php
