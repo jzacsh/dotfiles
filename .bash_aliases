@@ -6,7 +6,7 @@ alias la='ls -aFH'
 alias ca='clear; ls -laFH'
 alias cl='clear; ls -lFH'
 alias diff='colordiff'
-alias mi="wget -qO- http://checkip.dyndns.org | sed -e 's/^.*Address:\ //' -e 's/<\/body.*//'"
+alias mi="curl -s http://checkip.dyndns.org | sed -e 's/^.*Address:\ //' -e 's/<\/body.*//'"
 alias tas='tmux attach-session'
 alias td='tmux detach-client'
 alias udevinfo='udevadm info -q all -n'
@@ -15,6 +15,7 @@ alias ipt='sudo iptraf'
 alias goh='ssh home.jzacsh.com'
 alias pdf='xpdf'
 alias da='django-admin.py'
+alias hh='curl --head'
 
 # x env #######################
 alias br='$BROWSER'
@@ -73,9 +74,8 @@ hgdiff() ( hg cat $1 | vim - -c  ":vert diffsplit $1" -c "map q :qa!<CR>"; )
 speak() { echo ${@} | espeak 2>/dev/null; }
 ident() ( identify -verbose $1 | grep modify; )
 g() ( IFS=+; $BROWSER "http://www.google.com/search?q=${*}"; )
-wat() ( wget -cqO- ${@} | $PAGER; )
-rfc() { wget -cqO- "http://tools.ietf.org/rfc/rfc${1}.txt" | $PAGER +/-.[0-9]*.-.*RFC\ \#${1}; }
-hh() { wget -qS -O /dev/null ${@}; } #Http Headers
+wat() ( curl -s ${@} | $PAGER; )
+rfc() { curl -s "http://tools.ietf.org/rfc/rfc${1}.txt" | $PAGER +/-.[0-9]*.-.*RFC\ \#${1}; }
 
 #tmux/ssh/console considerations
 xf() { DISPLAY=localhost:10.0 ${@}; }
