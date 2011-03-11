@@ -93,4 +93,8 @@ eval $(keychain --nogui --eval --timeout ${KEY_TIMEOUT:-240} ~/.ssh/add/*.add)
 
 #laughs:
 #@TODO: make this fail on redirects (eg.: open wifi login pages)
-curl -s http://whatthecommit.com/index.txt 2>/dev/null || echo "rrr.. no interwebs, no commits."
+#  curl -s --connect-timeout 1 --max-time 1 \
+#      http://whatthecommit.com/index.txt \
+#      2>/dev/null & &>/dev/null
+#  sleep 1
+#  kill $! &>/dev/null
