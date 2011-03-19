@@ -4,6 +4,14 @@ pkill dropboxd
 
 alias e='thunar'
 
+#zagat/drupal tools:
+export PROJECT_STABLE="$HOME/code/web5-jzacsh"
+#export PROJECT_EDGE="$HOME/code/web5-jzacsh-qa2"
+export PROJECT_BASE="$PROJECT_STABLE" #this should be my default work space
+## this does not expand as expected ########################################
+#  export CB=("$PROJECT_BASE"/sites/all/{themes/zagat,modules/{features,custom}})
+export CB="${PROJECT_BASE}/sites/all/themes/zagat ${PROJECT_BASE}/sites/all/modules/features ${PROJECT_BASE}/sites/all/modules/custom"
+
 #specific configs:
 ln -sf ~/.host/src/host.jzcl/.xinitrc
 ln -sf ~/.host/src/host.jzcl/.tmux.conf
