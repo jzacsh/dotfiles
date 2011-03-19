@@ -85,7 +85,7 @@ source $HOME/bin/lib/drupalsh
 
 export PATH=.:$HOME/bin/:$HOME/bin/local:$HOME/bin/share:$HOME/bin/lib:$HOME/bin/dist:$PATH
 
-#must be after PATH:
+#must be after PATH:, apparently this will break if non-interactive shell `return`'s above.
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
 #load ssh keys
