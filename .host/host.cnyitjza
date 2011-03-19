@@ -3,14 +3,12 @@
 export PATH=.:$HOME/code/server-bin/:$PATH
 
 export PROJECT_STABLE="$HOME/code/web5-jzacsh"
-export PROJECT_EDGE="$HOME/code/web5-jzacsh-qa2"
+#export PROJECT_EDGE="$HOME/code/web5-jzacsh-qa2"
 export PROJECT_BASE="$PROJECT_STABLE" #this should be my default work space
 
 ## this does not expand as expected ########################################
 #  export CB=("$PROJECT_BASE"/sites/all/{themes/zagat,modules/{features,custom}})
 export CB="${PROJECT_BASE}/sites/all/themes/zagat ${PROJECT_BASE}/sites/all/modules/features ${PROJECT_BASE}/sites/all/modules/custom"
-
-unset current_db
 
 alias pfetch='time { drush cc all && drush -y fra && drush -y cc all && drush -y updb && hg push && hg stat; } '
 
