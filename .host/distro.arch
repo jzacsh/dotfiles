@@ -15,6 +15,17 @@ unalias pdf; alias pdf="zathura"
 wfls() {
     local fail=0
 
+    #holy shit, took forever... found where my lease was being kept:
+    # https://bugs.archlinux.org/task/23282
+    local lease='/var/lib/dhcpcd/dhcpcd-*.lease'
+    if [[ -e $(echo $lease) ]];then
+        echo -e "
+WARNING:
+looks like you have an stale IP lease hanging around:
+$(echo $lease)
+" >&2
+    fi
+
     if (( $# ));then
         if [[ $1 != 'e' && $1 != 'p' ]];then
             fail=1
