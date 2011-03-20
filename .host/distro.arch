@@ -10,7 +10,7 @@ export PYTHONSTARTUP=$HOME/.pythonrc.py
 
 alias cower='cower -c'
 unalias pdf; alias pdf="zathura"
-
+alias rw="echo 'rebooting interwebs (mysql and apache)' && sudo /etc/rc.d/httpd restart && sudo /etc/rc.d/mysqld restart"
 
 wfls() {
     local fail=0
@@ -97,4 +97,17 @@ wfip() {
 
 #alias skype='su skypeuser -c skype'
 
-alias rw="echo 'rebooting interwebs (mysql and apache)' && sudo /etc/rc.d/httpd restart && sudo /etc/rc.d/mysqld restart"
+#relink all shutdown scripts, if necessary:
+check_shutdowns() {
+    local shutdown_sys='/etc/rc.d/functions.d'
+    local shutdown_loc='~/.host/src/distro.arch/shutdown'
+    for script in $shutdown_loc/*; do
+        local base=$(basename $script)
+        if [[ $(diff -u "$script" "${shutdown_sys}/${base}") >&/dev/null ]];then
+            printf "WARNING: '%s' is not installed properly in '%s'." \
+                "$base" "$shutdown_sys" >&2
+        fi
+    done
+}
+
+check_shutdowns
