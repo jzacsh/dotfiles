@@ -1,6 +1,6 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 # until you no longer have "rebinding lease" ad infinitum,
 # remove the file this bug [1]  so kindly pointed out:
 # [1] http://bugs.archlinux.org/task/23282
-rm -v /var/lib/dhcpcd/dhcpcd-*.lease
+find /var/lib/dhcpcd/ -name 'dhcpcd*.lease' -delete -print

@@ -103,7 +103,7 @@ check_shutdowns() {
     local shutdown_loc='~/.host/src/distro.arch/shutdown'
     for script in $shutdown_loc/*; do
         local base=$(basename $script)
-        if [[ $(diff -u "$script" "${shutdown_sys}/${base}") >&/dev/null ]];then
+        if [[ $(diff -u "$script" "${shutdown_sys}/${base}" &>/dev/null) ]];then
             printf "WARNING: '%s' is not installed properly in '%s'." \
                 "$base" "$shutdown_sys" >&2
         fi
