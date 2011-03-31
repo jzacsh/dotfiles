@@ -47,6 +47,7 @@ jz_stable = http://codelibrary.zagat.com/hg/integration/web5-jzacsh/
 jz_edge = http://codelibrary.zagat.com/hg/qa2/web5-jzacsh-qa2/
 qa = http://codelibrary.zagat.com/hg/qa/web5-qa/
 prod = http://codelibrary.zagat.com/hg/prod/web5-prod/
+int = http://codelibrary.zagat.com/hg/integration/web5-integration/
 
 # [tortoisehg]
 # postpull = fetch
