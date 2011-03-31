@@ -13,9 +13,59 @@ export PROJECT_BASE="$PROJECT_STABLE" #this should be my default work space
 #  export CB=("$PROJECT_BASE"/sites/all/{themes/zagat,modules/{features,custom}})
 export CB="${PROJECT_BASE}/sites/all/themes/zagat ${PROJECT_BASE}/sites/all/modules/features ${PROJECT_BASE}/sites/all/modules/custom"
 
-######################################################################################################################################
+fs() { fstuff ${@} --exclude-dir='.hg' --exclude='.git'; }
+inno() { innotop -uroot -p; }
 
-alias w5='cd $PROJECT_BASE'
+w5() {
+    local repo=$PROJECT_BASE
+    if [[ $1 = 'edge' ]];then
+        repo=$PROJECT_EDGE
+        shift
+    fi
+    cd $repo/${@} || cd $repo;
+}
+
+cozy_local() {
+    if [[ $1 = '-h'  || $1 = '--help' ]];then
+        echo -e "usage \`$FUNCNAME [password, [db_name, ...] ]\`
+        sets the password for your drupal admin users" >&2
+        return 1
+    fi
+
+    #setup
+    local databases=('zagat_hamster')
+    local password=${1:-password}
+    if (( $# > 1 ));then
+        shift
+        databases=("${@}")
+    fi
+
+    declare -a queries
+
+    #listing of queries you normally run:
+    queries+=("
+        UPDATE users
+        SET pass=md5('${password}')
+        WHERE
+            name='admin'
+        OR
+            mail='jzacsh@zagat.com'
+    ;")
+    queries+=("
+        UPDATE users
+        SET mail='jzacsh@zagat.com'
+        WHERE mail LIKE '%jzacsh@zagat.com'
+    ;")
+
+    #actual work
+    for db in databases; do
+        for query in "${queries[@]}"; do
+            mysql -u root --password=root --database="${db}" -e "$query"
+        done
+    done
+}
+
+######################################################################################################################################
 
 #specific configs:
 ln -sf ~/.host/src/host.jzbook/.xinitrc
