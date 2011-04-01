@@ -12,7 +12,7 @@ hgext.fetch=
 hgext.mq=
 hgext.extdiff=
 hgext.purge=
-color= 
+color=
 hgext.pager=
 hgext.highlight=
 hgext.progress=
@@ -20,7 +20,7 @@ hgext.progress=
 hgext.hgshelve=
 hgext.graphlog=
 hgext.eol =
-hgext.record = 
+hgext.record =
 
 [repository]
 native = LF
@@ -33,7 +33,7 @@ only-consistent = False
 #pager = LESS=$LESS less
 pager = LESS='XFR' less
 #attend = annotate, log, in
-#ignore = 
+#ignore =
 
 [inotify]
 log = ~/docs/logs/hginotify.log
