@@ -74,7 +74,7 @@ cozy_local() {
     ;")
 
     #actual work
-    for db in databases; do
+    for db in $databases; do
         for query in "${queries[@]}"; do
             mysql -u root --password=root --database="${db}" -e "$query"
         done
