@@ -41,22 +41,43 @@ w5() {
     cd $repo/${@} || cd $repo;
 }
 
-setpass() {
+cozy_local() {
     if [[ $1 = '-h'  || $1 = '--help' ]];then
-        echo -e "usage [password] [db_name, ...]\n\tsets the password for your drupal admin users" >&2
+        echo -e "usage \`$FUNCNAME [password, [db_name, ...] ]\`
+        sets the password for your drupal admin users" >&2
         return 1
     fi
 
-    local databases=(hamster kitten)
+    #setup
+    local databases=('hamster' 'kitten')
     local password=${1:-password}
     if (( $# > 1 ));then
         shift
         databases=("${@}")
     fi
 
-    for db in databases; do
-        mysql -u root --password=root -e \
-            "USE ${db}; UPDATE users SET pass = md5('${password}') WHERE uid=1;"
+    declare -a queries
+
+    #listing of queries you normally run:
+    queries+=("
+        UPDATE users
+        SET pass=md5('${password}')
+        WHERE
+            name='admin'
+        OR
+            mail='jzacsh@zagat.com'
+    ;")
+    queries+=("
+        UPDATE users
+        SET mail='jzacsh@zagat.com'
+        WHERE mail LIKE '%jzacsh@zagat.com'
+    ;")
+
+    #actual work
+    for db in $databases; do
+        for query in "${queries[@]}"; do
+            mysql -u root --password=root --database="${db}" -e "$query"
+        done
     done
 }
 
