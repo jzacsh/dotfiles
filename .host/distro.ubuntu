@@ -1,10 +1,9 @@
 #!/usr/bin/env bash
 set -o vi
-export BROWSER=firefox
+export BROWSER=chromium-browser
 export DEBFULLNAME="Jonathan Zacsh"
 export DEBEMAIL="jzacsh@gmail.com"
 
-alias python='python3' # aiming for bleeding edge on wrong distro
 alias rw="echo 'rebooting interwebs (mysql and apache)' && sudo service apache2 restart && sudo service mysql restart"
 
 alias pman="pydoc3.1"
