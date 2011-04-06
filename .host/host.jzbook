@@ -6,7 +6,7 @@
 # Taken from cnyitjza:
 #
 
-export PROJECT_STABLE="/srv/http/subs/zagat/www"
+export PROJECT_STABLE="${HOME}/var/zagat/www"
 #export PROJECT_EDGE="$HOME/code/web5-jzacsh-qa2"
 export PROJECT_BASE="$PROJECT_STABLE" #this should be my default work space
 ## this does not expand as expected ########################################

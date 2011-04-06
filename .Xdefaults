@@ -32,7 +32,7 @@ URxvt.urlLauncher: chromium
 URxvt.underlineURLs: true
 
 ! --[ URxvt - colors ]--------------------------------------
-URxvt.background: rgba:1111/1111/1111/eeff
+URxvt.background: rgba:1111/1111/1111/f550
 URxvt.foreground:#eeeeee
 
 ! --[ Color Scheme ]----------------------------------------
