@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-[[ -n $DISPLAY ]] && export BROWSER='chromium' || export BROWSER='w3m'
+[[ -n $DISPLAY ]] && export BROWSER='chromium-browser' || export BROWSER='w3m'
 
 ######################################################################################################################################
 #
@@ -68,5 +68,4 @@ cozy_local() {
 ######################################################################################################################################
 
 #specific configs:
-ln -sf ~/.host/src/host.jzbook/.xinitrc
 ln -sf ~/.host/src/host.jzbook/.tmux.conf
