@@ -84,7 +84,7 @@ cozy_local() {
 newcny() {
   if [[ $1 = '-h' || $1 = '--help' ]];then
       echo 'no args' >&2
-      type newcny #show code
+      type "$FUNCNAME" #show code
       return 1
   fi
 
