@@ -5,3 +5,6 @@ export BROWSER=w3m
 #will never have a display _other_ than forwarded
 export DISPLAY=localhost:10.0
 unset xfw
+
+#host-specific configs:
+ln -sf ~/.host/src/host.jznix/.tmux.conf
