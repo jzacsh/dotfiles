@@ -13,6 +13,7 @@ export PROJECT_BASE="$PROJECT_STABLE" #this should be my default work space
 #  export CB=("$PROJECT_BASE"/sites/all/{themes/zagat,modules/{features,custom}})
 export CB="${PROJECT_BASE}/sites/all/themes/zagat ${PROJECT_BASE}/sites/all/modules/features ${PROJECT_BASE}/sites/all/modules/custom"
 alias pfetch='time { drush cc all && drush -y fra && drush -y cc all && drush -y updb && hg push && hg stat; } '
+alias scrum='vi ~/dbox/shared/zagat/notes/current_scrum'
 
 fs() { fstuff ${@} --exclude-dir='.hg' --exclude='.git'; }
 inno() { innotop -uroot -p; }
