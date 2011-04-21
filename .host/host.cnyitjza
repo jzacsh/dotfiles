@@ -138,3 +138,6 @@ newcny() {
 #
 #    wget -cqO- ${url} | grep 'zagat' | grep "${narrow}" | grep "${key}"
 # }
+
+#host-specific configs:
+ln -sf ~/.host/src/host.cnyitjza/.tmux.conf
