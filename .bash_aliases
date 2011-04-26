@@ -16,6 +16,8 @@ alias goh='ssh home.jzacsh.com'
 alias pdf='xpdf'
 alias da='django-admin.py'
 alias hh='curl --head'
+alias pbcopy='xsel --clipboard --input'
+alias pbpaste='xsel --clipboard --output'
 
 # x env #######################
 alias br='$BROWSER'
