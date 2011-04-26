@@ -87,8 +87,8 @@ e() {
 }
 
 hgk() {
-	hgview 2> /dev/null &
-	disown
+    hgview 2> /dev/null &
+    disown
 }
 
 addkeys () {
