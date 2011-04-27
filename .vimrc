@@ -17,9 +17,8 @@ map <LocalLeader>s  <Esc>:r!date --rfc-3339=seconds<CR>
 map <LocalLeader>d  <Esc>:r!date --rfc-3339=date<CR>
 map <LocalLeader>f  <Esc>:TlistToggle<CR>
 map <LocalLeader>t  <Esc>:CommandT<CR>
-
 " clear trailing whitespace
-" map <LocalLeader>c  <Esc>:%s/[[:space:]]$//g<CR>
+map <LocalLeader>c  <Esc>:%s/[[:space:]]*$//g<CR>
 
 " easy tab handling
 map <LocalLeader>w  <Esc>:tabnew<CR>
