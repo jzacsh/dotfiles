@@ -98,7 +98,7 @@ endif
 
 " make files
 autocmd FileType make set noexpandtab
-" drupal files - i can't refer to augroup 'drupal'?
+"@TODO drupal files - i can't refer to augroup 'drupal'?
 autocmd FileType js set ts=2
 autocmd FileType js set sw=2
 autocmd FileType php set ts=2
