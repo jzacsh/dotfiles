@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+# stuff that all machines I use for drupal development need to run at time of
+# ~/.host/ scripting.
+
+#@TODO: export PATH=$PATH:~/bin/lib/drupalsh/
