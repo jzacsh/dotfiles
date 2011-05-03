@@ -11,8 +11,6 @@ if [[ $(declare -p PROJECT_BASE)]];then
     # bash functions, calling things like `git rev-parse --show-toplevel` and `hg root`
 
     [[ $(declare -p CB) ]] && declare -a CB
-    #@TODO: why doesn't this expand properly? Very much want to use array
-    #export CB+=("$PROJECT_BASE"/sites/all/{themes/zagat,modules/{features,custom}})
     export CB+=(${PROJECT_BASE}/sites/all/modules/{features,custom})
 fi
 
@@ -20,7 +18,7 @@ fi
 # include your drupal shell utilities in your path.
 #
 
-#@TODO: add `ln -sf ~/path/to/drupalsh-repo/ ~/bin/lib`
+#@TODO: add `ln -sf ~/path/to/new/"drupalsh"repo/ ~/bin/lib`
 export PATH=$PATH:~/bin/lib/drupalsh/
 
 #
