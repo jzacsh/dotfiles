@@ -1,6 +1,6 @@
 "this is vim's rc
 " comments in double-quotes (`"')
-" awesome reference:		http://amix.dk/vim/vimrc.html
+" awesome reference:    http://amix.dk/vim/vimrc.html
 
 let $VIM = '$HOME/.vim'
 
@@ -41,10 +41,10 @@ set wildmode=longest,list
 
 "color schemes
 "-----------------------
-" set background=dark
-  colorscheme ir_black
+  set background=dark
+" colorscheme ir_black
 " colorscheme merged
-" colorscheme dante
+  colorscheme dante
 
 " set which wraps
 set whichwrap+=<,>,h,l
@@ -130,7 +130,7 @@ set number
 set laststatus=2
 set statusline=%t%(\ [%n%M]%)%(\ %H%R%W%)\ %(%c-%v,\ %l\ of\ %L,\ (%o)\ %P\ 0x%B\ (%b)%)
 
-"set mouse=a	"annoying
+"set mouse=a    "annoying
 
 "plugin specific stuff:
 "let MRU_File = "$VIM/plugin/mru.vim"
