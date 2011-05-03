@@ -88,5 +88,5 @@ newcny() {
 # }
 
 #host-specific configs:
-ln -sf ~/.host/src/host.cnyitjza/.tmux.conf
+ln -sf ~/.host/src/host.cnyitjza/.tmux.conf ~/
 source ~/.host/common/drupal
