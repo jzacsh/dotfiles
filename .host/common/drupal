@@ -1,6 +1,30 @@
 #!/usr/bin/env bash
+#
+# Jonathan Zacsh <jzacsh@gmail.com>
+#
+# Things that all the machines I use for drupal dev. will need.
+# @see ~/.host/pick
 
-# stuff that all machines I use for drupal development need to run at time of
-# ~/.host/ scripting.
+if [[ $(declare -p PROJECT_BASE)]];then
 
-#@TODO: export PATH=$PATH:~/bin/lib/drupalsh/
+    #@TODO: figure out a way to re-work all of this to base off dynamic
+    # bash functions, calling things like `git rev-parse --show-toplevel` and `hg root`
+
+    [[ $(declare -p CB) ]] && declare -a CB
+    #@TODO: why doesn't this expand properly? Very much want to use array
+    #export CB+=("$PROJECT_BASE"/sites/all/{themes/zagat,modules/{features,custom}})
+    export CB+=(${PROJECT_BASE}/sites/all/modules/{features,custom})
+fi
+
+#
+# include your drupal shell utilities in your path.
+#
+
+#@TODO: add `ln -sf ~/path/to/drupalsh-repo/ ~/bin/lib`
+export PATH=$PATH:~/bin/lib/drupalsh/
+
+#
+# one-liners that I can't bear to see as a seperate script.
+#
+
+alias pfetch='time { drush cc all && drush -y fra && drush -y cc all && drush -y updb && hg push && hg stat; }'
