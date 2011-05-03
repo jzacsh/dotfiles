@@ -37,7 +37,7 @@ export HISTSIZE=500
 
 #`who` else loged in:
 if [[ $(who | grep -v $(whoami)) ]]; then
-	echo "Currently on `uname -snr`, other than you:"
+    printf "Currently on %s, other than you:" $(uname -snr)
     who -H | grep -v $(whoami)
 fi
 
@@ -79,9 +79,6 @@ unset bash_prompt
 
 #dynamic config:
 source $HOME/.host/pick
-
-#drupal tools
-source $HOME/bin/lib/drupalsh
 
 export PATH=.:$HOME/bin/:$HOME/bin/local:$HOME/bin/share:$HOME/bin/lib:$HOME/bin/dist:$PATH
 
