@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 #
-# Jonathan Zacsh <jzacsh@gmail.com>
-#
 # Things that all the machines I use for drupal dev. will need.
 # @see ~/.host/pick
 
@@ -17,9 +15,7 @@ fi
 #
 # include your drupal shell utilities in your path.
 #
-
-#@TODO: add `ln -sf ~/path/to/new/"drupalsh"repo/ ~/bin/lib`
-export PATH=$PATH:~/bin/lib/drupalsh/
+export PATH=$PATH:~/usr/local/bin/drupalsh
 
 #
 # one-liners that I can't bear to see as a seperate script.
