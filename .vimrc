@@ -41,7 +41,7 @@ set wildmode=longest,list
 
 "color schemes
 "-----------------------
-  set background=dark
+" set background=dark
 " colorscheme ir_black
 " colorscheme merged
   colorscheme dante
@@ -99,6 +99,7 @@ endif
 " make files
 autocmd FileType make set noexpandtab
 "@TODO drupal files - i can't refer to augroup 'drupal'?
+"  ? autocmd augroup drupal set ts=2
 autocmd FileType js set ts=2
 autocmd FileType js set sw=2
 autocmd FileType php set ts=2
@@ -137,6 +138,12 @@ set statusline=%t%(\ [%n%M]%)%(\ %H%R%W%)\ %(%c-%v,\ %l\ of\ %L,\ (%o)\ %P\ 0x%B
 let MRU_Exclude_Files = '$HOME/tmp/.*'
 let MRU_Auto_Close = 0
 let MRU_Max_Entries = 10
+
+" substitutions
+if &term !=# "linux"
+    set list listchars=tab:\»\ ,trail:·,extends:›,precedes:‹
+endif
+
 
 "highlight redundant whitespace.
 highlight RedundantSpaces ctermbg=red guibg=red
