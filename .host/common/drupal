@@ -3,13 +3,14 @@
 # Things that all the machines I use for drupal dev. will need.
 # @see ~/.host/pick
 
-if [[ $(declare -p PROJECT_BASE)]];then
+if [[ $(declare -p PROJECT_BASE) ]];then
 
     #@TODO: figure out a way to re-work all of this to base off dynamic
     # bash functions, calling things like `git rev-parse --show-toplevel` and `hg root`
 
     [[ $(declare -p CB) ]] && declare -a CB
-    export CB+=(${PROJECT_BASE}/sites/all/modules/{features,custom})
+    CB+=(${PROJECT_BASE}/sites/all/modules/{features,custom})
+    export CB
 fi
 
 #
