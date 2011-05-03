@@ -13,18 +13,14 @@ if [[ $(declare -p PROJECT_BASE) ]];then
     export CB
 fi
 
-#
 # include your drupal shell utilities in your path.
-#
 export PATH=$PATH:~/usr/local/bin/drupalsh
+# include common functions.
+source ~/usr/local/bin/drupalsh/drupalsh
 
 #
 # one-liners that I can't bear to see as a seperate script.
 #
-
-#@TODO: remove me once i've been solved in github.com/jzacsh/drupalsh/drupalsh +/pfetch
-alias pfetch='time { drush cc all && drush -y fra && drush -y cc all && drush -y updb && hg push && hg stat; }'
-
 
 #@TODO: can/should these be abstracted for public use, at all?
 f() { ge ${@} $CB ; }
