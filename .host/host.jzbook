@@ -7,25 +7,14 @@
 #
 
 export PROJECT_STABLE="${HOME}/var/zagat/www"
-#export PROJECT_EDGE="$HOME/code/web5-jzacsh-qa2"
+#export PROJECT_EDGE="${HOME}/var/zagat/www-qa2"
 export PROJECT_BASE="$PROJECT_STABLE" #this should be my default work space
-## this does not expand as expected ########################################
-#  export CB=("$PROJECT_BASE"/sites/all/{themes/zagat,modules/{features,custom}})
-export CB="${PROJECT_BASE}/sites/all/themes/zagat ${PROJECT_BASE}/sites/all/modules/features ${PROJECT_BASE}/sites/all/modules/custom"
-alias pfetch='time { drush cc all && drush -y fra && drush -y cc all && drush -y updb && hg push && hg stat; } '
+
+if [[ $(declare -p PROJECT_BASE) ]];then
+    export CB=($PROJECT_BASE/sites/all/themes/zagat/)
+fi
+
 alias scrum='vi ~/dbox/shared/zagat/notes/current_scrum'
-
-fs() { fstuff ${@} --exclude-dir='.hg' --exclude='.git'; }
-inno() { innotop -uroot -p; }
-
-w5() {
-    local repo=$PROJECT_BASE
-    if [[ $1 = 'edge' ]];then
-        repo=$PROJECT_EDGE
-        shift
-    fi
-    cd $repo/${@} || cd $repo;
-}
 
 cozy_local() {
     if [[ $1 = '-h'  || $1 = '--help' ]];then
