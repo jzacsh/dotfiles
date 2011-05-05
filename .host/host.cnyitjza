@@ -27,7 +27,8 @@ dpipe() {
     fi
 }
 
-newcny() {
+#re-link local env. to local-only modules and config
+drupalink() {
   if [[ $1 = '-h' || $1 = '--help' ]];then
       echo 'No args... "use the source":' >&2
       type "$FUNCNAME" #show code
@@ -38,20 +39,16 @@ newcny() {
   local vb=1
   local loc=$(uname -n)
   local conf="$HOME/code/conf/web5"
-  local repo="$PROJECT_BASE"
-
-  if [[ $1 = 'stable' ]];then
-    [[ $vb ]] && echo 'switching to stable repo; code (careful!)'
-    repo="$PROJECT_STABLE"
-    loc="edge.$loc"
-  fi
+  local repo=$(drush status --pipe | sed -ne '/drupal_root/ { p; }' \
+      -e 's/.*=//')
+  repo=${repo:-$PROJECT_BASE}
 
   #link local modules
-  [[ $vb ]] && echo 'inserting link to local-only modules'
+  (( $vb )) && echo 'inserting link to local-only modules'
   ln -sv $conf/local $repo/sites/all/modules
 
   #link default/ dir
-  [[ $vb ]] && echo 'inserting link to "default" directory'
+  (( $vb )) && echo 'inserting link to "default" directory'
   ln -sv $conf/default $repo/sites
 
   $BROWSER "http://${loc}.zagat.com/"
