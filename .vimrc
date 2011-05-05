@@ -141,9 +141,8 @@ let MRU_Max_Entries = 10
 
 " substitutions
 if &term !=# "linux"
-    set list listchars=tab:\»\ ,trail:·,extends:›,precedes:‹
+    set list listchars=tab:\»\ ,extends:›,precedes:‹
 endif
-
 
 "highlight redundant whitespace.
 highlight RedundantSpaces ctermbg=red guibg=red
