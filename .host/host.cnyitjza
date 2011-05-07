@@ -6,16 +6,12 @@ export PROJECT_STABLE="$HOME/code/web5-jzacsh"
 #export PROJECT_EDGE="$HOME/code/web5-jzacsh-qa2"
 export PROJECT_BASE="$PROJECT_STABLE" #this should be my default work space
 
-## this does not expand as expected ########################################
-#  export CB=("$PROJECT_BASE"/sites/all/{themes/zagat,modules/{features,custom}})
-export CB="${PROJECT_BASE}/sites/all/themes/zagat ${PROJECT_BASE}/sites/all/modules/features ${PROJECT_BASE}/sites/all/modules/custom"
-
+if [[ $(declare -p PROJECT_BASE) ]];then
+    CB=($PROJECT_BASE/sites/all/themes/zagat/)
+    export CB
+fi
 alias pfetch='time { drush cc all && drush -y fra && drush -y cc all && drush -y updb && hg push && hg stat; } '
-
-f() { ge ${@} $CB ; }
-fs() { fstuff ${@} --exclude-dir='.hg' --exclude='.git'; }
-
-inno() { innotop -uroot -proot; } #on local dev env.
+alias scrum='$EDITOR ~/dbox/zagat/notes/current_scrum'
 
 beans() {
     local level="FINE"
@@ -32,58 +28,10 @@ dpipe() {
     fi
 }
 
-w5() {
-    local repo=$PROJECT_BASE
-    if [[ $1 = 'edge' ]];then
-        repo=$PROJECT_EDGE
-        shift
-    fi
-    cd $repo/${@} || cd $repo;
-}
-
-cozy_local() {
-    if [[ $1 = '-h'  || $1 = '--help' ]];then
-        echo -e "usage \`$FUNCNAME [password, [db_name, ...] ]\`
-        sets the password for your drupal admin users" >&2
-        return 1
-    fi
-
-    #setup
-    local databases=('hamster' 'kitten')
-    local password=${1:-password}
-    if (( $# > 1 ));then
-        shift
-        databases=("${@}")
-    fi
-
-    declare -a queries
-
-    #listing of queries you normally run:
-    queries+=("
-        UPDATE users
-        SET pass=md5('${password}')
-        WHERE
-            name='admin'
-        OR
-            mail='jzacsh@zagat.com'
-    ;")
-    queries+=("
-        UPDATE users
-        SET mail='jzacsh@zagat.com'
-        WHERE mail LIKE '%jzacsh@zagat.com'
-    ;")
-
-    #actual work
-    for db in $databases; do
-        for query in "${queries[@]}"; do
-            mysql -u root --password=root --database="${db}" -e "$query"
-        done
-    done
-}
-
-newcny() {
+#re-link local env. to local-only modules and config
+drupalink() {
   if [[ $1 = '-h' || $1 = '--help' ]];then
-      echo 'no args' >&2
+      echo 'No args... "use the source":' >&2
       type "$FUNCNAME" #show code
       return 1
   fi
@@ -92,20 +40,16 @@ newcny() {
   local vb=1
   local loc=$(uname -n)
   local conf="$HOME/code/conf/web5"
-  local repo="$PROJECT_BASE"
-
-  if [[ $1 = 'stable' ]];then
-    [[ $vb ]] && echo -e '\nswitching to stable repository (careful!)'
-    repo="$PROJECT_STABLE"
-    loc="stable.$loc"
-  fi
+  local repo=$(drush status --pipe | sed -ne '/drupal_root/ { p; }' \
+      -e 's/.*=//')
+  repo=${repo:-$PROJECT_BASE}
 
   #link local modules
-  [[ $vb ]] && echo -e '\ninserting link to local-only modules'
+  (( $vb )) && echo 'inserting link to local-only modules'
   ln -sv $conf/local $repo/sites/all/modules
 
   #link default/ dir
-  [[ $vb ]] && echo -e '\ninserting link to "default" directory'
+  (( $vb )) && echo 'inserting link to "default" directory'
   ln -sv $conf/default $repo/sites
 
   $BROWSER "http://${loc}.zagat.com/"
@@ -137,3 +81,7 @@ newcny() {
 #
 #    wget -cqO- ${url} | grep 'zagat' | grep "${narrow}" | grep "${key}"
 # }
+
+#host-specific configs:
+ln -sf ~/.host/src/host.cnyitjza/.tmux.conf ~/
+source ~/.host/common/drupal

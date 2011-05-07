@@ -3,6 +3,7 @@ set -o vi
 export BROWSER=chromium-browser
 export DEBFULLNAME="Jonathan Zacsh"
 export DEBEMAIL="jzacsh@gmail.com"
+export TERM=xterm #ridiculousness for ubuntu's tmux
 
 alias rw="echo 'rebooting interwebs (mysql and apache)' && sudo service apache2 restart && sudo service mysql restart"
 
@@ -10,4 +11,4 @@ alias pman="pydoc3.1"
 alias pdb="pdb3.1"
 
 #specific configs:
-ln -sf ~/.host/src/distro.ubuntu/.pbuilderrc
+ln -sf ~/.host/src/distro.ubuntu/.pbuilderrc ~/

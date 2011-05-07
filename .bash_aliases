@@ -16,27 +16,13 @@ alias goh='ssh home.jzacsh.com'
 alias pdf='xpdf'
 alias da='django-admin.py'
 alias hh='curl --head'
+alias pbcopy='xsel --clipboard --input'
+alias pbpaste='xsel --clipboard --output'
 
 # x env #######################
 alias br='$BROWSER'
 alias ch='chromium-browser'
 alias kflash='echo -n "killing flash..." && sudo killall npviewer.bin'
-if [[ -n $DISPLAY ]];then
-    case $DESKTOP_SESSION in
-        'DWM')
-            alias e='$BROWSER'
-            ;;
-        'gnome')
-            alias e='nautilus --browser'
-            ;;
-        'xfce')
-            alias e='thunar'
-            ;;
-        *)
-    esac
-else
-    e() { echo 'No DESKTOP_SESSION found, are you even running X?' >&2; }
-fi
 
 ## common spelling mistakes ###
 alias les='less'
@@ -81,9 +67,28 @@ rfc() { curl -s "http://tools.ietf.org/rfc/rfc${1}.txt" | $PAGER +/-.[0-9]*.-.*R
 xf() { DISPLAY=localhost:10.0 ${@}; }
 xl() { DISPLAY=:0.0 ${@}; }
 
+e() {
+    if [[ -n $DISPLAY ]];then
+        case $DESKTOP_SESSION in
+            'DWM')
+                $BROWSER
+                ;;
+            'gnome')
+                nautilus --browser
+                ;;
+            'xfce')
+                thunar
+                ;;
+            *)
+        esac
+    else
+        echo 'No DESKTOP_SESSION found, are you even running X?' >&2
+    fi
+}
+
 hgk() {
-	hgview 2> /dev/null &
-	disown
+    hgview 2> /dev/null &
+    disown
 }
 
 addkeys () {

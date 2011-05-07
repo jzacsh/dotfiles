@@ -1,0 +1,6 @@
+Stuff goes here that needs to be sourced by many different hosts without the
+usual distro/host relation. This directory adds "common" (3) tasks to the order
+of things that can be run:
+    1 - linux distribution
+    2 - host name
+    3 - [common tasks]

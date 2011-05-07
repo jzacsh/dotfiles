@@ -1,6 +1,6 @@
 "this is vim's rc
 " comments in double-quotes (`"')
-" awesome reference:		http://amix.dk/vim/vimrc.html
+" awesome reference:    http://amix.dk/vim/vimrc.html
 
 let $VIM = '$HOME/.vim'
 
@@ -17,9 +17,8 @@ map <LocalLeader>s  <Esc>:r!date --rfc-3339=seconds<CR>
 map <LocalLeader>d  <Esc>:r!date --rfc-3339=date<CR>
 map <LocalLeader>f  <Esc>:TlistToggle<CR>
 map <LocalLeader>t  <Esc>:CommandT<CR>
-
 " clear trailing whitespace
-" map <LocalLeader>c  <Esc>:%s/[[:space:]]$//g<CR>
+map <LocalLeader>c  <Esc>:%s/[[:space:]]*$//g<CR>
 
 " easy tab handling
 map <LocalLeader>w  <Esc>:tabnew<CR>
@@ -43,9 +42,9 @@ set wildmode=longest,list
 "color schemes
 "-----------------------
 " set background=dark
-  colorscheme ir_black
+" colorscheme ir_black
 " colorscheme merged
-" colorscheme dante
+  colorscheme dante
 
 " set which wraps
 set whichwrap+=<,>,h,l
@@ -99,7 +98,8 @@ endif
 
 " make files
 autocmd FileType make set noexpandtab
-" drupal files - i can't refer to augroup 'drupal'?
+"@TODO drupal files - i can't refer to augroup 'drupal'?
+"  ? autocmd augroup drupal set ts=2
 autocmd FileType js set ts=2
 autocmd FileType js set sw=2
 autocmd FileType php set ts=2
@@ -131,13 +131,18 @@ set number
 set laststatus=2
 set statusline=%t%(\ [%n%M]%)%(\ %H%R%W%)\ %(%c-%v,\ %l\ of\ %L,\ (%o)\ %P\ 0x%B\ (%b)%)
 
-"set mouse=a	"annoying
+"set mouse=a    "annoying
 
 "plugin specific stuff:
 "let MRU_File = "$VIM/plugin/mru.vim"
 let MRU_Exclude_Files = '$HOME/tmp/.*'
 let MRU_Auto_Close = 0
 let MRU_Max_Entries = 10
+
+" substitutions
+if &term !=# "linux"
+    set list listchars=tab:\»\ ,extends:›,precedes:‹
+endif
 
 "highlight redundant whitespace.
 highlight RedundantSpaces ctermbg=red guibg=red

@@ -7,4 +7,4 @@ export DISPLAY=localhost:10.0
 unset xfw
 
 #host-specific configs:
-ln -sf ~/.host/src/host.jznix/.tmux.conf
+ln -sf ~/.host/src/host.jznix/.tmux.conf ~/

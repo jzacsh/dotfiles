@@ -2,6 +2,7 @@
 [[ -n $DISPLAY ]] && export BROWSER='chromium' || export BROWSER='w3m'
 unalias goh
 alias nc='ncmpcpp'
-ln -sf ~/.host/src/host.blackbox/.Xdefaults
 alias m='mutt'
 unset wfls wfon wfnp
+
+ln -sf ~/.host/src/host.blackbox/.Xdefaults ~/

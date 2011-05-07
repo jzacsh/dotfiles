@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+#
+# Things that all the machines I use for drupal dev. will need.
+# @see ~/.host/pick
+
+if [[ $(declare -p PROJECT_BASE) ]];then
+    #@TODO: figure out a way to re-work all of this to base off dynamic
+    # bash functions, calling things like `git rev-parse --show-toplevel` and `hg root`
+
+    [[ $(declare -p CB) ]] || declare -a CB
+    for path in /sites/all/modules/{features,custom}; do
+        CB+=(${PROJECT_BASE}/$path)
+    done
+    export CB
+fi
+
+# include your drupal shell utilities in your path.
+export PATH=$PATH:~/usr/local/bin/drupalsh
+# include common functions.
+source ~/usr/local/bin/drupalsh/drupalsh
+
+#
+# one-liners that I can't bear to see as a seperate script.
+#
+
+#@TODO: can/should these be abstracted for public use, at all?
+f() { ge ${@} ${CB[@]} ; }
+fs() { fstuff ${@} --exclude-dir='.hg' --exclude='.git'; }
