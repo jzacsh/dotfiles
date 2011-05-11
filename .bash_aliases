@@ -68,6 +68,7 @@ xf() { DISPLAY=localhost:10.0 ${@}; }
 xl() { DISPLAY=:0.0 ${@}; }
 
 e() {
+    #@TODO: do this for `br` alias.
     if [[ -n $DISPLAY ]];then
         case $DESKTOP_SESSION in
             'DWM')
