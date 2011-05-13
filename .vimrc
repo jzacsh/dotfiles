@@ -10,6 +10,7 @@ let maplocalleader = ","
 
 "keymapping
 "-----------------------
+map <LocalLeader>b  <Esc>:VCSBlame<CR>
 map <LocalLeader>g  <Esc>:set paste<CR>
 map <LocalLeader>G  <Esc>:set nopaste<CR>
 map <LocalLeader>r  <Esc>:MRU<CR>
