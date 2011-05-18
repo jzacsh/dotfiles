@@ -10,7 +10,7 @@ export PYTHONSTARTUP=$HOME/.pythonrc.py
 
 alias cower='cower -c'
 unalias pdf; alias pdf="zathura"
-alias rw="echo 'rebooting interwebs (mysql and apache)' && sudo /etc/rc.d/httpd restart && sudo /etc/rc.d/mysqld restart"
+alias rw="for s in varnish httpd mysqld; do sudo /etc/rc.d/"$s" restart; done"
 
 wfls() {
     local fail=0

@@ -5,7 +5,7 @@ export DEBFULLNAME="Jonathan Zacsh"
 export DEBEMAIL="jzacsh@gmail.com"
 export TERM=xterm #ridiculousness for ubuntu's tmux
 
-alias rw="echo 'rebooting interwebs (mysql and apache)' && sudo service apache2 restart && sudo service mysql restart"
+alias rw='for serv in varnish apache2 mysql; do sudo service "$serv" restart; done'
 
 alias pman="pydoc3.1"
 alias pdb="pdb3.1"
