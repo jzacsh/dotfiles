@@ -11,6 +11,7 @@ export PYTHONSTARTUP=$HOME/.pythonrc.py
 alias cower='cower -c'
 unalias pdf; alias pdf="zathura"
 alias rw="for s in varnish httpd mysqld; do sudo /etc/rc.d/"$s" restart; done"
+alias volume="alsamixer"
 
 wfls() {
     local fail=0
