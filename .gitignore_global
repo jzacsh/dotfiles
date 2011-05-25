@@ -6,6 +6,7 @@
 .msmtprc
 .irssi/saved_colors
 *.swp
+*.swo
 a.out
 .DS_Store
 *.orig
