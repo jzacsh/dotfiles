@@ -12,7 +12,7 @@ export LESS=' XFRr '
 export RLWRAP=' AaN '
 export PAGER=less
 export CDPATH=.:~/down/
- PATH=.:$HOME/bin:$HOME/bin/local:$HOME/bin/share:$HOME/bin/dist:/srv/http/global/bin/dev/:$PATH
+ PATH=$HOME/bin:$HOME/bin/local:$HOME/bin/share:$HOME/bin/dist:/srv/http/global/bin/dev/:$PATH
 export PATH
 export RUBYOPT='w' #helpful ruby warnings
 export GREP_OPTIONS='--color=auto'
