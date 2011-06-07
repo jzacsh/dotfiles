@@ -18,6 +18,8 @@ alias da='django-admin.py'
 alias hh='curl --head'
 alias pbcopy='xsel --clipboard --input'
 alias pbpaste='xsel --clipboard --output'
+alias hc='hg commit -m'
+alias hgk='hgview 2> /dev/null & disown'
 
 # x env #######################
 alias br='$BROWSER'
@@ -26,8 +28,10 @@ alias kflash='echo -n "killing flash..." && sudo killall npviewer.bin'
 
 ## common spelling mistakes ###
 alias les='less'
-alias :w='echo "yeahh... this is not vim... sooOoo., READ ONLY" >&2'
-alias :q='echo "gaAH!... that is no way to exit a terminal, READ ONLY, bro." >&2'
+alias :w='echo "yeahh... this is not vim." >&2'
+alias :q=':w'
+alias :e=':w'
+alias :x=':w'
 if [[ $(type -p libreoffice) ]];then
     alias office='libreoffice'
 elif [[ $(type -p ooffice) ]];then
@@ -55,7 +59,6 @@ dropx() {
 #one liners
 lu() ( dict ${@} | $PAGER; )
 tarl() ( tar -tf ${*}  | $PAGER; )
-hc() ( hg commit -m ${@}; )
 hgdiff() ( hg cat $1 | vim - -c  ":vert diffsplit $1" -c "map q :qa!<CR>"; )
 speak() { echo ${@} | espeak 2>/dev/null; }
 ident() ( identify -verbose $1 | grep modify; )
@@ -64,8 +67,8 @@ wat() ( curl -s ${@} | $PAGER; )
 rfc() { curl -s "http://tools.ietf.org/rfc/rfc${1}.txt" | $PAGER +/-.[0-9]*.-.*RFC\ \#${1}; }
 
 #tmux/ssh/console considerations
-xf() { DISPLAY=localhost:10.0 ${@}; }
-xl() { DISPLAY=:0.0 ${@}; }
+alias xf='DISPLAY=localhost:10.0 '
+alias xl='DISPLAY=:0.0 '
 
 e() {
     #@TODO: do this for `br` alias.
@@ -85,11 +88,6 @@ e() {
     else
         echo 'No DESKTOP_SESSION found, are you even running X?' >&2
     fi
-}
-
-hgk() {
-    hgview 2> /dev/null &
-    disown
 }
 
 addkeys () {
