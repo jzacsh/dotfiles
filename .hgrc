@@ -55,3 +55,7 @@ int = http://codelibrary.zagat.com/hg/integration/web5-integration/
 [alias]
 push = push --new-branch
 changelog = outgoing --no-merges --template "Revision {node|short} by {author} on {date|shortdate}:\n{desc}\n\n"
+
+[hooks]
+#update = ''
+pre-push = "hg out -p | grep -in -e 'dd(' -e 'dsm(' -e 'console.*(' && false"
