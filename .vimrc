@@ -21,6 +21,7 @@ map <LocalLeader>f  <Esc>:TlistToggle<CR>
 map <LocalLeader>t  <Esc>:CommandT<CR>
 " clear trailing whitespace
 map <LocalLeader>c  <Esc>:%s/[[:space:]]*$//g<CR>
+map <LocalLeader>n  <Esc>:!node %<CR>
 
 " easy tab handling
 map <LocalLeader>w  <Esc>:tabnew<CR>
