@@ -4,6 +4,7 @@ export BROWSER=chromium-browser
 export DEBFULLNAME="Jonathan Zacsh"
 export DEBEMAIL="jzacsh@gmail.com"
 export TERM=xterm #ridiculousness for ubuntu's tmux
+export NODE_PATH=/usr/local/lib/node_modules:/usr/local/lib/node
 
 alias rw='for serv in varnish apache2 mysql; do sudo service "$serv" restart; done'
 
