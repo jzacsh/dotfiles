@@ -58,4 +58,4 @@ changelog = outgoing --no-merges --template "Revision {node|short} by {author} o
 
 [hooks]
 #update = ''
-pre-push = "hg out -p | grep -in -e 'dd(' -e 'dsm(' -e 'console.*(' && false"
+#pre-push = "hg out -p | grep -in -e 'dd(' -e 'dsm(' -e 'console.*(' && false"
