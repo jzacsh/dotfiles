@@ -77,9 +77,9 @@ set showtabline=2
 " `expandtab'
 set et
 
-" 4 spaces in tabs:
-set ts=4
-set sw=4
+" default spaces in tabs/indents:
+set ts=2
+set sw=2
 
 " xdebug port
 let g:debuggerPort = 9001
