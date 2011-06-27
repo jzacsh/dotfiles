@@ -134,6 +134,7 @@ set ruler
 set number
 set laststatus=2
 set statusline=%t%(\ [%n%M]%)%(\ %H%R%W%)\ %(%c-%v,\ %l\ of\ %L,\ (%o)\ %P\ 0x%B\ (%b)%)
+set hidden " not sure what this does.
 
 "set mouse=a    "annoying
 
