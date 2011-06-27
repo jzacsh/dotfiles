@@ -2,24 +2,24 @@ servers = (
   { address = "irc.ubuntu.com"; chatnet = "Ubuntu"; port = "8001"; },
   { address = "eu.irc6.net"; chatnet = "IRCnet"; port = "6667"; },
   { address = "irc.oftc.net"; chatnet = "OFTC"; port = "6667"; },
-  { 
+  {
     address = "irc.freenode.net";
     chatnet = "freenode";
     port = "6667";
   },
-  { 
+  {
     address = "irc.open-ircnet.net";
     chatnet = "IRCnet";
     port = "6667";
   },
   { address = "irc.efnet.org"; chatnet = "EFNet"; port = "6667"; },
-  { 
+  {
     address = "irc.undernet.org";
     chatnet = "Undernet";
     port = "6667";
   },
   { address = "irc.dal.net"; chatnet = "DALnet"; port = "6667"; },
-  { 
+  {
     address = "irc.quakenet.org";
     chatnet = "QuakeNet";
     port = "6667";
@@ -52,7 +52,7 @@ chatnets = {
     max_msgs = "5";
     max_whois = "4";
   };
-  EFNet = { 
+  EFNet = {
     type = "IRC";
     max_kicks = "4";
     max_msgs = "3";
@@ -76,7 +76,7 @@ chatnets = {
     max_msgs = "3";
     max_whois = "30";
   };
-  OFTC = { 
+  OFTC = {
     type = "IRC";
     max_kicks = "1";
     max_msgs = "3";
@@ -94,7 +94,7 @@ chatnets = {
     max_msgs = "3";
     max_whois = "30";
   };
-  Rizon = { 
+  Rizon = {
     type = "IRC";
     max_kicks = "1";
     max_msgs = "3";
@@ -112,20 +112,17 @@ chatnets = {
 
 channels = (
   { name = "#httpd"; chatnet = "freenode"; autojoin = "no"; },
-  { name = "#open_atrium"; chatnet = "freenode"; autojoin = "no"; },
   { name = "##networking"; chatnet = "freenode"; autojoin = "no"; },
   { name = "#drupal-nyc"; chatnet = "freenode"; autojoin = "no"; },
-  { name = "#diaspora-dev"; chatnet = "freenode"; autojoin = "yes"; },
   { name = "#drupal"; chatnet = "freenode"; autojoin = "yes"; },
   { name = "#drupal-nj"; chatnet = "freenode"; autojoin = "yes"; },
-  { name = "#drupal-geo"; chatnet = "freenode"; autojoin = "yes"; },
   { name = "#archlinux"; chatnet = "freenode"; autojoin = "yes"; },
-  { name = "#python"; chatnet = "freenode"; autojoin = "yes"; },
+  { name = "#python"; chatnet = "freenode"; autojoin = "no"; },
   { name = "#bash"; chatnet = "freenode"; autojoin = "yes"; },
   { name = "#drupal-support"; chatnet = "freenode"; autojoin = "no"; },
   { name = "#drupal-themes"; chatnet = "freenode"; autojoin = "no"; },
   { name = "#ubuntu"; chatnet = "freenode"; autojoin = "no"; },
-  { name = "#inkscape"; chatnet = "freenode"; autojoin = "no"; },
+  { name = "#node.js"; chatnet = "freenode"; autojoin = "yes"; },
   { name = "#jquery"; chatnet = "freenode"; autojoin = "no"; },
   { name = "#debian"; chatnet = "freenode"; autojoin = "no"; },
   { name = "#xdebug"; chatnet = "freenode"; autojoin = "yes"; },
