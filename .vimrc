@@ -109,6 +109,9 @@ autocmd FileType js set sw=2
 autocmd FileType php set ts=2
 autocmd FileType php set sw=2
 
+"lesscss.org
+au BufNewFile,BufRead *.less set filetype=less
+
 " syntax hilighting
 syntax on
 
