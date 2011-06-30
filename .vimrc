@@ -155,3 +155,6 @@ match RedundantSpaces /\s\+$\| \+\ze\t\|\t/
 
 "xdebug in vim
 let g:debuggerPort = 9000
+
+"for simplenote creds
+source ~/.config/simplenoterc "https://github.com/mrtazz/simplenote.vim
