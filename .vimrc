@@ -111,6 +111,8 @@ autocmd FileType php set sw=2
 
 "lesscss.org
 au BufNewFile,BufRead *.less set filetype=less
+"haml-lang.org
+au! BufRead,BufNewFile *.haml set filetype haml
 
 " syntax hilighting
 syntax on
