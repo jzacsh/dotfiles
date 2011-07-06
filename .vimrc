@@ -19,7 +19,7 @@ map <LocalLeader>s  <Esc>:r!date --rfc-3339=seconds<CR>
 map <LocalLeader>d  <Esc>:r!date --rfc-3339=date<CR>
 map <LocalLeader>f  <Esc>:TlistToggle<CR>
 map <LocalLeader>t  <Esc>:CommandT<CR>
-map <LocalLeader>T  <Esc>a //@TODO: remove me!!    <Esc><CR>
+map <LocalLeader>T  $<Esc>a //@TODO: remove me!!    <Esc>0
 " clear trailing whitespace
 map <LocalLeader>c  <Esc>:%s/[[:space:]]*$//g<CR>
 map <LocalLeader>n  <Esc>:!node %<CR>
