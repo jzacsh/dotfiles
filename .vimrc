@@ -38,6 +38,9 @@ map <LocalLeader>9  9gt
 " no need to 'q:' anymore
 nnoremap ; :
 
+"run jslint
+map <LocalLeader>j <Esc>:w<CR>:make<CR>:cw<CR>
+
 set cmdheight=2
 
 set wildmode=longest,list
@@ -163,3 +166,4 @@ let g:debuggerPort = 9000
 
 "for simplenote creds
 source ~/.config/simplenoterc "https://github.com/mrtazz/simplenote.vim
+
