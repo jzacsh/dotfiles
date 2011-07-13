@@ -6,6 +6,9 @@ export PROJECT_STABLE="$HOME/code/web5-jzacsh"
 #export PROJECT_EDGE="$HOME/code/web5-jzacsh-qa2"
 export PROJECT_BASE="$PROJECT_STABLE" #this should be my default work space
 
+# export JAVA_HOME='/usr/lib/jvm/java-6-sun-1.6.0.24/'
+export JAVA_HOME='/usr/lib/jvm/java-6-openjdk/'
+
 if [[ $(declare -p PROJECT_BASE) ]];then
     CB=($PROJECT_BASE/sites/all/themes/zagat/)
     export CB
