@@ -8,3 +8,5 @@ unset xfw
 
 #host-specific configs:
 ln -sf ~/.host/src/host.jznix/.tmux.conf ~/
+
+# vim: et:ts=2:sw=2

@@ -4,3 +4,5 @@
 # remove the file this bug [1]  so kindly pointed out:
 # [1] http://bugs.archlinux.org/task/23282
 find /var/lib/dhcpcd/ -name 'dhcpcd*.lease' -delete -print
+
+# vim: et:ts=2:sw=2

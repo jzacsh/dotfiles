@@ -6,3 +6,5 @@ alias m='mutt'
 unset wfls wfon wfnp
 
 ln -sf ~/.host/src/host.blackbox/.Xdefaults ~/
+
+# vim: et:ts=2:sw=2

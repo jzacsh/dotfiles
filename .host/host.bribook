@@ -1,2 +1,4 @@
 #!/usr/bin/env bash
 pkill dropbox
+
+# vim: et:ts=2:sw=2

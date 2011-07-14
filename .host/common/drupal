@@ -26,3 +26,5 @@ source ~/usr/local/bin/drupalsh/drupalsh
 #@TODO: can/should these be abstracted for public use, at all?
 f() { ge ${@} ${CB[@]} ; }
 fs() { fstuff ${@} --exclude-dir='.hg' --exclude='.git'; }
+
+# vim: et:ts=4:sw=4

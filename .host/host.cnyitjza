@@ -88,3 +88,5 @@ drupalink() {
 #host-specific configs:
 ln -sf ~/.host/src/host.cnyitjza/.tmux.conf ~/
 source ~/.host/common/drupal
+
+# vim: et:ts=4:sw=4

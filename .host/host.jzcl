@@ -14,3 +14,5 @@ export CB="${PROJECT_BASE}/sites/all/themes/zagat ${PROJECT_BASE}/sites/all/modu
 #specific configs:
 ln -sf ~/.host/src/host.jzcl/.xinitrc ~/
 ln -sf ~/.host/src/host.jzcl/.tmux.conf ~/
+
+# vim: et:ts=2:sw=2
