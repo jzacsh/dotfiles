@@ -194,3 +194,10 @@ mp() {
 #  echo "smb://$(echo ${*} | sed -e 's/\\/\//g' | sed -e 's/\ /\\\ /g')"
   echo smb://$(echo "${*}" | sed -e 's/\\/\//g' | sed -e 's/\ /\\\ /g')
 }
+
+let_my_swaps_go() {
+  #tell linux to clear out swap; useful for long running desktop
+  sudo swapoff -a
+  sudo swapon -a
+}
+

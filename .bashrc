@@ -87,7 +87,7 @@ eval $(keychain --nogui --eval --timeout ${KEY_TIMEOUT:-240} ~/.ssh/add/*.add)
 # lrwxrwxrwx   jzlut.add.pub -> ../jzlut.pub
 
 #must be after PATH:, apparently this will break if non-interactive shell `return`'s above.
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" || true
 
 #laughs:
 #@TODO: make this fail on redirects (eg.: open wifi login pages)
