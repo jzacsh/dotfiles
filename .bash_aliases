@@ -193,3 +193,9 @@ mp() {
 #  echo "smb://$(echo ${*} | sed -e 's/\\/\//g' | sed -e 's/\ /\\\ /g')"
   echo smb://$(echo "${*}" | sed -e 's/\\/\//g' | sed -e 's/\ /\\\ /g')
 }
+
+let_my_swaps_go() {
+  sudo swapoff -a
+  sudo swapon -a
+}
+
