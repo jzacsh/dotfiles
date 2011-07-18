@@ -21,6 +21,7 @@ alias pbpaste='xsel --clipboard --output'
 alias hc='hg commit -m'
 alias hgk='hgview 2> /dev/null & disown'
 alias node='NODE_NO_READLINE=1 rlwrap node'
+alias nc='ncmpcpp'
 
 # x env #######################
 alias br='$BROWSER'
