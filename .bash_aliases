@@ -195,6 +195,7 @@ mp() {
 }
 
 let_my_swaps_go() {
+  #tell linux to clear out swap; useful for long running desktop
   sudo swapoff -a
   sudo swapon -a
 }
