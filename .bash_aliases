@@ -79,13 +79,25 @@ shot() {
     return 1
   fi
 
-  local ftype file
+  #figure out if we can use dropbox
+  local dboxp
+  if type -p dropbox >& /dev/null;then
+    dboxp=$(
+      sqlite3 ~/.dropbox/config.db \
+        'select value from config where key="dropbox_path";'
+    )
+    (( $? )) && dbox='' || dboxp="${dboxp}/Public/" #on failure
+  else
+    dboxp=''
+  fi
+
+  local ftype fname dir dboxed
   ftype=${SHOT_ENC:-png}
-  file="screenshot_$(date +%s).${ftype}"
+  fname="screenshot_$(date +%s).${ftype}"
   if (( $# ));then
     if [[ -d $1 ]];then
       # drop the default file-name in their chosen dir
-      file="${1}/${file}"
+      fname="${1}/${fname}"
     else
       # we might need to tack on an extension
       local len="${#1}"
@@ -94,15 +106,27 @@ shot() {
         local ext
         ext=$((len - 3))
         ftype=${1:$ext}
-        file="${1}"
+        fname="${1}"
       else
         #no extension was given
-        file="${1}.${ftype}"
+        fname="${1}.${ftype}"
       fi
+    fi
+  else
+    if [[ -n $dboxp && -d $dboxp ]];then
+      fname="${dboxp}/${fname}"
+    else
+      dboxp=''
     fi
   fi
 
-  import -encoding "$ftype" "$file"
+  #take the shot!
+  import -verbose -encoding "$ftype" "$fname"
+
+  #get the dropbox puburl if its DIR was used.
+  if [[ -n $dboxp ]];then
+    dropbox puburl "$fname"
+  fi
 }
 
 e() {
