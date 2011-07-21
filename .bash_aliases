@@ -124,7 +124,7 @@ shot() {
   import -verbose -encoding "$ftype" "$fname"
 
   #get the dropbox puburl if its DIR was used.
-  if [[ -n $dboxp ]];then
+  if [[ $? -eq 0 && -n $dboxp ]];then
     dropbox puburl "$fname"
   fi
 }
