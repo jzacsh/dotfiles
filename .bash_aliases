@@ -73,62 +73,6 @@ rfc() { curl -s "http://tools.ietf.org/rfc/rfc${1}.txt" | $PAGER +/-.[0-9]*.-.*R
 alias xf='DISPLAY=localhost:10.0 '
 alias xl='DISPLAY=:0.0 '
 
-shot() {
-  if ! type -p import >& /dev/null; then
-    echo "Error: \`import' not found on your system." >&2
-    return 1
-  fi
-
-  #figure out if we can use dropbox
-  local dboxp
-  if type -p dropbox >& /dev/null;then
-    dboxp=$(
-      sqlite3 ~/.dropbox/config.db \
-        'select value from config where key="dropbox_path";'
-    )
-    (( $? )) && dbox='' || dboxp="${dboxp}/Public/" #on failure
-  else
-    dboxp=''
-  fi
-
-  local ftype fname dir dboxed
-  ftype=${SHOT_ENC:-png}
-  fname="screenshot_$(date +%s).${ftype}"
-  if (( $# ));then
-    if [[ -d $1 ]];then
-      # drop the default file-name in their chosen dir
-      fname="${1}/${fname}"
-    else
-      # we might need to tack on an extension
-      local len="${#1}"
-      local dot=$((len - 4))
-      if [[ "${1:$dot:1}" = . ]];then
-        local ext
-        ext=$((len - 3))
-        ftype=${1:$ext}
-        fname="${1}"
-      else
-        #no extension was given
-        fname="${1}.${ftype}"
-      fi
-    fi
-  else
-    if [[ -n $dboxp && -d $dboxp ]];then
-      fname="${dboxp}/${fname}"
-    else
-      dboxp=''
-    fi
-  fi
-
-  #take the shot!
-  import -verbose -encoding "$ftype" "$fname"
-
-  #get the dropbox puburl if its DIR was used.
-  if [[ $? -eq 0 && -n $dboxp ]];then
-    dropbox puburl "$fname"
-  fi
-}
-
 e() {
     #@TODO: do this for `br` alias.
     if [[ -n $DISPLAY ]];then
