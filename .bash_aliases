@@ -201,3 +201,4 @@ let_my_swaps_go() {
   sudo swapon -a
 }
 
+# vim: et:ts=2:sw=2
