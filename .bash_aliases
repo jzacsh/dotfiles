@@ -73,6 +73,38 @@ rfc() { curl -s "http://tools.ietf.org/rfc/rfc${1}.txt" | $PAGER +/-.[0-9]*.-.*R
 alias xf='DISPLAY=localhost:10.0 '
 alias xl='DISPLAY=:0.0 '
 
+shot() {
+  if ! type -p import >& /dev/null; then
+    echo "Error: \`import' not found on your system." >&2
+    return 1
+  fi
+
+  local ftype file
+  ftype=${SHOT_ENC:-png}
+  file="screenshot_$(date +%s).${ftype}"
+  if (( $# ));then
+    if [[ -d $1 ]];then
+      # drop the default file-name in their chosen dir
+      file="${1}/${file}"
+    else
+      # we might need to tack on an extension
+      local len="${#1}"
+      local dot=$((len - 4))
+      if [[ "${1:$dot:1}" = . ]];then
+        local ext
+        ext=$((len - 3))
+        ftype=${1:$ext}
+        file="${1}"
+      else
+        #no extension was given
+        file="${1}.${ftype}"
+      fi
+    fi
+  fi
+
+  import -encoding "$ftype" "$file"
+}
+
 e() {
     #@TODO: do this for `br` alias.
     if [[ -n $DISPLAY ]];then
