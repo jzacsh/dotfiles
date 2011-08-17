@@ -65,6 +65,7 @@ tarl() ( tar -tf ${*}  | $PAGER; )
 hgdiff() ( hg cat $1 | vim - -c  ":vert diffsplit $1" -c "map q :qa!<CR>"; )
 speak() { echo ${@} | espeak 2>/dev/null; }
 ident() ( identify -verbose $1 | grep modify; )
+geo() ( identify -verbose $1 | grep geometry; )
 g() ( IFS=+; $BROWSER "http://www.google.com/search?q=${*}"; )
 wat() ( curl -s ${@} | $PAGER; )
 rfc() { curl -s "http://tools.ietf.org/rfc/rfc${1}.txt" | $PAGER +/-.[0-9]*.-.*RFC\ \#${1}; }
