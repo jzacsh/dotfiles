@@ -69,6 +69,7 @@ geo() ( identify -verbose $1 | grep geometry; )
 g() ( IFS=+; $BROWSER "http://www.google.com/search?q=${*}"; )
 wat() ( curl -s ${@} | $PAGER; )
 rfc() { curl -s "http://tools.ietf.org/rfc/rfc${1}.txt" | $PAGER +/-.[0-9]*.-.*RFC\ \#${1}; }
+hgchanged() { hg -q in ${1} --template='{files}\n'; }
 
 #tmux/ssh/console considerations
 alias xf='DISPLAY=localhost:10.0 '
