@@ -12,7 +12,6 @@ export PROJECT_BASE="$PROJECT_STABLE" #this should be my default work space
 export CB="${PROJECT_BASE}/sites/all/themes/zagat ${PROJECT_BASE}/sites/all/modules/features ${PROJECT_BASE}/sites/all/modules/custom"
 
 #specific configs:
-ln -svf ~/.host/src/host.jzcl/.xinitrc ~/
-ln -svf ~/.host/src/host.jzcl/.tmux.conf ~/
+ln -sf ~/.host/src/host.jzcl/.xinitrc ~/
 
 # vim: et:ts=2:sw=2
