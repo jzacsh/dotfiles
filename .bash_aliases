@@ -75,6 +75,17 @@ hgchanged() { hg -q in ${1} --template='{files}\n'; }
 alias xf='DISPLAY=localhost:10.0 '
 alias xl='DISPLAY=:0.0 '
 
+#alevine's trick
+avi() {
+ if (( $# ));then
+   local num
+   num=$(find ./ -type f -name "$1" | wc -l)
+   (( num = 1 )) && command $EDITOR $(find ./ -type f -name "$1") || find ./ -type f -name "$1"
+ else
+   command $EDITOR
+ fi
+}
+
 e() {
     #@TODO: do this for `br` alias.
     if [[ -n $DISPLAY ]];then
