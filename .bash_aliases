@@ -90,7 +90,7 @@ lu() {
   local url none ln=0
   while read line;do
     if (( ln ));then
-      "$line"
+      echo "$line"
     else
       url="http://www.google.com/search?q=define:${*}"
       none="${line/No definitions found for*/}"
