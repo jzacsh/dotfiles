@@ -60,7 +60,6 @@ dropx() {
 ###############################
 # functions ###################
 #one liners
-lu() ( dict ${@} | $PAGER; )
 tarl() ( tar -tf ${*}  | $PAGER; )
 hgdiff() ( hg cat $1 | vim - -c  ":vert diffsplit $1" -c "map q :qa!<CR>"; )
 speak() { echo ${@} | espeak 2>/dev/null; }
@@ -84,6 +83,35 @@ avi() {
  else
    command $EDITOR
  fi
+}
+
+#dictionary look ups
+lu() {
+  local url none ln=0
+  while read line;do
+    if (( ln ));then
+      "$line"
+    else
+      url="http://www.google.com/search?q=define:${*}"
+      none="${line/No definitions found for*/}"
+      if [[ -z $none ]];then
+        #look for fallbacks to dict(1)
+        echo 'dict(1) returned no results, using google...' >&2
+        IFS=+
+        if [[ -n $BROWSER ]];then
+          #fallback to Google's "define:" query trick
+          command $BROWSER "$url"
+        else
+          printf "Couldn't find or launch your browser. Please visit '%s'\n" "$url" >&2
+          return 1
+        fi
+        break
+      else
+        echo "$line" #everything's fine, using `dict`
+      fi
+    fi
+    ln=$(( ln + 1 ))
+  done < <(dict ${@} 2>&1) | $PAGER
 }
 
 e() {
