@@ -76,12 +76,12 @@ alias xl='DISPLAY=:0.0 '
 
 #alevine's trick
 avi() {
- if (( $# ));then
+ if [[ ! -r "$1" ]] || (( $# ));then
    local num
    num=$(find ./ -type f -name "$1" | wc -l)
-   (( num = 1 )) && command $EDITOR $(find ./ -type f -name "$1") || find ./ -type f -name "$1"
- else
-   command $EDITOR
+   (( num = 1 )) && command $EDITOR $(find ./ -type f -name "$1") || find ./ -type f -name "${*}"
+ else #just open the editor
+   command $EDITOR "${*}"
  fi
 }
 
