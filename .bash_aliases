@@ -92,12 +92,11 @@ lu() {
     if (( ln ));then
       echo "$line"
     else
-      url="http://www.google.com/search?q=define:${*}"
+      IFS=+; url="http://www.google.com/search?q=define:${*}"
       none="${line/No definitions found for*/}"
       if [[ -z $none ]];then
         #look for fallbacks to dict(1)
         echo 'dict(1) returned no results, using google...' >&2
-        IFS=+
         if [[ -n $BROWSER ]];then
           #fallback to Google's "define:" query trick
           command $BROWSER "$url"
