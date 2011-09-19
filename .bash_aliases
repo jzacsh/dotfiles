@@ -92,12 +92,13 @@ avi() {
 
 #dictionary look ups
 lu() {
-  local url none ln=0
+  local url query none ln=0
   while read line;do
     if (( ln ));then
       echo "$line"
     else
-      IFS=+; url="http://www.google.com/search?q=define:${*}"
+      query=$(IFS=+; perl -MURI::Escape -e 'print uri_escape($ARGV[0]);' "${*}")
+      url="http://www.google.com/search?q=define:${query}"
       none="${line/No definitions found for*/}"
       if [[ -z $none ]];then
         #look for fallbacks to dict(1)
