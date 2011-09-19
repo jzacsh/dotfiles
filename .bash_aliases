@@ -81,12 +81,12 @@ alias xl='DISPLAY=:0.0 '
 
 #alevine's trick
 avi() {
- if (( $# ));then
+ if [[ ! -r "$1" ]] || (( $# ));then
    local num
    num=$(find ./ -type f -name "$1" | wc -l)
-   (( num = 1 )) && command $EDITOR $(find ./ -type f -name "$1") || find ./ -type f -name "$1"
- else
-   command $EDITOR
+   (( num = 1 )) && command $EDITOR $(find ./ -type f -name "$1") || find ./ -type f -name "${*}"
+ else #just open the editor
+   command $EDITOR "${*}"
  fi
 }
 
@@ -97,12 +97,11 @@ lu() {
     if (( ln ));then
       echo "$line"
     else
-      url="http://www.google.com/search?q=define:${*}"
+      IFS=+; url="http://www.google.com/search?q=define:${*}"
       none="${line/No definitions found for*/}"
       if [[ -z $none ]];then
         #look for fallbacks to dict(1)
         echo 'dict(1) returned no results, using google...' >&2
-        IFS=+
         if [[ -n $BROWSER ]];then
           #fallback to Google's "define:" query trick
           command $BROWSER "$url"
