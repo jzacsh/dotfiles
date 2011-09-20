@@ -60,6 +60,7 @@ dropx() {
 ###############################
 # functions ###################
 #one liners
+g() ( IFS=+; $BROWSER "http://www.google.com/search?q=${*}"; )
 tarl() ( tar -tf ${*}  | $PAGER; )
 hgdiff() ( hg cat $1 | vim - -c  ":vert diffsplit $1" -c "map q :qa!<CR>"; )
 speak() { echo ${@} | espeak 2>/dev/null; }
@@ -68,12 +69,6 @@ geo() ( identify -verbose $1 | grep geometry; )
 wat() ( curl -s ${@} | $PAGER; )
 rfc() { curl -s "http://tools.ietf.org/rfc/rfc${1}.txt" | $PAGER +/-.[0-9]*.-.*RFC\ \#${1}; }
 hgchanged() { hg -q in ${1} --template='{files}\n'; }
-
-g() {
-  local query
-  query=$(IFS=+; perl -MURI::Escape -e 'print uri_escape($ARGV[0]);' "${*}")
-  $BROWSER "http://www.google.com/search?q=${query}";
-}
 
 #tmux/ssh/console considerations
 alias xf='DISPLAY=localhost:10.0 '
@@ -97,8 +92,7 @@ lu() {
     if (( ln ));then
       echo "$line"
     else
-      query=$(IFS=+; perl -MURI::Escape -e 'print uri_escape($ARGV[0]);' "${*}")
-      url="http://www.google.com/search?q=define:${query}"
+      IFS=+; url="http://www.google.com/search?q=define:${*}"
       none="${line/No definitions found for*/}"
       if [[ -z $none ]];then
         #look for fallbacks to dict(1)
