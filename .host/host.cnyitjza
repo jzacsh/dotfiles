@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-[[ -n $DISPLAY ]] && export BROWSER='chromium-browser' || export BROWSER='w3m'
+[[ -n $DISPLAY ]] && export BROWSER='google-chrome' || export BROWSER='w3m'
 export PATH=.:$HOME/code/server-bin/:$PATH
 export BEANS_VERSION='70'
 
