@@ -219,14 +219,20 @@ urlocal() {
 }
 
 origrm() {
-  [[ -z $PROJECT_BASE ]] && return 1
+  local base
+
+  #get current path
+  base=$(drush drupal-directory)
+  [[ -z $base ]] && return 1
+
+  #set options
   if [[ $1 = "-n" ]]; then
     local opt=''
   else
     local opt='-delete -print'
   fi
 
-  find $PROJECT_BASE -name '*.orig' ${opt}
+  find "$base" -name '*.orig' ${opt}
 }
 
 mp() {
