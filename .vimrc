@@ -2,6 +2,8 @@
 " comments in double-quotes (`"')
 " awesome reference:    http://amix.dk/vim/vimrc.html
 
+" more awesome reference:    http://learnvimscriptthehardway.stevelosh.com
+
 let $VIM = '$HOME/.vim'
 
 "variables
@@ -168,7 +170,9 @@ match RedundantSpaces /\s\+$\| \+\ze\t\|\t/
 "xdebug in vim
 let g:debuggerPort = 9000
 
-"for simplenote creds
-source ~/.config/simplenoterc "https://github.com/mrtazz/simplenote.vim
+"for simplenote creds (https://github.com/mrtazz/simplenote.vim)
+if filereadable($HOME."/.config/simplenoterc")
+  source ~/.config/simplenoterc
+endif
 
 set modeline
