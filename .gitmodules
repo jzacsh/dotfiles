@@ -40,3 +40,6 @@
 [submodule ".vim/bundle/Gundo"]
 	path = .vim/bundle/Gundo
 	url = git://github.com/vim-scripts/Gundo.git
+[submodule "vim/bundle/IndentConsistencyCop"]
+	path = vim/bundle/IndentConsistencyCop
+	url = git://github.com/vim-scripts/IndentConsistencyCop.git
