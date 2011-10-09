@@ -50,6 +50,8 @@ set cmdheight=2
 
 set wildmode=longest,list
 
+"pathogen magic:
+call pathogen#infect()
 
 "color schemes
 "-----------------------

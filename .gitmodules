@@ -1,0 +1,3 @@
+[submodule ".vim/bundle/vimroom"]
+	path = .vim/bundle/vimroom
+	url = git://github.com/mikewest/vimroom.git
