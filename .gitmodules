@@ -31,3 +31,6 @@
 [submodule ".vim/bundle/matchit.zip"]
 	path = .vim/bundle/matchit.zip
 	url = git://github.com/vim-scripts/matchit.zip.git
+[submodule ".vim/bundle/phpfolding"]
+	path = .vim/bundle/phpfolding
+	url = git://github.com/vim-scripts/phpfolding.vim.git
