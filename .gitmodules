@@ -49,3 +49,6 @@
 [submodule "vim/bundle/debugger.py"]
 	path = vim/bundle/debugger.py
 	url = git://github.com/vim-scripts/debugger.py.git
+[submodule "vim/bundle/codepad"]
+	path = vim/bundle/codepad
+	url = git://github.com/vim-scripts/codepad.git
