@@ -7,3 +7,6 @@
 [submodule ".vim/bundle/vcscommand"]
 	path = .vim/bundle/vcscommand
 	url = git://repo.or.cz/vcscommand.git
+[submodule ".vim/bundle/simplenote"]
+	path = .vim/bundle/simplenote
+	url = git://github.com/vim-scripts/simplenote.vim
