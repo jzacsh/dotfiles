@@ -24,6 +24,9 @@ map <LocalLeader>T  $<Esc>a //@TODO: remove me!!    <Esc>0
 map <LocalLeader>c  <Esc>:%s/[[:space:]]*$//g<CR>
 map <LocalLeader>n  <Esc>:!node %<CR>
 
+"binding for VimRoom plugin
+map <LocalLeader>v <Esc>:VimroomToggle<CR>
+
 " easy tab handling
 map <LocalLeader>w  <Esc>:tabnew<CR>
 map <LocalLeader>1  1gt
