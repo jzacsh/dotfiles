@@ -37,3 +37,6 @@
 [submodule ".vim/bundle/L9"]
 	path = .vim/bundle/L9
 	url = git://github.com/vim-scripts/L9.git
+[submodule ".vim/bundle/Gundo"]
+	path = .vim/bundle/Gundo
+	url = git://github.com/vim-scripts/Gundo.git
