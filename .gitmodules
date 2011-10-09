@@ -10,3 +10,6 @@
 [submodule ".vim/bundle/simplenote"]
 	path = .vim/bundle/simplenote
 	url = git://github.com/vim-scripts/simplenote.vim
+[submodule ".vim/bundle/rvm"]
+	path = .vim/bundle/rvm
+	url = git://github.com/vim-scripts/rvm.vim
