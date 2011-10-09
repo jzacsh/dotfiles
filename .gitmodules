@@ -58,21 +58,21 @@
 [submodule "vim/bundle/cscope_macros"]
 	path = vim/bundle/cscope_macros
 	url = git://github.com/vim-scripts/cscope_macros.vim.git
-[submodule ".vim/bundle/dante"]
-	path = .vim/bundle/dante
-	url = git://github.com/vim-scripts/dante.vim.git
-[submodule ".vim/bundle/Mustang2"]
-	path = .vim/bundle/Mustang2
-	url = git://github.com/vim-scripts/Mustang2.git
-[submodule "vim/bundle/hornet"]
-	path = vim/bundle/hornet
-	url = git://github.com/vim-scripts/hornet.vim.git
-[submodule "vim/bundle/tir_black"]
-	path = vim/bundle/tir_black
-	url = git://github.com/vim-scripts/tir_black.git
 [submodule "vim/bundle/phpcomplete"]
 	path = vim/bundle/phpcomplete
 	url = git://github.com/vim-scripts/phpcomplete.vim.git
 [submodule "vim/bundle/Sass"]
 	path = vim/bundle/Sass
 	url = git://github.com/vim-scripts/Sass.git
+[submodule "vim/bundle/dante"]
+	path = vim/bundle/dante
+	url = git://github.com/vim-scripts/dante.vim.git
+[submodule "vim/bundle/Mustang2"]
+	path = vim/bundle/Mustang2
+	url = git://github.com/vim-scripts/Mustang2.git
+[submodule ".vim/bundle/hornet"]
+	path = .vim/bundle/hornet
+	url = git://github.com/vim-scripts/hornet.vim.git
+[submodule ".vim/bundle/tir_black"]
+	path = .vim/bundle/tir_black
+	url = git://github.com/vim-scripts/tir_black.git
