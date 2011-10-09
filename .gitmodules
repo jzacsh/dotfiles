@@ -34,3 +34,6 @@
 [submodule ".vim/bundle/phpfolding"]
 	path = .vim/bundle/phpfolding
 	url = git://github.com/vim-scripts/phpfolding.vim.git
+[submodule ".vim/bundle/L9"]
+	path = .vim/bundle/L9
+	url = git://github.com/vim-scripts/L9.git
