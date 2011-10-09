@@ -1,9 +1,6 @@
 [submodule ".vim/bundle/vimroom"]
 	path = .vim/bundle/vimroom
 	url = git://github.com/mikewest/vimroom.git
-[submodule ".vim/bundle/vimspell"]
-	path = .vim/bundle/vimspell
-	url = git://github.com/vim-scripts/vimspell.git
 [submodule ".vim/bundle/vcscommand"]
 	path = .vim/bundle/vcscommand
 	url = git://repo.or.cz/vcscommand.git
