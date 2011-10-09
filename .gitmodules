@@ -61,3 +61,15 @@
 [submodule "vim/bundle/cscope_macros"]
 	path = vim/bundle/cscope_macros
 	url = git://github.com/vim-scripts/cscope_macros.vim.git
+[submodule ".vim/colors/dante"]
+	path = .vim/colors/dante
+	url = git://github.com/vim-scripts/dante.vim.git
+[submodule ".vim/colors/Mustang2"]
+	path = .vim/colors/Mustang2
+	url = git://github.com/vim-scripts/Mustang2.git
+[submodule "vim/colors/hornet"]
+	path = vim/colors/hornet
+	url = git://github.com/vim-scripts/hornet.vim.git
+[submodule "vim/colors/tir_black"]
+	path = vim/colors/tir_black
+	url = git://github.com/vim-scripts/tir_black.git
