@@ -46,3 +46,6 @@
 [submodule "vim/bundle/capslock"]
 	path = vim/bundle/capslock
 	url = git://github.com/vim-scripts/capslock.vim.git
+[submodule "vim/bundle/debugger.py"]
+	path = vim/bundle/debugger.py
+	url = git://github.com/vim-scripts/debugger.py.git
