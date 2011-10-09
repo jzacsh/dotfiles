@@ -43,3 +43,6 @@
 [submodule "vim/bundle/IndentConsistencyCop"]
 	path = vim/bundle/IndentConsistencyCop
 	url = git://github.com/vim-scripts/IndentConsistencyCop.git
+[submodule "vim/bundle/capslock"]
+	path = vim/bundle/capslock
+	url = git://github.com/vim-scripts/capslock.vim.git
