@@ -22,3 +22,6 @@
 [submodule ".vim/bundle/rails"]
 	path = .vim/bundle/rails
 	url = git://github.com/vim-scripts/rails.vim.git
+[submodule ".vim/bundle/mru"]
+	path = .vim/bundle/mru
+	url = git://github.com/vim-scripts/mru.vim.git
