@@ -1,0 +1,1 @@
+../bundle/dante/colors/dante.vim

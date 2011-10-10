@@ -1,0 +1,1 @@
+../bundle/hornet/colors/hornet.vim
