@@ -175,4 +175,7 @@ if filereadable($HOME."/.config/simplenoterc")
   source ~/.config/simplenoterc
 endif
 
+" vimroom
+let g:vimroom_width = 88
+
 set modeline
