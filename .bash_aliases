@@ -87,22 +87,26 @@ avi() {
 
 #dictionary look ups
 lu() {
-  local url query none ln=0
-  while read line;do
+  local url query none google ln=0
+  while read -u 3 line;do
     if (( ln ));then
-      echo "$line"
+      echo "$line" >&1
     else
       IFS=+; url="http://www.google.com/search?q=define:${*}"
       none="${line/No definitions found for*/}"
       if [[ -z $none ]];then
         #look for fallbacks to dict(1)
-        echo 'dict(1) returned no results, using google...' >&2
-        if [[ -n $BROWSER ]];then
-          #fallback to Google's "define:" query trick
-          command $BROWSER "$url"
-        else
-          printf "Couldn't find or launch your browser. Please visit '%s'\n" "$url" >&2
-          return 1
+
+        #fallback to Google's "define:" query trick
+        echo -n 'dict(1) returned no results, google? [Y/n] ' >&2
+        read -u 0 google
+        echo >&2 #NOTE: we use fd 2 here because 1 will be trapped here
+        if [[ -z "$google" || "${google^^}" = Y ]];then
+          if [[ -n $BROWSER ]];then
+            command $BROWSER "$url"
+          else
+            echo -e "Visit: $url" >&2
+          fi
         fi
         break
       else
@@ -110,7 +114,7 @@ lu() {
       fi
     fi
     ln=$(( ln + 1 ))
-  done < <(dict ${@} 2>&1) | $PAGER
+  done 3< <(dict ${@} 2>&1) | $PAGER
 }
 
 e() {
