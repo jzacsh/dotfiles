@@ -4,7 +4,7 @@
 
 " more awesome reference:    http://learnvimscriptthehardway.stevelosh.com
 
-let $VIM = '$HOME/.vim'
+let $VIM = $HOME ."/.vim/"
 
 "variables
 "-----------------------
@@ -51,7 +51,7 @@ set cmdheight=2
 set wildmode=longest,list
 
 "pathogen magic:
-call pathogen#infect($HOME/'.vim/bundle/')
+call pathogen#infect($VIM."bundle/")
 
 "color schemes
 "-----------------------
