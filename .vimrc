@@ -51,7 +51,7 @@ set cmdheight=2
 set wildmode=longest,list
 
 "pathogen magic:
-call pathogen#infect()
+call pathogen#infect($HOME/'.vim/bundle/')
 
 "color schemes
 "-----------------------
