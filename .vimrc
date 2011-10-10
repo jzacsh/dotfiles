@@ -4,7 +4,7 @@
 
 " more awesome reference:    http://learnvimscriptthehardway.stevelosh.com
 
-let $VIM = '$HOME/.vim'
+let $VIM = $HOME ."/.vim/"
 
 "variables
 "-----------------------
@@ -50,10 +50,11 @@ set cmdheight=2
 
 set wildmode=longest,list
 
+"pathogen magic:
+call pathogen#infect($VIM."bundle/")
 
 "color schemes
 "-----------------------
-" set background=dark
 " colorscheme ir_black
 " colorscheme merged
   colorscheme dante
@@ -158,8 +159,9 @@ let MRU_Exclude_Files = '$HOME/tmp/.*'
 let MRU_Auto_Close = 0
 let MRU_Max_Entries = 10
 
-" substitutions
+" When we're in X11
 if &term !=# "linux"
+    set background=dark
     set list listchars=tab:\»\ ,extends:›,precedes:‹
 endif
 
