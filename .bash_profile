@@ -19,6 +19,7 @@ export CLASSPATH=.:$HOME/var/com/edu/comp271/:$CLASSPATH
 export CSCOPE_DB=$HOME/.vim/cscope.out
 export COWER='cower --color=auto'
 export BROWSER=w3m
+export SHOT_PUB='shot'
 #
 
 #make sure dropbox is running
