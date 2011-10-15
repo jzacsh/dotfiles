@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+[[ -n $DISPLAY ]] && export BROWSER='google-chrome'
+
+#host-specific configs:
+ln -sf ~/.host/src/host.${HOSTNAME}/.tmux.conf ~/
+
+# vim: et:ts=4:sw=4
