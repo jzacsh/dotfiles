@@ -17,3 +17,4 @@ cscope.out
 cscope.files
 .browser
 .irssi/config.autosave
+.vim/bundle/*
