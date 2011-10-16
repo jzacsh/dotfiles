@@ -113,10 +113,15 @@ endif
 autocmd FileType make set noexpandtab
 "@TODO drupal files - i can't refer to augroup 'drupal'?
 "  ? autocmd augroup drupal set ts=2
+"js
 autocmd FileType js set ts=2
 autocmd FileType js set sw=2
+"php
 autocmd FileType php set ts=2
 autocmd FileType php set sw=2
+"python
+autocmd FileType py set ts=4
+autocmd FileType py set sw=4
 
 "lesscss.org
 au BufNewFile,BufRead *.less set filetype=less
