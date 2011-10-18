@@ -20,7 +20,7 @@ export CSCOPE_DB=$HOME/.vim/cscope.out
 export COWER='cower --color=auto'
 export BROWSER=w3m
 export SHOT_PUB='shot'
-export PYTHONPATH="$HOME/usr/lib/python/:$PYTHONPATH"
+export PYTHONPATH="$HOME/usr/lib/python/${PYTHONPATH:+":$PYTHONPATH"}"
 #
 
 #make sure dropbox is running
