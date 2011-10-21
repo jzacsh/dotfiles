@@ -2,6 +2,8 @@
 
 [[ -n $DISPLAY ]] && export BROWSER='google-chrome'
 
+source ~/.host/src/host.${HOSTNAME}/bash_extras #bash_alias type stuff
+
 #host-specific configs:
 ln -sf ~/.host/src/host.${HOSTNAME}/.tmux.conf ~/
 
