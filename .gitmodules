@@ -73,3 +73,6 @@
 [submodule ".vim/bundle/tir_black"]
 	path = .vim/bundle/tir_black
 	url = git://github.com/vim-scripts/tir_black.git
+[submodule ".vim/bundle/php-xdebug-vim"]
+	path = .vim/bundle/php-xdebug-vim
+	url = git://github.com/travisj/php-xdebug-vim.git
