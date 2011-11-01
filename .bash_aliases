@@ -20,8 +20,9 @@ alias pbcopy='xsel --clipboard --input'
 alias pbpaste='xsel --clipboard --output'
 alias hc='hg commit -m'
 alias hgk='hgview 2> /dev/null & disown'
-alias node='NODE_NO_READLINE=1 rlwrap node'
+type -p node >& /dev/null && alias node='NODE_NO_READLINE=1 rlwrap node'
 alias nc='ncmpcpp'
+alias o='xdg-open'
 
 # x env #######################
 alias br='$BROWSER'
