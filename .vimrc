@@ -92,7 +92,7 @@ set ts=2
 set sw=2
 
 " xdebug port
-let g:debuggerPort = 9001
+let g:debuggerPort = 9000
 
 "drupal.org suggestions:
 if has("autocmd")
