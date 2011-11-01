@@ -70,6 +70,30 @@ wat() ( curl -s ${@} | $PAGER; )
 rfc() { curl -s "http://tools.ietf.org/rfc/rfc${1}.txt" | $PAGER +/-.[0-9]*.-.*RFC\ \#${1}; }
 hgchanged() { hg -q in ${1} --template='{files}\n'; }
 
+#`hg shelve` extension is broken for some reason.
+hgunshelve () {
+  local patch
+
+  if [[ $1 = -l ]];then
+    ls -la "$(hg root)/.hg/shelves/"
+  else
+    patch="$(hg root)/.hg/shelves/$1"
+
+    if [[ -f $patch && -w "$patch" ]];then
+      pushd "$(hg root)" #run patch cmd. from top-level
+      patch -p1 < "$patch"
+      if (( $? == 0 ));then
+        read -p 'Patch successfull; Remove patch file? [Y/n] ' answ
+        [[ "${answ/,,}" == y ]] && rm -v "$patch"
+      fi
+      popd
+    else
+      printf 'Error: not a writeable patch file: "%s".\n' "" >&2
+      return 1
+    fi
+  fi
+}
+
 #tmux/ssh/console considerations
 alias xf='DISPLAY=localhost:10.0 '
 alias xl='DISPLAY=:0.0 '
