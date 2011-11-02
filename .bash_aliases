@@ -23,6 +23,7 @@ alias hgk='hgview 2> /dev/null & disown'
 type -p node >& /dev/null && alias node='NODE_NO_READLINE=1 rlwrap node'
 alias nc='ncmpcpp'
 alias o='xdg-open'
+alias hglint='while read changed; do php -l "$(hg root)/$changed";done < <( hg status -n)'
 
 # x env #######################
 alias br='$BROWSER'
