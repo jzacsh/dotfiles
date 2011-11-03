@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+
+[[ "$BASH_VERSINFO" != 4 ]] && exit 1
+
 # aliases #####################
 alias ls='ls --color'
 alias l='ls -laFH'
