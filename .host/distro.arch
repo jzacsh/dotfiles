@@ -14,47 +14,40 @@ alias rw="for s in varnish httpd mysqld; do sudo /etc/rc.d/"$s" restart; done"
 alias volume="alsamixer"
 
 wfls() {
-    local fail=0
-
+    #
+    #system-sanity check:
+    #
     #holy shit, took forever... found where my lease was being kept:
     # https://bugs.archlinux.org/task/23282
     local lease='/var/lib/dhcpcd/dhcpcd-*.lease'
     if [[ -e $(echo $lease) ]];then
-        echo -e "
-WARNING:
-looks like you have an stale IP lease hanging around:
-$(echo $lease)
-" >&2
+        printf "WARNING: Looks like you have an stale IP lease hanging around:
+            \r%s\n" "$(echo $lease)" >&2
     fi
 
+    #
+    # actually start the purpose of this utility
+    #
+
     if (( $# ));then
-        if [[ $1 != 'e' && $1 != 'p' ]];then
-            fail=1
+        if [[ $1 != e && $1 != p && $1 != s ]];then
+            echo "
+        usage [$0] [e | p | s]
+            list broadcasted ESSIDs
+            e  listing by encryption
+            p  spill all available data to pager
+            s  summary of most useful data (essid, strength, mac address).
+            " >&2
+            return 1
+        else
+            echo "printing available wifi networks:"
         fi
     fi
 
-    if (( fail ));then
-        echo "
-    usage [$0] [e | p]
-        list broadcasted ESSIDs
-        e  listing by encryption
-        p  spill all available data to pager
-        " >&2
-        return 1
-    fi
-
-    local ret=$?
-    if (( $ret ));then
-        echo 'failed to bring up your wireless device!' >&2
-        return $ret
-    else
-        echo "printing available wifi networks:"
-    fi
-
-    if [[ $1 = 'e' ]];then
+    sudo ifconfig wlan0 up
+    if [[ $1 = e ]];then
         #encryption table
         local cell=0
-        sudo ifconfig wlan0 up
         while read stuff; do
             if (( cell == 2 ));then
                 cell=0
@@ -63,10 +56,14 @@ $(echo $lease)
             echo $stuff | grep -i -e encryption -e essid
             (( $? )) || (( ++cell ))
         done < <(sudo iwlist wlan0 scan)
+    elif [[ $1 = s ]];then
+        sudo iwlist wlan0 scan | grep -B3 -A2 'Quality='
+    elif [[ $1 = p ]];then
+        #show everything, paged.
+        sudo iwlist wlan0 scan | $PAGER
     else
-        sudo ifconfig wlan0 up
-        [[ $1 = 'p' ]] && local view="$PAGER" || local view='grep ESSID'
-        sudo iwlist wlan0 scan | $view
+        #default behavior for this utility
+        sudo iwlist wlan0 scan | grep ESSID | sed -e 's/^[[:space:]]*//g'
     fi
 }
 
