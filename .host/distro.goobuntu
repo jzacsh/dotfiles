@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+[[ -n $DISPLAY ]] && export BROWSER='google-chrome'
+
+source ~/.host/src/distro.goobuntu/bash_extras #bash_alias type stuff
+
+#host-specific configs:
+ln -sf ~/.host/src/host.${HOSTNAME}/.tmux.conf ~/
+source ~/.host/common/zagat
+
+# vim: et:ts=4:sw=4
