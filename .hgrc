@@ -8,19 +8,20 @@ ignore = ~/.hgignore
 cdiff = -q
 
 [extensions]
-hgext.fetch=
-hgext.mq=
-hgext.extdiff=
-hgext.purge=
-color=
-hgext.pager=
-hgext.highlight=
-hgext.progress=
-# hgext.inotify=
-hgshelve= ~/usr/lib/mercurial/hgshelve.py
-hgext.graphlog=
-hgext.eol =
+hgext.fetch =
+hgext.mq =
+hgext.extdiff =
+hgext.purge =
+color =
+hgext.pager =
+hgext.highlight =
+hgext.graphlog =
 hgext.record =
+inotify =
+hgshelve = ~/usr/lib/python/tksoh/hgshelve.py
+#requires mercurial > v1.5
+#hgext.eol =
+#hgext.progress =
 
 [repository]
 native = LF
