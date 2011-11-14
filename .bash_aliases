@@ -27,6 +27,7 @@ type -p node >& /dev/null && alias node='NODE_NO_READLINE=1 rlwrap node'
 alias nc='ncmpcpp'
 alias o='xdg-open'
 alias hglint='while read changed; do php -l "$(hg root)/$changed";done < <( hg status -n)'
+alias jsonpretty='python -mjson.tool'
 
 # x env #######################
 alias br='$BROWSER'
