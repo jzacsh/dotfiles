@@ -9,6 +9,7 @@ use strict;
 
 use Irssi;
 use vars qw($VERSION %IRSSI);
+use Env qw(HOME);
 
 use Net::DBus qw(:typing);
 
@@ -28,7 +29,7 @@ Irssi::settings_add_str('notify', 'notify_time', '5000');
 sub notify {
   my ($server, $summary, $message) = @_;
 
-  open(FH, "/home/noclaf/.dbus_address");
+  open(FH, $HOME . "/.dbus_address");
   my $address = <FH>;
   chomp $address;
   my $bus = Net::DBus->new({}, $address);
