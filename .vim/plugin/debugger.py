@@ -1,1 +1,1 @@
-../bundle/debugger.py/debugger.py
+../bundle/php-xdebug-vim/plugin/debugger.py
