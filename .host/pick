@@ -17,7 +17,7 @@ src_all() {
     fi
 
     # host-specific configuration
-    hostfile="$dir/host.$HOSTNAME"
+    hostfile="$dir/host.${HOSTNAME/.*/}" #mimic `hostname -s`
     src_this $hostfile
 }
 
