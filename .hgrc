@@ -17,9 +17,9 @@ hgext.pager =
 hgext.highlight =
 hgext.graphlog =
 hgext.record =
-inotify =
 hgshelve = ~/usr/lib/python/tksoh/hgshelve.py
-#requires mercurial > v1.5
+#inotify =
+#...requires mercurial > v1.5:
 #hgext.eol =
 #hgext.progress =
 
@@ -42,8 +42,6 @@ log = ~/docs/logs/hginotify.log
 [extdiff]
 cmd.cdiff = colordiff
 opts.cdiff = -uprN
-
-[paths]
 
 # [tortoisehg]
 # postpull = fetch
