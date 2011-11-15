@@ -47,8 +47,8 @@ opts.cdiff = -uprN
 # postpull = fetch
 
 [alias]
-push = push --new-branch
 changelog = outgoing --no-merges --template "Revision {node|short} by {author} on {date|shortdate}:\n{desc}\n\n"
+#push = push --new-branch #breaks on v1.4
 
 [hooks]
 #update = ''
