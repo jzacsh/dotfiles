@@ -3,28 +3,32 @@
 # Things that all the machines I use for drupal dev. will need.
 # @see ~/.host/pick
 
-if [[ $(declare -p PROJECT_BASE) ]];then
+if [[ "$(declare -p PROJECT_BASE 2> /dev/null)" ]];then
     #@TODO: figure out a way to re-work all of this to base off dynamic
     # bash functions, calling things like `git rev-parse --show-toplevel` and `hg root`
 
-    [[ $(declare -p CB) ]] || declare -a CB
-    for path in /sites/all/modules/{features,custom}; do
-        CB+=(${PROJECT_BASE}/$path)
+    [[ $(declare -p CB 2> /dev/null) ]] || declare -a CB
+    for path in sites/all/{themes/zagat,modules/{features,custom}}; do
+        CB+=(${PROJECT_BASE%/}/$path)
     done
+    #@TODO: figure out why CB doesn't survive past this script!
     export CB
+
+    # include your drupal shell utilities in your path.
+    export PATH=$PATH:~/usr/local/bin/drupalsh
+    # include common functions.
+    source ~/usr/local/bin/drupalsh/drupalsh
+
+    #
+    # one-liners that I can't bear to see as a seperate script.
+    #
+
+    #@TODO: can/should these be abstracted for public use, at all?
+    f() { ge ${@} ${CB[@]} ; }
+    fs() { fstuff ${@} --exclude-dir='.hg' --exclude='.git'; }
+
+else
+    echo 'PROJECT_BASE env. var not found; common drupal scripts not run.' >&2
 fi
-
-# include your drupal shell utilities in your path.
-export PATH=$PATH:~/usr/local/bin/drupalsh
-# include common functions.
-source ~/usr/local/bin/drupalsh/drupalsh
-
-#
-# one-liners that I can't bear to see as a seperate script.
-#
-
-#@TODO: can/should these be abstracted for public use, at all?
-f() { ge ${@} ${CB[@]} ; }
-fs() { fstuff ${@} --exclude-dir='.hg' --exclude='.git'; }
 
 # vim: et:ts=4:sw=4
