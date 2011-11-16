@@ -20,6 +20,7 @@ export CSCOPE_DB=$HOME/.vim/cscope.out
 export COWER='cower --color=auto'
 export BROWSER=w3m
 export SHOT_PUB='shot'
+export SHOT_UPLOAD='ompload'
 export PYTHONPATH="$HOME/usr/lib/python/${PYTHONPATH:+":$PYTHONPATH"}"
 export HGMERGE='vim -d'
 #
