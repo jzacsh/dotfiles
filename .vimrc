@@ -24,6 +24,7 @@ map <LocalLeader>t  <Esc>:CommandT<CR>
 map <LocalLeader>T  $<Esc>a //@TODO: remove me!!    <Esc>0
 " clear trailing whitespace
 map <LocalLeader>c  <Esc>:%s/[[:space:]]*$//g<CR>
+map <LocalLeader>C  <Esc>:%s/^[[:space:]]*$//g<CR>
 map <LocalLeader>n  <Esc>:!node %<CR>
 
 "binding for VimRoom plugin
