@@ -2,6 +2,8 @@
 
 [[ -n $DISPLAY ]] && export BROWSER='google-chrome'
 
+export PATH="$PATH:/usr/games/"
+
 source ~/.host/src/distro.goobuntu/bash_extras #bash_alias type stuff
 
 #host-specific configs:
