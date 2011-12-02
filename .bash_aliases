@@ -10,7 +10,6 @@ alias ca='clear; ls -laFH'
 alias cl='clear; ls -lFH'
 alias diff='colordiff'
 alias mi="curl -s http://checkip.dyndns.org | sed -e 's/^.*Address:\ //' -e 's/<\/body.*//'"
-alias tas='tmux attach-session || tmux new-session'
 alias td='tmux detach-client'
 alias udevinfo='udevadm info -q all -n'
 alias mutt='pgrep mutt && mutt -R || mutt'
@@ -75,6 +74,7 @@ geo() ( identify -verbose $1 | grep geometry; )
 wat() ( curl -s ${@} | $PAGER; )
 rfc() { curl -s "http://tools.ietf.org/rfc/rfc${1}.txt" | $PAGER +/-.[0-9]*.-.*RFC\ \#${1}; }
 hgchanged() { hg -q in ${1} --template='{files}\n'; }
+t() { tmux -L main "${@:-attach}"; } #tmux
 
 #`hg shelve` extension is broken for some reason.
 hgunshelve () {
