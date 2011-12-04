@@ -10,7 +10,6 @@ alias ca='clear; ls -laFH'
 alias cl='clear; ls -lFH'
 alias diff='colordiff'
 alias mi="curl -s http://checkip.dyndns.org | sed -e 's/^.*Address:\ //' -e 's/<\/body.*//'"
-alias td='tmux detach-client'
 alias udevinfo='udevadm info -q all -n'
 alias mutt='pgrep mutt && mutt -R || mutt'
 alias ipt='sudo iptraf'
