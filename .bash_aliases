@@ -282,17 +282,4 @@ let_my_swaps_go() {
   sudo swapon -a
 }
 
-#take care of `poole` build/serve loop
-pfresh() {
-  type poole >&/dev/null || return 2
-
-  #take down any existing service
-  if [[ $(ps -A | grep poole) ]];then
-    pkill poole 2>/dev/null #don't want to knoew
-  fi
-
-  #rebuild and start server
-  poole -b && poole -s >& poole.log &
-}
-
 # vim: et:ts=2:sw=2
