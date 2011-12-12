@@ -10,7 +10,6 @@ alias ca='clear; ls -laFH'
 alias cl='clear; ls -lFH'
 alias diff='colordiff'
 alias mi="curl -s http://checkip.dyndns.org | sed -e 's/^.*Address:\ //' -e 's/<\/body.*//'"
-alias td='tmux detach-client'
 alias udevinfo='udevadm info -q all -n'
 alias mutt='pgrep mutt && mutt -R || mutt'
 alias ipt='sudo iptraf'
@@ -280,19 +279,6 @@ let_my_swaps_go() {
   sudo swapoff -a
   printf '... turning swap back on.'
   sudo swapon -a
-}
-
-#take care of `poole` build/serve loop
-pfresh() {
-  type poole >&/dev/null || return 2
-
-  #take down any existing service
-  if [[ $(ps -A | grep poole) ]];then
-    pkill poole 2>/dev/null #don't want to knoew
-  fi
-
-  #rebuild and start server
-  poole -b && poole -s >& poole.log &
 }
 
 # vim: et:ts=2:sw=2
