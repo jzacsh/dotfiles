@@ -198,10 +198,9 @@ addkeys () {
     eval $(keychain --nogui --eval --timeout ${timeout:-240} ~/.ssh/add/*.add ${@})
 }
 
+#allow xdebug step-through of php-cli
 xdb() {
-  local uri_append='?XDEBUG_SESSION_STOP'
-  [[ -z $1 ]] && uri_append='?XDEBUG_SESSION_START=1'
-  echo -en $uri_append
+  [[ -z $1 ]] && XDEBUG_CONFIG="idekey=netbeans-xdebug" "${*}"
 }
 
 trans() {
