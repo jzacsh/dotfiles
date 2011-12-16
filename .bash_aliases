@@ -26,6 +26,7 @@ alias nc='ncmpcpp'
 alias o='xdg-open'
 alias lint='lintch'
 alias jsonpretty='python -mjson.tool'
+alias pfresh='pfresh -w'
 
 # x env #######################
 alias br='$BROWSER'
