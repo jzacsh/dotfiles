@@ -22,7 +22,7 @@ export BROWSER=w3m
 export SHOT_PUB='shot'
 export SHOT_UPLOAD='ompload'
 export PYTHONPATH="$HOME/usr/lib/python/${PYTHONPATH:+":$PYTHONPATH"}"
-export TTS_SPEED=260
+export TTS_CONFIG=~/.ttskeyrc
 #
 
 #make sure dropbox is running
