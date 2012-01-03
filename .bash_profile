@@ -5,25 +5,8 @@ col_blu='\[\e[1;34m\]'
 col_end='\[\e[m\]'
 #
 
-# progs
-export EDITOR=vim
-export DIFF=' up '
-export LESS=' XFRr '
-export RLWRAP=' AaN '
-export PAGER=less
- PATH=$HOME/bin:$HOME/bin/local:$HOME/bin/share:$HOME/bin/dist:$HOME/bin/lib:/srv/http/global/bin/dev/:$PATH
-export PATH
-export RUBYOPT='w' #helpful ruby warnings
-export GREP_OPTIONS='--color=auto'
-export CLASSPATH=.:$HOME/var/com/edu/comp271/:$CLASSPATH
-export CSCOPE_DB=$HOME/.vim/cscope.out
-export COWER='cower --color=auto'
-export BROWSER=w3m
-export SHOT_PUB='shot'
-export SHOT_UPLOAD='ompload'
-export PYTHONPATH="$HOME/usr/lib/python/${PYTHONPATH:+":$PYTHONPATH"}"
-export TTS_CONFIG=~/.ttskeyrc
-#
+# my env. variables, just where ubuntu demands it.
+[[ -r ~/.pam_environment ]] && source ~/.pam_environment
 
 #make sure dropbox is running
 if [[ $(type -p dropbox &> /dev/null) ]];then
