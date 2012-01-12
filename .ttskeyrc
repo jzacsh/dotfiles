@@ -1,0 +1,8 @@
+#personal preferences for TTS conf
+
+#personally prefer the opposite of the defaults, in this case.
+TTS_CURRENT=~/.config/ttskey_current
+
+#preferred playback speed
+TTS_SPEED=230
+
