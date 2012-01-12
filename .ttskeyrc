@@ -4,5 +4,5 @@
 TTS_CURRENT=~/.config/ttskey_current
 
 #preferred playback speed
-TTS_SPEED=230
+TTS_SPEED=260
 
