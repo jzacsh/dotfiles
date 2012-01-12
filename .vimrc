@@ -26,6 +26,8 @@ map <LocalLeader>T  $<Esc>a //@TODO: remove me!!    <Esc>0
 map <LocalLeader>c  <Esc>:%s/[[:space:]]*$//g<CR>
 map <LocalLeader>C  <Esc>:%s/^[[:space:]]*$//g<CR>
 map <LocalLeader>n  <Esc>:!node %<CR>
+"listing of buffers
+map <LocalLeader>l  <Esc>:ls<CR>
 
 "binding for VimRoom plugin
 map <LocalLeader>v <Esc>:VimroomToggle<CR>
