@@ -320,5 +320,8 @@ ignores = (
 );
 hilights = (
   { text = "\"invites you to\""; nick = "yes"; word = "yes"; },
-  { text = "jzacsh"; nick = "yes"; word = "yes"; }
+  { text = "zacsh"; nick = "yes"; word = "yes"; },
+  { text = "zaksh"; nick = "yes"; word = "yes"; },
+  { text = "jzacsh"; nick = "yes"; word = "yes"; },
+  { text = "jzaksh"; nick = "yes"; word = "yes"; }
 );
