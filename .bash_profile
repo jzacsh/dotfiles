@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 #colors:
 col_red='\[\e[1;31m\]'
 col_grn='\[\e[1;32m\]'
