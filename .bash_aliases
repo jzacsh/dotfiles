@@ -27,6 +27,7 @@ alias o='xdg-open'
 alias lint='lintch'
 alias jsonpretty='python -mjson.tool'
 alias pfresh='pfresh -w'
+alias td='tmux detach-client'
 
 # x env #######################
 alias br='$BROWSER'
