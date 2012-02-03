@@ -89,6 +89,9 @@ eval $(keychain --nogui --eval --timeout ${KEY_TIMEOUT:-240} ~/.ssh/add/*.add)
 #must be after PATH:, apparently this will break if non-interactive shell `return`'s above.
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" || true
 
+#in my nested tmux shells, my inherited `env` is old
+export DBUS_SESSION_BUS_ADDRESS="$(< ~/.dbus_address)"
+
 #laughs:
 #@TODO: make this fail on redirects (eg.: open wifi login pages)
 #  curl -s --connect-timeout 1 --max-time 1 \
