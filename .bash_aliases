@@ -149,6 +149,7 @@ lu() {
   done 3< <(dict ${@} 2>&1) | $PAGER
 }
 
+#file explorer
 e() {
     #@TODO: do this for `br` alias.
     if [[ -n $DISPLAY ]];then
@@ -169,6 +170,7 @@ e() {
     fi
 }
 
+#ssh key management
 addkeys () {
     local timeout nums
 
@@ -205,6 +207,7 @@ xdb() {
   [[ -z $1 ]] && XDEBUG_CONFIG="idekey=netbeans-xdebug" "${*}"
 }
 
+#translate
 trans() {
   local orig="$1"
   local targ="$2"
@@ -215,12 +218,15 @@ trans() {
   curl ${url} 2>/dev/null #| sed 's/.*"translatedText":"\([^"]*\)".*}/\1\n/'
 }
 
+#temp file for pasting purposes
 tmp() {
   local tmpfile=$(mktemp)
 
   if [[ $1 == 'c' ]]; then
+    #will paste with clipboard/x11
     $EDITOR $tmpfile && $BROWSER $tmpfile
   else
+    #will use proper pastie
     $EDITOR $tmpfile && dpaste < $tmpfile
   fi
 
@@ -270,6 +276,7 @@ origrm() {
   find "$base" -name '*.orig' ${opt}
 }
 
+#microsoft path
 mp() {
   'error: this should take care of shitty microsoft paths, but it is broken.' >&2
 #  echo "smb://$(echo ${*} | sed -e 's/\\/\//g' | sed -e 's/\ /\\\ /g')"
