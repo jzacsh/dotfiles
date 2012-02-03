@@ -291,4 +291,18 @@ let_my_swaps_go() {
   sudo swapon -a
 }
 
+#determine the newest file
+# http://code.falconindy.com/cgit/dotfiles.git/plain/.functions
+rlatest() {
+  local count=${2:-1}
+
+  find "${1:-.}" -type f -printf '%T@ %p\0' | sort -znr | {
+    while (( count-- )); do
+      read -rd ' ' _
+      IFS= read -rd '' file
+      printf '%s\n' "$file"
+    done
+  }
+}
+
 # vim: et:ts=2:sw=2
