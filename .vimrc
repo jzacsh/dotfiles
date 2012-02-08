@@ -19,7 +19,6 @@ map <LocalLeader>G  <Esc>:set nopaste<CR>
 map <LocalLeader>r  <Esc>:MRU<CR>
 map <LocalLeader>R  <Esc>:!./%<CR>
 map <LocalLeader>s  <Esc>:r!date --rfc-3339=seconds<CR>
-map <LocalLeader>d  <Esc>:r!date --rfc-3339=date<CR>
 map <LocalLeader>f  <Esc>:TlistToggle<CR>
 map <LocalLeader>t  <Esc>:CommandT<CR>
 map <LocalLeader>T  $<Esc>a //@TODO: remove me!!    <Esc>0
@@ -47,8 +46,12 @@ map <LocalLeader>9  9gt
 " no need to 'q:' anymore
 nnoremap ; :
 
-"run jslint
-map <LocalLeader>j <Esc>:w<CR>:make<CR>:cw<CR>
+
+"vim 7.3-specific
+if v:version >= 730
+   set colorcolumn=+1,+2,+3
+endif
+
 
 set cmdheight=2
 
