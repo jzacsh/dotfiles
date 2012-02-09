@@ -12,26 +12,27 @@ let maplocalleader = ","
 
 "keymapping
 "-----------------------
-map <LocalLeader>h  <Esc>:GundoToggle<CR>
-map <LocalLeader>b  <Esc>:VCSBlame<CR>
-map <LocalLeader>r  <Esc>:MRU<CR>
-map <LocalLeader>R  <Esc>:!./%<CR>
-map <LocalLeader>s  <Esc>:r!date --rfc-3339=seconds<CR>
-map <LocalLeader>f  <Esc>:TlistToggle<CR>
-map <LocalLeader>t  <Esc>:CommandT<CR>
-map <LocalLeader>T  $<Esc>a //@TODO: remove me!!    <Esc>0
+map <LocalLeader>h  :GundoToggle<CR>
+map <LocalLeader>b  :VCSBlame<CR>
+map <LocalLeader>r  :MRU<CR>
+map <LocalLeader>R  :!./%<CR>
+map <LocalLeader>p  :se invpaste paste?<return>
+map <LocalLeader>s  :r!date --rfc-3339=seconds<CR>
+map <LocalLeader>f  :TlistToggle<CR>
+map <LocalLeader>t  :CommandT<CR>
+map <LocalLeader>T  $a //@TODO: remove me!!    <Esc>0
 " clear trailing whitespace
-map <LocalLeader>c  <Esc>:%s/[[:space:]]*$//g<CR>
-map <LocalLeader>C  <Esc>:%s/^[[:space:]]*$//g<CR>
-map <LocalLeader>n  <Esc>:!node %<CR>
+map <LocalLeader>c  :%s/[[:space:]]*$//g<CR>
+map <LocalLeader>C  :%s/^[[:space:]]*$//g<CR>
+map <LocalLeader>n  :!node %<CR>
 "listing of buffers
-map <LocalLeader>l  <Esc>:ls<CR>
+map <LocalLeader>l  :ls<CR>
 
 "binding for VimRoom plugin
-map <LocalLeader>v <Esc>:VimroomToggle<CR>
+map <LocalLeader>v :VimroomToggle<CR>
 
 " easy tab handling
-map <LocalLeader>w  <Esc>:tabnew<CR>
+map <LocalLeader>w  :tabnew<CR>
 map <LocalLeader>1  1gt
 map <LocalLeader>2  2gt
 map <LocalLeader>3  3gt
@@ -46,9 +47,6 @@ nnoremap ; :
 
 "last position in file, see :help last-position-jump
 :au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g'\"" | endif
-
-"toggle :set paste :set nopaste
-set pastetoggle=<F10>
 
 "vim 7.3-specific
 if v:version >= 730
