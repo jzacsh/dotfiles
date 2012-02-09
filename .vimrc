@@ -14,8 +14,6 @@ let maplocalleader = ","
 "-----------------------
 map <LocalLeader>h  <Esc>:GundoToggle<CR>
 map <LocalLeader>b  <Esc>:VCSBlame<CR>
-map <LocalLeader>g  <Esc>:set paste<CR>
-map <LocalLeader>G  <Esc>:set nopaste<CR>
 map <LocalLeader>r  <Esc>:MRU<CR>
 map <LocalLeader>R  <Esc>:!./%<CR>
 map <LocalLeader>s  <Esc>:r!date --rfc-3339=seconds<CR>
@@ -49,6 +47,8 @@ nnoremap ; :
 "last position in file, see :help last-position-jump
 :au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g'\"" | endif
 
+"toggle :set paste :set nopaste
+set pastetoggle=<F10>
 
 "vim 7.3-specific
 if v:version >= 730
