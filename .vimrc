@@ -46,6 +46,9 @@ map <LocalLeader>9  9gt
 " no need to 'q:' anymore
 nnoremap ; :
 
+"last position in file, see :help last-position-jump
+:au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g'\"" | endif
+
 
 "vim 7.3-specific
 if v:version >= 730
