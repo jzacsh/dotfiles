@@ -28,6 +28,8 @@ alias lint='lintch'
 alias jsonpretty='python -mjson.tool'
 alias pfresh='pfresh -w'
 alias td='tmux detach-client'
+alias eclimd='"$ECLIPSE_HOME"/eclimd'
+alias vim='vim -X'
 
 # x env #######################
 alias br='$BROWSER'
@@ -35,6 +37,7 @@ alias ch='chromium-browser'
 alias kflash='echo -n "killing flash..." && sudo killall npviewer.bin'
 
 ## common spelling mistakes ###
+alias vi='vim'
 alias les='less'
 alias duff='echo "no beer here, try \`diff\`."'
 alias :w='echo "yeahh... this is not vim." >&2'
