@@ -308,4 +308,25 @@ rlatest() {
   }
 }
 
+#eg.: notify me when a tarball is finally uploaded to dropox
+notifyhttp() {
+  local msg url retry
+  retry=2
+
+  url="$1"
+  if [[ -z $url ]];then
+    return 1
+  fi
+
+  msg="${2:-ready!}"
+  while true; do
+    curl -fI "$url" && {
+      xmessage "$msg" ; break
+    } || {
+      printf '... URL failed, retrying in %s seconds.\n' "$retry"
+      sleep "$retry"
+    }
+  done
+}
+
 # vim: et:ts=2:sw=2
