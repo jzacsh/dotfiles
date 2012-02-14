@@ -281,7 +281,7 @@ origrm() {
 
 #microsoft path
 mp() {
-  'error: this should take care of shitty microsoft paths, but it is broken.' >&2
+  echo 'error: this should take care of shitty microsoft paths, but it is broken.' >&2
 #  echo "smb://$(echo ${*} | sed -e 's/\\/\//g' | sed -e 's/\ /\\\ /g')"
   echo smb://$(echo "${*}" | sed -e 's/\\/\//g' | sed -e 's/\ /\\\ /g')
 }
