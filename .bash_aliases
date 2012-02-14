@@ -321,7 +321,7 @@ notifyhttp() {
   msg="${2:-ready!}"
   while true; do
     curl -fI "$url" && {
-      xmessage "$msg" ; break
+      xmessage -center "$msg" ; break
     } || {
       printf '... URL failed, retrying in %s seconds.\n' "$retry"
       sleep "$retry"
