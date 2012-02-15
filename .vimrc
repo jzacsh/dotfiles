@@ -193,4 +193,7 @@ endif
 " vimroom
 let g:vimroom_width = 88
 
+" ledger-cli.org
+au BufNewFile,BufRead *.ldg,*.ledger setf ledger | comp ledger
+
 set modeline
