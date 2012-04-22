@@ -90,7 +90,9 @@ eval $(keychain --nogui --eval --timeout ${KEY_TIMEOUT:-240} ~/.ssh/add/*.add)
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" || true
 
 #in my nested tmux shells, my inherited `env` is old
-export DBUS_SESSION_BUS_ADDRESS="$(< ~/.dbus_address)"
+{ DBUS_SESSION_BUS_ADDRESS="$(< ~/.dbus_address)"; } 2>/dev/null
+(( $? )) && unset DBUS_SESSION_BUS_ADDRESS || \
+  export DBUS_SESSION_BUS_ADDRESS="$DBUS_SESSION_BUS_ADDRESS"
 
 #laughs:
 #@TODO: make this fail on redirects (eg.: open wifi login pages)
