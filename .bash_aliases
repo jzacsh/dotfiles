@@ -25,7 +25,6 @@ type -p node >& /dev/null && alias node='NODE_NO_READLINE=1 rlwrap node'
 alias nc='ncmpcpp'
 alias o='xdg-open'
 alias lint='lintch'
-alias jsonify='python -mjson.tool'
 alias pfresh='pfresh -w'
 alias td='tmux detach-client'
 alias eclimd='"$ECLIPSE_HOME"/eclimd'
@@ -80,6 +79,7 @@ jat() ( curl -s ${@} | python -mjson.tool | $PAGER; )
 rfc() { curl -s "http://tools.ietf.org/rfc/rfc${1}.txt" | $PAGER +/-.[0-9]*.-.*RFC\ \#${1}; }
 hgchanged() { hg -q in ${1} --template='{files}\n'; }
 t() { tmux -L main "${@:-attach}"; } #tmux
+json () { type json >& /dev/null && command json || python -mjson.tool ; }
 
 #`hg shelve` extension is broken for some reason.
 hgunshelve () {
