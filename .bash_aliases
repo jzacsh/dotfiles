@@ -309,6 +309,7 @@ rlatest() {
 }
 
 #eg.: notify me when a tarball is finally uploaded to dropox
+# usage: URL [ READY_MESSAGE ]
 notifyhttp() {
   local msg url retry
   retry=2
@@ -321,7 +322,7 @@ notifyhttp() {
   msg="${2:-ready!}"
   while true; do
     curl -fI "$url" && {
-      xmessage -center "$msg" ; break
+      printf '%s\n' "$msg" ; break
     } || {
       printf '... URL failed, retrying in %s seconds.\n' "$retry"
       sleep "$retry"
