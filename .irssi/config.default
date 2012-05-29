@@ -116,18 +116,17 @@ channels = (
   { name = "#drupal-nyc"; chatnet = "freenode"; autojoin = "no"; },
   { name = "#drupal"; chatnet = "freenode"; autojoin = "yes"; },
   { name = "#drupal-nj"; chatnet = "freenode"; autojoin = "yes"; },
-  { name = "#archlinux"; chatnet = "freenode"; autojoin = "yes"; },
+  { name = "#archlinux"; chatnet = "freenode"; autojoin = "no"; },
   { name = "#python"; chatnet = "freenode"; autojoin = "no"; },
-  { name = "#bash"; chatnet = "freenode"; autojoin = "yes"; },
+  { name = "#bash"; chatnet = "freenode"; autojoin = "no"; },
   { name = "#drupal-support"; chatnet = "freenode"; autojoin = "no"; },
   { name = "#drupal-themes"; chatnet = "freenode"; autojoin = "no"; },
   { name = "#ubuntu"; chatnet = "freenode"; autojoin = "no"; },
   { name = "#node.js"; chatnet = "freenode"; autojoin = "yes"; },
   { name = "#jquery"; chatnet = "freenode"; autojoin = "no"; },
   { name = "#debian"; chatnet = "freenode"; autojoin = "no"; },
-  { name = "#xdebug"; chatnet = "freenode"; autojoin = "yes"; },
+  { name = "#xdebug"; chatnet = "freenode"; autojoin = "no"; },
   { name = "#linuxwacom"; chatnet = "freenode"; autojoin = "yes"; },
-  { name = "#zagat"; chatnet = "freenode"; autojoin = "yes"; },
   { name = "##php"; chatnet = "freenode"; autojoin = "no"; }
 );
 
