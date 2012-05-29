@@ -34,6 +34,8 @@ alias vim='vim -X'
 alias br='$BROWSER'
 alias ch='chromium-browser'
 alias kflash='echo -n "killing flash..." && sudo killall npviewer.bin'
+# swaps caps with right-control
+alias fixcaps='setxkbmap -option ctrl:swapcaps'
 
 ## common spelling mistakes ###
 alias vi='vim'
