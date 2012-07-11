@@ -18,4 +18,5 @@ export SHOT_UPLOAD='ompload'
 export PYTHONPATH="$HOME/usr/lib/python/${PYTHONPATH:+":$PYTHONPATH"}"
 export TTS_CONFIG=~/.ttskeyrc
 export NODE_PATH="/usr/lib/node_modules/:/usr/lib/node/:$NODE_PATH"
+export PASTIE='dpaste'
 

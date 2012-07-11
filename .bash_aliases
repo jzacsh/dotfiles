@@ -224,18 +224,18 @@ trans() {
 
 #temp file for pasting purposes
 tmp() {
-  local tmpfile=$(mktemp)
+  local tmpfile="$(mktemp)"
 
-  if [[ $1 == 'c' ]]; then
+  if [[ $1 = c ]]; then
     #will paste with clipboard/x11
-    $EDITOR $tmpfile && $BROWSER $tmpfile
+    "$EDITOR" "$tmpfile" && "$BROWSER" "$tmpfile"
   else
     #will use proper pastie
-    $EDITOR $tmpfile && dpaste < $tmpfile
+    "$EDITOR" "$tmpfile" && "$PASTIE" < "$tmpfile"
   fi
 
   #cleanup
-  sleep 5 && rm $tmpfile
+  sleep 5 && rm "$tmpfile"
 }
 
 gencscope() {
