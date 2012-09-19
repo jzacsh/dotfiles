@@ -26,7 +26,6 @@ alias nc='ncmpcpp'
 alias o='xdg-open'
 alias lint='lintch'
 alias pfresh='pfresh -w'
-alias td='tmux detach-client'
 alias eclimd='"$ECLIPSE_HOME"/eclimd'
 alias vim='vim -X'
 
@@ -80,6 +79,7 @@ wat() ( curl -s ${@} | $PAGER; )
 rfc() { curl -s "http://tools.ietf.org/rfc/rfc${1}.txt" | $PAGER +/-.[0-9]*.-.*RFC\ \#${1}; }
 hgchanged() { hg -q in ${1} --template='{files}\n'; }
 t() { tmux -L main "${@:-attach}"; } #tmux
+td() { t detach; }
 json () { type json >& /dev/null && command json || python -mjson.tool ; }
 
 #`hg shelve` extension is broken for some reason.
