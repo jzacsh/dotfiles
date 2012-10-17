@@ -75,7 +75,7 @@ hgdiff() ( hg cat $1 | vim - -c  ":vert diffsplit $1" -c "map q :qa!<CR>"; )
 speak() { echo ${@} | espeak 2>/dev/null; }
 ident() ( identify -verbose $1 | grep modify; )
 geo() ( identify -verbose $1 | grep geometry; )
-wat() ( curl -s ${@} | $PAGER; )
+wat() ( curl -Ls ${@} | $PAGER; )
 rfc() { curl -s "http://tools.ietf.org/rfc/rfc${1}.txt" | $PAGER +/-.[0-9]*.-.*RFC\ \#${1}; }
 hgchanged() { hg -q in ${1} --template='{files}\n'; }
 t() { tmux -L main "${@:-attach}"; } #tmux
