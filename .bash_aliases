@@ -238,55 +238,6 @@ tmp() {
   sleep 5 && rm "$tmpfile"
 }
 
-gencscope() {
-  if [[ $(uname -n) == "jznix" ]];then
-    local DIRS=(/srv/http/subs/notes/www/{sites/all/{modules/contrib,themes},includes,modules})
-  else
-    local DIRS=(~/code/web5-jzacsh/{sites/all/{modules/contrib,themes},includes,modules})
-  fi
-  cscope -b -i <(find "${DIRS[@]}" \( -name '*.inc' -or -name '*.php' -or -name '*.module' \))
-}
-
-urlhg() {
-  echo -en 'Error: not yet implemented.\n'
-  echo -en '       this function will return a line-specific url\n'
-  echo -en '       to codelibrary given a local file.\n'
-  echo -en "       eg.: 'http://codelibrary.zagat.com/hg/integration/web5-jzacsh/file/5d56162a25f8/index.php#l4'\n"
-  return 1
-}
-
-urlocal() {
-  echo -en 'Error: not yet implemented.\n'
-  echo -en '       this function will return a local-url\n'
-  echo -en '       to this host given a local file.\n'
-  echo -en "       eg.: 'http://cnyitjza.zagat.com/sites/all/themes/zagat/css/global.css'\n"
-  return 1
-}
-
-origrm() {
-  local base
-
-  #get current path
-  base=$(drush drupal-directory)
-  [[ -z $base ]] && return 1
-
-  #set options
-  if [[ $1 = "-n" ]]; then
-    local opt=''
-  else
-    local opt='-delete -print'
-  fi
-
-  find "$base" -name '*.orig' ${opt}
-}
-
-#microsoft path
-mp() {
-  echo 'error: this should take care of shitty microsoft paths, but it is broken.' >&2
-#  echo "smb://$(echo ${*} | sed -e 's/\\/\//g' | sed -e 's/\ /\\\ /g')"
-  echo smb://$(echo "${*}" | sed -e 's/\\/\//g' | sed -e 's/\ /\\\ /g')
-}
-
 let_my_swaps_go() {
   #tell linux to clear out swap; useful for long running desktop
   printf 'turning swap off...'
