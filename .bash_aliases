@@ -28,6 +28,7 @@ alias lint='lintch'
 alias pfresh='pfresh -w'
 alias eclimd='"$ECLIPSE_HOME"/eclimd'
 alias vim='vim -X'
+alias html='w3m -dump -T text/html'
 
 # x env #######################
 alias br='$BROWSER'
