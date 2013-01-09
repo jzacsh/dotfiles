@@ -31,6 +31,8 @@ alias vim='vim -X'
 alias html='w3m -dump -T text/html'
 alias pastie="$PASTIE"
 
+alias mail='vmail' # tiny script that wraps mail in `mktemp`/$EDITOR calls
+
 # most commonly I'd like to convert: decimal <=> hex
 alias tohex="printf '0x%x\n'"
 alias fromhex="printf '%0.0f\n'"
