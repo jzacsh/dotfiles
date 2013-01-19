@@ -1,7 +1,14 @@
 # If not running interactively, don't do anything
 [[ ${-} = ${-/i/} ]] && return
 
-source ~/.git-completion.bash
+#colors:
+col_red='\[\e[1;31m\]'
+col_grn='\[\e[1;32m\]'
+col_blu='\[\e[1;34m\]'
+col_end='\[\e[m\]'
+#
+
+[[ -r ~/.bash_aliases ]] && source ~/.bash_aliases
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
@@ -9,9 +16,9 @@ case "$TERM" in
 esac
 
 # External config
-[[ -r ~/.bash_aliases ]] && . ~/.bash_aliases
 [[ -r ~/.dircolors && -x /bin/dircolors ]] && eval $(dircolors -b ~/.dircolors)
-[[ -r ~/.hgbashrc ]] && . ~/.hgbashrc
+[[ -r ~/.git-completion.bash ]] && source ~/.git-completion.bash
+[[ -r ~/.hgbashrc ]] && source ~/.hgbashrc
 
 # shell opts
 shopt -s cdspell
