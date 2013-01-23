@@ -1,4 +1,0 @@
-# since ubuntu seems to fail at running ~/.pam_environment...
-# https://help.ubuntu.com/community/EnvironmentVariables#Session-wide_environment_variables
-
-source ~/.pam_environment
