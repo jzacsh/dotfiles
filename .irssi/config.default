@@ -234,7 +234,7 @@ statusbar = {
       # list of items in statusbar in the display order
       items = {
         barstart = { priority = "100"; };
-        time = { };
+#       time = { }; # commented out by jzacsh@, as I have a clock in tmux
         user = { };
         window = { };
         window_empty = { };
