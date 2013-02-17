@@ -1,6 +1,8 @@
 # If not running interactively, don't do anything
 [[ ${-} = ${-/i/} ]] && return
 
+source ~/bin/share/zacsh_exports
+
 #colors:
 col_red='\[\e[1;31m\]'
 col_grn='\[\e[1;32m\]'
