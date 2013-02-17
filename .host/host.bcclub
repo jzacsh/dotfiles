@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-export PATH=/srv/http/global/bin/cli:$PATH
-pkill dropbox
-
-# vim: et:ts=2:sw=2
