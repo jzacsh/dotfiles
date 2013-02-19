@@ -17,7 +17,7 @@ hgext.pager =
 hgext.highlight =
 hgext.graphlog =
 hgext.record =
-hgshelve = ~/usr/lib/python/tksoh/hgshelve.py
+hgshelve = ~/.hgext/hgshelve.py
 #inotify =
 #...requires mercurial > v1.5:
 #hgext.eol =
