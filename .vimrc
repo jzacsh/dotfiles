@@ -65,6 +65,7 @@ call pathogen#infect($VIM."bundle/")
 "-----------------------
 " colorscheme ir_black
 " colorscheme merged
+" colorscheme mustang
   colorscheme dante
 
 " set which wraps
