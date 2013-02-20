@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+
+# ensure custom xdg user-dirs.dirs file is set:
+custom_xdg_dirs
+
 set -o vi
 export BROWSER=chromium-browser
 export DEBFULLNAME="Jonathan Zacsh"
