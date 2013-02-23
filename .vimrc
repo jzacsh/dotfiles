@@ -66,7 +66,16 @@ call pathogen#infect($VIM."bundle/")
 " colorscheme ir_black
 " colorscheme merged
 " colorscheme mustang
-  colorscheme dante
+" colorscheme dante
+
+" from http://vimcolorschemetest.googlecode.com/svn/html/index-c.html
+" colorscheme desert
+" colorscheme darkZ
+" colorscheme graywh
+" colorscheme jellybeans
+" colorscheme molokai
+" colorscheme skittles_dark
+colorscheme anotherdark
 
 " set which wraps
 set whichwrap+=<,>,h,l
