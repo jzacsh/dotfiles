@@ -109,6 +109,10 @@ set et
 set ts=2
 set sw=2
 
+" show symbol under cursor stackoverflow.com/questions/1551231
+:autocmd CursorMoved * exe printf('match SignColumn /\V\<%s\>/', escape(expand('<cword>'), '/\'))
+
+
 "drupal.org suggestions:
 if has("autocmd")
   " Drupal *.module and *.install files.
