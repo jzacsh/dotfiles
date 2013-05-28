@@ -1,10 +1,5 @@
 #!/usr/bin/env bash
 
-serve () {
-  [[ -d $1 ]] || return 2;
-  httpserve.js --port=2223 --directory="$1"
-}
-
 #specific configs:
 ln -sf ~/.host/src/host.jznuc/.Xdefaults ~/
 
