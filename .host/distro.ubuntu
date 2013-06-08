@@ -9,6 +9,7 @@ export DEBFULLNAME="Jonathan Zacsh"
 export DEBEMAIL="jzacsh@gmail.com"
 export TERM=xterm #ridiculousness for ubuntu's tmux
 export JAVA_HOME='/usr/lib/jvm/java-6-openjdk-amd64/'
+export CLOSURE_COMPILER="$HOME/usr/lib/js/closure-compiler"
 
 alias rw='for serv in varnish apache2 mysql; do sudo service "$serv" restart; done'
 
