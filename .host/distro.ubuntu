@@ -8,7 +8,7 @@ export BROWSER=chromium-browser
 export DEBFULLNAME="Jonathan Zacsh"
 export DEBEMAIL="jzacsh@gmail.com"
 export TERM=xterm #ridiculousness for ubuntu's tmux
-export JAVA_HOME='/usr/lib/jvm/java-6-openjdk/'
+export JAVA_HOME='/usr/lib/jvm/java-7-openjdk-amd64/'
 
 alias rw='for serv in varnish apache2 mysql; do sudo service "$serv" restart; done'
 
