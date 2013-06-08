@@ -30,7 +30,7 @@ alias eclimd='"$ECLIPSE_HOME"/eclimd'
 alias vim='vim -X'
 alias html='w3m -dump -T text/html'
 alias pastie="$PASTIE"
-alias serve='static'
+alias json='python -mjson.tool'
 
 alias mail='vmail' # tiny script that wraps mail in `mktemp`/$EDITOR calls
 
@@ -89,7 +89,6 @@ rfc() { curl -s "http://tools.ietf.org/rfc/rfc${1}.txt" | $PAGER +/-.[0-9]*.-.*R
 hgchanged() { hg -q in ${1} --template='{files}\n'; }
 t() { tmux -L main "${@:-attach}"; } #tmux
 td() { t detach; }
-json () { type json >& /dev/null && command json || python -mjson.tool ; }
 
 #`hg shelve` extension is broken for some reason.
 hgunshelve () {
