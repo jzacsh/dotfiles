@@ -16,3 +16,5 @@ a.out
 *.tmproj
 ._*
 vcprompt
+Session.vim
+.netrwhist
