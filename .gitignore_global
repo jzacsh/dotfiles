@@ -5,7 +5,7 @@
 .netrc
 .msmtprc
 .irssi/saved_colors
-.*.sw[a-z]
+*.s[a-w][a-z]
 a.out
 .DS_Store
 *.orig
