@@ -5,11 +5,10 @@
 .netrc
 .msmtprc
 .irssi/saved_colors
-*.s[a-w][a-z]
+*.sw[a-z]
 a.out
 .DS_Store
 *.orig
-*.swp
 *.rej
 .settings/org.eclipse.php.core.prefs
 *.kpf
