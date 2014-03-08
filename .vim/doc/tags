@@ -51,8 +51,6 @@
 'Tlist_javascript_Hide_Extras'	taglist-plus.txt	/*'Tlist_javascript_Hide_Extras'*
 :Ack	ack.txt	/*:Ack*
 :AckAdd	ack.txt	/*:AckAdd*
-:AckFile	ack.txt	/*:AckFile*
-:AckFromSearch	ack.txt	/*:AckFromSearch*
 :CVSEdit	vcscommand.txt	/*:CVSEdit*
 :CVSEditors	vcscommand.txt	/*:CVSEditors*
 :CVSUnedit	vcscommand.txt	/*:CVSUnedit*
@@ -63,6 +61,7 @@
 :CVSWatchRemove	vcscommand.txt	/*:CVSWatchRemove*
 :CVSWatchers	vcscommand.txt	/*:CVSWatchers*
 :CommandT	command-t.txt	/*:CommandT*
+:CommandTBuffer	command-t.txt	/*:CommandTBuffer*
 :CommandTFlush	command-t.txt	/*:CommandTFlush*
 :FufBookmarkDir	fuf.txt	/*:FufBookmarkDir*
 :FufBookmarkDirAdd	fuf.txt	/*:FufBookmarkDirAdd*
@@ -98,6 +97,9 @@
 :FufTag	fuf.txt	/*:FufTag*
 :FufTagWithCursorWord	fuf.txt	/*:FufTagWithCursorWord*
 :FufTaggedFile	fuf.txt	/*:FufTaggedFile*
+:IndentConsistencyCop	IndentConsistencyCop.txt	/*:IndentConsistencyCop*
+:IndentConsistencyCopOff	IndentConsistencyCop.txt	/*:IndentConsistencyCopOff*
+:IndentRangeConsistencyCop	IndentConsistencyCop.txt	/*:IndentRangeConsistencyCop*
 :LAck	ack.txt	/*:LAck*
 :LAckAdd	ack.txt	/*:LAckAdd*
 :MatchDebug	matchit.txt	/*:MatchDebug*
@@ -187,6 +189,20 @@ Imap_PlaceHolderEnd	latex-suite.txt	/*Imap_PlaceHolderEnd*
 Imap_PlaceHolderStart	latex-suite.txt	/*Imap_PlaceHolderStart*
 Imap_StickyPlaceHolders	latex-suite.txt	/*Imap_StickyPlaceHolders*
 Imap_UsePlaceHolders	latex-suite.txt	/*Imap_UsePlaceHolders*
+IndentConsistencyCop-assumptions	IndentConsistencyCop.txt	/*IndentConsistencyCop-assumptions*
+IndentConsistencyCop-configuration	IndentConsistencyCop.txt	/*IndentConsistencyCop-configuration*
+IndentConsistencyCop-dependencies	IndentConsistencyCop.txt	/*IndentConsistencyCop-dependencies*
+IndentConsistencyCop-description	IndentConsistencyCop.txt	/*IndentConsistencyCop-description*
+IndentConsistencyCop-history	IndentConsistencyCop.txt	/*IndentConsistencyCop-history*
+IndentConsistencyCop-ideas	IndentConsistencyCop.txt	/*IndentConsistencyCop-ideas*
+IndentConsistencyCop-installation	IndentConsistencyCop.txt	/*IndentConsistencyCop-installation*
+IndentConsistencyCop-integration	IndentConsistencyCop.txt	/*IndentConsistencyCop-integration*
+IndentConsistencyCop-known-problems	IndentConsistencyCop.txt	/*IndentConsistencyCop-known-problems*
+IndentConsistencyCop-limitations	IndentConsistencyCop.txt	/*IndentConsistencyCop-limitations*
+IndentConsistencyCop-todo	IndentConsistencyCop.txt	/*IndentConsistencyCop-todo*
+IndentConsistencyCop-usage	IndentConsistencyCop.txt	/*IndentConsistencyCop-usage*
+IndentConsistencyCop.txt	IndentConsistencyCop.txt	/*IndentConsistencyCop.txt*
+IndentConsistencyCop.vim	IndentConsistencyCop.txt	/*IndentConsistencyCop.vim*
 InitCSV	ft_csv.txt	/*InitCSV*
 LaTeX	latexhelp.txt	/*LaTeX*
 MatchError	matchit.txt	/*MatchError*
@@ -303,6 +319,7 @@ VCSCommandSVNDiffOpt	vcscommand.txt	/*VCSCommandSVNDiffOpt*
 VCSCommandSVNExec	vcscommand.txt	/*VCSCommandSVNExec*
 VCSCommandSplit	vcscommand.txt	/*VCSCommandSplit*
 VCSCommandVCSTypeOverride	vcscommand.txt	/*VCSCommandVCSTypeOverride*
+VCSCommandVCSTypePreference	vcscommand.txt	/*VCSCommandVCSTypePreference*
 VHeaderToggle_CSV	ft_csv.txt	/*VHeaderToggle_CSV*
 VHeader_CSV	ft_csv.txt	/*VHeader_CSV*
 WhatColumn_CSV	ft_csv.txt	/*WhatColumn_CSV*
@@ -736,6 +753,7 @@ g:CommandTCursorRightMap	command-t.txt	/*g:CommandTCursorRightMap*
 g:CommandTCursorStartMap	command-t.txt	/*g:CommandTCursorStartMap*
 g:CommandTDeleteMap	command-t.txt	/*g:CommandTDeleteMap*
 g:CommandTMatchWindowAtTop	command-t.txt	/*g:CommandTMatchWindowAtTop*
+g:CommandTMatchWindowReverse	command-t.txt	/*g:CommandTMatchWindowReverse*
 g:CommandTMaxDepth	command-t.txt	/*g:CommandTMaxDepth*
 g:CommandTMaxFiles	command-t.txt	/*g:CommandTMaxFiles*
 g:CommandTMaxHeight	command-t.txt	/*g:CommandTMaxHeight*
@@ -818,6 +836,8 @@ g:fuf_taggedfile_prompt	fuf.txt	/*g:fuf_taggedfile_prompt*
 g:fuf_taggedfile_switchOrder	fuf.txt	/*g:fuf_taggedfile_switchOrder*
 g:fuf_timeFormat	fuf.txt	/*g:fuf_timeFormat*
 g:fuf_useMigemo	fuf.txt	/*g:fuf_useMigemo*
+g:indentconsistencycop_highlighting	IndentConsistencyCop.txt	/*g:indentconsistencycop_highlighting*
+g:indentconsistencycop_non_indent_pattern	IndentConsistencyCop.txt	/*g:indentconsistencycop_non_indent_pattern*
 g:loaded_rails	rails.txt	/*g:loaded_rails*
 g:rails_abbreviations	rails.txt	/*g:rails_abbreviations*
 g:rails_ctags_arguments	rails.txt	/*g:rails_ctags_arguments*
@@ -827,7 +847,6 @@ g:rails_history_size	rails.txt	/*g:rails_history_size*
 g:rails_mappings	rails.txt	/*g:rails_mappings*
 g:rails_menu	rails.txt	/*g:rails_menu*
 g:rails_modelines	rails.txt	/*g:rails_modelines*
-g:rails_statusline	rails.txt	/*g:rails_statusline*
 g:rails_syntax	rails.txt	/*g:rails_syntax*
 g:rails_tabstop	rails.txt	/*g:rails_tabstop*
 g:rails_url	rails.txt	/*g:rails_url*
@@ -1402,8 +1421,6 @@ rails-'pa'	rails.txt	/*rails-'pa'*
 rails-'path'	rails.txt	/*rails-'path'*
 rails-'shiftwidth'	rails.txt	/*rails-'shiftwidth'*
 rails-'softtabstop'	rails.txt	/*rails-'softtabstop'*
-rails-'statusline'	rails.txt	/*rails-'statusline'*
-rails-'stl'	rails.txt	/*rails-'stl'*
 rails-'sts'	rails.txt	/*rails-'sts'*
 rails-'sua'	rails.txt	/*rails-'sua'*
 rails-'suffixesadd'	rails.txt	/*rails-'suffixesadd'*
@@ -1487,17 +1504,13 @@ rails-alternate-related	rails.txt	/*rails-alternate-related*
 rails-autocommands	rails.txt	/*rails-autocommands*
 rails-commands	rails.txt	/*rails-commands*
 rails-configuration	rails.txt	/*rails-configuration*
-rails-configure-vim	rails.txt	/*rails-configure-vim*
 rails-cream	rails.txt	/*rails-cream*
 rails-custom-navigation	rails.txt	/*rails-custom-navigation*
 rails-dbext	rails.txt	/*rails-dbext*
 rails-gf	rails.txt	/*rails-gf*
 rails-global-settings	rails.txt	/*rails-global-settings*
-rails-install-plugin	rails.txt	/*rails-install-plugin*
-rails-installation	rails.txt	/*rails-installation*
 rails-integration	rails.txt	/*rails-integration*
 rails-introduction	rails.txt	/*rails-introduction*
-rails-license	rails.txt	/*rails-license*
 rails-menu	rails.txt	/*rails-menu*
 rails-migrations	rails.txt	/*rails-migrations*
 rails-modelines	rails.txt	/*rails-modelines*

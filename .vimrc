@@ -59,7 +59,7 @@ set cmdheight=2
 set wildmode=longest,list
 
 "pathogen magic:
-call pathogen#infect($VIM."bundle/")
+call pathogen#infect($VIM."bundle/{}")
 
 "color schemes
 "-----------------------
@@ -204,5 +204,15 @@ let g:vimroom_width = 88
 
 " ledger-cli.org
 au BufNewFile,BufRead *.ldg,*.ledger setf ledger | comp ledger
+
+" syntastic
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_c_checkers = ['gcc']
+let g:syntastic_css_checkers = ['prettycss']
+let g:syntastic_html_checkers = ['jshint']
+" TODO(jzacsh): Consider just making a similar jshintrc
+let g:syntastic_javascript_checkers = ['gjslint']
 
 set modeline
