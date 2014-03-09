@@ -1,4 +1,4 @@
-[jzacsh@](http://jzacsh.com/)'s [autohome](http://github.com/jzacsh/autohome] 
+[jzacsh@](http://jzacsh.com/)'s [autohome](http://github.com/jzacsh/autohome)
 
 Install on new machines, with:
 ```bash
