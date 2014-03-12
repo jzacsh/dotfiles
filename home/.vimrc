@@ -4,6 +4,9 @@
 
 " more awesome reference:    http://learnvimscriptthehardway.stevelosh.com
 
+
+autocmd!
+
 let $VIM = $HOME ."/.vim/"
 
 "variables
@@ -118,6 +121,12 @@ set et
 set ts=2
 set sw=2
 
+" vim rainbow_parenthesis: github.com/kien/rainbow_parentheses.vim
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+
 " highlight variable on hover stackoverflow.com/questions/1551231
 :autocmd CursorMoved * exe printf('match SignColumn /\V\<%s\>/', escape(expand('<cword>'), '/\'))
 
@@ -213,6 +222,21 @@ let g:vimroom_width = 88
 " ledger-cli.org
 au BufNewFile,BufRead *.ldg,*.ledger setf ledger | comp ledger
 
+" Append some annotation reminding you a particular line or set of lines are
+" for debugging only and should not be committed to your VCS.
+map <LocalLeader>T  :call AppendDoNotSubmit()<CR>
+function! AppendDoNotSubmit()
+  " Add mark
+  normal! mx
+
+  " Append comment to current line
+  normal! A  DO NOT SUBMIT
+  normal! bhbhbh
+  call NERDComment('n', 'toEOL')
+
+  "Go back to mark
+  normal! 'x
+endfunction
 
 " syntastic
 let g:syntastic_check_on_open = 1
