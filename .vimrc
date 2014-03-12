@@ -4,6 +4,9 @@
 
 " more awesome reference:    http://learnvimscriptthehardway.stevelosh.com
 
+
+autocmd!
+
 let $VIM = $HOME ."/.vim/"
 
 "variables
