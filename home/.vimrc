@@ -40,10 +40,19 @@ map <LocalLeader>4  4gt
 map <LocalLeader>5  5gt
 map <LocalLeader>6  6gt
 map <LocalLeader>7  7gt
-map <LocalLeader>8  8gt
+map <LocalLeader>8  :call Column80()<CR>
 map <LocalLeader>9  9gt
 " no need to 'q:' anymore
 nnoremap ; :
+
+" no need to 'q:![shell stuff]' anymore, just ![shell stuff]
+nnoremap ! :!
+
+" easily turn on/off 80-100 character toggling
+function Column80()
+  :highlight OverColumn ctermbg=red ctermfg=white guibg=#592929
+  :match OverColumn /\%81v.\+/
+endfunction
 
 "last position in file, see :help last-position-jump
 :au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g'\"" | endif
@@ -109,9 +118,8 @@ set et
 set ts=2
 set sw=2
 
-" show symbol under cursor stackoverflow.com/questions/1551231
+" highlight variable on hover stackoverflow.com/questions/1551231
 :autocmd CursorMoved * exe printf('match SignColumn /\V\<%s\>/', escape(expand('<cword>'), '/\'))
-
 
 "drupal.org suggestions:
 if has("autocmd")
@@ -204,6 +212,7 @@ let g:vimroom_width = 88
 
 " ledger-cli.org
 au BufNewFile,BufRead *.ldg,*.ledger setf ledger | comp ledger
+
 
 " syntastic
 let g:syntastic_check_on_open = 1
