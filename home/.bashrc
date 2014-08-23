@@ -78,7 +78,7 @@ bash_prompt() {
   [[ $UID -eq "0" ]] && col_usr=$col_red #root's color
 
   RET_VALUE='$(if [[ $RET -ne 0 ]];then echo -n ":\[\033[1;31m\]$RET\[\033[0m\]";fi)'
-  PS1="$TITLEBAR${col_blu}┌┤${col_end}${col_usr}\u@${col_end}${col_blu}\h${col_end}${RET_VALUE}"' \[\033[0;32m\]$(vcprompt)\[\033[0m\]'" ${col_ylw}\w${col_end}\n${col_blu}└╼${col_end} "
+  PS1="${TITLEBAR}${col_blu}${col_end}${col_usr}\u@${col_end}${col_blu}\h${col_end}${RET_VALUE}"' \[\033[0;32m\]$(vcprompt)\[\033[0m\]'" ${col_ylw}\w${col_end}\n${col_blu}${col_end}\t${col_ylw} \$${col_end} "
   PS4='+$BASH_SOURCE:$LINENO:$FUNCNAME: '
 }
 
