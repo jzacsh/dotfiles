@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+ln -sf ~/.host/src/host.jzcarbon/.tmux.conf ~/
+
+startDropboxDaemon() {
+  local daemonPid daemonLogFile daemonStartedMsg
+  local ALREADY_RUNNING_ERE='^Another instance of Dropbox .* is running!$'
+
+  daemonLogFile="$(
+    mktemp \
+        -t dropboxd_XXXXXXXX.log \
+        --tmpdir="$HOME/tmp/log/"
+  )"
+
+  daemonPid="$(
+    ~/.dropbox-dist/dropboxd > "$daemonLogFile" 2>&1 &
+    jobs -p
+  )"
+  sleep 1  # give it a moment to fail...
+
+  firstLine="$(head -n 1 "$daemonLogFile")"
+  [[ $firstLine =~ $ALREADY_RUNNING_ERE ]] && {
+    < "$daemonLogFile" >&2
+    rm "$daemonLogFile"
+  } || {
+    local daemonStartedMsg='[%s] daemon started at PID: %s\n'
+    printf "$daemonStartedMsg" \
+        "$FUNCNAME" "$daemonPid" \
+        >> "$daemonLogFile"
+  }
+}
+startDropboxDaemon; unset startDropboxDaemon
+
+# vim: et:ts=2:sw=2
