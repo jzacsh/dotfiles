@@ -9,6 +9,9 @@
 # username installation looks like this, for me:
 set -x
 
+printf 'use https://gist.github.com/jzacsh/838e4a6bde61bb545ba1 instead' >&2
+exit 99
+
 (( BASH_VERSINFO[0] < 4 )) &&
     echo 'holy shit, scratch everything else in this checklist...' >&2
 
