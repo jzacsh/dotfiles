@@ -1,4 +1,5 @@
 .irssi/scripts/autorun/notify.pl
+*.py[cod]
 .vim/.netrwhist
 .vim/.VimballRecord
 .vim/ruby/command-t/*.o

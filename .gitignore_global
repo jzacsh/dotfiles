@@ -6,6 +6,7 @@
 .msmtprc
 .irssi/saved_colors
 *.sw[a-z]
+*.py[cod]
 a.out
 .DS_Store
 *.orig
