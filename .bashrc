@@ -91,6 +91,9 @@ source $HOME/.host/pick
 
 addkeys #load ssh keys
 
+#make sure dropbox is running
+updropboxd
+
 #must be after PATH:, apparently this will break if non-interactive shell `return`'s above.
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" || true
 
