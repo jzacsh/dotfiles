@@ -181,9 +181,14 @@ addkeys () {
     if [[ $1 = '-h' || $1 = '--help' ]];then
         echo "
         usage: $FUNCNAME -t [timeout] [keys ...]
+
         add sshkeys to keychain(1)
         timeout is minutes until keys are cleared. defaults to 240
         keys additional ssh keys you'd like added. defaults to ~/.ssh/add/*.add
+
+        NOTE: to load keys on this machine setup in ~/.ssh/add/:
+          lrwxrwxrwx   yourkey.add -> ../yourkey
+          lrwxrwxrwx   yourkey.add.pub -> ../yourkey.pub
         " >&2
         return 1
     elif [[ ! $(type -p keychain) ]]; then

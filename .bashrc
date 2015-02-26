@@ -89,11 +89,7 @@ unset bash_prompt
 #dynamic config:
 source $HOME/.host/pick
 
-#load ssh keys
-eval $(keychain --nogui --eval --timeout ${KEY_TIMEOUT:-240} ~/.ssh/add/*.add)
-# NOTE: to load keys on this machine setup in ~/.ssh/add/:
-# lrwxrwxrwx   jzlut.add -> ../jzlut
-# lrwxrwxrwx   jzlut.add.pub -> ../jzlut.pub
+addkeys #load ssh keys
 
 #must be after PATH:, apparently this will break if non-interactive shell `return`'s above.
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" || true
