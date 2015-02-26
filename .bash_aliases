@@ -67,14 +67,6 @@ else
     }
 fi
 
-## dropbox can suck: ##########
-dropx() {
-  local db="dropbox"
-  for act in {op,art,atus}; do $db st${act}; done
-  for i in {1..5}; do sleep 1 && $db status; done
-  for i in {1..15}; do sleep 2 && $db status; done
-}
-
 ###############################
 # functions ###################
 #one liners
