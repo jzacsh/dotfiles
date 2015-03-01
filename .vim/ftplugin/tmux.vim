@@ -9,9 +9,7 @@ set cpo&vim
 setlocal comments=:#
 setlocal commentstring=#\ %s
 
-if maparg('K','n') ==# ''
-  nnoremap <silent><buffer> K :call tmux#man()<CR>
-endif
+nnoremap <silent><buffer> K :call tmux#man()<CR>
 
 nnoremap <silent> <Plug>TmuxExec :<C-U>set opfunc=tmux#filterop<CR>g@
 xnoremap <silent> <Plug>TmuxExec :<C-U>call tmux#filterop(visualmode())<CR>
