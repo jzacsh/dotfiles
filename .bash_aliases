@@ -236,7 +236,7 @@ tmp() {
     "$EDITOR" "$tmpfile" && "$BROWSER" "$tmpfile"
   else
     #will use proper pastie
-    "$EDITOR" "$tmpfile" && "$PASTIE" < "$tmpfile"
+    "$EDITOR" "$tmpfile" && "$PASTIE" "$@" < "$tmpfile"
   fi
 
   #cleanup
