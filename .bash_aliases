@@ -287,4 +287,10 @@ notifyhttp() {
   done
 }
 
+scratchDir() {
+  local mktempTemplate
+  mktempTemplate="$(date --iso-8601)_$(date +%H-%M-%S).scratchdir.XXXXXX"
+  pushd "$(TMPDIR=~/tmp/build/ mktemp -d -t "$mktempTemplate")"
+}
+
 # vim: et:ts=2:sw=2
