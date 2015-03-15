@@ -182,11 +182,10 @@ addkeys () {
         echo "
         usage: $FUNCNAME -t [timeout] [keys ...]
 
-        add sshkeys to keychain(1)
-        timeout is minutes until keys are cleared. defaults to 240
-        keys additional ssh keys you'd like added. defaults to ~/.ssh/add/*.add
-
-        NOTE: to load keys on this machine setup in ~/.ssh/add/:
+        Add sshkeys to keychain(1)
+        - timeout is minutes until keys are cleared. defaults to 240
+        - keys additional ssh keys you'd like added. defaults to ~/.ssh/add/*.add
+        NOTE: run addkeys_install to setup keys on this machine in ~/.ssh/add/*
           lrwxrwxrwx   yourkey.add -> ../yourkey
           lrwxrwxrwx   yourkey.add.pub -> ../yourkey.pub
         " >&2
