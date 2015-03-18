@@ -79,7 +79,7 @@ geo() ( identify -verbose $1 | grep geometry; )
 wat() ( curl -Ls ${@} | $PAGER; )
 rfc() { curl -s "http://tools.ietf.org/rfc/rfc${1}.txt" | $PAGER +/-.[0-9]*.-.*RFC\ \#${1}; }
 hgchanged() { hg -q in ${1} --template='{files}\n'; }
-t() { tmux -L main "${@:-attach}"; } #tmux
+t() { TERM=xterm-256color tmux -L main "${@:-attach}"; } #tmux
 td() { t detach; }
 
 #`hg shelve` extension is broken for some reason.
