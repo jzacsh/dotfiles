@@ -1,19 +1,16 @@
 #!/usr/bin/env bash
 
-set -o vi
 export BROWSER=chromium-browser
-export DEBFULLNAME="Jonathan Zacsh"
-export DEBEMAIL="jzacsh@gmail.com"
-export TERM=xterm #ridiculousness for ubuntu's tmux
+export DEBFULLNAME='Jonathan Zacsh'
+export DEBEMAIL='jzacsh@gmail.com'
 export JAVA_HOME='/usr/lib/jvm/java-6-openjdk-amd64/'
 export CLOSURE_COMPILER="$HOME/usr/lib/js/closure-compiler"
 
-alias rw='for serv in varnish apache2 mysql; do sudo service "$serv" restart; done'
-
-alias pman="pydoc3.1"
-alias pdb="pdb3.1"
+alias pman='pydoc3.1'
+alias pdb='pdb3.1'
 
 #specific configs:
+
 ln -sf ~/.host/src/distro.ubuntu/.pbuilderrc ~/
 
 # vim: et:ts=2:sw=2
