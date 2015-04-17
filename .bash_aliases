@@ -294,9 +294,9 @@ scratchDir() {
 
   local newTmpDir
   if [ -d "$tmpDir" ];then
-    newTmpDir="$(TMPDIR= mktemp -d -t "$mktempTemplate")"
+    newTmpDir="$(mktemp -d --tmpdir="$tmpDir" "$mktempTemplate")"
   else
-    newTmpDir="$(mktemp -d -t "$mktempTemplate")"
+    newTmpDir="$(mktemp -d --tmpdir "$mktempTemplate")"
   fi
 
   pushd "$newTmpDir"
