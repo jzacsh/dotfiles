@@ -3,7 +3,7 @@
 export BROWSER=chromium-browser
 export DEBFULLNAME='Jonathan Zacsh'
 export DEBEMAIL='jzacsh@gmail.com'
-export JAVA_HOME='/usr/lib/jvm/java-6-openjdk-amd64/'
+export JAVA_HOME='/usr/lib/jvm/java-7-openjdk-amd64/'
 export CLOSURE_COMPILER="$HOME/usr/lib/js/closure-compiler"
 
 alias pman='pydoc3.1'
