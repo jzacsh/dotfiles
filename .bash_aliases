@@ -287,9 +287,19 @@ notifyhttp() {
 }
 
 scratchDir() {
+  local tmpDir=~/tmp/build/
   local mktempTemplate
-  mktempTemplate="$(date --iso-8601)_$(date +%H-%M-%S).scratchdir.XXXXXX"
-  pushd "$(TMPDIR=~/tmp/build/ mktemp -d -t "$mktempTemplate")"
+
+  mktempTemplate="$(date --iso-8601)_$(date +%H-%M-%S).$(whoami).scratchdir.XXXXXX"
+
+  local newTmpDir
+  if [ -d "$tmpDir" ];then
+    newTmpDir="$(mktemp -d --tmpdir="$tmpDir" "$mktempTemplate")"
+  else
+    newTmpDir="$(mktemp -d --tmpdir "$mktempTemplate")"
+  fi
+
+  pushd "$newTmpDir"
 }
 
 # vim: et:ts=2:sw=2
