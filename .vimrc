@@ -96,15 +96,14 @@ if &term !=# "linux"
 endif
 
 " highlight variable on hover stackoverflow.com/questions/1551231
-:autocmd CursorMoved * exe printf('match SignColumn /\V\<%s\>/', escape(expand('<cword>'), '/\'))
+autocmd CursorMoved * exe printf('match SignColumn /\V\<%s\>/', escape(expand('<cword>'), '/\'))
 
 " always jump to last position in file, see :help last-position-jump
-:au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g'\"" | endif
+autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g'\"" | endif
 
 "highlight redundant whitespace.
 highlight RedundantSpaces ctermbg=red guibg=red
 match RedundantSpaces /\s\+$\| \+\ze\t\|\t/
-
 
 function! HighlightTooLongLines()
   highlight def link RightMargin Error
@@ -113,11 +112,12 @@ function! HighlightTooLongLines()
   endif
 endfunction
 augroup setup_too_long_line_highlighting
-  au FileType,BufEnter * call HighlightTooLongLines()
+  autocmd CursorMoved,FileType,BufEnter * call HighlightTooLongLines()
 augroup END
 if v:version >= 703
-  " create long-line marker with columns color
-  set colorcolumn=+1,+2,+3
+  " creates *constant* long-line marker with columns color
+  " set colorcolumn=+1,+2,+3
+
   augroup color_tweak
     autocmd!
     autocmd ColorScheme * highlight clear ColorColumn
