@@ -26,7 +26,6 @@ set autoread
 
 " show results while typing
 set incsearch
-
 " pfftt.. who needs the real vi anyway?
 set nocompatible
 
@@ -49,32 +48,40 @@ set sw=2
 syntax on
 set ff=unix
 set autoindent
-set ai
 set history=400
-set nosi
 set ruler
 set number
 set laststatus=2
 set statusline=%t%(\ [%n%M]%)%(\ %H%R%W%)\ %(%c-%v,\ %l\ of\ %L,\ (%o)\ %P\ 0x%B\ (%b)%)
-" set statusline+={rvm#statusline()}
-set hidden " not sure what this does.
-"set mouse=a    "annoying
+set hidden
+
+" enables mouse for any of mode:
+"   [n]ormal,[v]isual,[i]nsert,[c]ommandline,[h]elp-file,[a]ll
+set mouse=i
 
 
 " color schemes
-"""""""""""""""
-"
-" colorscheme mustang
-" colorscheme dante
-"
-" from http://vimcolorschemetest.googlecode.com/svn/html/index-c.html
-colorscheme desert
-" colorscheme darkZ
-" colorscheme graywh
-" colorscheme jellybeans
-" colorscheme molokai
-" colorscheme skittles_dark
-" colorscheme anotherdark
+"   from http://vimcolorschemetest.googlecode.com/svn/html/index-c.html
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" freya
+" Tomorrow-Night-Eighties
+colorscheme jellybeans
+" colorscheme wombat
+" railscasts+
+" dante
+" hornet
+" molokai
+" zenburn
+" graywh
+" mustang
+" skittles_dark
+" desert
+" freya
+" anotherdark
+" wombat
+" tir_black
+" darkZ
+
 
 
 
@@ -82,18 +89,17 @@ colorscheme desert
 " Advanced/Quirky settings & configuration
 """"""""""""""""""""""""""""""""""""""""""
 
+" When we're in X11
+if &term !=# "linux"
+  " set background=dark
+  set list listchars=tab:\»\ ,extends:›,precedes:‹
+endif
+
 " highlight variable on hover stackoverflow.com/questions/1551231
 :autocmd CursorMoved * exe printf('match SignColumn /\V\<%s\>/', escape(expand('<cword>'), '/\'))
 
 " always jump to last position in file, see :help last-position-jump
 :au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g'\"" | endif
-
-
-" When we're in X11
-if &term !=# "linux"
-    set background=dark
-    set list listchars=tab:\»\ ,extends:›,precedes:‹
-endif
 
 "highlight redundant whitespace.
 highlight RedundantSpaces ctermbg=red guibg=red
