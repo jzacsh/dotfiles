@@ -68,6 +68,8 @@ set hidden
 " freya
 " Tomorrow-Night-Eighties
 colorscheme jellybeans
+" specific to 'jellybeans':
+highlight LineNr ctermfg=grey ctermbg=black
 " colorscheme wombat
 " railscasts+
 " dante
