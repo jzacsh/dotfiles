@@ -55,9 +55,11 @@ set laststatus=2
 set statusline=%t%(\ [%n%M]%)%(\ %H%R%W%)\ %(%c-%v,\ %l\ of\ %L,\ (%o)\ %P\ 0x%B\ (%b)%)
 set hidden
 
+" too annoying:
+""""""""""""""
 " enables mouse for any of mode:
 "   [n]ormal,[v]isual,[i]nsert,[c]ommandline,[h]elp-file,[a]ll
-set mouse=i
+"set mouse=i
 
 
 " color schemes
