@@ -299,7 +299,11 @@ scratchDir() {
     newTmpDir="$(mktemp -d --tmpdir "$mktempTemplate")"
   fi
 
-  pushd "$newTmpDir"
+  if [[ $1 = -p ]];then
+    printf '%s\n' "$newTmpDir"
+  else
+    pushd "$newTmpDir"
+  fi
 }
 
 # vim: et:ts=2:sw=2
