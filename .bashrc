@@ -65,7 +65,9 @@ bash_prompt() {
   PS1="${TITLEBAR}${col_blu}${col_end}${col_usr}\u@${col_end}${col_blu}\h${col_end}${RET_VALUE}"' \[\033[0;32m\]$(vcprompt)\[\033[0m\]'" ${col_ylw}\w${col_end}\n${col_blu}${col_end}\t${col_ylw} \$${col_end} "
   PS4='+$BASH_SOURCE:$LINENO:$FUNCNAME: '
 }
+PROMPT_COMMAND='RET=$?' # see: man bash | less +/PROMPT_COMMAND
 bash_prompt
+unset bash_prompt
 
 
 #
