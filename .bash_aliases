@@ -286,11 +286,12 @@ notifyhttp() {
   done
 }
 
-scratchDir() {
+mkScratchDir() {
   local tmpDir=~/tmp/build/
   local mktempTemplate
 
-  mktempTemplate="$(date --iso-8601)_$(date +%H-%M-%S).$(whoami).scratchdir.XXXXXX"
+  local isoDay="$(date --iso-8601)"; isoDay="${isoDay//-/}"
+  mktempTemplate="${isoDay}_$(date +%H-%M-%S).$(whoami).scratch.XXXXXX"
 
   local newTmpDir
   if [ -d "$tmpDir" ];then
@@ -299,11 +300,9 @@ scratchDir() {
     newTmpDir="$(mktemp -d --tmpdir "$mktempTemplate")"
   fi
 
-  if [[ $1 = -p ]];then
-    printf '%s\n' "$newTmpDir"
-  else
-    pushd "$newTmpDir"
-  fi
+  printf '%s\n' "$newTmpDir"
 }
+
+scratchDir() { pushd "$(mkScratchDir)"; }
 
 # vim: et:ts=2:sw=2
