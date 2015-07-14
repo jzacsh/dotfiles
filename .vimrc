@@ -203,7 +203,7 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""
 
 " toggle :set (no)paste
-nnoremap <Leader>p  :se invpaste paste?<return>
+nnoremap <Leader>P  :se invpaste paste?<return>
 
 " search directories - blows my mind; no idea how to use
 " nnoremap <Leader>d  :FufDir<CR>
