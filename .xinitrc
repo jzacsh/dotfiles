@@ -21,4 +21,4 @@ urxvtd -q -o -f
 # # i'm running a reparenting WM, honest!
 # wmname LG3D
 
-xmodmap ~/.Xmodmap
+xmodmap "$XDG_CONFIG_HOME"/xmodmap
