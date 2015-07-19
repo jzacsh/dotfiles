@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # # graphical/display tweaking
 # [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
@@ -22,12 +22,3 @@ urxvtd -q -o -f
 # wmname LG3D
 
 xmodmap ~/.Xmodmap
-
-# exec ~/bin/startdwm
-while true
-do
-    xsetroot -name "$(date) $(uptime | sed 's/.*,//')"
-    newdwmbg ~/dbox/Photos/desktops/django-pony.png
-    sleep 1
-done &
-exec dwm
