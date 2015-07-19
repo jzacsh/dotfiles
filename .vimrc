@@ -267,7 +267,8 @@ let g:syntastic_c_checkers = ['gcc']
 let g:syntastic_css_checkers = ['prettycss']
 let g:syntastic_html_checkers = ['jshint']
 " TODO(jzacsh): Consider just making a similar jshintrc
-let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_javascript_checkers = ['gjslint']
+
 
 " xdebug
 let g:debuggerPort = 9000
