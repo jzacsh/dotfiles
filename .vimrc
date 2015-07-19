@@ -136,30 +136,34 @@ endif
 " Language-specific settings
 " TODO(jzacsh) aren't these handled by syntax files? maybe delete all of this?
 """"""""""""""""""""""""""
-
-" make files
-autocmd FileType make set noexpandtab
-"js
-autocmd FileType js set ts=2
-autocmd FileType js set sw=2
-autocmd FileType js set sts=2
-"php
-autocmd FileType php set ts=2
-autocmd FileType php set sw=2
-autocmd FileType php set sts=2
-"python
-autocmd FileType py set ts=4
-autocmd FileType py set sw=4
-autocmd FileType py set sts=4
-" lesscss.org
-au BufNewFile,BufRead *.less set filetype=less
-" haml-lang.org
-au! BufRead,BufNewFile *.haml set filetype haml
-" ledger-cli.org
-au BufNewFile,BufRead *.ldg,*.ledger setf ledger | comp ledger
-
-"drupal.org suggestions:
 if has("autocmd")
+  " make files
+  autocmd FileType make set noexpandtab
+
+  "js
+  autocmd FileType js set ts=2
+  autocmd FileType js set sw=2
+  autocmd FileType js set sts=2
+
+  "php
+  autocmd FileType php set ts=2
+  autocmd FileType php set sw=2
+  autocmd FileType php set sts=2
+
+  "python
+  autocmd FileType py set ts=4
+  autocmd FileType py set sw=4
+  autocmd FileType py set sts=4
+
+  " lesscss.org
+  au BufNewFile,BufRead *.less set filetype less
+
+  " haml-lang.org
+  au! BufRead,BufNewFile *.haml set filetype haml
+
+  " ledger-cli.org
+  au BufNewFile,BufRead *.ldg,*.ledger setf ledger | comp ledger
+
   " Drupal *.module and *.install files.
   augroup drupal
     autocmd!
