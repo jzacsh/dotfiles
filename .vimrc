@@ -268,6 +268,10 @@ let g:syntastic_css_checkers = ['prettycss']
 let g:syntastic_html_checkers = ['jshint']
 let g:syntastic_javascript_checkers = ['gjslint']
 
+" disable syntastic for bats, but not syntax; *sort* of per:
+"    https://groups.google.com/d/msg/vim-syntastic/D80n65Fgj1w/y5OIJUQWY4wJ
+let g:syntastic_mode_map = {'mode': 'active', 'passive_filetypes': ['bats']}
+
 
 " xdebug
 let g:debuggerPort = 9000
