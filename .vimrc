@@ -65,26 +65,27 @@ set hidden
 " color schemes
 "   from http://vimcolorschemetest.googlecode.com/svn/html/index-c.html
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"robust against funky terminal background colors
+"" Rating from good to bad:    :(    :/    :)
+"
+" dante  " :/ really light/bright symbols
+" skittles_dark   " :/ can't tell my strings from my objects
+" anotherdark   " :( ... not enough contrast
+" wombat  " :)
+colorscheme desert  " :) ... favorite; ==~ darkZ
+" darkZ
+
+"" EXPERIMENTAL:
 " freya
 " Tomorrow-Night-Eighties
-colorscheme jellybeans
-" specific to 'jellybeans':
-highlight LineNr ctermfg=grey ctermbg=black
-" colorscheme wombat
-" railscasts+
-" dante
+" jellybeans
+" " specific to 'jellybeans':
+" " highlight LineNr ctermfg=grey ctermbg=black
 " hornet
-" molokai
-" zenburn
 " graywh
-" mustang
-" skittles_dark
-" desert
+" mustang " no cursor
 " freya
-" anotherdark
-" wombat
 " tir_black
-" darkZ
 
 
 
