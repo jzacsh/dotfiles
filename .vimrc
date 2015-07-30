@@ -52,7 +52,7 @@ set history=400
 set ruler
 set number
 set laststatus=2
-set statusline=%t%(\ [%n%M]%)%(\ %H%R%W%)\ %(%c-%v,\ %l\ of\ %L,\ (%o)\ %P\ 0x%B\ (%b)%)
+set statusline=%t%(\ [buf:\ %n%M]%)%(\ %H%R%W%)\ %L\ lines\ \|\ scroll:\ %P\ \|\ [cursor]\ %(col:\ %c,\ byte:\ #%o,\ val:\ %b=0x%B%)
 set hidden
 
 " too annoying:
