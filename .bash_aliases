@@ -31,6 +31,7 @@ alias vim='vim -X'
 alias html='w3m -dump -T text/html'
 alias pastie="$PASTIE"
 alias json='python -mjson.tool'
+alias log='grc tail -F'
 
 alias mail='vmail' # tiny script that wraps mail in `mktemp`/$EDITOR calls
 
