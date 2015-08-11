@@ -293,7 +293,7 @@ mkScratchDir() {
   local tmpDir=~/tmp/build/
 
   local when
-  when="$(date --iso-8601=minutes)"
+  when="$(date --iso-8601=minutes)"; when="${when/:/.}"
   when="${when/-}"; when="${when/-}"
 
   local mktempTemplate
