@@ -151,7 +151,7 @@ bar {
 }
 
 # expected modification:
-bindsym Mod1+Mod4+l exec i3lock
+bindsym Mod1+Mod4+l exec "i3lock -c 000000"
 exec --no-startup-id nm-applet
 exec --no-startup-id ~/bin/share/autolock
 
