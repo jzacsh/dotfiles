@@ -14,10 +14,13 @@
 ! Switch caps lock and (left) control
   remove Lock = Caps_Lock
   remove Control = Control_L
-  keysym Control_L = Caps_Lock
+! keysym Control_L = Caps_Lock
   keysym Caps_Lock = Control_L
-  add Lock = Caps_Lock
   add Control = Control_L
+! add Lock = Caps_Lock
+
+! zacsh@ took from http://unix.stackexchange.com/a/75578
+  clear Lock
 
 !! GGAAHHH!! i didn't realize i had this file (above)...
 !
