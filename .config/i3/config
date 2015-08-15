@@ -1,0 +1,14 @@
+# can be targeted with `i3 -c ~/.config/i3/config`
+
+# expected modification:
+bindsym Mod1+Mod4+1 exec i3lock
+exec --no-startup-id nm-applet
+exec --no-startup-id ~/bin/share/autolock
+
+# Bind the Fn+F3/Fn+F4 keys to lock/lock+suspend respectively
+bindsym XF86ScreenSaver exec --no-startup-id i3lock
+bindsym XF86Scleep exec --no-startup-id i3lock && dbus-send --system --dest=org.freedesktop.UPower --type=method_call --print-reply /org/freedesktop/UPower org.freedesktop.UPower.Suspend && dbus-send --system --dest=org.freedesktop.UPower --type=method_call --print-reply /org/freedesktop/UPower org.freedesktop.UPower.Suspend && dbus-send --system --dest=org.freedesktop.UPower --type=method_call --print-reply /org/freedesktop/UPower org.freedesktop.UPower.Suspend
+
+# change mod+Shift+e exec to just be 'i3-msg exit'
+
+for_window [class="^Google-chrome$"] border none

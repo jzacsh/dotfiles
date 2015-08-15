@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+#TODO: delete this line:
+# xset +dpms +fp /usr/share/fonts/local,/usr/share/fonts/artwiz-fonts
+
+# feh --bg-scale $(randomWallpaper)
+
+# xcompmgr -n -c -C -t-5 -l-5 -r4.2 -o.55 -f 2>/dev/null &
+
+# # input tweaking
+# setxkbmap -option terminate:ctrl_alt_bksp
+# xset r rate 220 45
+# xsetroot -cursor_name left_ptr
+
+# autostart
+urxvtd -q -o -f
+
+# if this doesn't work, just do:
+#    setxbmap -option ctrl:swapcaps
+#    xmodmap "${XDG_CONFIG_HOME:-~/.config}"/xmodmaprc
+
+
+# if touchpad is tap-to-click enabled, disable with:
+#    synclient MaxTapTime=0
+
+xsetroot -solid "#FF69B4"
+
+# if you're desparate:
+#/usr/libexec/gnome-settings-daemon &
