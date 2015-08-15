@@ -8,13 +8,13 @@
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 !swap caps w/left-ctrl
-! keycode 66 = Control_L
-! keycode 37 = Caps_Lock
+  keycode 66 = Control_L
+! keycode 37 = Control_L
 
-! Switch caps lock and (left) control
+! Disable caps lock, and replace with (left) control
   remove Lock = Caps_Lock
   remove Control = Control_L
-! keysym Control_L = Caps_Lock
+  keysym Control_L = Control_L
   keysym Caps_Lock = Control_L
   add Control = Control_L
 ! add Lock = Caps_Lock
