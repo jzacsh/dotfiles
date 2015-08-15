@@ -1,3 +1,1 @@
-# exec /usr/sbin/lightdm-session /usr/bin/lxsession
-
-/usr/bin/i3
+exec /usr/bin/i3

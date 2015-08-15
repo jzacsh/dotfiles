@@ -3,4 +3,27 @@
 #specific configs:
 ln -sf ~/.host/src/host.jznuc/.Xdefaults ~/
 
+# Problem:
+#   My Ubuntu (14.04.3 LTS) desktop is responding to Super keypress despite
+#   my pressing the physical key labeled "alt", and conversely my desktop
+#   responds to Alt when I press the physical key labeled with the MS. windows
+#   logo ("super").
+#
+#   NOTE: seems to be only with my Goldtouch Bluetooth keyboard
+#     keycode 133 - *actual* alt key
+#     keycode 64 - *actual* superkey
+#
+# Mysteriously, xmodmap confirms the confusion (but from where?):
+#   $ xmodmap -pke | grep -E keycode.133
+#   keycode 133 = Super_L NoSymbol Super_L
+#
+#   $ xmodmap -pke | grep -E keycode.*64
+#   keycode  64 = Alt_L Meta_L Alt_L Meta_L
+#
+# Solution: swap them back:
+#   xmodmap -e 'keycode 64 = Super_L NoSymbol Super_L'
+#   xmodmap -e 'keycode 133 = Alt_L Meta_L Alt_L Meta_L'
+#
+# Solution: hard-switch on keyboard was set to "Mac"!!! FML
+
 # vim: et:ts=2:sw=2
