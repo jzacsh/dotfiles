@@ -25,5 +25,11 @@ urxvtd -q -o -f
 
 xsetroot -solid "#FF69B4"
 
+# Trying to figure out why chrome AND firefox ignore user-dirs.dirs in i3 but
+# not gnome/unity...
+while read xdgir; do
+  [[ $xdgir =~ ^XDG_ ]] && export $xdgir
+done < ~/.config/user-dirs.dirs
+
 # if you're desparate:
 #/usr/libexec/gnome-settings-daemon &
