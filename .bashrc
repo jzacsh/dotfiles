@@ -4,6 +4,10 @@
 # External config
 [[ -r ~/.dircolors && -x /bin/dircolors ]] && eval $(dircolors -b ~/.dircolors)
 [[ -r ~/.hgbashrc ]] && source ~/.hgbashrc
+
+[ ! -e ~/.config/bash_completion.d/npm-run-completion.sh ] &&
+  npm completion > ~/.config/bash_completion.d/npm-run-completion.sh
+
 for completion in ~/.config/bash_completion.d/*.sh; do
   source "$completion"
 done
