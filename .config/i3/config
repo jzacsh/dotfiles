@@ -155,6 +155,9 @@ bindsym Mod1+Mod4+l exec "i3lock -c 000000"
 exec --no-startup-id nm-applet
 exec --no-startup-id ~/bin/share/autolock
 
+# from http://miek.nl/posts/2014/Mar/08/use-i3/
+exec --no-startup-id blueman-applet
+
 # Bind the Fn+F3/Fn+F4 keys to lock/lock+suspend respectively
 bindsym XF86ScreenSaver exec --no-startup-id i3lock
 bindsym XF86Scleep exec --no-startup-id i3lock && dbus-send --system --dest=org.freedesktop.UPower --type=method_call --print-reply /org/freedesktop/UPower org.freedesktop.UPower.Suspend
