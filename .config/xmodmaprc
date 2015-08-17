@@ -8,19 +8,13 @@
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 !swap caps w/left-ctrl
-  keycode 66 = Control_L
-! keycode 37 = Control_L
+! keycode 66 = Control_L
+!! keycode 37 = Control_L
 
 ! Disable caps lock, and replace with (left) control
-  remove Lock = Caps_Lock
-  remove Control = Control_L
-  keysym Control_L = Control_L
+  clear Lock
   keysym Caps_Lock = Control_L
   add Control = Control_L
-! add Lock = Caps_Lock
-
-! zacsh@ took from http://unix.stackexchange.com/a/75578
-  clear Lock
 
 !! GGAAHHH!! i didn't realize i had this file (above)...
 !
