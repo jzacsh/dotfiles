@@ -83,6 +83,25 @@ hgchanged() { hg -q in ${1} --template='{files}\n'; }
 t() { tmux -L main ${@:-attach}; } #tmux
 td() { t detach; }
 
+keyboard() {
+# NOTE: step #1 might not be necessary, perhaps bluez just expects a PIN typed
+# identically in both places. will try to clarify next time.
+  cat <<EO_INSTRUCTION
+assuming:
+  a) \`bluez\` and \`hidd\` exists; respectively: apt-get install bluez bluez-compat
+  b) a "DisableSecurity" line lives in /etc/bluetooth/network.conf
+  c) KEYBOARD_ID is of format XX:XX:XX:XX:XX:XX (eg: "08:B7:38:12:B6:CA")
+     find via: \`bluez-test-discovery\`
+
+1) disable security, via /etc/bluetooth/network.conf
+2) pair: \`bt-device --connect=KEYBOARD_ID\`
+   a) type "0000⏎" at prompt (ie: here, on host)
+   b) enter "0000⏎" on bluetooth keyboard (and step #2 should return 0)
+3) connect: \`sudo hidd --connect KEYBOARD_ID\`
+4) cleanup step #1
+EO_INSTRUCTION
+}
+
 #`hg shelve` extension is broken for some reason.
 hgunshelve () {
   local patch
