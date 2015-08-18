@@ -153,7 +153,7 @@ bar {
 # expected modification:
 bindsym Mod1+Mod4+l exec "i3lock -c 000000"
 exec --no-startup-id nm-applet
-exec --no-startup-id ~/bin/share/autolock
+exec --no-startup-id ~/bin/share/autolock &
 
 # from http://miek.nl/posts/2014/Mar/08/use-i3/
 exec --no-startup-id blueman-applet
