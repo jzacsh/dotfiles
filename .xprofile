@@ -15,5 +15,4 @@ while read xdgir; do
   [[ $xdgir =~ ^XDG_ ]] && export $xdgir
 done < ~/.config/user-dirs.dirs
 
-# if you're desparate:
-#/usr/libexec/gnome-settings-daemon &
+dropbox start
