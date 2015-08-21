@@ -150,6 +150,11 @@ bar {
         status_command i3status
 }
 
+# Pulse Audio controls
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -- '-5%'
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@    '+5%'
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+
 # expected modification:
 bindsym Mod1+Mod4+l exec "i3lock -c 000000"
 exec --no-startup-id nm-applet
