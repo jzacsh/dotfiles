@@ -7,6 +7,10 @@
 ! state 0x10, keycode 37 (keysym 0xffe3, Control_L), same_screen YES,
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
+! Natural Scrolling, per:
+!   https://wiki.archlinux.org/index.php/Xmodmap#Reverse_scrolling
+pointer = 1 2 3 5 4 7 6 8 9 10 11 12
+
 !swap caps w/left-ctrl
 ! keycode 66 = Control_L
 !! keycode 37 = Control_L
