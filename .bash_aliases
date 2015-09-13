@@ -82,6 +82,7 @@ rfc() { curl -s "http://tools.ietf.org/rfc/rfc${1}.txt" | $PAGER +/-.[0-9]*.-.*R
 hgchanged() { hg -q in ${1} --template='{files}\n'; }
 t() { tmux -L main ${@:-attach}; } #tmux
 td() { t detach; }
+mdown() { markdown_py < /dev/stdin | html; }  # depends on html alias above
 
 keyboard() {
 # NOTE: step #1 might not be necessary, perhaps bluez just expects a PIN typed
