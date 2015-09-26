@@ -227,7 +227,7 @@ nnoremap <Leader>c  :%s/[[:space:]]*$//g<CR>
 map <LocalLeader>T  :call AppendDoNotSubmit()<CR>
 
 " buffer list
-nnoremap <Leader>b  :ls<CR>:buffer<CR>
+nnoremap <Leader>b  :ls<CR>:buffer<Space>
 " buffer close [x] button
 nnoremap <Leader>x  :bd<CR>
 " buffer next
