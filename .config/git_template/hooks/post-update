@@ -23,19 +23,29 @@ stripGitIgnoredFiles() {
 gitListRepoContents() {
   # if `git` is broken (as usual) in hook execution, use this instead:
   #   findRepoContents | stripGitIgnoredFiles
+  cd "$currentRoot"
   git ls-tree --full-tree -r --name-only HEAD
 }
 
-scrapeFile() { grep '\bTODO\b' --line-number --with-filename $@; }
+scrapeFile() { grep '\bTODO\b' --line-number $@; }
+
+scrapeWillBeEmpty() {
+  cd "$currentRoot"
+  gitListRepoContents |
+  while read file; do
+    git show HEAD:"$f" | scrapeFile && return 1
+  done
+}
+scrapeWillBeEmpty && exit
+
+# from https://github.com/jzacsh/yabashlib/tree/5210e33f2f203070f677f571
+col_red_='\e[1;31m'
+col_end_='\033[0m'  # end cap
+echo -e "\n\n${col_red_}[WARNING]${col_end_}\t'TODO()'s found ...\n" >&2
 
 cd "$currentRoot"
-scrapeFile $(gitListRepoContents) > /dev/null && {
-  # from https://github.com/jzacsh/yabashlib/tree/5210e33f2f203070f677f571
-  col_red_='\e[1;31m'
-  col_end_='\033[0m'  # end cap
-
-   echo -e "\n${col_red_}[WARNING]${col_end_}\t'TODO()'s found ...\n" >&2
-}
 gitListRepoContents | while read file;do
-  scrapeFile "$file" >&2
+  git show HEAD:"$file" | scrapeFile >&2 &&
+    printf '^ for:\t%s\n' "$file"
+
 done
