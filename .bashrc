@@ -90,7 +90,10 @@ source ~/bin/share/zacsh_exports
 
 source $HOME/.host/pick  # Dynamic config
 
-ssh-add ~/.ssh/add/*.add #load ssh keys
+if [ -z "$SSH_AUTH_SOCK" ]; then
+  eval $(ssh-agent -s)
+  ssh-add ~/.ssh/add/*.add #load ssh keys
+fi
 
 #must be after PATH:, apparently this will break if non-interactive shell `return`'s above.
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
