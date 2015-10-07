@@ -90,7 +90,7 @@ source ~/bin/share/zacsh_exports
 
 source $HOME/.host/pick  # Dynamic config
 
-addkeys #load ssh keys
+ssh-add ~/.ssh/add/*.add #load ssh keys
 
 #must be after PATH:, apparently this will break if non-interactive shell `return`'s above.
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"

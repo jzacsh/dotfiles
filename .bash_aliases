@@ -195,42 +195,6 @@ e() {
     fi
 }
 
-#ssh key management
-addkeys () {
-    local timeout nums
-
-    if [[ $1 = '-h' || $1 = '--help' ]];then
-        echo "
-        usage: $FUNCNAME -t [timeout] [keys ...]
-
-        Add sshkeys to keychain(1)
-        - timeout is minutes until keys are cleared. defaults to 240
-        - keys additional ssh keys you'd like added. defaults to ~/.ssh/add/*.add
-        NOTE: run addkeys_install to setup keys on this machine in ~/.ssh/add/*
-          lrwxrwxrwx   yourkey.add -> ../yourkey
-          lrwxrwxrwx   yourkey.add.pub -> ../yourkey.pub
-        " >&2
-        return 1
-    elif [[ ! $(type -p keychain) ]]; then
-        echo "error: keychain not found" >&2
-        return 2
-    fi
-
-    if [[ $1 = '-t' ]];then
-        nums='^[0-9]+([.][0-9]+)?$'
-        if [[ -n $2 && $2 =~ $nums ]];then
-            timeout=$2
-            shift 2
-        else
-            echo "error: numeric timeout value not passed." >&2
-            return 2
-        fi
-    fi
-
-    #actually do something:
-    eval $(keychain --nogui --eval --timeout ${timeout:-240} ~/.ssh/add/*.add ${@})
-}
-
 #allow xdebug step-through of php-cli
 xdb() {
   [[ -z $1 ]] && XDEBUG_CONFIG="idekey=netbeans-xdebug" "${*}"
