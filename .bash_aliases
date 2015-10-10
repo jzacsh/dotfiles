@@ -84,6 +84,9 @@ t() { tmux -L main ${@:-attach}; } #tmux
 td() { t detach; }
 mdown() { markdown_py < /dev/stdin | html; }  # depends on html alias above
 
+# bump font on the fly; from https://bbs.archlinux.org/viewtopic.php?id=44121
+urxvtc_font() { printf '\33]50;%s%d\007' "xft:Terminus:pixelsize=" $1; }
+
 keyboard() {
 # NOTE: step #1 might not be necessary, perhaps bluez just expects a PIN typed
 # identically in both places. will try to clarify next time.
