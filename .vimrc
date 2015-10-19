@@ -277,6 +277,7 @@ let g:syntastic_html_checkers = ['jshint']
 let g:syntastic_javascript_checkers = ['gjslint']
 let g:syntastic_java_checkers = ['javac']
 let g:syntastic_java_javac_config_file_enabled = 1
+let g:syntastic_debug_file = '~/usr/log/syntastic.log'
 
 " disable syntastic for bats, but not syntax; *sort* of per:
 "    https://groups.google.com/d/msg/vim-syntastic/D80n65Fgj1w/y5OIJUQWY4wJ
