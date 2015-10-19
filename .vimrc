@@ -300,7 +300,7 @@ let php_folding = 1
 let php_sync_method = 0
 
 " for github.com/junegunn/FZF plugin:
-set rtp+=~/.fzf
+set rtp+=~/usr/local/bin/fzf
 
 " pathogen magic:
 call pathogen#infect($VIM."bundle/{}")
