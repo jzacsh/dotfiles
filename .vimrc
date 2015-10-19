@@ -268,7 +268,10 @@ let MRU_Max_Entries = 10
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 1
 let g:syntastic_auto_loc_list = 1
-let g:syntastic_c_checkers = ['gcc']
+"let g:syntastic_c_checkers = ['clang-3.6']
+let g:syntastic_cpp_checkers = ['clang-check-3.6']
+let g:syntastic_cpp_compiler = 'clang-3.6'
+let g:syntastic_cpp_compiler_options = '-std=c++11 '
 let g:syntastic_css_checkers = ['prettycss']
 let g:syntastic_html_checkers = ['jshint']
 let g:syntastic_javascript_checkers = ['gjslint']
