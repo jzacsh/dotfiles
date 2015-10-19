@@ -111,5 +111,6 @@ fi
 #  sleep 1
 #  kill $! &>/dev/null
 
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 true # don't assume last return status
