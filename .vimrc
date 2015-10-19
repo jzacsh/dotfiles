@@ -275,7 +275,7 @@ let g:syntastic_cpp_compiler_options = '-std=c++11 '
 let g:syntastic_css_checkers = ['prettycss']
 let g:syntastic_html_checkers = ['jshint']
 let g:syntastic_javascript_checkers = ['gjslint']
-let g:syntastic_java_checkers=['javac']
+let g:syntastic_java_checkers = ['javac']
 let g:syntastic_java_javac_config_file_enabled = 1
 
 " disable syntastic for bats, but not syntax; *sort* of per:
@@ -289,14 +289,13 @@ let g:debuggerPort = 9000
 " vimroom
 let g:vimroom_width = 88
 
-
 let php_sql_query = 1
 let php_baselib = 1
 let php_htmlInStrings = 1
 let php_oldStyle = 1
 let php_parent_error_close = 1
 let php_parent_error_open = 1
-let php_folding =1
+let php_folding = 1
 let php_sync_method = 0
 
 " for github.com/junegunn/FZF plugin:
