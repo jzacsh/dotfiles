@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
 
 umask 077
+ulimit -u 256 # per lab 5 instructions
