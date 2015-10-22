@@ -34,11 +34,11 @@ export HISTFILESIZE=2000
 export HISTCONTROL='ignoreboth'
 export HISTSIZE=500
 
-#`who` else loged in:
-if [[ $(who | grep -v $(whoami)) ]]; then
-    printf "Currently on %s, other than you:" $(uname -snr)
-    who -H | grep -v $(whoami)
+if who | grep --invert-match $(whoami) > /dev/null;  then
+    printf "Currently on %s, other than you:\n" "$(uname -snr)"
+    who --heading
 fi
+
 
 PS1='[\u@\h] ${?} $(vcprompt) \w\n\$ ' # simple version of below
 
