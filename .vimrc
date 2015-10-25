@@ -13,6 +13,7 @@ let maplocalleader = "\\"
 set cmdheight=2
 set wildmode=longest,list
 
+set nolist eol
 
 " set which wraps
 set whichwrap+=<,>,h,l
