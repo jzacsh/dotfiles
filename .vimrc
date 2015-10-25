@@ -96,9 +96,11 @@ colorscheme desert  " :) ... favorite; ==~ darkZ
 """"""""""""""""""""""""""""""""""""""""""
 
 " When we're in X11
-if &term !=# "linux"
-  " set background=dark
-  set list listchars=tab:\»\ ,extends:›,precedes:‹
+if v:version >= 704
+  if &term !=# "linux"
+    " set background=dark
+    set list listchars=tab:\»\ ,extends:›,precedes:‹
+  endif
 endif
 
 " highlight variable on hover stackoverflow.com/questions/1551231
