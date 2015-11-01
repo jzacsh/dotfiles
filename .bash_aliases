@@ -79,8 +79,6 @@ geo() ( identify -verbose $1 | grep geometry; )
 wat() ( curl -Ls ${@} | $PAGER; )
 rfc() { curl -s "http://tools.ietf.org/rfc/rfc${1}.txt" | $PAGER +/-.[0-9]*.-.*RFC\ \#${1}; }
 hgchanged() { hg -q in ${1} --template='{files}\n'; }
-t() { tmux -L main ${@:-attach}; } #tmux
-td() { t detach; }
 mdown() { markdown_py < /dev/stdin | html; }  # depends on html alias above
 
 # bump font on the fly; from https://bbs.archlinux.org/viewtopic.php?id=44121
