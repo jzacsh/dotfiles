@@ -22,6 +22,10 @@
 "
 " }}}
 
+if !executable('elimd')
+  finish  " not installed, nothing to do
+endif
+
 " Command Declarations {{{
 if !exists(":EclimValidate")
   command EclimValidate :call <SID>Validate()
