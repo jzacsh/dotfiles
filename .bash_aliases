@@ -77,7 +77,7 @@ speak() { echo ${@} | espeak 2>/dev/null; }
 ident() ( identify -verbose $1 | grep modify; )
 geo() ( identify -verbose $1 | grep geometry; )
 wat() ( curl -Ls ${@} | $PAGER; )
-rfc() { curl -s "http://tools.ietf.org/rfc/rfc${1}.txt" | $PAGER +/-.[0-9]*.-.*RFC\ \#${1}; }
+rfc() { curl -Ls "http://tools.ietf.org/rfc/rfc${1}.txt" | ${PAGER:-less}; }
 hgchanged() { hg -q in ${1} --template='{files}\n'; }
 mdown() { markdown_py < /dev/stdin | html; }  # depends on html alias above
 
