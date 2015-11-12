@@ -12,6 +12,7 @@ let maplocalleader = "\\"
 
 set cmdheight=2
 set wildmode=longest,list
+set foldlevel=3
 
 set nolist eol
 
