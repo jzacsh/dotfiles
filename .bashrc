@@ -108,12 +108,13 @@ fi
 # Below this line is strictly for messages to myself #
 ######################################################
 
+#Users
 if who | grep --invert-match $(whoami) > /dev/null;  then
     printf "Currently on %s, other than you:\n" "$(uname -snr)"
     who --heading
 fi
 
-# Laughs:
+#Laughs:
 # curl --silent --ocation --connect-timeout 0.06 \
 #     http://whatthecommit.com/index.txt 2>/dev/null
 
