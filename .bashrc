@@ -98,10 +98,13 @@ fi
 #must be after PATH:, apparently this will break if non-interactive shell `return`'s above.
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
-#in my nested tmux shells, my inherited `env` is old
-{ DBUS_SESSION_BUS_ADDRESS="$(< ~/.dbus_address)"; } 2>/dev/null
-(( $? )) && unset DBUS_SESSION_BUS_ADDRESS || \
-  export DBUS_SESSION_BUS_ADDRESS="$DBUS_SESSION_BUS_ADDRESS"
+# in my nested tmux shells, my inherited `env` is old
+dbusSessionBusAddress="$(< ~/.dbus_address 2>/dev/null)"
+if [ -n "$dbusSessionBusAddress" ];then
+  export DBUS_SESSION_BUS_ADDRESS="$dbusSessionBusAddress"
+else
+  unset dbusSessionBusAddress
+fi
 
 #laughs:
 #@TODO: make this fail on redirects (eg.: open wifi login pages)
