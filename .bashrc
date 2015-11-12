@@ -34,12 +34,6 @@ export HISTFILESIZE=2000
 export HISTCONTROL='ignoreboth'
 export HISTSIZE=500
 
-if who | grep --invert-match $(whoami) > /dev/null;  then
-    printf "Currently on %s, other than you:\n" "$(uname -snr)"
-    who --heading
-fi
-
-
 PS1='[\u@\h] ${?} $(vcprompt) \w\n\$ ' # simple version of below
 
 # vcs and color-aware version of bash prompt:
@@ -108,6 +102,16 @@ fi
 
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+
+######################################################
+# Below this line is strictly for messages to myself #
+######################################################
+
+if who | grep --invert-match $(whoami) > /dev/null;  then
+    printf "Currently on %s, other than you:\n" "$(uname -snr)"
+    who --heading
+fi
 
 #laughs:
 #@TODO: make this fail on redirects (eg.: open wifi login pages)
