@@ -115,7 +115,7 @@ if who | grep --invert-match $(whoami) > /dev/null;  then
 fi
 
 #Laughs:
-# curl --silent --ocation --connect-timeout 0.06 \
+# curl --silent --location --connect-timeout 0.06 \
 #     http://whatthecommit.com/index.txt 2>/dev/null
 
 #Tmux
