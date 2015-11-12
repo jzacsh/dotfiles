@@ -118,4 +118,18 @@ fi
 # curl --silent --ocation --connect-timeout 0.06 \
 #     http://whatthecommit.com/index.txt 2>/dev/null
 
+#Tmux
+scowerForTmuxSessions() {
+  local col_end='\033[0m'; local col_grn='\e[0;32m'
+  local commonTmSocks=(default main "${USER}main")
+  for sock in "${commonTmSocks[@]}"; do
+    local tmSessions="$(tmux -L "$sock" list-sessions 2>/dev/null)"
+    [ -z "$tmSessions" ] && continue;
+    printf "tmux -L ${col_grn}%s${col_end} sessions:\n" "$sock"
+    echo $tmSessions # do not quote this line
+  done
+}
+scowerForTmuxSessions; unset scowerForTmuxSessions
+
+
 true # don't assume last return status
