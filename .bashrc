@@ -113,12 +113,8 @@ if who | grep --invert-match $(whoami) > /dev/null;  then
     who --heading
 fi
 
-#laughs:
-#@TODO: make this fail on redirects (eg.: open wifi login pages)
-#  curl -s --connect-timeout 1 --max-time 1 \
-#      http://whatthecommit.com/index.txt \
-#      2>/dev/null & &>/dev/null
-#  sleep 1
-#  kill $! &>/dev/null
+# Laughs:
+# curl --silent --ocation --connect-timeout 0.06 \
+#     http://whatthecommit.com/index.txt 2>/dev/null
 
 true # don't assume last return status
