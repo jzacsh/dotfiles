@@ -126,7 +126,8 @@ scowerForTmuxSessions() {
     local tmSessions="$(tmux -L "$sock" list-sessions 2>/dev/null)"
     [ -z "$tmSessions" ] && continue;
     printf "tmux -L ${col_grn}%s${col_end} sessions:\n" "$sock"
-    echo $tmSessions # do not quote this line
+    printf '%s\n' "$tmSessions" |
+        GREP_COLORS='mt=01;33' \grep --color=always '^\w*:'
   done
 }
 scowerForTmuxSessions; unset scowerForTmuxSessions
