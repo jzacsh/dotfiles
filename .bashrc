@@ -120,6 +120,8 @@ fi
 
 #Tmux
 scowerForTmuxSessions() {
+  [ -n "$TMUX" ] && return
+
   local col_end='\033[0m'; local col_grn='\e[0;32m'
   local commonTmSocks=(default main "${USER}main")
   for sock in "${commonTmSocks[@]}"; do
