@@ -64,8 +64,8 @@ URxvt.foreground:#eeeeee
 *color11:       #ffc123
 
 ! Blue
-*color4:        #204a87
-*color12:       #3465a4
+*color4:        #2081f9
+*color12:       #3884e3
 
 ! Magenta
 *color5:        #ce5c00
