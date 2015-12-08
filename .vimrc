@@ -228,7 +228,7 @@ nnoremap <Leader>S  :r!date --rfc-3339=seconds<CR>
 nnoremap <Leader>c  :%s/[[:space:]]*$//g<CR>
 
 " quickly append notes to catch printf/debugging code
-map <LocalLeader>T  :call AppendDoNotSubmit()<CR>
+nnoremap <Leader>T  :call AppendDoNotSubmit()<return>
 
 " buffer list
 nnoremap <Leader>b  :ls<CR>:buffer<Space>
