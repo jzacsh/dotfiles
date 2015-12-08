@@ -35,14 +35,9 @@ if !exists( "g:vimroom_sidebar_height" )
     let g:vimroom_sidebar_height = 3
 endif
 
-" The GUI background color.  Defaults to "black"
-if !exists( "g:vimroom_guibackground" )
-    let g:vimroom_guibackground = "black"
-endif
-
-" The cterm background color.  Defaults to "bg"
-if !exists( "g:vimroom_ctermbackground" )
-    let g:vimroom_ctermbackground = "bg"
+" The background color.  Defaults to "black"
+if !exists( "g:vimroom_background" )
+    let g:vimroom_background = "black"
 endif
 
 " The "scrolloff" value: how many lines should be kept visible above and below
@@ -73,9 +68,6 @@ let s:scheme = ""
 if exists( "g:colors_name" )
     let s:scheme = g:colors_name
 endif
-if exists( "&t_mr" )
-    let s:save_t_mr = &t_mr
-end
 
 " Save the current scrolloff value for reset later
 let s:save_scrolloff = ""
@@ -95,16 +87,6 @@ if exists( "&textwidth" )
     let s:save_textwidth = &textwidth
 endif
 
-" Save the current `number` and `relativenumber` values for reset later
-let s:save_number = 0
-let s:save_relativenumber = 0
-if exists( "&number" )
-    let s:save_number = &number
-endif
-if exists ( "&relativenumber" )
-    let s:save_relativenumber = &relativenumber
-endif
-
 " We're currently in nonvimroomized state
 let s:active   = 0
 
@@ -119,27 +101,13 @@ endfunction
 function! <SID>VimroomToggle()
     if s:active == 1
         let s:active = 0
-        " Close all other split windows
-        if g:vimroom_sidebar_height
-            wincmd j
-            close
-            wincmd k
-            close
-        endif
-        if g:vimroom_min_sidebar_width
-            wincmd l
-            close
-            wincmd h
-            close
-        endif
+        " Close all other windows
+        only
         " Reset color scheme (or clear new colors, if no scheme is set)
         if s:scheme != ""
             exec( "colorscheme " . s:scheme ) 
         else
             hi clear
-        endif
-        if s:save_t_mr != ""
-            exec( "set t_mr=" .s:save_t_mr )
         endif
         " Reset `scrolloff` and `laststatus`
         if s:save_scrolloff != ""
@@ -151,12 +119,6 @@ function! <SID>VimroomToggle()
         if s:save_textwidth != ""
             exec( "set textwidth=" . s:save_textwidth )
         endif
-        if s:save_number != 0
-            set number
-        endif
-        if s:save_relativenumber != 0
-            set relativenumber
-        endif
         " Remove wrapping and linebreaks
         set nowrap
         set nolinebreak
@@ -166,45 +128,33 @@ function! <SID>VimroomToggle()
             let s:sidebar = s:sidebar_size()
             " Turn off status bar
             if s:save_laststatus != ""
-                setlocal laststatus=0
+                set laststatus=0
             endif
-            if g:vimroom_min_sidebar_width
-                " Create the left sidebar
-                exec( "silent leftabove " . s:sidebar . "vsplit new" )
-                setlocal noma
-                setlocal nocursorline
-                setlocal nonumber
-                setlocal norelativenumber
-                wincmd l
-                " Create the right sidebar
-                exec( "silent rightbelow " . s:sidebar . "vsplit new" )
-                setlocal noma
-                setlocal nocursorline
-                setlocal nonumber
-                setlocal norelativenumber
-                wincmd h
-            endif
+            " Create the left sidebar
+            exec( "silent leftabove " . s:sidebar . "vsplit new" )
+            set noma
+            set nocursorline
+            wincmd l
+            " Create the right sidebar
+            exec( "silent rightbelow " . s:sidebar . "vsplit new" )
+            set noma
+            set nocursorline
+            wincmd h
             if g:vimroom_sidebar_height
                 " Create the top sidebar
                 exec( "silent leftabove " . g:vimroom_sidebar_height . "split new" )
-                setlocal noma
-                setlocal nocursorline
-                setlocal nonumber
-                setlocal norelativenumber
+                set noma 
+                set nocursorline
                 wincmd j
                 " Create the bottom sidebar
                 exec( "silent rightbelow " . g:vimroom_sidebar_height . "split new" )
-                setlocal noma
-                setlocal nocursorline
-                setlocal nonumber
-                setlocal norelativenumber
+                set noma
+                set nocursorline
                 wincmd k
             endif
             " Setup wrapping, line breaking, and push the cursor down
             set wrap
             set linebreak
-            set nonumber
-            set norelativenumber
             if s:save_textwidth != ""
                 exec( "set textwidth=".g:vimroom_width )
             endif
@@ -228,19 +178,10 @@ function! <SID>VimroomToggle()
             endif
 
             " Hide distracting visual elements
-            if has('gui_running')
-                let l:highlightbgcolor = "guibg=" . g:vimroom_guibackground
-                let l:highlightfgbgcolor = "guifg=" . g:vimroom_guibackground . " " . l:highlightbgcolor
-            else
-                let l:highlightbgcolor = "ctermbg=" . g:vimroom_guibackground
-                let l:highlightfgbgcolor = "ctermfg=" . g:vimroom_ctermbackground . " " . l:highlightbgcolor
-            endif
-            exec( "hi Normal " . l:highlightbgcolor )
-            exec( "hi VertSplit " . l:highlightfgbgcolor )
-            exec( "hi NonText " . l:highlightfgbgcolor )
-            exec( "hi StatusLine " . l:highlightfgbgcolor )
-            exec( "hi StatusLineNC " . l:highlightfgbgcolor )
-            set t_mr=""
+            exec( "hi VertSplit ctermbg=" . g:vimroom_background . " ctermfg=" . g:vimroom_background . " guifg=" . g:vimroom_background . " guibg=" . g:vimroom_background )
+            exec( "hi NonText ctermbg=" . g:vimroom_background . " ctermfg=" . g:vimroom_background . " guifg=" . g:vimroom_background . " guibg=" . g:vimroom_background )
+            exec( "hi StatusLine ctermbg=" . g:vimroom_background . " ctermfg=" . g:vimroom_background . " guifg=" . g:vimroom_background . " guibg=" . g:vimroom_background )
+            exec( "hi StatusLineNC ctermbg=" . g:vimroom_background . " ctermfg=" . g:vimroom_background . " guifg=" . g:vimroom_background . " guibg=" . g:vimroom_background )
             set fillchars+=vert:\ 
         endif
     endif
