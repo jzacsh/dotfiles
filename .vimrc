@@ -32,9 +32,7 @@ set incsearch
 set nocompatible
 
 " textwidth:
-set tw=79
-" ... but different width when reading mail
-au BufRead ~/tmp/mutt-* set tw=72
+set tw=80
 
 " always showtab:
 set showtabline=2
@@ -159,6 +157,10 @@ if has("autocmd")
   autocmd FileType py set ts=4
   autocmd FileType py set sw=4
   autocmd FileType py set sts=4
+
+  " ... but different width when reading mail
+  autocmd BufRead ~/tmp/mutt-* set tw=72
+  autocmd FileType java set tw=100
 
   " lesscss.org
   au BufNewFile,BufRead *.less set filetype less
