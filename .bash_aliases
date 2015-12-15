@@ -296,4 +296,43 @@ mkScratchDir() {
 
 scratchDir() { pushd "$(mkScratchDir $@)"; }
 
+vid_get_duration() {
+  avconv -i "$1" 2>&1 |
+      grep Duration |
+      sed -e 's|.*Duration:\ \(.*$\)|\1|' |
+      cut -f 1 -d ' ' |
+      sed -e 's|,$||g'
+}
+
+vid_to_gif() (
+  set -e
+
+  local inVid="$(readlink -f "$1")"; [ -r "$1" ]; [ -f "$1" ];
+  local outGif="$(dirname "$inVid")"/"${2:-out.gif}"
+  local framesDir="$(mktemp --directory --tmpdir 'vid-to-gif_frames_XXXXXXX')"
+
+  # Figure out *which* utility to use
+  local vidExec vfArgs
+  if type avconv > /dev/null 2>&1;then
+    vidExec=avconv
+    vfArgs="scale=320:-1:flags=lanczos -r 10"
+  elif type ffmpeg > /dev/null 2>&1;then
+    vidExec=ffmpeg
+    vfArgs="scale=320:-1:flags=lanczos,fps=10"
+  else
+    printf 'ERROR: could not find `ffmpeg` or `avconv` utilities\n' >&2
+    return 1
+  fi
+
+  printf '[STEP 1 of 3]\tExporting frames from "%s"\n' "$inVid"
+  "$vidExec" -loglevel quiet -i "$inVid" -vf $vfArgs "$framesDir"/ffout%03d.png
+
+  printf '[STEP 2 of 3]\tCompiling frames into single GIF in "%s"\n' "$outGif"
+  convert -loop 0 "$framesDir"/ffout*.png "$outGif"
+
+  printf '[STEP 3 of 3]\tCleaning up frames and temporary directory "%s"\n' "$framesDir"
+  rm "$framesDir"/*.png
+  rmdir "$framesDir"
+)
+
 # vim: et:ts=2:sw=2
