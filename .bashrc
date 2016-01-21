@@ -102,6 +102,7 @@ fi
 
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[ -f ~/.opam/opam-init/init.sh ] && source ~/.opam/opam-init/init.sh
 
 
 ######################################################
