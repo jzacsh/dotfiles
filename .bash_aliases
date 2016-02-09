@@ -12,6 +12,7 @@ alias diff='colordiff'
 alias mi="curl -s http://checkip.dyndns.org | sed -e 's/^.*Address:\ //' -e 's/<\/body.*//'"
 alias udevinfo='udevadm info -q all -n'
 alias mutt='pgrep mutt && mutt -R || mutt'
+alias grep='grep --color=auto'
 alias ipt='sudo iptraf'
 alias goh='ssh home.jzacsh.com'
 alias pdf='xpdf'
