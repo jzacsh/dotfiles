@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+#specific configs:
+ln -sf ~/.host/src/host.carboy/.Xdefaults ~/
+
+# vim: et:ts=2:sw=2
