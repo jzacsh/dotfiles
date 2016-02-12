@@ -81,3 +81,7 @@ URxvt.foreground:#eeeeee
 ! White
 *color7:        #cccccc
 *color15:       #ffffff
+
+  ! full screen switch; from http://stackoverflow.com/a/16707805
+  URxvt.perl-ext-common:  fullscreen
+  URxvt.keysym.F11:       perl:fullscreen:switch
