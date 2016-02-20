@@ -102,6 +102,11 @@ fi
 
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# Assumes you have ocaml setup, ie:
+#   1) once: installed ocaml (and its pkg mgmt system, "opam", etc, etc.)
+#   2) once: run `opam init`
+#   3) optionally, once: installed vim ocaml things && `opam install ocp-indent`
 [ -f ~/.opam/opam-init/init.sh ] && source ~/.opam/opam-init/init.sh
 
 
