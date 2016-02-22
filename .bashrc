@@ -8,6 +8,7 @@
 [ ! -e ~/.config/bash_completion.d/npm-run-completion.sh ] &&
   npm completion > ~/.config/bash_completion.d/npm-run-completion.sh
 
+[ -r /etc/bash_completion ] && source /etc/bash_completion
 for completion in ~/.config/bash_completion.d/*.sh; do
   source "$completion"
 done
