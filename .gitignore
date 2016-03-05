@@ -8,6 +8,7 @@
 .vim/ruby/command-t/mkmf.log
 .w3m/w3m*
 .w3m/history
+.w3m/mailcap
 .w3m/cookie
 .irssi/config
 .irssi/saved_colors
