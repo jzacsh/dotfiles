@@ -8,7 +8,7 @@ Xft.antialias: true
 
 ! --[ Rodent ]----------------------------------------------
 Xcursor.theme: Vanilla-DMZ
-Xcursor.size:  24
+Xcursor.size:  12
 
 ! --[ URxvt - General ]-------------------------------------
 URxvt.depth: 32
@@ -16,8 +16,8 @@ URxvt.scrollBar:false
 URxvt.saveLines:0
 URxvt.cursorColor:#83C048
 URxvt.highlightColor:#4e4e4e
-URxvt.font: xft:DroidSansMono:pixelsize=13
-URxvt.boldFont: xft:DroidSansMono:pixelsize=13:bold
+URxvt.font: xft:DejaVuSansMono:pixelsize=11
+URxvt.boldFont: xft:DejaVuSansMono:pixelsize=11:bold
 URxvt.loginshell: true
 URxvt.internalborder: 0
 URxvt.underlinecolor: #999999
