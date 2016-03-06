@@ -1,0 +1,9 @@
+#!/usr/bin/env perl
+#
+# copy/pasted from http://stackoverflow.com/a/16707805
+sub on_user_command {
+    my ($self, $cmd) = @_;
+    if ($cmd eq "fullscreen:switch") {
+        my $dummy = `wmctrl -r :ACTIVE: -b toggle,fullscreen` ;
+    }
+}
