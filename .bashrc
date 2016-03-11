@@ -1,18 +1,8 @@
 # If not running interactively, don't do anything
 [[ ${-} = ${-/i/} ]] && return
 
-# External config
 { [ -r ~/.dircolors ] && type dircolors >/dev/null 2>&1; } &&
     eval $(dircolors --bourne-shell ~/.dircolors)
-[[ -r ~/.hgbashrc ]] && source ~/.hgbashrc
-
-[ ! -e ~/.config/bash_completion.d/npm-run-completion.sh ] &&
-  npm completion > ~/.config/bash_completion.d/npm-run-completion.sh
-
-[ -r /etc/bash_completion ] && source /etc/bash_completion
-for completion in ~/.config/bash_completion.d/*.sh; do
-  source "$completion"
-done
 
 # shell opts
 shopt -s cdspell
@@ -36,8 +26,17 @@ export HISTFILESIZE=2000
 export HISTCONTROL='ignoreboth'
 export HISTSIZE=500
 
-PS1='[\u@\h] ${?} $(vcprompt) \w\n\$ ' # simple version of below
+PS1='[\u@\h] ${?} \w\n\$ ' # vanilla version of my prompt, with no executables
 
+
+############################################################################
+# $UID > 0 BELOW THIS LINE
+#   everything above *should* be plain old shell options, nothing executable
+[ "$UID" -eq "0" ] && return
+############################################################################
+
+
+PS1='[\u@\h] ${?} $(vcprompt) \w\n\$ ' # simple version of below
 # vcs and color-aware version of bash prompt:
 bash_prompt() {
   case $TERM in
@@ -70,29 +69,13 @@ bash_prompt
 unset bash_prompt
 
 
-#
-# $UID > 0 BELOW THIS LINE
-#   everything above *should* be plain old shell options, nothing executable
-#
-[[ "$UID" -eq "0" ]] && return
-
-
 source ~/bin/share/zacsh_exports
-[[ -r ~/.bash_aliases ]] && source ~/.bash_aliases
-
-# for irssi's notify.pl
-[[ -n $DBUS_SESSION_BUS_ADDRESS ]] &&
-  echo "$DBUS_SESSION_BUS_ADDRESS" > ~/.dbus_address
-
+[ -r ~/.bash_aliases ] && source ~/.bash_aliases
 source $HOME/.host/pick  # Dynamic config
-
 if [ -z "$SSH_AUTH_SOCK" ]; then
   eval $(ssh-agent -s)
   ssh-add ~/.ssh/add/*.add #load ssh keys
 fi
-
-#must be after PATH:, apparently this will break if non-interactive shell `return`'s above.
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
 # in my nested tmux shells, my inherited `env` is old
 dbusSessionBusAddress="$(< ~/.dbus_address 2>/dev/null)"
@@ -102,7 +85,26 @@ else
   unset dbusSessionBusAddress
 fi
 
+# for irssi's notify.pl
+[ -n $DBUS_SESSION_BUS_ADDRESS ] &&
+  echo "$DBUS_SESSION_BUS_ADDRESS" > ~/.dbus_address
 
+############################################################################
+# External Configuration. Provided by libraries, etc.; not written by me, or
+# widely standard.
+############################################################################
+
+[ -r /etc/bash_completion ] && source /etc/bash_completion
+for completion in ~/.config/bash_completion.d/*.sh; do
+  source "$completion"
+done
+
+#must be after PATH:, apparently this will break if non-interactive shell `return`'s above.
+[ -s "$HOME/.rvm/scripts/rvm" ] && source "$HOME/.rvm/scripts/rvm"
+
+[ -r ~/.hgbashrc ] && source ~/.hgbashrc
+[ ! -e ~/.config/bash_completion.d/npm-run-completion.sh ] &&
+  npm completion > ~/.config/bash_completion.d/npm-run-completion.sh
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 # Assumes you have ocaml setup, ie:
