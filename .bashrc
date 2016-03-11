@@ -2,7 +2,8 @@
 [[ ${-} = ${-/i/} ]] && return
 
 # External config
-[[ -r ~/.dircolors && -x /bin/dircolors ]] && eval $(dircolors -b ~/.dircolors)
+{ [ -r ~/.dircolors ] && type dircolors >/dev/null 2>&1; } &&
+    eval $(dircolors --bourne-shell ~/.dircolors)
 [[ -r ~/.hgbashrc ]] && source ~/.hgbashrc
 
 [ ! -e ~/.config/bash_completion.d/npm-run-completion.sh ] &&
