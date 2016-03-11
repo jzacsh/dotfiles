@@ -336,4 +336,21 @@ vid_to_gif() (
   rmdir "$framesDir"
 )
 
+whiteboardify() {
+  [ $# -eq 2 ] || {
+    echo "usage: IN_FILE OUT_FILE
+      to generate a whiteboardified version of INFILE
+      and write it to OUTFILE" >&2
+    return 1
+  }
+  convert "$1" \
+    -morphology Convolve DoG:15,100,0 \
+    -negate \
+    -normalize \
+    -blur 0x1 \
+    -channel RBG \
+    -level 60%,91%,0.1 \
+    "$2"
+}
+
 # vim: et:ts=2:sw=2
