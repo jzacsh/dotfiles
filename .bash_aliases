@@ -297,8 +297,10 @@ mkScratchDir() {
   local tmpDir=~/tmp/build/
 
   local when
-  when="$(date --iso-8601=minutes)"; when="${when/:/.}"
-  when="${when/-}"; when="${when/-}"
+  when="$(
+    date --iso-8601=minutes |
+      sed -e 's|:|.|g' -e 's|-||g'
+  )"
 
   local mktempTemplate
   mktempTemplate="${when}_$(whoami)_${keyword}-dir_XXXXXXXX"
