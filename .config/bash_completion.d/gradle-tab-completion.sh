@@ -1,42 +1,62 @@
-thiscript="$(readlink -f "$0")"
 _gradle() {
-  set -e
+  local commands
 
-  local cur=${COMP_WORDS[COMP_CWORD]}
   local gradle_cmd='gradle'
+  # Allow local gradle wrappers to override installed `gradle`
+  [ -x ./gradlew ] && gradle_cmd='./gradlew'
+  [ -x ../gradlew ] && gradle_cmd='../gradlew'
 
-  if [ -x ./gradlew ]; then gradle_cmd='./gradlew';fi
-
-  if [ -x ../gradlew ];then gradle_cmd='../gradlew';fi
-
-  local commands=''
-  local cache_dir="${TMPDIR:-/tmp}/gradle_tabcompletion"
-  mkdir -p "$cache_dir"
+  local cache_dir="${TMPDIR:-/tmp}/gradle_tabcompletion_cache"
+  mkdir -p "$cache_dir" || {
+    printf \
+      'Fatal: "%s" bash-completion failed building caching dir:\n\t%s\n' \
+      "$FUNCNAME" "$cache_dir" >&2
+    return 1
+  }
   printf \
-    'Cache of bash-completion data, built by `%s` in script:\n\t%s\n' \
-    "$FUNCNAME" "$thiscript" > README
+    "Cache of bash-completion data, built by %s's '%s' shell function" \
+    "$(whoami)" "$FUNCNAME" > "$cache_dir"/README
 
   # TODO: include the gradle version in the checksum?  It's kinda slow
   #local gradle_version=$($gradle_cmd --version --quiet --no-color | grep '^Gradle ' | sed 's/Gradle //g')
   
-  local gradle_files_checksum='';
-  if [[ -f build.gradle ]]; then # top-level gradle file
-      gradle_files_checksum=($(find . -name build.gradle | xargs md5sum | md5sum))
-  else # no top-level gradle file
-    gradle_files_checksum='no_gradle_files'
+  local gradle_files_checksum='no_gradle_files'
+  if [ -f build.gradle ]; then
+    # If we have a gradle file, then we're really autocomplete-ing for *all*
+    # gradle tasks, recursively. Let's determine if the state of gradle tasks
+    # beneath us has changed since last check
+    gradle_files_checksum="$(
+      find . -name build.gradle |
+        xargs md5sum |
+        md5sum |
+        sed -e 's| .*$||g'
+    )"
   fi
 
-  if [[ -f "$cache_dir/$gradle_files_checksum" ]]; then # cached! yay!
-    commands=$(cat $cache_dir/$gradle_files_checksum)
+  local command_cache="$cache_dir"/"$gradle_files_checksum"
+  if [[ -f "$command_cache" ]]; then # cached! yay!
+    commands=$(< "$command_cache")
   else # not cached! boo-urns!
-    commands=$($gradle_cmd --no-color --quiet tasks | grep ' - ' | awk '{print $1}' | tr '\n' ' ')
-    if [[ -n "$commands" ]]; then
-      echo "$commands" > "$cache_dir"/"$gradle_files_checksum"
+    local tasksOutput
+    tasksOutput="$("$gradle_cmd" --console=plain --quiet tasks)"
+    if [ -z "tasksOutput" ] | [ $? -ne 0 ];then
+      printf \
+        '\nbash tab completion fail; something wrong with gradle:\n\t%s\n' \
+        "$gradle_cmd" >&2
+      return 1
     fi
+
+    commands=$(
+      echo "$tasksOutput"
+        grep ' - ' |
+        awk '{print $1}' |
+        tr '\n' ' '
+    )
+
+    [[ -n "$commands" ]] && echo $commands > "$command_cache"
   fi
-  COMPREPLY=( $(compgen -W "$commands" -- "$cur") )
+  COMPREPLY=( $(compgen -W "$commands" -- "${COMP_WORDS[COMP_CWORD]}") )
 }
-unset thiscript # hack to keep track of messes i make
 
 complete -F _gradle gradle
 complete -F _gradle gradlew
