@@ -1,12 +1,21 @@
+haveParentGradle() {
+  local d=./
+  while [ "$d" != '/' ] && [ ! -f "$d"/build.gradle ]; do
+    d="$(readlink -f "$d"/../)"
+  done
+  [ -f "$d"/build.gradle ]
+}
+
 _gradle() {
   local commands
+  alias scrapeMd5HashOfStdin="md5sum | sed -e 's| .*$||g'"
 
   local gradle_cmd='gradle'
   # Allow local gradle wrappers to override installed `gradle`
   [ -x ./gradlew ] && gradle_cmd='./gradlew'
   [ -x ../gradlew ] && gradle_cmd='../gradlew'
 
-  { type -p "$gradle_cmd" >/dev/null 2>&1 && [ -f build.gradle ]; } || return 0
+  { type -p "$gradle_cmd" >/dev/null 2>&1 && haveParentGradle; } || return 0
 
   local cache_dir="${TMPDIR:-/tmp}/gradle_tabcompletion_cache"
   mkdir -p "$cache_dir" || {
@@ -30,8 +39,14 @@ _gradle() {
     gradle_files_checksum="$(
       find . -name build.gradle |
         xargs md5sum |
-        md5sum |
-        sed -e 's| .*$||g'
+        scrapeMd5HashOfStdin
+    )"
+  else
+    gradle_files_checksum="no_local_build.gradle_$(
+      stat \
+        --printf '%n\n%i\n' \
+        "$(readlink -f "$(pwd)")" |
+      scrapeMd5HashOfStdin
     )"
   fi
 
@@ -39,6 +54,8 @@ _gradle() {
   if [[ -f "$command_cache" ]]; then # cached! yay!
     commands=$(< "$command_cache")
   else # not cached! boo-urns!
+    printf 'WARNING: building cache of Gradle tasks...\n' >&2
+
     local tasksOutput
     tasksOutput="$("$gradle_cmd" --console=plain --quiet tasks)"
     if [ -z "tasksOutput" ] | [ $? -ne 0 ];then
