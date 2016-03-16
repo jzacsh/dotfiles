@@ -6,6 +6,8 @@ _gradle() {
   [ -x ./gradlew ] && gradle_cmd='./gradlew'
   [ -x ../gradlew ] && gradle_cmd='../gradlew'
 
+  { type -p "$gradle_cmd" >/dev/null 2>&1 && [ -f build.gradle ]; } || return 0
+
   local cache_dir="${TMPDIR:-/tmp}/gradle_tabcompletion_cache"
   mkdir -p "$cache_dir" || {
     printf \
