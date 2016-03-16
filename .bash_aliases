@@ -86,6 +86,24 @@ mdown() { markdown_py < /dev/stdin | html; }  # depends on html alias above
 # bump font on the fly; from https://bbs.archlinux.org/viewtopic.php?id=44121
 urxvtc_font() { printf '\33]50;%s%d\007' "xft:Terminus:pixelsize=" $1; }
 
+# poor man's asciinema. helpful for pasting commands used and their output in a single pipe
+#
+# Usage: COMMAND_LINE
+#
+# Example, assuming `you@machine` is your real shell prompt:
+#   you@machine$ cliMock lsb_release --all
+#
+#   $ lsb_release --all
+#   No LSB modules are available.
+#   Distributor ID: Debian
+#   Description:    Debian GNU/Linux testing-updates (sid)
+#   Release:        testing-updates
+#   Codename:       sid
+#
+# Example, more likely:
+#   $ lsb_release --all | pastie # win
+cliMock() { printf '$ %s\n%s\n\n' "$*" "$($@ 2>&1)"; };
+
 keyboard() {
 # NOTE: step #1 might not be necessary, perhaps bluez just expects a PIN typed
 # identically in both places. will try to clarify next time.
