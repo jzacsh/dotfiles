@@ -1,6 +1,9 @@
 autocmd!
 let $VIM = $HOME ."/.vim/"
 
+" for github.com/junegunn/FZF plugin:
+set rtp+=~/usr/local/bin/fzf
+
 let mapleader = ","
 let maplocalleader = "\\"
 
@@ -304,9 +307,6 @@ let php_parent_error_close = 1
 let php_parent_error_open = 1
 let php_folding = 1
 let php_sync_method = 0
-
-" for github.com/junegunn/FZF plugin:
-set rtp+=~/usr/local/bin/fzf
 
 " pathogen magic:
 call pathogen#infect($VIM."bundle/{}")
