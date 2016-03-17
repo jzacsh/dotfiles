@@ -4,6 +4,9 @@ let $VIM = $HOME ."/.vim/"
 " for github.com/junegunn/FZF plugin:
 set rtp+=~/usr/local/bin/fzf
 
+" per output from `opam install otp-indent`
+set rtp^=~/.opam/system/share/ocp-indent/vim
+
 let mapleader = ","
 let maplocalleader = "\\"
 
