@@ -264,7 +264,7 @@ nnoremap <Leader>r  :MRU<CR>
 " [v]ariables in this file
 nnoremap <Leader>v  :TlistToggle<CR>
 " [w]riting mode: binding for VimRoom plugin
-map <LocalLeader>w :VimroomToggle<CR>
+nnoremap <Leader>w :VimroomToggle<CR>
 
 
 
