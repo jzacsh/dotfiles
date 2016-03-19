@@ -11,6 +11,7 @@ __scrapeJsonArray() { \sed -e "s|^\['||" -e "s|'\]$||" -e "s|', '|\n|g"; }
 #   is the word being completed, and the third argument ($3) is the word
 #   preceding the word  being  completed  on the current command line.
 _gset_completion() {
+  # we only auto-complete for "enabled" and "disabled" flags
   { [ "$3" = -e ] || [ "$3" = -d ]; } || return 0
 
   # extensions already enabled in gnome-shell
