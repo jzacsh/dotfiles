@@ -3,8 +3,6 @@
 # Autocompletion for gnome-shell-extension-tool
 #
 
-__scrapeJsonArray() { \sed -e "s|^\['||" -e "s|'\]$||" -e "s|', '|\n|g"; }
-
 # Per: man bash | less +/'^\s*Programmable\ Completion'
 #   When the function or command is invoked, the first argument ($1) is the name
 #   of the command whose arguments are being completed, the second argument ($2)
@@ -16,7 +14,10 @@ _gset_completion() {
 
   # extensions already enabled in gnome-shell
   local nabled
-  nabled="$(dconf read /org/gnome/shell/enabled-extensions | __scrapeJsonArray)"
+  nabled="$(
+    dconf read /org/gnome/shell/enabled-extensions |
+      \sed -e "s|^\['||" -e "s|'\]$||" -e "s|', '|\n|g"
+  )"
 
   # extensions available on this machine
   local avail; avail="$(
