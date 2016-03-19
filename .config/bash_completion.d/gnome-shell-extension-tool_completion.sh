@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 #
 # Autocompletion for gnome-shell-extension-tool
-#
 
 # Per: man bash | less +/'^\s*Programmable\ Completion'
 #   When the function or command is invoked, the first argument ($1) is the name
