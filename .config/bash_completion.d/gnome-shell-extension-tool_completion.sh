@@ -3,6 +3,12 @@
 # Autocompletion for gnome-shell-extension-tool
 #
 
+__get_avilable_extensions() {
+  for dir in {~/.local,/usr/}/share/gnome-shell/extensions/*; do
+    basename "$dir"
+  done
+}
+
 # Per: man bash | less +/'^\s*Programmable\ Completion'
 #   When the function or command is invoked, the first argument ($1) is the name
 #   of the command whose arguments are being completed, the second argument ($2)
@@ -11,12 +17,7 @@
 _gset_completion() {
   { [ "$3" = -e ] || [ "$3" = -d ]; } || return 0
 
-  declare -a extensions
-  for dir in {~/.local,/usr/}/share/gnome-shell/extensions/*; do
-    extensions+=("$(basename "$dir")")
-  done
-
-  local exts; exts="$(printf '%s' "${extensions[*]}")"
+  local exts; exts="$(__get_avilable_extensions)"
   COMPREPLY=( $(compgen -W "$exts" -- "${COMP_WORDS[$COMP_CWORD]}") )
 }
 
