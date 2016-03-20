@@ -22,3 +22,10 @@ cscope.files
 .vim/bundle/*
 .urxvt/urxvtd-*
 .irssi/away.log
+.weechat/logs
+.weechat/irc.conf
+.weechat/sec.conf
+.weechat/script/plugins.xml.gz
+.weechat/country/*.csv
+.weechat/weechat.log
+.weechat/cryptkey.*
