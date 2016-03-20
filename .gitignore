@@ -21,3 +21,4 @@ cscope.files
 .irssi/config.autosave
 .vim/bundle/*
 .urxvt/urxvtd-*
+.irssi/away.log
