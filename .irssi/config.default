@@ -20,6 +20,11 @@ servers = (
     autoconnect = "yes";
   }
 );
+chatnets = {
+  Debian = { type = "IRC"; };
+  Freenode = { type = "IRC"; };
+  Gnome = { type = "IRC"; };
+};
 
 statusbar = {
   items = {
@@ -94,4 +99,3 @@ ignores = (
   { level = "JOINS PARTS QUITS NICKS"; },
   { level = "JOINS PARTS QUITS NICKS"; channels = ( "debian" ); }
 );
-chatnets = { Debian = { type = "IRC"; }; Freenode = { type = "IRC"; }; };
