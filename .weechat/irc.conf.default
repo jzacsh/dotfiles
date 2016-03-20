@@ -301,3 +301,42 @@ columbiaslack.default_msg_kick
 columbiaslack.default_msg_part
 columbiaslack.default_msg_quit
 columbiaslack.notify
+pltslack.addresses = "plt-team2016.irc.slack.com/6697"
+pltslack.proxy
+pltslack.ipv6
+pltslack.ssl = on
+pltslack.ssl_cert
+pltslack.ssl_priorities
+pltslack.ssl_dhkey_size = 512
+pltslack.ssl_fingerprint
+pltslack.ssl_verify
+# pltslack.password = "" SET THIS
+pltslack.capabilities
+pltslack.sasl_mechanism
+pltslack.sasl_username
+pltslack.sasl_password
+pltslack.sasl_key
+pltslack.sasl_timeout
+pltslack.sasl_fail
+pltslack.autoconnect = on
+pltslack.autoreconnect
+pltslack.autoreconnect_delay
+pltslack.nicks = "jzacsh,jzaksh"
+pltslack.nicks_alternate
+pltslack.username
+pltslack.realname
+pltslack.local_hostname
+pltslack.command
+pltslack.command_delay
+pltslack.autojoin = "#general,#update"
+pltslack.autorejoin
+pltslack.autorejoin_delay
+pltslack.connection_timeout
+pltslack.anti_flood_prio_high
+pltslack.anti_flood_prio_low
+pltslack.away_check
+pltslack.away_check_max_nicks
+pltslack.default_msg_kick
+pltslack.default_msg_part
+pltslack.default_msg_quit
+pltslack.notify = "message"
