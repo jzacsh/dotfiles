@@ -3,7 +3,7 @@ servers = (
     address = "irc.debian.org";
     chatnet = "Debian";
     port = "6667";
-  }
+  },
   {
     address = "irc.gnome.org";
     chatnet = "Gnome";
