@@ -40,6 +40,14 @@ function! s:godocWord(args)
         return []
     endif
 
+    if !executable('oracle')
+        echohl WarningMsg
+        echo "oracle go command not found."
+        echo "  install with: go get golang.org/x/tools/cmd/oracle"
+        echohl None
+        return []
+    endif
+
     if !len(a:args)
         let oldiskeyword = &iskeyword
         setlocal iskeyword+=.
@@ -55,18 +63,16 @@ function! s:godocWord(args)
         return []
     endif
 
-    let pkg = words[0]
     if len(words) == 1
         let exported_name = ""
     else
         let exported_name = words[1]
     endif
 
-    let packages = go#tool#Imports()
-
-    if has_key(packages, pkg)
-        let pkg = packages[pkg]
-    endif
+    let pos = eval("line2byte(line(\".\"))+col(\".\")")
+    let src = eval("expand(\"%:p\")")
+    let cli = "/home/jzacsh/bin/share/pos2gopkg.sh " . src . " " . pos
+    silent! let pkg = system(cli) " oracle's dereferrenced pkg
 
     return [pkg, exported_name]
 endfunction
