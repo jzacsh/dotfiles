@@ -33,6 +33,7 @@ alias pastie="$PASTIE"
 alias json='python -mjson.tool'
 alias log='grc tail -F'
 alias git_diff_sbs='git difftool --no-prompt --extcmd="colordiff --side-by-side --width $COLUMNS" | ${PAGER:-less}'
+alias git_log='git log --patch --graph'
 
 alias mail='vmail' # tiny script that wraps mail in `mktemp`/$EDITOR calls
 
