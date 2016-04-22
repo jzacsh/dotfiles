@@ -35,6 +35,9 @@ alias log='grc tail -F'
 alias git_diff_sbs='git difftool --no-prompt --extcmd="colordiff --side-by-side --width $COLUMNS" | ${PAGER:-less}'
 alias git_log='git log --patch --graph'
 
+# legit alternative to my old bash experiment (i've found i *actually* want a running clock sometimes)
+clock() { while true; do printf '\r%s ' "$(date --iso-8601=seconds)";done; }
+
 alias mail='vmail' # tiny script that wraps mail in `mktemp`/$EDITOR calls
 
 # most commonly I'd like to convert: decimal <=> hex
