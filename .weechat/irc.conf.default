@@ -289,7 +289,7 @@ columbiaslack.realname
 columbiaslack.local_hostname
 columbiaslack.command
 columbiaslack.command_delay
-columbiaslack.autojoin = "#general,#gs-students,#papers,#frontend"
+columbiaslack.autojoin = "#general"
 columbiaslack.autorejoin
 columbiaslack.autorejoin_delay
 columbiaslack.connection_timeout
@@ -328,7 +328,7 @@ pltslack.realname
 pltslack.local_hostname
 pltslack.command
 pltslack.command_delay
-pltslack.autojoin = "#general,#update"
+pltslack.autojoin = "#general"
 pltslack.autorejoin
 pltslack.autorejoin_delay
 pltslack.connection_timeout
