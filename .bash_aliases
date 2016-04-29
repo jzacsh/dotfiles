@@ -332,9 +332,14 @@ vid_get_duration() {
 vid_to_gif() (
   set -e
 
-  local inVid="$(readlink -f "$1")"; [ -r "$1" ]; [ -f "$1" ];
-  local outGif="$(dirname "$inVid")"/"${2:-out.gif}"
+  local inVid="$(readlink -f "$1")";
+  [ -n "$inVid" ]; [ -r "$inVid" ]; [ -f "$inVid" ];
+
+  local outGif="$2"
+  if [ -z $outGif ];then outGif="$(dirname "$inVid")"/out.gif; fi
+
   local framesDir="$(mktemp --directory --tmpdir 'vid-to-gif_frames_XXXXXXX')"
+  [ -n "$framesDir" ]
 
   # Figure out *which* utility to use
   local vidExec vfArgs
