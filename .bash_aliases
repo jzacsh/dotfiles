@@ -84,7 +84,7 @@ urxvtc_font() { printf '\33]50;%s%d\007' "xft:Terminus:pixelsize=" $1; }
 #
 # Example, more likely:
 #   $ lsb_release --all | pastie # win
-cliMock() ( printf '$ %s\n%s\n\n' "$*" "$(bash -c "$@" 2>&1)"; );
+cliMock() ( printf '$ %s\n%s\n\n' "$*" "$(bash -c "$*" 2>&1)"; );
 
 keyboard() (
 # NOTE: step #1 might not be necessary, perhaps bluez just expects a PIN typed
