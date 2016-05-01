@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
-[[ "$BASH_VERSINFO" != 4 ]] && exit 1
+[[ "$BASH_VERSINFO" != 4 ]] && {
+  printf 'zOMG,omg this is not have bashv4\n' >&2
+  exit 1
+}
 
 # aliases #####################
 alias ls='ls --color'
@@ -8,49 +11,35 @@ alias l='ls -laFH'
 alias la='ls -aFH'
 alias ca='clear; ls -laFH'
 alias cl='clear; ls -lFH'
-alias diff='colordiff'
 alias mi="curl -s http://checkip.dyndns.org | sed -e 's/^.*Address:\ //' -e 's/<\/body.*//'"
-alias udevinfo='udevadm info -q all -n'
-alias mutt='pgrep mutt && mutt -R || mutt'
-alias grep='grep --color=auto'
 alias ipt='sudo iptraf'
-alias goh='ssh home.jzacsh.com'
-alias pdf='xpdf'
-alias da='django-admin.py'
-alias hh='curl --head'
 alias pbcopy='xsel --clipboard --input'
 alias pbpaste='xsel --clipboard --output'
-alias hc='hg commit -m'
-alias hgk='hgview 2> /dev/null & disown'
-type -p node >& /dev/null && alias node='NODE_NO_READLINE=1 rlwrap node'
-alias o='xdg-open'
-alias lint='lintch'
-alias pfresh='pfresh -w'
 alias eclimd='"$ECLIPSE_HOME"/eclimd'
-alias vim='vim -X'
 alias html='w3m -dump -T text/html'
 alias pastie="$PASTIE"
 alias json='python -mjson.tool'
-alias log='grc tail -F'
-alias git_diff_sbs='git difftool --no-prompt --extcmd="colordiff --side-by-side --width $COLUMNS" | ${PAGER:-less}'
-alias git_log='git log --patch --graph'
-
-# legit alternative to my old bash experiment (i've found i *actually* want a running clock sometimes)
-clock() ( while true; do printf '\r%s ' "$(date --iso-8601=seconds)";done; )
-
-alias mail='vmail' # tiny script that wraps mail in `mktemp`/$EDITOR calls
-
 # most commonly I'd like to convert: decimal <=> hex
 alias tohex="printf '0x%x\n'"
 alias fromhex="printf '%0.0f\n'"
 
-# x env #######################
-alias br='$BROWSER'
-alias ch='chromium-browser'
-alias kflash='echo -n "killing flash..." && sudo killall npviewer.bin'
-# swaps caps with right-control
-alias fixcaps='setxkbmap -option ctrl:swapcaps'
+######################################
+# preferred args/modes for given tools
+alias vim='vim -X' # better vim (i never use vim outside a terminal)
+alias diff='colordiff' # better diff ouput
+alias grep='grep --color=auto' # better grep ouput
+alias mutt='pgrep mutt && mutt -R || mutt' # single mutt PID management
+type -p grc > /dev/null 2>&1 &&
+  alias log='grc tail -F' # better tail
+type -p node > /dev/null 2>&1 &&
+  alias node='NODE_NO_READLINE=1 rlwrap node' # better node repl
+alias git_log='git log --patch --graph' # better `git log`
+alias git_diff_sbs='git difftool --no-prompt --extcmd="colordiff --side-by-side --width $COLUMNS" | ${PAGER:-less}'
 
+# x env #######################
+alias fixcaps='setxkbmap -option ctrl:swapcaps' # swaps caps with right-control
+
+###############################
 ## common spelling mistakes ###
 alias vi='vim'
 alias les='less'
@@ -59,33 +48,22 @@ alias :w='echo "yeahh... this is not vim." >&2'
 alias :q=':w'
 alias :e=':w'
 alias :x=':w'
-if [[ $(type -p libreoffice) ]];then
-    alias office='libreoffice'
-elif [[ $(type -p ooffice) ]];then
-    # i never manage to type that extra 'o'
-    alias office='ooffice'
-elif [[ $(type -p abiword) ]];then
-    alias office='abiword'
-else
-    office() {
-        echo 'Sorry, no office suite installed!' >&2
-        return 1
-    }
-fi
+# prefixes to display-sensitive commands (tmux/ssh/console considerations)
+alias xf='DISPLAY=localhost:10.0 '
+alias xl='DISPLAY=:0.0 ' #eg: `xl xdg-open ./my.pdf`
 
-###############################
-# functions ###################
-#one liners
-g() ( IFS=+; $BROWSER "http://www.google.com/search?q=${*}"; )
+
+
+
+############
+# one liners
 tarl() ( tar -tf ${*}  | $PAGER; )
-hgdiff() ( hg cat $1 | vim - -c  ":vert diffsplit $1" -c "map q :qa!<CR>"; )
-speak() ( echo ${@} | espeak 2>/dev/null; )
 ident() ( identify -verbose $1 | grep modify; )
 geo() ( identify -verbose $1 | grep geometry; )
 wat() ( curl -Ls ${@} | $PAGER; )
 rfc() ( curl -Ls "http://tools.ietf.org/rfc/rfc${1}.txt" | "${PAGER:-less}"; )
-hgchanged() ( hg -q in ${1} --template='{files}\n'; )
 mdown() ( markdown_py < /dev/stdin | html; )  # depends on html alias above
+clock() ( while true; do printf '\r%s ' "$(date --iso-8601=ns)";done; ) # watch a running clock
 
 # bump font on the fly; from https://bbs.archlinux.org/viewtopic.php?id=44121
 urxvtc_font() { printf '\33]50;%s%d\007' "xft:Terminus:pixelsize=" $1; }
@@ -151,76 +129,17 @@ hgunshelve () (
   fi
 )
 
-#tmux/ssh/console considerations
-alias xf='DISPLAY=localhost:10.0 '
-alias xl='DISPLAY=:0.0 '
-
-#alevine's trick
-avi() (
- if [[ ! -r "$1" ]] || (( $# ));then
-   local num
-   num=$(find ./ -type f -name "$1" | wc -l)
-   (( num = 1 )) && command $EDITOR $(find ./ -type f -name "$1") || find ./ -type f -name "${*}"
- else #just open the editor
-   command $EDITOR "${*}"
- fi
-)
-
 #dictionary look ups
 lu() (
-  local url query none google ln=0
-  while read -u 3 line;do
-    if (( ln ));then
-      echo "$line" >&1
-    else
-      IFS=+; url="http://www.google.com/search?q=define:${*}"
-      none="${line/No definitions found for*/}"
-      if [[ -z $none ]];then
-        #look for fallbacks to dict(1)
+  local lang=en; # default
+  if [ -n "${LANG}" ] && [ -n "${LANG/_*/}" ];then
+    lang="${LANG/_*/}"
+  fi
 
-        #fallback to Google's "define:" query trick
-        echo -n 'dict(1) returned no results, google? [Y/n] ' >&2
-        read -u 0 google
-        echo >&2 #NOTE: we use fd 2 here because 1 will be trapped here
-        if [[ -z "$google" || "${google^^}" = Y ]];then
-          if [[ -n $BROWSER ]];then
-            command $BROWSER "$url"
-          else
-            echo -e "Visit: $url" >&2
-          fi
-        fi
-        break
-      else
-        echo "$line" #everything's fine, using `dict`
-      fi
-    fi
-    ln=$(( ln + 1 ))
-  done 3< <(dict ${@} 2>&1) | $PAGER
+  curl -sL "https://${lang}.wiktionary.org/wiki/$@" |
+    w3m -dump -T text/html |
+    "${PAGER:-less}"
 )
-
-#file explorer
-e() (
-    #@TODO: do this for `br` alias.
-    if [[ -n $DISPLAY ]];then
-        case $DESKTOP_SESSION in
-            'DWM')
-                $BROWSER
-                ;;
-            'gnome')
-                nautilus --browser
-                ;;
-            'xfce')
-                thunar
-                ;;
-            *)
-        esac
-    else
-        echo 'No DESKTOP_SESSION found, are you even running X?' >&2
-    fi
-)
-
-#allow xdebug step-through of php-cli
-xdb() ( [[ -z "$1" ]] && XDEBUG_CONFIG="idekey=netbeans-xdebug" "${*}"; )
 
 #translate
 trans() (
@@ -233,41 +152,7 @@ trans() (
   curl ${url} 2>/dev/null #| sed 's/.*"translatedText":"\([^"]*\)".*}/\1\n/'
 )
 
-#temp file for pasting purposes
-tmp() (
-  local tmpfile="$(mktemp --tmpdir  'pastie-from-EDITOR_XXXXXXX.txt')"
-  local pastieExit=0
-
-  { "$EDITOR" "$tmpfile" && [ "$(stat --printf='%s' "$tmpfile")" != 0 ]; } ||
-    return $?
-
-  if [ -n "$1" ] && { [ "$1" = c ] || [ "$1" = -c ]; } then
-    # will paste with clipboard/x11
-    "$BROWSER" "$tmpfile"; pastieExit=$?
-  else
-    # will use proper pastie
-    "$PASTIE" $@ < "$tmpfile"; pastieExit=$?
-  fi
-
-  local pastieExit=$?
-  if [ $pastieExit -ne 0 ];then
-    printf 'ERROR: failed to pastie contents of:\n\t%s\n' "$tmpfile" >&2
-    return $pastieExit
-  fi
-
-  rm "$tmpfile"
-)
-
-let_my_swaps_go() (
-  #tell linux to clear out swap; useful for long running desktop
-  printf 'turning swap off...'
-  sudo swapoff -a
-  printf '... turning swap back on.'
-  sudo swapon -a
-)
-
-#determine the newest file
-# http://code.falconindy.com/cgit/dotfiles.git/plain/.functions
+# List the newest N(="$2")-files in directory "$1"
 rlatest() (
   local count=${2:-1}
 
@@ -302,6 +187,32 @@ notifyhttp() (
   done
 )
 
+#########################################
+# `mktemp` wrappers/workflows ###########
+alias mail='vmail' # tiny script that wraps mail in `mktemp`/$EDITOR calls
+tmp_to_pastie() (
+  local tmpfile="$(mktemp --tmpdir  'pastie-from-EDITOR_XXXXXXX.txt')"
+  local pastieExit=0
+
+  { "$EDITOR" "$tmpfile" && [ "$(stat --printf='%s' "$tmpfile")" != 0 ]; } ||
+    return $?
+
+  if [ -n "$1" ] && { [ "$1" = c ] || [ "$1" = -c ]; } then
+    # will paste with clipboard/x11
+    "$BROWSER" "$tmpfile"; pastieExit=$?
+  else
+    # will use proper pastie
+    "$PASTIE" $@ < "$tmpfile"; pastieExit=$?
+  fi
+
+  local pastieExit=$?
+  if [ $pastieExit -ne 0 ];then
+    printf 'ERROR: failed to pastie contents of:\n\t%s\n' "$tmpfile" >&2
+    return $pastieExit
+  fi
+
+  rm "$tmpfile"
+)
 mkScratchDir() (
   local keyword="${1:-scratch}"
 
@@ -325,7 +236,6 @@ mkScratchDir() (
 
   printf '%s\n' "$newTmpDir"
 )
-
 scratchDir() { pushd "$(mkScratchDir $@)"; }
 
 vid_get_duration() (

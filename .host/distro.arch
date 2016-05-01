@@ -13,6 +13,27 @@ unalias pdf; alias pdf="zathura"
 alias rw='for s in varnish httpd mysqld; do sudo /etc/rc.d/"$s" restart; done'
 alias volume="alsamixer"
 
+#file explorer
+e() (
+    #@TODO: do this for `br` alias.
+    if [[ -n $DISPLAY ]];then
+        case $DESKTOP_SESSION in
+            'DWM')
+                $BROWSER
+                ;;
+            'gnome')
+                nautilus --browser
+                ;;
+            'xfce')
+                thunar
+                ;;
+            *)
+        esac
+    else
+        echo 'No DESKTOP_SESSION found, are you even running X?' >&2
+    fi
+)
+
 wfls() {
     #
     #system-sanity check:
