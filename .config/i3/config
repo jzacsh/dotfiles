@@ -169,4 +169,6 @@ bindsym XF86Scleep exec --no-startup-id i3lock && dbus-send --system --dest=org.
 
 for_window [class="^Google-chrome$"] border none
 
+exec --no-startup-id redshift-gtk
+exec xmodmap ~/.Xmodmap
 exec urxvtc
