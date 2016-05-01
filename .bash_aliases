@@ -236,20 +236,29 @@ trans() {
 }
 
 #temp file for pasting purposes
-tmp() {
-  local tmpfile="$(mktemp)"
+tmp() (
+  local tmpfile="$(mktemp --tmpdir  'pastie-from-EDITOR_XXXXXXX.txt')"
+  local pastieExit=0
 
-  if [[ $1 = c ]]; then
-    #will paste with clipboard/x11
-    "$EDITOR" "$tmpfile" && "$BROWSER" "$tmpfile"
+  { "$EDITOR" "$tmpfile" && [ "$(stat --printf='%s' "$tmpfile")" != 0 ]; } ||
+    return $?
+
+  if [ -n "$1" ] && { [ "$1" = c ] || [ "$1" = -c ]; } then
+    # will paste with clipboard/x11
+    "$BROWSER" "$tmpfile"; pastieExit=$?
   else
-    #will use proper pastie
-    "$EDITOR" "$tmpfile" && "$PASTIE" "$@" < "$tmpfile"
+    # will use proper pastie
+    "$PASTIE" $@ < "$tmpfile"; pastieExit=$?
   fi
 
-  #cleanup
-  sleep 5 && rm "$tmpfile"
-}
+  local pastieExit=$?
+  if [ $pastieExit -ne 0 ];then
+    printf 'ERROR: failed to pastie contents of:\n\t%s\n' "$tmpfile" >&2
+    return $pastieExit
+  fi
+
+  rm "$tmpfile"
+)
 
 let_my_swaps_go() {
   #tell linux to clear out swap; useful for long running desktop
