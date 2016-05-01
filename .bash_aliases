@@ -36,7 +36,7 @@ alias git_diff_sbs='git difftool --no-prompt --extcmd="colordiff --side-by-side 
 alias git_log='git log --patch --graph'
 
 # legit alternative to my old bash experiment (i've found i *actually* want a running clock sometimes)
-clock() { while true; do printf '\r%s ' "$(date --iso-8601=seconds)";done; }
+clock() ( while true; do printf '\r%s ' "$(date --iso-8601=seconds)";done; )
 
 alias mail='vmail' # tiny script that wraps mail in `mktemp`/$EDITOR calls
 
@@ -79,13 +79,13 @@ fi
 g() ( IFS=+; $BROWSER "http://www.google.com/search?q=${*}"; )
 tarl() ( tar -tf ${*}  | $PAGER; )
 hgdiff() ( hg cat $1 | vim - -c  ":vert diffsplit $1" -c "map q :qa!<CR>"; )
-speak() { echo ${@} | espeak 2>/dev/null; }
+speak() ( echo ${@} | espeak 2>/dev/null; )
 ident() ( identify -verbose $1 | grep modify; )
 geo() ( identify -verbose $1 | grep geometry; )
 wat() ( curl -Ls ${@} | $PAGER; )
-rfc() { curl -Ls "http://tools.ietf.org/rfc/rfc${1}.txt" | ${PAGER:-less}; }
-hgchanged() { hg -q in ${1} --template='{files}\n'; }
-mdown() { markdown_py < /dev/stdin | html; }  # depends on html alias above
+rfc() ( curl -Ls "http://tools.ietf.org/rfc/rfc${1}.txt" | "${PAGER:-less}"; )
+hgchanged() ( hg -q in ${1} --template='{files}\n'; )
+mdown() ( markdown_py < /dev/stdin | html; )  # depends on html alias above
 
 # bump font on the fly; from https://bbs.archlinux.org/viewtopic.php?id=44121
 urxvtc_font() { printf '\33]50;%s%d\007' "xft:Terminus:pixelsize=" $1; }
@@ -106,9 +106,9 @@ urxvtc_font() { printf '\33]50;%s%d\007' "xft:Terminus:pixelsize=" $1; }
 #
 # Example, more likely:
 #   $ lsb_release --all | pastie # win
-cliMock() { printf '$ %s\n%s\n\n' "$*" "$($@ 2>&1)"; };
+cliMock() ( printf '$ %s\n%s\n\n' "$*" "$(bash -c "$@" 2>&1)"; );
 
-keyboard() {
+keyboard() (
 # NOTE: step #1 might not be necessary, perhaps bluez just expects a PIN typed
 # identically in both places. will try to clarify next time.
   cat <<EO_INSTRUCTION
@@ -125,10 +125,10 @@ assuming:
 3) connect: \`sudo hidd --connect KEYBOARD_ID\`
 4) cleanup step #1
 EO_INSTRUCTION
-}
+)
 
 #`hg shelve` extension is broken for some reason.
-hgunshelve () {
+hgunshelve () (
   local patch
 
   if [[ $1 = -l ]];then
@@ -149,14 +149,14 @@ hgunshelve () {
       return 1
     fi
   fi
-}
+)
 
 #tmux/ssh/console considerations
 alias xf='DISPLAY=localhost:10.0 '
 alias xl='DISPLAY=:0.0 '
 
 #alevine's trick
-avi() {
+avi() (
  if [[ ! -r "$1" ]] || (( $# ));then
    local num
    num=$(find ./ -type f -name "$1" | wc -l)
@@ -164,10 +164,10 @@ avi() {
  else #just open the editor
    command $EDITOR "${*}"
  fi
-}
+)
 
 #dictionary look ups
-lu() {
+lu() (
   local url query none google ln=0
   while read -u 3 line;do
     if (( ln ));then
@@ -196,10 +196,10 @@ lu() {
     fi
     ln=$(( ln + 1 ))
   done 3< <(dict ${@} 2>&1) | $PAGER
-}
+)
 
 #file explorer
-e() {
+e() (
     #@TODO: do this for `br` alias.
     if [[ -n $DISPLAY ]];then
         case $DESKTOP_SESSION in
@@ -217,15 +217,13 @@ e() {
     else
         echo 'No DESKTOP_SESSION found, are you even running X?' >&2
     fi
-}
+)
 
 #allow xdebug step-through of php-cli
-xdb() {
-  [[ -z $1 ]] && XDEBUG_CONFIG="idekey=netbeans-xdebug" "${*}"
-}
+xdb() ( [[ -z "$1" ]] && XDEBUG_CONFIG="idekey=netbeans-xdebug" "${*}"; )
 
 #translate
-trans() {
+trans() (
   local orig="$1"
   local targ="$2"
   shift;shift
@@ -233,7 +231,7 @@ trans() {
   local google_api='http://ajax.googleapis.com/ajax/services/language/translate?v=1.0&q='
   local url="${google_api}${text// /+}&langpair=${orig}|${targ}"
   curl ${url} 2>/dev/null #| sed 's/.*"translatedText":"\([^"]*\)".*}/\1\n/'
-}
+)
 
 #temp file for pasting purposes
 tmp() (
@@ -260,17 +258,17 @@ tmp() (
   rm "$tmpfile"
 )
 
-let_my_swaps_go() {
+let_my_swaps_go() (
   #tell linux to clear out swap; useful for long running desktop
   printf 'turning swap off...'
   sudo swapoff -a
   printf '... turning swap back on.'
   sudo swapon -a
-}
+)
 
 #determine the newest file
 # http://code.falconindy.com/cgit/dotfiles.git/plain/.functions
-rlatest() {
+rlatest() (
   local count=${2:-1}
 
   find "${1:-.}" -type f -printf '%T@ %p\0' | sort -znr | {
@@ -280,11 +278,11 @@ rlatest() {
       printf '%s\n' "$file"
     done
   }
-}
+)
 
 #eg.: notify me when a tarball is finally uploaded to dropox
 # usage: URL [ READY_MESSAGE ]
-notifyhttp() {
+notifyhttp() (
   local msg url retry
   retry=2
 
@@ -302,9 +300,9 @@ notifyhttp() {
       sleep "$retry"
     }
   done
-}
+)
 
-mkScratchDir() {
+mkScratchDir() (
   local keyword="${1:-scratch}"
 
   local tmpDir=~/tmp/build/
@@ -326,17 +324,17 @@ mkScratchDir() {
   fi
 
   printf '%s\n' "$newTmpDir"
-}
+)
 
 scratchDir() { pushd "$(mkScratchDir $@)"; }
 
-vid_get_duration() {
+vid_get_duration() (
   avconv -i "$1" 2>&1 |
       grep Duration |
       sed -e 's|.*Duration:\ \(.*$\)|\1|' |
       cut -f 1 -d ' ' |
       sed -e 's|,$||g'
-}
+)
 
 vid_to_gif() (
   set -e
@@ -374,7 +372,7 @@ vid_to_gif() (
   rmdir "$framesDir"
 )
 
-whiteboardify() {
+whiteboardify() (
   [ $# -eq 2 ] || {
     echo "usage: IN_FILE OUT_FILE
       to generate a whiteboardified version of INFILE
@@ -389,6 +387,6 @@ whiteboardify() {
     -channel RBG \
     -level 60%,91%,0.1 \
     "$2"
-}
+)
 
 # vim: et:ts=2:sw=2
