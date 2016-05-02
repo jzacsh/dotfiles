@@ -3,4 +3,7 @@
 #specific configs:
 ln -sf ~/.host/src/host.carboy/.Xdefaults ~/
 
+
+source ~/.host/common/laptop
+
 # vim: et:ts=2:sw=2
