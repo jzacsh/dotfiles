@@ -155,7 +155,7 @@ bindsym XF86AudioRaiseVolume exec pactl set-sink-mute @DEFAULT_SINK@ 0 && pactl 
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 
 # expected modification:
-bindsym Mod1+Mod4+l exec i3-lock-screen
+bindsym Mod1+Shift+l exec i3-lock-screen
 exec --no-startup-id nm-applet # networking-manager
 exec --no-startup-id i3-autolock &
 
