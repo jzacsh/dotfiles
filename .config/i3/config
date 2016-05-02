@@ -163,8 +163,8 @@ exec --no-startup-id ~/bin/share/i3-autolock &
 exec --no-startup-id blueman-applet
 
 # Bind the Fn+F3/Fn+F4 keys to lock/lock+suspend respectively
-bindsym XF86ScreenSaver exec --no-startup-id i3-lock-screen
-bindsym XF86Sleep exec --no-startup-id i3-lock-screen && dbus-send --system --dest=org.freedesktop.UPower --type=method_call --print-reply /org/freedesktop/UPower org.freedesktop.UPower.Suspend
+bindsym XF86ScreenSaver exec --no-startup-id ~/bin/share/i3-lock-screen
+bindsym XF86Sleep exec --no-startup-id  ~/bin/share/display-external offexternal ; ~/bin/share/i3-lock-screen ; dbus-send --system --dest=org.freedesktop.UPower --type=method_call --print-reply /org/freedesktop/UPower org.freedesktop.UPower.Suspend
 
 for_window [class="^Google-chrome$"] border none
 
