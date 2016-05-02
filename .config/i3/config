@@ -156,16 +156,16 @@ bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@    '+5%'
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 
 # expected modification:
-bindsym Mod1+Mod4+l exec "i3lock -c 000000"
-exec --no-startup-id nm-applet
-exec --no-startup-id ~/bin/share/autolock &
+bindsym Mod1+Mod4+l exec i3-lock-screen
+exec --no-startup-id nm-applet # networking-manager
+exec --no-startup-id autolock &
 
 # from http://miek.nl/posts/2014/Mar/08/use-i3/
 exec --no-startup-id blueman-applet
 
 # Bind the Fn+F3/Fn+F4 keys to lock/lock+suspend respectively
-bindsym XF86ScreenSaver exec --no-startup-id i3lock
-bindsym XF86Scleep exec --no-startup-id i3lock && dbus-send --system --dest=org.freedesktop.UPower --type=method_call --print-reply /org/freedesktop/UPower org.freedesktop.UPower.Suspend
+bindsym XF86ScreenSaver exec --no-startup-id i3-lock-screen
+bindsym XF86Scleep exec --no-startup-id i3-lock-screen && dbus-send --system --dest=org.freedesktop.UPower --type=method_call --print-reply /org/freedesktop/UPower org.freedesktop.UPower.Suspend
 
 for_window [class="^Google-chrome$"] border none
 
