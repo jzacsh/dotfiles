@@ -1,0 +1,14 @@
+## 20160504 from https://wiki.debian.org/ScreenLockingOnSleep
+### source: https://bbs.archlinux.org/viewtopic.php?pid=1170536#p1170536 by 65kid
+[Unit]
+Description=i3lock
+Before=sleep.target
+
+[Service]
+User=jzacsh
+Type=forking
+# Environment=DISPLAY=:0
+ExecStart=/home/jzacsh/bin/share/i3-lock-screen
+
+[Install]
+WantedBy=sleep.target
