@@ -161,7 +161,7 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 6
 # expected modification:
 bindsym $mod+Shift+l exec --no-startup-id ~/bin/share/i3-lock-screen
 exec --no-startup-id nm-applet # networking-manager
-exec --no-startup-id ~/bin/share/i3-autolock
+exec --no-startup-id ~/bin/share/i3-autolock 3 # 2 minutes of inactivity
 
 # from http://miek.nl/posts/2014/Mar/08/use-i3/
 exec --no-startup-id blueman-applet
