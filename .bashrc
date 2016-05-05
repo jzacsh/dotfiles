@@ -144,5 +144,7 @@ scowerForTmuxSessions() {
 }
 scowerForTmuxSessions; unset scowerForTmuxSessions
 
+# Highlight currently authenticated keys
+ssh-add -l | grep -E '^|\.ssh\/.*\ '
 
 true # don't assume last return status
