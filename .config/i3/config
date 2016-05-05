@@ -157,7 +157,7 @@ bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 # expected modification:
 bindsym $mod+Shift+l exec --no-startup-id ~/bin/share/i3-lock-screen
 exec --no-startup-id nm-applet # networking-manager
-exec --no-startup-id ~/bin/share/i3-autolock &
+exec --no-startup-id ~/bin/share/i3-autolock
 
 # from http://miek.nl/posts/2014/Mar/08/use-i3/
 exec --no-startup-id blueman-applet
