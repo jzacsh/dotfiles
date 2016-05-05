@@ -154,6 +154,10 @@ bindsym XF86AudioLowerVolume exec pactl set-sink-mute @DEFAULT_SINK@ 0 && pactl 
 bindsym XF86AudioRaiseVolume exec pactl set-sink-mute @DEFAULT_SINK@ 0 && pactl set-sink-volume @DEFAULT_SINK@ '+5%'
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 
+# screen brightness
+bindsym XF86MonBrightnessUp   exec xbacklight -inc 6
+bindsym XF86MonBrightnessDown exec xbacklight -dec 6
+
 # expected modification:
 bindsym $mod+Shift+l exec --no-startup-id ~/bin/share/i3-lock-screen
 exec --no-startup-id nm-applet # networking-manager
