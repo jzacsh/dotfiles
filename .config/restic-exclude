@@ -16,3 +16,4 @@ $ANDROID_HOME/
 $ANDROID_HOME/../studio
 $HOME/media/src/linux-kernel/
 $HOME/tmp/npm-*-*/
+$HOME/usr/local/vm/
