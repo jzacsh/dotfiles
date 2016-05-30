@@ -14,5 +14,5 @@ $HOME/.tor-browser*/
 $HOME/.opam/
 $ANDROID_HOME/
 $ANDROID_HOME/../studio
-$HOME/tmp/src/linux-kernel/
+$HOME/media/src/linux-kernel/
 $HOME/tmp/npm-*-*/
