@@ -129,19 +129,22 @@ fi
 #     http://whatthecommit.com/index.txt 2>/dev/null
 
 #Tmux
-scowerForTmuxSessions() {
-  [ -n "$TMUX" ] && return
+scowerForTmuxSessions() (
+  [ -n "${TMUX/ */}" ] && return
 
+  local havePrinted=0
   local col_end='\033[0m'; local col_grn='\e[0;32m'
   local commonTmSocks=(default main "${USER}main")
   for sock in "${commonTmSocks[@]}"; do
     local tmSessions="$(tmux -L "$sock" list-sessions 2>/dev/null)"
-    [ -z "$tmSessions" ] && continue;
+    [ -z "${tmSessions/ */}" ] && continue
+
+    (( havePrinted )) || { havePrinted=1; echo; } # initial padding
     printf "tmux -L ${col_grn}%s${col_end} sessions:\n" "$sock"
     printf '%s\n' "$tmSessions" |
         GREP_COLORS='mt=01;33' \grep --color=always '^\w*:'
   done
-}
+)
 scowerForTmuxSessions; unset scowerForTmuxSessions
 
 # Highlight currently authenticated keys
