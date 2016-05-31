@@ -212,6 +212,9 @@ tmp_to_pastie() (
 
   rm "$tmpfile"
 )
+# TODO refactor `tmp_to_pastie` to share careful tmp file handling with a
+# 'vmail' that does `mail < $tmpfile`; See github.com/jzacsh/bin/commit/9184070
+
 mkScratchDir() (
   local keyword="${1:-scratch}"
 
