@@ -118,10 +118,14 @@ done
 # Below this line is strictly for messages to myself #
 ######################################################
 
-#Users
-if who | grep --invert-match $(whoami) > /dev/null;  then
-    printf "Currently on %s, other than you:\n" "$(uname -snr)"
-    who --heading
+# Highlight currently authenticated keys
+ssh-add -l | grep --extended-regexp '^|\.ssh\/.*\ '
+#NOTE: this should be first, since it always prints
+
+# Users
+if who | grep --invert-match "$(whoami)" > /dev/null; then
+  printf '\nCurrently on %s, other than you:\n' "$(uname -snr)"
+  who --heading | grep --invert-match "$(whoami)"
 fi
 
 #Laughs:
@@ -146,9 +150,6 @@ scowerForTmuxSessions() (
   done
 )
 scowerForTmuxSessions; unset scowerForTmuxSessions
-
-# Highlight currently authenticated keys
-echo; ssh-add -l | grep -E '^|\.ssh\/.*\ '
 
 # Print local mail waiting for me
 scowerForMail() (
