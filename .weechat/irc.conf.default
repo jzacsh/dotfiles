@@ -140,7 +140,7 @@ ssl_verify = on
 username = "jzacsh"
 
 [server]
-debian.addresses = "irc.debian.org/6697"
+debian.addresses = "irc.oftc.net/6697"
 debian.proxy
 debian.ipv6
 debian.ssl = on
