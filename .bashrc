@@ -72,21 +72,21 @@ unset bash_prompt
 source ~/bin/share/zacsh_exports
 [ -r ~/.bash_aliases ] && source ~/.bash_aliases
 source $HOME/.host/pick  # Dynamic config
-if [ -z "$SSH_AUTH_SOCK" ]; then
+if [ -z "${SSH_AUTH_SOCK/ */}" ]; then
   eval $(ssh-agent -s)
   ssh-add ~/.ssh/add/*.add #load ssh keys
 fi
 
 # in my nested tmux shells, my inherited `env` is old
 dbusSessionBusAddress="$(< ~/.dbus_address 2>/dev/null)"
-if [ -n "$dbusSessionBusAddress" ];then
+if [ -n "${dbusSessionBusAddress/ */}" ];then
   export DBUS_SESSION_BUS_ADDRESS="$dbusSessionBusAddress"
 else
   unset dbusSessionBusAddress
 fi
 
 # for irssi's notify.pl
-[ -n $DBUS_SESSION_BUS_ADDRESS ] &&
+[ -n ${DBUS_SESSION_BUS_ADDRESS/ */} ] &&
   echo "$DBUS_SESSION_BUS_ADDRESS" > ~/.dbus_address
 
 ############################################################################
