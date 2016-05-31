@@ -147,4 +147,18 @@ scowerForTmuxSessions; unset scowerForTmuxSessions
 # Highlight currently authenticated keys
 ssh-add -l | grep -E '^|\.ssh\/.*\ '
 
+# Print local mail waiting for me
+scowerForMail() (
+  local headers; headers="$(mail -H 2>&1)"
+  if [ $? -eq 0 ];then
+    local col_end='\033[0m'
+    local col_red='\e[1;31m'
+
+    echo -e '\n'$col_red'UNREAD'$col_end' messages; `mail` to read them:'
+    printf '%s\n' "$headers"
+  fi
+  unset mailHeaders
+)
+scowerForMail; unset scowerForMail
+
 true # don't assume last return status
