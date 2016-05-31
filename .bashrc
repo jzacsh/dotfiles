@@ -145,7 +145,7 @@ scowerForTmuxSessions() {
 scowerForTmuxSessions; unset scowerForTmuxSessions
 
 # Highlight currently authenticated keys
-ssh-add -l | grep -E '^|\.ssh\/.*\ '
+echo; ssh-add -l | grep -E '^|\.ssh\/.*\ '
 
 # Print local mail waiting for me
 scowerForMail() (
