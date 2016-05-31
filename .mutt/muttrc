@@ -39,7 +39,7 @@
 # maildir settings
   set imap_user           = @gmail.com                            # gmail username
   set mbox_type           = Maildir                               # mailbox type
-  set folder              = ~/mail                                # mailbox location
+  set folder              = ~/media/docs/mail                     # mailbox location
   set mbox                = "+archive"                            # [Gmail]/All Mail
   set spoolfile           = "+inbox"                              # [Gmail]/Drafts
   set postponed           = "+drafts" 
