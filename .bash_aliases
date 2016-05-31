@@ -188,7 +188,6 @@ notifyhttp() (
 
 #########################################
 # `mktemp` wrappers/workflows ###########
-alias mail='vmail' # tiny script that wraps mail in `mktemp`/$EDITOR calls
 
 _assertEnvVariable() {
   [ -n ${!1} ] && return 0
@@ -196,7 +195,7 @@ _assertEnvVariable() {
   return 1
 }
 
-collectWithEditor() {
+_collectWithEditor() (
   _assertEnvVariable EDITOR || return 1
 
   local when; when="$(
@@ -212,16 +211,16 @@ collectWithEditor() {
   }
 
   {
-    "$EDITOR" "$tmpfile" > /proc/"$$"/fd/1 &&
+    "$EDITOR" "$tmpfile" < /proc/"$$"/fd/0 > /proc/"$$"/fd/1 &&
       [ "$(stat --printf='%s' "$tmpfile")" != 0 ];
   } || return $?
 
   printf '%s' "$tmpfile"
   return 0
-}
+)
 
-tmp_to_pastie() {
-  local contentF; contentF="$(collectWithEditor pastie)"
+tmp_to_pastie() (
+  local contentF; contentF="$(_collectWithEditor pastie)"
   [ $? -ne 0 ] && return 1
 
   local pastieExit=0
@@ -239,10 +238,19 @@ tmp_to_pastie() {
   fi
 
   rm "$contentF"
-}
+)
 
-# TODO refactor `tmp_to_pastie` to share careful tmp file handling with a
-# 'vmail' that does `mail < $tmpfile`; See github.com/jzacsh/bin/commit/9184070
+vmail() (
+  local contentF; contentF="$(_collectWithEditor vmail)"
+  [ $? -ne 0 ] && return 1
+
+  if \mail $@ < "$contentF";then
+    printf 'ERROR: failed to mail contents of:\n\t%s\n' "$contentF" >&2
+    return 1
+  fi
+
+  rm "$contentF"
+)
 
 mkScratchDir() (
   local keyword="${1:-scratch}"
