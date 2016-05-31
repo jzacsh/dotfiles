@@ -189,29 +189,58 @@ notifyhttp() (
 #########################################
 # `mktemp` wrappers/workflows ###########
 alias mail='vmail' # tiny script that wraps mail in `mktemp`/$EDITOR calls
-tmp_to_pastie() (
-  local tmpfile="$(mktemp --tmpdir  'pastie-from-EDITOR_XXXXXXX.txt')"
+
+_assertEnvVariable() {
+  [ -n ${!1} ] && return 0
+  printf 'Error: $%s env. variable not set\n' "$1" >&2
+  return 1
+}
+
+collectWithEditor() {
+  _assertEnvVariable EDITOR || return 1
+
+  local when; when="$(
+    date --iso-8601=minutes |
+      sed -e 's|:|.|g' -e 's|-||g'
+  )"
+  local tmpl; tmpl="$(printf '%s_%s-from-EDITOR_XXXXXXX.txt' "$when" "$1")"
+  local tmpfile; tmpfile="$(mktemp --tmpdir  "$tmpl")"
+
+  [ -w "$tmpfile" ] || {
+    printf 'failed to open a writeable temporary file\n' >&2
+    return 1
+  }
+
+  {
+    "$EDITOR" "$tmpfile" > /proc/"$$"/fd/1 &&
+      [ "$(stat --printf='%s' "$tmpfile")" != 0 ];
+  } || return $?
+
+  printf '%s' "$tmpfile"
+  return 0
+}
+
+tmp_to_pastie() {
+  local contentF; contentF="$(collectWithEditor pastie)"
+  [ $? -ne 0 ] && return 1
+
   local pastieExit=0
-
-  { "$EDITOR" "$tmpfile" && [ "$(stat --printf='%s' "$tmpfile")" != 0 ]; } ||
-    return $?
-
   if [ -n "$1" ] && { [ "$1" = c ] || [ "$1" = -c ]; } then
-    # will paste with clipboard/x11
-    "$BROWSER" "$tmpfile"; pastieExit=$?
+    _assertEnvVariable BROWSER || return 1
+    "$BROWSER" "$contentF"; pastieExit=$?      # paste with clipboard/x11
   else
-    # will use proper pastie
-    "$PASTIE" $@ < "$tmpfile"; pastieExit=$?
+    _assertEnvVariable PASTIE || return 1
+    "$PASTIE" $@ < "$contentF"; pastieExit=$?  # use proper pastebin
   fi
 
-  local pastieExit=$?
   if [ $pastieExit -ne 0 ];then
-    printf 'ERROR: failed to pastie contents of:\n\t%s\n' "$tmpfile" >&2
+    printf 'ERROR: failed to pastie contents of:\n\t%s\n' "$contentF" >&2
     return $pastieExit
   fi
 
-  rm "$tmpfile"
-)
+  rm "$contentF"
+}
+
 # TODO refactor `tmp_to_pastie` to share careful tmp file handling with a
 # 'vmail' that does `mail < $tmpfile`; See github.com/jzacsh/bin/commit/9184070
 
