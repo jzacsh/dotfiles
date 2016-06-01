@@ -198,12 +198,21 @@ _assertEnvVariable() {
 _collectWithEditor() (
   _assertEnvVariable EDITOR || return 1
 
+  local contentName="$1"
+  local tdir="$2"
+
   local when; when="$(
     date --iso-8601=minutes |
       sed -e 's|:|.|g' -e 's|-||g'
   )"
-  local tmpl; tmpl="$(printf '%s_%s-from-EDITOR_XXXXXXX.txt' "$when" "$1")"
-  local tmpfile; tmpfile="$(mktemp --tmpdir  "$tmpl")"
+  local tmpl; tmpl="$(printf '%s_%s-from-EDITOR_XXXXXXX.txt' "$when" "$contentName")"
+  local tmpfile; tmpfile="$(
+    if [ -z "${2/ */}" ];then
+      mktemp --tmpdir      "$tmpl"
+    else
+      mktemp --tmpdir="$tdir" "$tmpl"
+    fi
+  )"
 
   [ -w "$tmpfile" ] || {
     printf 'failed to open a writeable temporary file\n' >&2
@@ -250,6 +259,30 @@ vmail() (
   fi
 
   rm "$contentF"
+)
+
+tmp_encrypt_mail() (
+  _assertEnvVariable EMAIL || {
+    printf 'Error: need your key uid to sign with' >&2
+    return 1
+  }
+
+  { [ $# -ne 0 ] && [ "$1" != "$EMAIL" ]; } || {
+    printf 'Error: expected emails whose public keys should be signed with\n' >&2
+    return 1
+  }
+
+  local msgF; msgF="$(_collectWithEditor unencrypted-msg-for-gpg ./)"
+  [ $? -ne 0 ] && return 1
+
+  local recips; recips=($@); recips+=("$EMAIL")
+  local recipArgs; recipArgs="$(printf ' --recipient %s ' ${recips[@]})"
+
+  printf \
+    'Clear message composed in:\n\t%s\nEncrypting its contents for:\t%s\n\n' \
+    "$msgF" "${recips[*]}"
+  set -x
+  gpg --sign --armor $recipArgs --encrypt "$msgF"
 )
 
 mkScratchDir() (
