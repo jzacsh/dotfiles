@@ -5,8 +5,10 @@ declare -r mode="$1"
 declare -r punchExec="$HOME"/bin/local/punch
 
 case "$mode" in
-  client) "$punchExec" | sed -e 's|\ .*$||';;
-  clock)  "$punchExec" | sed -e 's|^.*\ ||';;
+  client)
+    "$punchExec" | sed -e 's|[[:space:]].*$||';;
+  clock)
+    "$punchExec" | sed -e 's|^\w*[[:space:]]||' | sed -e 's|[[:space:]].*$||';;
   *)      echo 'bad `punch` call!';;
 esac
 exit 0
