@@ -34,7 +34,7 @@ markup=none
 
 [mailmon]
 command=$HOME/.config/i3blocks/count_mail_h
-color=#FFa500
+color=#ffa500
 interval=30
 
 [punchmon]
