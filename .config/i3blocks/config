@@ -28,12 +28,28 @@ command=/usr/share/i3blocks/$BLOCK_NAME
 separator_block_width=15
 markup=none
 
-# jzacsh@ custom `mail -H` unread-counter;
-#   Find here: https://github.com/jzacsh/dotfiles/blob/master/.config/i3blocks/count_mail_h
+###############################################################################
+# jzacsh@ custom scripts
+#   Find here: https://github.com/jzacsh/dotfiles/blob/master/.config/i3blocks/
+
 [mailmon]
 command=$HOME/.config/i3blocks/count_mail_h
 color=#FFa500
 interval=30
+
+[punchmon]
+instance=clock
+command=$HOME/.config/i3blocks/punchmon $BLOCK_INSTANCE
+color=#ff0000
+interval=15
+
+[punchmon]
+instance=client
+command=$HOME/.config/i3blocks/punchmon $BLOCK_INSTANCE
+color=#a020f0
+interval=15
+
+###############################################################################
 
 # Volume indicator
 #

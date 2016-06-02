@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+#
+# `punch` i3blocks wrapper; find punch at github.com/jzacsh/punch
+declare -r mode="$1"
+declare -r punchExec="$HOME"/bin/local/punch
+
+case "$mode" in
+  client) "$punchExec" | sed -e 's|\ .*$||';;
+  clock)  "$punchExec" | sed -e 's|^.*\ ||';;
+  *)      echo 'bad `punch` call!';;
+esac
+exit 0
