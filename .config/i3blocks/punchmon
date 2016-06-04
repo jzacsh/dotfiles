@@ -4,11 +4,20 @@
 declare -r mode="$1"
 declare -r punchExec="$HOME"/bin/local/punch
 
+declare -r _pout="$("$punchExec")"
+[ -n "${_pout/ */}" ] || exit 0
+
 case "$mode" in
   client)
     "$punchExec" | sed -e 's|[[:space:]].*$||';;
   clock)
-    "$punchExec" | sed -e 's|^\w*[[:space:]]||' | sed -e 's|[[:space:]].*$||';;
-  *)      echo 'bad `punch` call!';;
+    printf '%s (%s)' \
+      "$(
+        "$punchExec" |
+          sed -e 's|^\w*[[:space:]]||' |
+          sed -e 's|[[:space:]].*$||')" \
+      "$("$punchExec" -r)"
+    ;;
+  *) echo 'bad `punch` call!';;
 esac
 exit 0
