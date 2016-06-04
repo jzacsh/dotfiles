@@ -3,20 +3,27 @@
 # `punch` i3blocks wrapper; find punch at github.com/jzacsh/punch
 declare -r mode="$1"
 declare -r punchExec="$HOME"/bin/local/punch
+export PUNCH_CARD="$(xdg-user-dir DOCUMENTS)/punchcard"
 
-declare -r _pout="$("$punchExec")"
+declare -r _pout="$("$punchExec" -qs)"
 [ -n "${_pout/ */}" ] || exit 0
 
 case "$mode" in
   client)
-    "$punchExec" | sed -e 's|[[:space:]].*$||';;
+    "$punchExec" -sq | sed -e 's|[[:space:]].*$||';;
   clock)
-    printf '%s (%s)' \
-      "$(
-        "$punchExec" |
-          sed -e 's|^\w*[[:space:]]||' |
-          sed -e 's|[[:space:]].*$||')" \
-      "$("$punchExec" -R)"
+    declare -r currentSession="$(
+      "$punchExec" -sq |
+        sed -e 's|^\w*[[:space:]]||' |
+        sed -e 's|[[:space:]].*$||'
+    )"
+    total="$("$punchExec" -qR)"
+    if [ "$total" = "$currentSession" ];then
+      total=''
+    else
+      total="$(printf ' (%s)' "$total")"
+    fi
+    printf '%s%s' "$currentSession" "$total"
     ;;
   *) echo 'bad `punch` call!';;
 esac
