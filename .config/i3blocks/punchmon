@@ -16,7 +16,7 @@ case "$mode" in
         "$punchExec" |
           sed -e 's|^\w*[[:space:]]||' |
           sed -e 's|[[:space:]].*$||')" \
-      "$("$punchExec" -r)"
+      "$("$punchExec" -R)"
     ;;
   *) echo 'bad `punch` call!';;
 esac
