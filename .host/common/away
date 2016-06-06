@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# inverse of `seated` script
+set -e
+source ~/bin/share/zacsh_exports
+~/usr/local/bin/sh/punch/bin/screen_sleep out
