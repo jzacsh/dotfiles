@@ -37,6 +37,13 @@ command=$HOME/.config/i3blocks/count_mail_h
 color=#ffa500
 interval=30
 
+[pidfilestatus]
+instance=HOME
+label=backup
+command=$HOME/.config/i3blocks/pid_file_status $BLOCK_INSTANCE $HOME/.local/share/resticw.sh.pid
+color=#ff0000
+interval=5
+
 [worldclock]
 instance=Europe/Paris
 label=paris

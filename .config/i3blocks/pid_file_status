@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+#
+# Echo $1 if $2 is a non-empty file. Intended to report on presence of PID files
+# as a proxy for a job's activity.
+set -e
+declare -r successMsg="$1"; [ -n "${successMsg/ */}" ]
+declare -r pidFilePath="$2"; [ -n "${pidFilePath/ */}" ]
+
+{
+  [ -f "$pidFilePath" ] &&
+  [ "$(stat --printf='%b' "$pidFilePath" )" != 0 ] && # not just an empty file
+  [ "$(stat --printf='%b' "$pidFilePath" )" != 1 ]    # not just a line-break
+} && echo "$successMsg"
