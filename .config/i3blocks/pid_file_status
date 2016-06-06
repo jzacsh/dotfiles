@@ -8,6 +8,6 @@ declare -r pidFilePath="$2"; [ -n "${pidFilePath/ */}" ]
 
 {
   [ -f "$pidFilePath" ] &&
-  [ "$(stat --printf='%b' "$pidFilePath" )" != 0 ] && # not just an empty file
-  [ "$(stat --printf='%b' "$pidFilePath" )" != 1 ]    # not just a line-break
-} && echo "$successMsg"
+  [ "$(stat --printf='%s' "$pidFilePath" )" != 0 ] && # not just an empty file
+  [ "$(stat --printf='%s' "$pidFilePath" )" != 1 ]    # not just a line-break
+} && echo "$successMsg" || echo -n
