@@ -152,8 +152,15 @@ interval=30
 # Date Time
 #
 [time]
-command=date '+%Y-%m-%d %H:%M:%S'
+instance=date
+command=date '+%Y-%m-%d'
+interval=60
+
+[time]
+instance=time
+command=date '+%H:%M:%S'
 interval=5
+color=#fff000
 
 # Generic media player support
 #
