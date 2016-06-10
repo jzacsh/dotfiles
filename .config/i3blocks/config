@@ -193,5 +193,5 @@ interval=5
 [keyindicator]
 instance=NUM
 label="LK"
-interval=once
+interval=5
 signal=11
