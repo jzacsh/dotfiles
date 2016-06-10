@@ -108,9 +108,6 @@ if v:version >= 704
   endif
 endif
 
-" highlight variable on hover stackoverflow.com/questions/1551231
-autocmd CursorMoved * exe printf('match SignColumn /\V\<%s\>/', escape(expand('<cword>'), '/\'))
-
 " always jump to last position in file, see :help last-position-jump
 autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g'\"" | endif
 
@@ -319,5 +316,10 @@ au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
+
+
+" highlight variable on hover stackoverflow.com/questions/1551231
+" NOTE: inorder to work, this *must* come after RainbowParentheses plugin conf
+autocmd CursorMoved * exe printf('match VisualNOS /\V\<%s\>/', escape(expand('<cword>'), '/\'))
 
 set modeline
