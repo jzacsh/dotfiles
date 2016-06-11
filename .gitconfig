@@ -46,3 +46,5 @@
   mergeoptions = --no-ff
 [init]
 	templatedir = ~/.config/git_template
+[commit]
+	gpgsign = true
