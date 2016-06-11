@@ -5,13 +5,6 @@
 [help]
   autocorrect = 1
 [alias]
-  co = checkout
-  br = branch
-  ci = commit
-  st = status
-  l  = pull
-  p  = push
-  unstage = reset HEAD --
   last = log -1 HEAD
   lg = log --show-signature --graph
 [core]
