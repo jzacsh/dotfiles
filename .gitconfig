@@ -1,6 +1,7 @@
 [user]
   name = Jonathan Zacsh
   email = jzacsh@gmail.com
+	signingkey = 0x6DA4194060D602C2
 [help]
   autocorrect = 1
 [alias]
