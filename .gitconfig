@@ -13,6 +13,7 @@
   p  = push
   unstage = reset HEAD --
   last = log -1 HEAD
+  lg = log --show-signature --graph
 [core]
   pager = less -FRSX
   editor = vim
