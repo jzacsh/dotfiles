@@ -63,6 +63,7 @@ geo() ( identify -verbose $1 | grep geometry; )
 wat() ( curl -Ls ${@} | $PAGER; )
 mdown() ( markdown_py < /dev/stdin | html; )  # depends on html alias above
 clock() ( while true; do printf '\r%s ' "$(date --iso-8601=ns)";done; ) # watch a running clock
+tree() ( find -O3 $@ | sort; )
 
 # bump font on the fly; from https://bbs.archlinux.org/viewtopic.php?id=44121
 urxvtc_font() { printf '\33]50;%s%d\007' "xft:Terminus:pixelsize=" $1; }

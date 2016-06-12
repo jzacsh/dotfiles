@@ -81,8 +81,8 @@ interval=15
 label=♪
 instance=Master
 #instance=PCM
-interval=once
-signal=10
+interval=3
+signal=5
 
 # Memory usage
 #
@@ -152,8 +152,15 @@ interval=30
 # Date Time
 #
 [time]
-command=date '+%Y-%m-%d %H:%M:%S'
+instance=date
+command=date '+%Y-%m-%d'
+interval=60
+
+[time]
+instance=time
+command=date '+%H:%M:%S'
 interval=5
+color=#fff000
 
 # Generic media player support
 #
@@ -193,5 +200,5 @@ interval=5
 [keyindicator]
 instance=NUM
 label="LK"
-interval=once
+interval=5
 signal=11

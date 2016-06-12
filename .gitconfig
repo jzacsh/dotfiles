@@ -1,17 +1,12 @@
 [user]
   name = Jonathan Zacsh
   email = jzacsh@gmail.com
+  signingkey = 0x6DA4194060D602C2
 [help]
   autocorrect = 1
 [alias]
-  co = checkout
-  br = branch
-  ci = commit
-  st = status
-  l  = pull
-  p  = push
-  unstage = reset HEAD --
   last = log -1 HEAD
+  lg = log --show-signature --graph
 [core]
   pager = less -FRSX
   editor = vim
@@ -45,4 +40,6 @@
 [branch "master"]
   mergeoptions = --no-ff
 [init]
-	templatedir = ~/.config/git_template
+  templatedir = ~/.config/git_template
+[commit]
+  gpgsign = true
