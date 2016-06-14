@@ -5,6 +5,7 @@
 [help]
   autocorrect = 1
 [alias]
+  st = status
   last = log -1 HEAD
   lg = log --show-signature --graph
 [core]
