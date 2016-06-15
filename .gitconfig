@@ -38,8 +38,6 @@
   added = yellow
   changed = green
   untracked = cyan
-[branch "master"]
-  mergeoptions = --no-ff
 [init]
   templatedir = ~/.config/git_template
 [commit]
