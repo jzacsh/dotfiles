@@ -14,7 +14,7 @@ case "$mode" in
   clock)
     declare -r currentSession="$(
       "$punchExec" -sq |
-        sed -e 's|^\w*[[:space:]]||' |
+        sed -e 's|^\w*[[:space:]]*||' |
         sed -e 's|[[:space:]].*$||'
     )"
     total="$("$punchExec" -qR)"
