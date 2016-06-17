@@ -10,12 +10,13 @@ declare -r _pout="$("$punchExec" -qs)"
 
 case "$mode" in
   client)
-    "$punchExec" -sq | sed -e 's|[[:space:]].*$||';;
+    "$punchExec" -sq | sed --expression 's|[[:space:]].*$||';;
   clock)
     declare -r currentSession="$(
       "$punchExec" -sq |
-        sed -e 's|^\w*[[:space:]]*||' |
-        sed -e 's|[[:space:]].*$||'
+        sed \
+          --expression 's|^\w*[[:space:]]*||' \
+          --expression 's|[[:space:]].*||'
     )"
     total="$("$punchExec" -qR)"
     if [ "$total" = "$currentSession" ];then
