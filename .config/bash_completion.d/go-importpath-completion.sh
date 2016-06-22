@@ -23,7 +23,7 @@ __godoc_completion() {
     -mindepth 1 -maxdepth 1 \
     -type f -name "$(basename "$cache")" \
     -mmin +$cacheTtl \
-    -exec echo -n > {} \;
+    -exec bash -c 'echo -n > {}' \;
 
   # fill cache in need
   [ "$(stat --printf='%s' "$cache")" = 0 ] && go list ... > "$cache"
@@ -32,4 +32,41 @@ __godoc_completion() {
   COMPREPLY=( $(compgen -W "$(< "$cache")" -- "${COMP_WORDS[$COMP_CWORD]}") )
 }
 
-complete -F __godoc_completion -- godoc
+__godoc_completion_subcmd() {
+  # From `go help` on 2016-06-22 16:39:01-04:00
+  local subcmds=(
+    build
+    clean
+    doc
+    env
+    fix
+    fmt
+    generate
+    get
+    install
+    list
+    run
+    test
+    tool
+    version
+    vet
+    help
+  )
+  if [ $COMP_CWORD -eq 1 ];then
+    COMPREPLY=( $(compgen -W "${subcmds[*]}" -- "${COMP_WORDS[$COMP_CWORD]}") )
+    return
+  fi
+
+  local prev; prev=${COMP_WORDS[COMP_CWORD-1]}
+  [ -n "${prev/ */}" ] || return
+
+  local isKnown=0
+  for known in "${subcmds[@]}"; do
+    [ "$prev" = "$known" ] && { isKnown=1; break; }
+  done
+
+  if [ $isKnown -eq 1 ];then __godoc_completion; fi
+}
+
+complete -o bashdefault -o nospace -F __godoc_completion        -- godoc
+complete -o bashdefault -o nospace -F __godoc_completion_subcmd -- go
