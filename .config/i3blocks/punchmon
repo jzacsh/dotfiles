@@ -18,7 +18,7 @@ case "$mode" in
           --expression 's|^\w*[[:space:]]*||' \
           --expression 's|[[:space:]].*||'
     )"
-    total="$("$punchExec" -qR)"
+    total="$("$punchExec" -qR | sed --expression 's|[[:space:]]*||g')"
     if [ "$total" = "$currentSession" ];then
       total=''
     else
