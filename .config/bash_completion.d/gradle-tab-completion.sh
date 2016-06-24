@@ -57,8 +57,8 @@ _gradleCompletion() {
     tasksOutput="$("$gradle_cmd" --console=plain --quiet tasks)"
     if [ -z "tasksOutput" ] | [ $? -ne 0 ];then
       printf \
-        '\nbash tab completion fail; something wrong with gradle:\n\t%s\n' \
-        "$gradle_cmd" >&2
+        ' bash tab completion fail\n\tsomething wrong with gradle: `%s`\n%s' \
+        "$gradle_cmd" "$COMP_LINE" >&2
       return 1
     fi
 
@@ -74,7 +74,7 @@ _gradleCompletion() {
     # TODO: why doesn't first `tab` (ie: cache-miss) generate output from
     # bash-completion. Fix, then delete this hack:
     #printf '%s\n' $commands | column
-    printf '.. done. ' >&2
+    printf '.. done! :)\n%s' "$COMP_LINE" >&2
   fi
   [[ ! -f "$command_cache" ]] && return 0 # no tasks
 
