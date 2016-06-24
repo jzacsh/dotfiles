@@ -9,7 +9,7 @@
   last = log -1 HEAD
   lg = log --show-signature --graph --decorate
 [core]
-  pager = less -FRSX
+  pager = less --no-init --RAW-CONTROL-CHARS --quit-if-one-screen --chop-long-lines
   editor = vim
   excludesFile = ~/.gitignore
 ;  notesRef = refs/notes/*
@@ -42,3 +42,5 @@
   templatedir = ~/.config/git_template
 [commit]
   gpgsign = true
+[diff]
+  compactionHeuristic = true
