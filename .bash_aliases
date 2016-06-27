@@ -11,7 +11,7 @@ alias l='ls -laFH'
 alias la='ls -aFH'
 alias ca='clear; ls -laFH'
 alias cl='clear; ls -lFH'
-alias mi="curl -s http://checkip.dyndns.org | sed -e 's/^.*Address:\ //' -e 's/<\/body.*//'"
+alias mi="curl -s http://checkip.dyndns.com | sed -e 's/^.*Address:\ //' -e 's/<\/body.*//'"
 alias ipt='sudo iptraf'
 alias pbcopy='xsel --clipboard --input'
 alias pbpaste='xsel --clipboard --output'
@@ -67,6 +67,13 @@ tree() ( find -O3 $@ | sort; )
 
 # bump font on the fly; from https://bbs.archlinux.org/viewtopic.php?id=44121
 urxvtc_font() { printf '\33]50;%s%d\007' "xft:Terminus:pixelsize=" $1; }
+
+# (nice defaults) silversearcher-style; assume i want to grep all local files
+type ag >/dev/null 2>&1 || ag() (
+  (( $# )) || { printf 'usage: REGEXP [FILE|DIR]\n' >&2; return 1; }
+  \grep --color=auto --recursive --line-number "$@"
+  # grep(1): "Note that if no file operand is given, grep searches the working directory."
+)
 
 # poor man's asciinema. helpful for pasting commands used and their output in a single pipe
 #

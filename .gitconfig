@@ -5,10 +5,11 @@
 [help]
   autocorrect = 1
 [alias]
+  st = status
   last = log -1 HEAD
-  lg = log --show-signature --graph
+  lg = log --show-signature --graph --decorate
 [core]
-  pager = less -FRSX
+  pager = less --no-init --RAW-CONTROL-CHARS --quit-if-one-screen
   editor = vim
   excludesFile = ~/.gitignore
 ;  notesRef = refs/notes/*
@@ -37,9 +38,9 @@
   added = yellow
   changed = green
   untracked = cyan
-[branch "master"]
-  mergeoptions = --no-ff
 [init]
   templatedir = ~/.config/git_template
 [commit]
   gpgsign = true
+[diff]
+  compactionHeuristic = true
