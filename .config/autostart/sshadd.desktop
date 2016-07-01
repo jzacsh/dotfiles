@@ -1,0 +1,9 @@
+[Desktop Entry]
+Encoding=UTF-8
+Type=Application
+Name=SSH Add
+Comment=ssh-add keys to local ssh agent
+Exec=bash -c 'ssh-add .ssh/key.*[^pub]'
+StartupNotify=true
+Terminal=true
+Hidden=false
