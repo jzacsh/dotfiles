@@ -1,0 +1,9 @@
+[Desktop Entry]
+Encoding=UTF-8
+Type=Application
+Name=Xmodmap
+Comment=Run my xmodmap
+Exec=xmodmap .Xmodmap
+StartupNotify=true
+Terminal=false
+Hidden=false
