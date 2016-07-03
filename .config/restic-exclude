@@ -6,6 +6,7 @@ $HOME/.android/
 $HOME/.cinnamon/
 $HOME/.cache/
 $HOME/.config/google-chrome/
+$HOME/.mozilla/firefox/
 $HOME/.gnome/apps/
 $HOME/.gradle/
 $HOME/.npm/
