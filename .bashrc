@@ -70,7 +70,8 @@ unset bash_prompt
 
 
 source ~/bin/share/zacsh_exports
-systemctl --user import-environment PATH
+type systemctl >/dev/null 2>&1 &&
+  systemctl --user import-environment PATH
 [ -r ~/.bash_aliases ] && source ~/.bash_aliases
 source $HOME/.host/pick  # Dynamic config
 if [ -z "${SSH_AUTH_SOCK/ */}" ]; then
