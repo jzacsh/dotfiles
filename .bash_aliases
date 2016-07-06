@@ -64,6 +64,11 @@ wat() ( curl -Ls ${@} | $PAGER; )
 mdown() ( markdown_py < /dev/stdin | html; )  # depends on html alias above
 clock() ( while true; do printf '\r%s ' "$(date --iso-8601=ns)";done; ) # watch a running clock
 tree() ( find -O3 $@ | sort; )
+pcLog() (
+  local t=tail
+  if type grc >/dev/null 2>&1;then t='grc tail';fi
+  $t -F -n 50 /var/log/{dmesg,udev,{sys,ufw.,kern.auth.}log} ~/usr/log/*.log
+)
 
 # bump font on the fly; from https://bbs.archlinux.org/viewtopic.php?id=44121
 urxvtc_font() { printf '\33]50;%s%d\007' "xft:Terminus:pixelsize=" $1; }
