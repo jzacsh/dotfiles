@@ -78,8 +78,11 @@ set hidden
 " skittles_dark   " :/ can't tell my strings from my objects
 " anotherdark   " :( ... not enough contrast
 " wombat  " :)
-colorscheme desert  " :) ... favorite; ==~ darkZ
+"colorscheme desert  " :) ... favorite; ==~ darkZ
 " darkZ
+
+" current favorite: "slate" and "ron"
+colorscheme slate
 
 "" EXPERIMENTAL:
 " freya
