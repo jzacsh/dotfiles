@@ -1,0 +1,7 @@
+#TODO this file taken care of already by /etc/xdg/autostart/nm-applet.desktop ??
+# [Desktop Entry]
+# Comment=network monitor and control GUI applet
+# Exec=/usr/bin/nm-applet
+# Name=nm-applet
+# Type=Application
+# OnlyShowIn=i3

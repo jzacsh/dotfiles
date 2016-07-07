@@ -1,0 +1,5 @@
+[Desktop Entry]
+Type=Application
+Name=i3-autolock
+Exec=/home/jzacsh/bin/share/i3-autolock 3
+OnlyShowIn=i3

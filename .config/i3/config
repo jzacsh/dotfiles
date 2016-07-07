@@ -159,18 +159,13 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 6
 
 # expected modification:
 bindsym $mod+Shift+l exec --no-startup-id ~/bin/share/i3-lock-screen
-exec --no-startup-id nm-applet # networking-manager
-exec --no-startup-id ~/bin/share/i3-autolock 3 # 2 minutes of inactivity
-
-# from http://miek.nl/posts/2014/Mar/08/use-i3/
-exec --no-startup-id blueman-applet
 
 # Bind the Fn+F3/Fn+F4 keys to lock/lock+suspend respectively
 bindsym XF86ScreenSaver exec --no-startup-id ~/bin/share/i3-lock-screen
 bindsym XF86Sleep       exec --no-startup-id ~/bin/share/i3-sleep
 
 for_window [class="^Google-chrome$"] border none
+for_window [class="^Mozilla.Firefox$"] border none
 
-exec --no-startup-id redshift-gtk
-exec xmodmap ~/.Xmodmap
-exec urxvtc
+# Kick off .desktop autostart files
+exec dex --autostart --environment=i3
