@@ -107,6 +107,12 @@ done
 [ -r ~/.hgbashrc ] && source ~/.hgbashrc
 [ ! -e ~/.config/bash_completion.d/npm-run-completion.sh ] &&
   npm completion > ~/.config/bash_completion.d/npm-run-completion.sh
+
+# autocompletion for man pages
+source /usr/share/bash-completion/bash_completion
+source /usr/share/bash-completion/completions/man
+complete -F _man -- mann
+
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 # Assumes you have ocaml setup, ie:

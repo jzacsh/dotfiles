@@ -160,10 +160,6 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 6
 # expected modification:
 bindsym $mod+Shift+l exec --no-startup-id ~/bin/share/i3-lock-screen
 
-# Bind the Fn+F3/Fn+F4 keys to lock/lock+suspend respectively
-bindsym XF86ScreenSaver exec --no-startup-id ~/bin/share/i3-lock-screen
-bindsym XF86Sleep       exec --no-startup-id ~/bin/share/i3-sleep
-
 for_window [class="^Google-chrome$"] border none
 for_window [class="^Mozilla.Firefox$"] border none
 
