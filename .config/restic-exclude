@@ -1,7 +1,5 @@
 $HOME/back/local
 $HOME/back/ro
-$HOME/tmp/restic-*
-$HOME/tmp/pm-*
 $HOME/.android/
 $HOME/.cinnamon/
 $HOME/.cache/
@@ -16,5 +14,5 @@ $HOME/.opam/
 $ANDROID_HOME/
 $ANDROID_HOME/../studio
 $HOME/media/src/linux-kernel/
-$HOME/tmp/npm-*-*/
+$HOME/tmp/
 $HOME/usr/local/vm/
