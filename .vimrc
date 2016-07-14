@@ -160,9 +160,9 @@ if has("autocmd")
   autocmd FileType php set sts=2
 
   "python
-  autocmd FileType py set ts=4
-  autocmd FileType py set sw=4
-  autocmd FileType py set sts=4
+  autocmd FileType py set ts=2
+  autocmd FileType py set sw=2
+  autocmd FileType py set sts=2
 
   " ... but different width when reading mail
   autocmd BufRead ~/tmp/mutt-* set tw=72
