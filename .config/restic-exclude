@@ -11,6 +11,7 @@ $HOME/.npm/
 $HOME/.thumbnails/
 $HOME/.tor-browser*/
 $HOME/.opam/
+$HOME/.local/share/lxc/*/rootfs
 $ANDROID_HOME/
 $ANDROID_HOME/../studio
 $HOME/media/src/linux-kernel/
