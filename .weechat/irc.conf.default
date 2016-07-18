@@ -167,7 +167,7 @@ debian.realname = "Jonathan Zacsh"
 debian.local_hostname
 debian.command
 debian.command_delay
-debian.autojoin = "#debian-next"
+debian.autojoin = "#debian-next,#freedombox"
 debian.autorejoin
 debian.autorejoin_delay
 debian.connection_timeout
@@ -245,7 +245,7 @@ freenode.realname = "Jonathan Zacsh"
 freenode.local_hostname
 freenode.command
 freenode.command_delay
-freenode.autojoin = "#purism"
+freenode.autojoin = "#purism,#restic,#rkt-dev,#scuttlebutt,#lxcontainers"
 freenode.autorejoin
 freenode.autorejoin_delay
 freenode.connection_timeout
