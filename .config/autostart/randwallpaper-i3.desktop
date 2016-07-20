@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=minwm_setrandwallpaper
+Description=sets a random wallpaper from my personal collection
+Type=Application
+Terminal=false
+Exec=/home/jzacsh/bin/share/minwm_setrandwallpaper wallpaper
+OnlyShowIn=i3
