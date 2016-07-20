@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 # inverse of `seated` script
 set -euo pipefail
-source ~/bin/share/zacsh_exports
-punchDir="$(dirname "$(readlink -f "$(type -p punch)")")"; declare -r punchDir
-"$punchDir"/screen_sleep out
+~/media/src/punch/bin/screen_sleep out ||
+  printf 'WARNING: leaving punched clock running...\n' >&2

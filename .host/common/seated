@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 # inverse of `away` script
 set -euo pipefail
-source ~/bin/share/zacsh_exports
-punchDir="$(dirname "$(readlink -f "$(type -p punch)")")"; declare -r punchDir
-"$punchDir"/screen_sleep out
+~/media/src/punch/bin/screen_sleep 'in' ||
+  printf 'WARNING: not punching back in as expected\n' >&2
