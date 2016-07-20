@@ -158,7 +158,7 @@ bindsym XF86MonBrightnessUp   exec xbacklight -inc 6
 bindsym XF86MonBrightnessDown exec xbacklight -dec 6
 
 # expected modification:
-bindsym $mod+Shift+l exec --no-startup-id ~/bin/share/i3-lock-screen
+bindsym $mod+Mod4+l exec --no-startup-id ~/bin/share/i3-lock-screen
 
 for_window [class="^Google-chrome$"] border none
 for_window [class="^Mozilla.Firefox$"] border none
