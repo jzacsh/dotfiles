@@ -146,6 +146,7 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar
 bar {
         status_command i3blocks
+        position top
 }
 
 # Pulse Audio controls
