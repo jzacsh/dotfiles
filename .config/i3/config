@@ -86,29 +86,41 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
+# consistent names for workspaces
+set $wspname1  "1: work"
+set $wspname2  "2: mplex"
+set $wspname3  "3: personal"
+set $wspname4  "4: workspace"
+set $wspname5  "5: workspace"
+set $wspname6  "6: workspace"
+set $wspname7  "7: workspace"
+set $wspname8  "8: workspace"
+set $wspname9  "9: workspace"
+set $wspname10 "10: workspace"
+
 # switch to workspace
-bindsym $mod+1 workspace 1
-bindsym $mod+2 workspace 2
-bindsym $mod+3 workspace 3
-bindsym $mod+4 workspace 4
-bindsym $mod+5 workspace 5
-bindsym $mod+6 workspace 6
-bindsym $mod+7 workspace 7
-bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace 10
+bindsym $mod+1 workspace $wspname1
+bindsym $mod+2 workspace $wspname2
+bindsym $mod+3 workspace $wspname3
+bindsym $mod+4 workspace $wspname4
+bindsym $mod+5 workspace $wspname5
+bindsym $mod+6 workspace $wspname6
+bindsym $mod+7 workspace $wspname7
+bindsym $mod+8 workspace $wspname8
+bindsym $mod+9 workspace $wspname9
+bindsym $mod+0 workspace $wspname10
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace 1
-bindsym $mod+Shift+2 move container to workspace 2
-bindsym $mod+Shift+3 move container to workspace 3
-bindsym $mod+Shift+4 move container to workspace 4
-bindsym $mod+Shift+5 move container to workspace 5
-bindsym $mod+Shift+6 move container to workspace 6
-bindsym $mod+Shift+7 move container to workspace 7
-bindsym $mod+Shift+8 move container to workspace 8
-bindsym $mod+Shift+9 move container to workspace 9
-bindsym $mod+Shift+0 move container to workspace 10
+bindsym $mod+Shift+1 move container to workspace $wspname1
+bindsym $mod+Shift+2 move container to workspace $wspname2
+bindsym $mod+Shift+3 move container to workspace $wspname3
+bindsym $mod+Shift+4 move container to workspace $wspname4
+bindsym $mod+Shift+5 move container to workspace $wspname5
+bindsym $mod+Shift+6 move container to workspace $wspname6
+bindsym $mod+Shift+7 move container to workspace $wspname7
+bindsym $mod+Shift+8 move container to workspace $wspname8
+bindsym $mod+Shift+9 move container to workspace $wspname9
+bindsym $mod+Shift+0 move container to workspace $wspname10
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
