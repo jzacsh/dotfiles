@@ -166,7 +166,7 @@ bindsym $mod+Mod4+l exec --no-startup-id ~/bin/share/i3-lock-screen
 
 for_window [class="^Google-chrome$"] border none
 for_window [class="^Mozilla.Firefox$"] border none
-for_window [class="URxvtc"] border none
+for_window [class="(UR|ur)xvt"] border none
 
 workspace_auto_back_and_forth yes
 
