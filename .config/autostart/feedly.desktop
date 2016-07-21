@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Terminal=false
+Type=Application
+Name=feedly
+Description=Feedly RSS Reader
+Exec=/opt/google/chrome/google-chrome --profile-directory=Default --app-id=hipbfijinpcgfogaopmgehiegacbhmob
+Icon=chrome-hipbfijinpcgfogaopmgehiegacbhmob-Default
+StartupWMClass=crx_hipbfijinpcgfogaopmgehiegacbhmob
