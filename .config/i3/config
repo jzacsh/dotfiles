@@ -181,6 +181,9 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 6
 # expected modification:
 bindsym $mod+Mod1+l exec --no-startup-id ~/bin/share/i3-lock-screen
 
+# TODO figure out resilient version -- perhaps scrot usage
+#bindsym Print exec --no-startup-id gnome-screenshot --area
+
 for_window [class="^Google-chrome$"] border none
 for_window [class="^Mozilla.Firefox$"] border none
 for_window [class="(UR|ur)xvt"] border pixel 1
