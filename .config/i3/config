@@ -10,7 +10,7 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod4
-# Note:
+# `xmodmap` to get listing; As of this writing:
 # - Mod1: Alt key
 # - Mod4: Super key
 
