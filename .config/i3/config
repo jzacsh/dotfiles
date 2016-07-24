@@ -179,6 +179,7 @@ bar {
 bindsym XF86AudioLowerVolume exec ~/bin/share/minwm_volume '-5'
 bindsym XF86AudioRaiseVolume exec ~/bin/share/minwm_volume '+5'
 bindsym XF86AudioMute exec ~/bin/share/minwm_volume
+bindsym $mod+m exec ~/bin/share/minwm_volume
 
 # screen brightness
 bindsym XF86MonBrightnessUp   exec xbacklight -inc 6
