@@ -93,7 +93,7 @@ separator=false
 interval=30
 
 [memory]
-label=SWAP
+label=SWP
 instance=swap
 separator=false
 interval=30
