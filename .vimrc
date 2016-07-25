@@ -293,7 +293,7 @@ let g:syntastic_debug_file = '~/usr/log/syntastic.log'
 
 " disable syntastic for bats, but not syntax; *sort* of per:
 "    https://groups.google.com/d/msg/vim-syntastic/D80n65Fgj1w/y5OIJUQWY4wJ
-let g:syntastic_mode_map = {'mode': 'active', 'passive_filetypes': ['bats']}
+let g:syntastic_mode_map = {'mode': 'active', 'passive_filetypes': ['bats', 'java']}
 
 
 " xdebug
