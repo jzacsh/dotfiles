@@ -326,3 +326,6 @@ au Syntax * RainbowParenthesesLoadBraces
 autocmd CursorMoved * exe printf('match VisualNOS /\V\<%s\>/', escape(expand('<cword>'), '/\'))
 
 set modeline
+
+" open by default
+autocmd VimEnter,FileType java NERDTree
