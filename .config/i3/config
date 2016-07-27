@@ -99,13 +99,13 @@ bindsym $mod+a focus parent
 set $wspname1  "1: work"
 set $wspname2  "2: mplex"
 set $wspname3  "3: personal"
-set $wspname4  "4: workspace"
-set $wspname5  "5: workspace"
-set $wspname6  "6: workspace"
-set $wspname7  "7: workspace"
-set $wspname8  "8: workspace"
-set $wspname9  "9: workspace"
-set $wspname10 "10: workspace"
+set $wspname4  "4: wspace"
+set $wspname5  "5: wspace"
+set $wspname6  "6: wspace"
+set $wspname7  "7: wspace"
+set $wspname8  "8: wspace"
+set $wspname9  "9: wspace"
+set $wspname10 "10: wspace"
 
 # switch to workspace
 bindsym $mod+1 workspace $wspname1
