@@ -1,6 +1,0 @@
-[Desktop Entry]
-Type=Application
-Exec=/usr/bin/urxvtd --quiet --opendisplay --fork
-Name=urxvtd
-Comment=urxvt terminal daemon
-Terminal=false

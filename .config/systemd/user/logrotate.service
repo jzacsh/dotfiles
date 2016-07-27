@@ -1,0 +1,6 @@
+[Unit]
+Description=Logrotate makes sure log files don't get out of control
+
+[Service]
+Type=oneshot
+ExecStart=/usr/sbin/logrotate --force ~/.config/logrotate.conf
