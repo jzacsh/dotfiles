@@ -22,6 +22,7 @@ alias json='python -mjson.tool'
 # most commonly I'd like to convert: decimal <=> hex
 alias tohex="printf '0x%x\n'"
 alias fromhex="printf '%0.0f\n'"
+alias beep=bell
 
 ######################################
 # preferred args/modes for given tools
