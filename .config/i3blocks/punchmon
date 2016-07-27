@@ -3,6 +3,38 @@
 # `punch` i3blocks wrapper; find punch at github.com/jzacsh/punch
 declare -r mode="$1"
 declare -r punchExec="$HOME"/bin/local/punch
+
+tryPayPeriodDb() (
+  local scrapedClient lastPaidStamp lastPunch lastPayGo
+
+  lastPayGo="$(readlink -f \
+    "$(dirname "$(readlink -f "$punchExec")")"/../Payperiod/main.go
+  )"
+  lastPunch="$("$punchExec" -L | tail -n 1)"
+  {
+    [ -e "$lastPayGo" ] &&
+      [ -f "$lastPayGo" ] &&
+      [ "$(echo "$lastPunch" | cut -f 2 -d ' ')" = 1 ]
+  } || return 1
+
+  scrapedClient="$(echo "$lastPunch" | cut -f 3 -d ' ')"
+  lastPaidStamp="$(GOPATH=~/usr/lib/go/ go run "$lastPayGo" -lastfor "$scrapedClient")"
+  [ -n "${lastPaidStamp/ */}" ] || return 1
+  printf ' (%s)' $("$punchExec" -c "$scrapedClient" -P "$lastPaidStamp")
+)
+
+getRunningTotal() (
+  local currentSession="$1"
+
+  tryPayPeriodDb || {
+    # fallback to counting all punches, regardless of how old
+    local total="$("$punchExec" -qR | sed --expression 's|[[:space:]]*||g')"
+    [ "$total" = "$currentSession" ] || {
+      printf ' (%s)' "$total"
+    }
+  }
+)
+
 export PUNCH_CARD="$(xdg-user-dir DOCUMENTS)/punchcard"
 
 declare -r _pout="$("$punchExec" -qs)"
@@ -15,13 +47,7 @@ case "$mode" in
     declare -r currentSession="$(
       "$punchExec" -sq | sed --expression  's|^.*[[:space:]]||'
     )"
-    total="$("$punchExec" -qR | sed --expression 's|[[:space:]]*||g')"
-    if [ "$total" = "$currentSession" ];then
-      total=''
-    else
-      total="$(printf ' (%s)' "$total")"
-    fi
-    printf '%s%s' "$currentSession" "$total"
+    printf '%s%s' "$currentSession" "$(getRunningTotal "$currentSession")"
     ;;
   *) echo 'bad `punch` call!';;
 esac
