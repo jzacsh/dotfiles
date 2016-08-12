@@ -85,6 +85,6 @@ URxvt.foreground:#eeeeee
 !  URxvt.urlLauncher:    chromium
 !  URxvt.underlineURLs:  true
 
-  ! full screen switch; from http://stackoverflow.com/a/16707805
-  URxvt.perl-ext-common:  fullscreen
-  URxvt.keysym.F11:       perl:fullscreen:switch
+! full screen switch; from http://stackoverflow.com/a/16707805
+URxvt.perl-ext-common:  fullscreen
+URxvt.keysym.F11:       perl:fullscreen:switch
