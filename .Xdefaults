@@ -86,5 +86,12 @@ URxvt.foreground:#eeeeee
 !  URxvt.underlineURLs:  true
 
 ! full screen switch; from http://stackoverflow.com/a/16707805
-URxvt.perl-ext-common:  fullscreen
+! resize on the fly;
+!     from: https://wiki.archlinux.org/index.php/rxvt-unicode#Changing_font_size_on_the_fly
+!     but, using "font-size" from: https://github.com/majutsushi/urxvt-font-size/tree/fd5b09c
+URxvt.perl-ext-common:  fullscreen,font-size
 URxvt.keysym.F11:       perl:fullscreen:switch
+URxvt.keysym.C-Up:     perl:font-size:increase
+URxvt.keysym.C-Down:   perl:font-size:decrease
+!URxvt.keysym.C-S-Up:   perl:font-size:incglobal
+!URxvt.keysym.C-S-Down: perl:font-size:decglobal
