@@ -323,7 +323,7 @@ au Syntax * RainbowParenthesesLoadBraces
 
 " highlight variable on hover stackoverflow.com/questions/1551231
 " NOTE: inorder to work, this *must* come after RainbowParentheses plugin conf
-autocmd CursorMoved * exe printf('match VisualNOS /\V\<%s\>/', escape(expand('<cword>'), '/\'))
+autocmd CursorMoved * exe printf('match Visual /\V\<%s\>/', escape(expand('<cword>'), '/\'))
 
 set modeline
 
