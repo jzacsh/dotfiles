@@ -1,1 +1,0 @@
-/home/jzacsh/usr/local/bin/fzf/plugin/fzf.vim
