@@ -23,6 +23,7 @@ alias json='python -mjson.tool'
 alias tohex="printf '0x%x\n'"
 alias fromhex="printf '%0.0f\n'"
 alias beep=bell
+alias e='$EDITOR'
 
 ######################################
 # preferred args/modes for given tools
