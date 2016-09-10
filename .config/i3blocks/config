@@ -46,14 +46,12 @@ interval=5
 
 [worldclock]
 instance=Europe/Paris
-label=paris
 command=TZ=$BLOCK_INSTANCE date '+%H:%M,%Z'
 color=#fff000
 interval=5
 
 [worldclock]
 instance=America/Chicago
-label=chicago
 command=TZ=$BLOCK_INSTANCE date '+%H:%M,%Z'
 color=#add8e6
 interval=5
