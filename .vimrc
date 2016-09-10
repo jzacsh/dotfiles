@@ -64,6 +64,10 @@ set hidden
 "   [n]ormal,[v]isual,[i]nsert,[c]ommandline,[h]elp-file,[a]ll
 "set mouse=i
 
+" for some reason nvim *still* scrolls w/trackpad
+"   last resort, per http://unix.stackexchange.com/a/44516
+autocmd BufEnter * set mouse=
+
 
 " color schemes
 "   from http://vimcolorschemetest.googlecode.com/svn/html/index-c.html
