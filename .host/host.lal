@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+ln -sf ~/.host/src/host.lal/.Xdefaults ~/

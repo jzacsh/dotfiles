@@ -1,0 +1,97 @@
+! --[ Font Rendering ]-------------------------------------
+Xft.dpi: 96
+Xft.antialias: true
+! Xft.rgba: rgb
+! Xft.hinting: true
+! Xft.hintstyle: hintslight
+! Xft.lcdfilter: lcddefault
+
+! --[ Rodent ]----------------------------------------------
+Xcursor.theme: Vanilla-DMZ
+Xcursor.size:  24
+
+! --[ URxvt - General ]-------------------------------------
+URxvt.depth: 32
+URxvt.scrollBar:false
+URxvt.saveLines:0
+URxvt.cursorColor:#83C048
+URxvt.highlightColor:#4e4e4e
+URxvt.font: xft:NimbusMonoL:pixelsize=18
+URxvt.boldFont: xft:NimbusMonoL:pixelsize=18:bold
+URxvt.loginshell: true
+URxvt.internalborder: 0
+URxvt.underlinecolor: #999999
+URxvt.cutchars: "()*,<>[]{}|'"
+URxvt.print-pipe: cat >/tmp/xxx
+URxvt.visualBell: false
+
+! --[ URxvt - URL Handling ]--------------------------------
+URxvt.keysym.M-u: perl:mark-yank-urls:activate_mark_mode
+URxvt.perl-ext: selection,mark-yank-urls
+URxvt.urlLauncher: chromium
+URxvt.underlineURLs: true
+
+! --[ URxvt - colors ]--------------------------------------
+URxvt.background: rgba:1111/1111/1111/f550
+URxvt.foreground:#eeeeee
+
+! --[ Color Scheme ]----------------------------------------
+!#include ".config/xcolors/dwmrob"
+!#include ".config/xcolors/derp"
+!#include ".config/xcolors/digerati"
+!#include ".config/xcolors/gnometerm"
+!#include ".config/xcolors/jasonwryan"
+!#include ".config/xcolors/phrak1"
+!#include ".config/xcolors/rezza"
+!#include ".config/xcolors/rydgel"
+!#include ".config/xcolors/tango"
+!#include ".config/xcolors/zenburn"
+
+! Black
+*color0:        #000000
+*color8:        #555753
+
+! Red
+*color1:        #ff6565
+*color9:        #ff8d8d
+
+! Green
+*color2:        #93d44f
+*color10:       #c8e7a8
+
+! Yellow
+*color3:        #eab93d
+*color11:       #ffc123
+
+! Blue
+*color4:        #2081f9
+*color12:       #3884e3
+
+! Magenta
+*color5:        #ce5c00
+*color13:       #f57900
+
+! Cyan
+*color6:        #89b6e2
+*color14:       #46a4ff
+
+! White
+*color7:        #cccccc
+*color15:       #ffffff
+
+! --[ url-select ]-----------------------------------------
+!  xvt.perl-ext-common:  default,url-select
+!  URxvt.keysym.M-u:     perl:url-select:select_next
+!  URxvt.urlLauncher:    chromium
+!  URxvt.underlineURLs:  true
+
+! full screen switch; from http://stackoverflow.com/a/16707805
+! resize on the fly;
+!     from: https://wiki.archlinux.org/index.php/rxvt-unicode#Changing_font_size_on_the_fly
+!     but, using "font-size" from: https://github.com/majutsushi/urxvt-font-size/tree/fd5b09c
+URxvt.perl-ext-common:  fullscreen,font-size
+URxvt.keysym.F11:       perl:fullscreen:switch
+URxvt.keysym.C-Up:     perl:font-size:increase
+URxvt.keysym.C-Down:   perl:font-size:decrease
+!URxvt.keysym.C-S-Up:   perl:font-size:incglobal
+!URxvt.keysym.C-S-Down: perl:font-size:decglobal
