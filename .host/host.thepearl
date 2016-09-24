@@ -1,0 +1,1 @@
+alias txtbooks_fall2016='zathura ~/media/docs/edu/lehman/2016-fall/{spa-111/textbook_to-Chapter05,his-243/{GML_4thEd/gml,VOF_4thEd/vof},mat-176/CalcTextbook5thEdition}.pdf "$@" >/dev/null 2>&1 & disown'
