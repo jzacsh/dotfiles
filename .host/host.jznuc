@@ -27,3 +27,15 @@ ln -sf ~/.host/src/host.jznuc/.Xdefaults ~/
 # Solution: hard-switch on keyboard was set to "Mac"!!! FML
 
 # vim: et:ts=2:sw=2
+
+if [[ "$(sed -n 's/DISTRIB_RELEASE=//p' /etc/lsb-release)" = '14.04' ]];then
+  ln -sf ~/.host/src/host.jznuc/syncthing.desktop ~/.config/autostart/
+  sthingExec="$(type -p syncthing)"
+  if [ $(ps aux | \grep "$sthingExec" | wc -l) -le 1 ]; then
+    printf 'WARNING: syncthing not started. Starting manually...' >&2
+    (eval "$(
+      sed -n 's/^Exec=//'p ~/.host/src/host.jznuc/syncthing.desktop
+    )") >/dev/null 2>&1 & disown
+    printf ' DONE.\n' >&2
+  fi
+fi

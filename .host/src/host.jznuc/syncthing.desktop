@@ -1,0 +1,13 @@
+[Desktop Entry]
+Name=Syncthing
+Comment=Start syncthing on non-systemd machines
+Exec=/home/jzacsh/bin/local/syncthing -no-browser /home/jzacsh/.config/syncthing/ >> /home/jzacsh/usr/log/autostart-syncthing.log 2>&1
+GenericName=Decentralized file syncing service
+StartupNotify=true
+Terminal=false
+Version=1.0
+Categories=Utility;
+Hidden=false
+Icon=redshift
+Type=Application
+X-GNOME-Autostart-enabled=true

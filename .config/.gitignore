@@ -12,3 +12,7 @@ nautilus
 gradle/wrapper/
 asciinema/
 sync_to_mirrors.hosts
+
+# only a symlink on .host=jznuc machine:
+autostart/syncthing.desktop
+
