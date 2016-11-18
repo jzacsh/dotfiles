@@ -16,8 +16,10 @@ URxvt.scrollBar:false
 URxvt.saveLines:0
 URxvt.cursorColor:#83C048
 URxvt.highlightColor:#4e4e4e
-URxvt.font: xft:NimbusMonoL:pixelsize=18
-URxvt.boldFont: xft:NimbusMonoL:pixelsize=18:bold
+
+! FYI: test fonts quickly with: `urxvt -fn 'xft:Go Mono...'`
+URxvt.font: xft:Go Mono:pixelsize=16
+URxvt.boldFont: xft:Go Mono Bold:pixelsize=18
 URxvt.loginshell: true
 URxvt.internalborder: 0
 URxvt.underlinecolor: #999999
