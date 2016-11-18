@@ -1,0 +1,9 @@
+[Unit]
+Description=Sets random Gnome desktop background
+
+[Service]
+Type=oneshot
+ExecStart=/home/jzacsh/bin/share/gnome_desktop_rotate %h/media/bgrnd
+
+; TODO: figure out how to make this inherit the *actual* current value
+Environment="DISPLAY=:0"
