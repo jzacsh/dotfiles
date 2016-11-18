@@ -72,6 +72,11 @@ pcLog() (
   $t -F -n 50 /var/log/{dmesg,udev,{sys,ufw.,kern.auth.}log} ~/usr/log/*.log
 )
 
+zpdf() (
+  zathura "$1" >/dev/null 2>&1 &
+  disown
+)
+
 # bump font on the fly; from https://bbs.archlinux.org/viewtopic.php?id=44121
 urxvtc_font() { printf '\33]50;%s%d\007' "xft:Terminus:pixelsize=" $1; }
 
