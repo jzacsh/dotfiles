@@ -1,0 +1,8 @@
+[Unit]
+Description=Renders Markup for 2016 Fall Notebooks
+
+[Service]
+ExecStart=/home/jzacsh/media/src/gist_ncbook/render.sh %h/media/docs/edu/lehman/2016-fall/spa-111/ %h/media/docs/edu/lehman/2016-fall/his-243/
+
+[Install]
+WantedBy=default.target
