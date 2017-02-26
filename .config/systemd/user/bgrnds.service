@@ -1,0 +1,6 @@
+[Unit]
+Description=Sets random Gnome desktop background
+
+[Service]
+Type=oneshot
+ExecStart=/home/jzacsh/bin/share/gnome_desktop_rotate %h/media/bgrnd

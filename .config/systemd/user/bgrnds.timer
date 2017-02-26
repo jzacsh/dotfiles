@@ -1,0 +1,9 @@
+[Unit]
+Description=Periodically change Gnome desktop background
+
+[Timer]
+OnUnitActiveSec=15m
+OnBootSec=15m
+
+[Install]
+WantedBy=timers.target

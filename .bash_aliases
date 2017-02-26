@@ -71,6 +71,7 @@ pcLog() (
   if type grc >/dev/null 2>&1;then t='grc tail';fi
   $t -F -n 50 /var/log/{dmesg,udev,{sys,ufw.,kern.auth.}log} ~/usr/log/*.log
 )
+zpdf() ( zathura "$1" >/dev/null 2>&1 & disown; )
 
 # bump font on the fly; from https://bbs.archlinux.org/viewtopic.php?id=44121
 urxvtc_font() { printf '\33]50;%s%d\007' "xft:Terminus:pixelsize=" $1; }
@@ -99,6 +100,15 @@ type ag >/dev/null 2>&1 || ag() (
 # Example, more likely:
 #   $ lsb_release --all | pastie # win
 cliMock() ( printf '$ %s\n%s\n\n' "$*" "$(bash -c "$*" 2>&1)"; );
+
+gnome-background() (
+  set -euo pipefail
+
+  local fileUri; printf -v fileUri 'file://%s' "$(readlink -f "$1")"
+
+  # found dconf URI in http://askubuntu.com/a/510135/426803
+  gsettings set org.gnome.desktop.background picture-uri "$fileUri"
+)
 
 keyboard() (
 # NOTE: step #1 might not be necessary, perhaps bluez just expects a PIN typed

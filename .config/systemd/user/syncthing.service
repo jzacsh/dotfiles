@@ -2,7 +2,7 @@
 Description=Syncthing Daemon (Headless)
 
 [Service]
-ExecStart=/home/jzacsh/bin/local/syncthing -no-browser /home/jzacsh/.config/syncthing/
+ExecStart=/home/jzacsh/bin/local/syncthing -no-browser -home=/home/jzacsh/.config/syncthing/
 
 [Install]
 WantedBy=default.target

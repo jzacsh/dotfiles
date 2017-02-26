@@ -3,7 +3,7 @@ Encoding=UTF-8
 Type=Application
 Name=Xmodmap
 Comment=Run my xmodmap
-Exec=/usr/bin/xmodmap .Xmodmap
+Exec=/usr/bin/env DISPALY=:1 /usr/bin/xmodmap /home/jzacsh/.Xmodmap
 StartupNotify=true
 Terminal=false
 Hidden=false
