@@ -60,13 +60,13 @@ interval=5
 instance=clock
 command=$HOME/.config/i3blocks/punchmon $BLOCK_INSTANCE
 color=#ff0000
-interval=15
+interval=90
 
 [punchmon]
 instance=client
 command=$HOME/.config/i3blocks/punchmon $BLOCK_INSTANCE
 color=#a020f0
-interval=15
+interval=90
 
 ###############################################################################
 
