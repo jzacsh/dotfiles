@@ -1,9 +1,13 @@
 [Unit]
 Description=Sets random Gnome desktop background
+Wants=dbus.service
+
 
 [Service]
 Type=oneshot
 ExecStart=/home/jzacsh/bin/share/gnome_desktop_rotate %h/media/bgrnd
+# broken guess from https://immae.eu/blog/2014/05/26/manage-your-session-with-systemd/
+Environment=DBUS_SESSION_BUS_ADDRESS=unix:path=%t/bus
 
 # TODO: figure out a way around (https://github.com/systemd/systemd/issues/1600#issuecomment-170030442 relevant?):
 #   1) Mar 01 10:50:02 garak gnome_desktop_rotate[10613]: (process:10714): dconf-WARNING **: failed to commit changes to dconf: Error spawning command line 'dbus-launch --autolaunch=f4ec867741864a80aece914a69fa6fe0 --binary-syntax --close-stderr': Child process exited with code 1
