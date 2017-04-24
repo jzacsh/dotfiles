@@ -60,6 +60,7 @@ alias xl='DISPLAY=:0.0 ' #eg: `xl xdg-open ./my.pdf`
 
 ############
 # one liners
+chars() ( sed -e 's/\(.\)/\1\n/g'; )
 tarl() ( tar -tf ${*}  | $PAGER; )
 ident() ( identify -verbose $1 | grep modify; )
 geo() ( identify -verbose $1 | grep geometry; )
