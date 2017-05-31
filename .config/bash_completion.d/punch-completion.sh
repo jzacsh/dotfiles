@@ -16,13 +16,17 @@ __punchClientCompletion() {
       return # bail; not autocompleting args to any valid subcommand
 
   case "$subCmd" in
-    p|punch|bill|d|delete) ;;
+    p|punch|bill|d|delete|h|help) ;;
     *) return ;; # currently only implement autocompletion of CLIENT args
   esac
 
   local nextArgs; nextArgs="$(punch query list)" # clients
 
   case "$subCmd" in
+    h|help)
+      COMPREPLY=( $(compgen -W "${subcmds/help/}" -- "${COMP_WORDS[$COMP_CWORD]}") )
+      return
+      ;;
     p|punch)
       local hasNoteArg=0
       for (( i=1; i < COMP_CWORD; i+=1 ));do
