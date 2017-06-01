@@ -49,8 +49,10 @@ bash_prompt() {
   local col_end='\[\033[0m\]'
   local col_blk='\[\e[0;30m\]'
   local col_red='\[\e[1;31m\]'
-  local col_grn='\[\e[1;32m\]'
-  local col_ylw='\[\e[1;33m\]'
+  local col_grn='\[\e[0;32m\]'
+  local col_grnB='\[\e[1;32m\]'
+  local col_ylwB='\[\e[1;33m\]'
+  local col_ylw='\[\e[0;33m\]'
   local col_blu='\[\e[1;34m\]'
   local col_wht='\[\e[0;37m\]'
 
@@ -61,7 +63,7 @@ bash_prompt() {
   fi
 
   RET_VALUE='$(if [[ $RET -ne 0 ]];then echo -n ":\[\033[1;31m\]$RET\[\033[0m\]";fi)'
-  PS1="${TITLEBAR}${col_blu}${col_end}${col_usr}\u@${col_end}${col_blu}\h${col_end}${RET_VALUE}"' \[\033[0;32m\]$(vcprompt)\[\033[0m\]'" ${col_ylw}\w${col_end}\n\t  ${col_grn}${SHLVL}${col_end}:${col_ylw}\$${col_end} "
+  PS1="${TITLEBAR}${col_blu}${col_end}${col_usr}\u@${col_end}${col_blu}\h${col_end}${RET_VALUE}"' \[\033[0;32m\]$(vcprompt)\[\033[0m\]'" ${col_ylwB}\w${col_end}\n\t  ${col_grnB}${SHLVL}${col_end}:${col_ylw}\$${col_end} "
   PS4='+$BASH_SOURCE:$LINENO:$FUNCNAME: '
 }
 PROMPT_COMMAND='RET=$?' # see: man bash | less +/PROMPT_COMMAND
