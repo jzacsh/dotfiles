@@ -85,6 +85,11 @@ autocmd BufEnter * set mouse=
 " current favorite: "slate" and "ron"
 colorscheme slate
 
+" must be after colorscheme
+set cursorline
+hi  cursorline   cterm=none
+hi  cursorlinenr term=bold ctermfg=white
+
 "" EXPERIMENTAL:
 " freya
 " Tomorrow-Night-Eighties
