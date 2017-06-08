@@ -1,0 +1,9 @@
+[Unit]
+Description=Go Documentation Server (Headless)
+
+[Service]
+# TODO(zacsh) when i've figured out env. variables for systemd user-files, use $GOPATH
+ExecStart=/home/jzacsh/usr/lib/go/bin/godoc -http=:6060
+
+[Install]
+WantedBy=default.target
