@@ -301,7 +301,6 @@ let g:syntastic_debug_file = '~/usr/log/syntastic.log'
 "    https://groups.google.com/d/msg/vim-syntastic/D80n65Fgj1w/y5OIJUQWY4wJ
 let g:syntastic_mode_map = {'mode': 'active', 'passive_filetypes': ['bats', 'java', 'typescript']}
 
-
 " xdebug
 let g:debuggerPort = 9000
 
@@ -317,6 +316,10 @@ let php_parent_error_open = 1
 let php_folding = 1
 let php_sync_method = 0
 
+" golang: fix imports *as well* as format, per:
+"   https://github.com/fatih/vim-go/issues/207
+let g:go_fmt_command = "goimports"
+
 " pathogen magic:
 call pathogen#infect($VIM."bundle/{}")
 
@@ -325,7 +328,6 @@ au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
-
 
 " highlight variable on hover stackoverflow.com/questions/1551231
 " NOTE: inorder to work, this *must* come after RainbowParentheses plugin conf
