@@ -4,4 +4,4 @@ Wants=dbus.service
 
 [Service]
 Type=oneshot
-ExecStart=/home/jzacsh/bin/share/gnome_desktop_rotate %h/media/bgrnd
+ExecStart=/bin/bash -c 'gnome_desktop_rotate %h/media/bgrnd'
