@@ -65,6 +65,7 @@ tarl() ( tar -tf ${*}  | $PAGER; )
 ident() ( identify -verbose $1 | grep modify; )
 geo() ( identify -verbose $1 | grep geometry; )
 wat() ( curl -Ls ${@} | $PAGER; )
+favipng() ( curl -Ls "$@" | pup 'link[rel="icon"] attr{href}'; )
 mdown() ( markdown_py < /dev/stdin | html; )  # depends on html alias above
 clock() ( while true; do printf '\r%s ' "$(date --iso-8601=ns)";done; ) # watch a running clock
 tree() ( find -O3 $@ | sort; )
