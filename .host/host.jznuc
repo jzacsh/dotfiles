@@ -2,6 +2,7 @@
 
 #specific configs:
 ln -sf ~/.host/src/host.jznuc/.Xdefaults ~/
+ln -sf ~/.host/src/host.jznuc/user-dirs.dirs ~/.config/
 
 # Problem:
 #   My Ubuntu (14.04.3 LTS) desktop is responding to Super keypress despite
