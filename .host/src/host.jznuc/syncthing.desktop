@@ -8,6 +8,6 @@ Terminal=false
 Version=1.0
 Categories=Utility;
 Hidden=false
-Icon=redshift
+Icon=/home/jzacsh/usr/lib/go/src/github.com/syncthing/syncthing/assets/logo-64.png
 Type=Application
 X-GNOME-Autostart-enabled=true
