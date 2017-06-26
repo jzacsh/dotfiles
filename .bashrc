@@ -1,9 +1,6 @@
 # If not running interactively, don't do anything
 [[ ${-} = ${-/i/} ]] && return
 
-{ [ -r ~/.dircolors ] && type dircolors >/dev/null 2>&1; } &&
-    eval $(dircolors --bourne-shell ~/.dircolors)
-
 sourceExists() { [[ -s "$1" ]] || return 0; source "$1" ;}
 
 # shell opts
@@ -30,18 +27,21 @@ export HISTSIZE=500
 
 PS1='sh#$SHLVL [\u@\h] ${?} \w\n\$ ' # vanilla version of my prompt, with no executables
 
+if [[ -r ~/.dircolors ]] && type dircolors >/dev/null 2>&1;then
+  eval $(dircolors --bourne-shell ~/.dircolors)
+fi
 
 ############################################################################
 # $UID > 0 BELOW THIS LINE
 #   everything above *should* be plain old shell options, nothing executable
-[ "$UID" -eq "0" ] && return
+[[ "$UID" -ne "0" ]] || return 0
 ############################################################################
 
 
 PS1='sh#$SHLVL [\u@\h] ${?} $(vcprompt) \w\n\$ ' # simple version of below
 # vcs and color-aware version of bash prompt:
 bash_prompt() {
-  case $TERM in
+  case "$TERM" in
     xterm*|rxvt*)
       local TITLEBAR='\[\033]0;\u:${NEW_PWD}\007\]' ;;
     *)
@@ -59,7 +59,7 @@ bash_prompt() {
   local col_wht='\[\e[0;37m\]'
 
   local col_usr=$col_grn
-  if [[ $UID -eq "0" ]];then
+  if [[ "$UID" -eq "0" ]];then
     col_usr=$col_red #root's color
     alias vcprompt='echo -n' # don't execute `vcprompt`
   fi
@@ -72,13 +72,13 @@ PROMPT_COMMAND='RET=$?' # see: man bash | less +/PROMPT_COMMAND
 bash_prompt
 unset bash_prompt
 
-
 source ~/bin/share/zacsh_exports
-type systemctl >/dev/null 2>&1 &&
+if type systemctl >/dev/null 2>&1;then
   systemctl --user import-environment PATH
+fi
 sourceExists ~/.bash_aliases
 source $HOME/.host/pick  # Dynamic config
-if [ -z "${SSH_AUTH_SOCK/ */}" ]; then
+if [[ "${SSH_AUTH_SOCK:-x}" != x ]] && ! ssh-add -l >/dev/null 2>&1; then
   eval $(ssh-agent -s)
   ssh-add ~/.ssh/add/*.add #load ssh keys
 fi
@@ -98,7 +98,7 @@ unset dbusSessionBusAddress
 # widely standard.
 ############################################################################
 
-[ ! -e ~/.config/bash_completion.d/npm-run-completion.sh ] &&
+[[ ! -e ~/.config/bash_completion.d/npm-run-completion.sh ]] &&
   npm completion > ~/.config/bash_completion.d/npm-run-completion.sh
 
 sourceExists /etc/bash_completion
@@ -148,14 +148,14 @@ fi
 
 #Tmux
 scowerForTmuxSessions() (
-  [ -n "${TMUX/ */}" ] && return
+  [[ "${TMUX:-x}" = x ]] || return 0 # do not run inside tmux
 
   local havePrinted=0
   local col_end='\033[0m'; local col_grn='\e[0;32m'
   local commonTmSocks=(default main "${USER}main")
   for sock in "${commonTmSocks[@]}"; do
     local tmSessions="$(tmux -L "$sock" list-sessions 2>/dev/null)"
-    [ -z "${tmSessions/ */}" ] && continue
+    [[ "${tmSessions:-x}" != x ]] || continue
 
     (( havePrinted )) || { havePrinted=1; echo; } # initial padding
     printf "tmux -L ${col_grn}%s${col_end} sessions:\n" "$sock"
@@ -168,7 +168,7 @@ scowerForTmuxSessions; unset scowerForTmuxSessions
 # Print local mail waiting for me
 scowerForMail() (
   local headers; headers="$(mail -H 2>&1)"
-  if [ $? -eq 0 ];then
+  if [[ "$?" -eq 0 ]];then
     local col_end='\033[0m'
     local col_red='\e[1;31m'
 
