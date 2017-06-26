@@ -84,15 +84,13 @@ if [ -z "${SSH_AUTH_SOCK/ */}" ]; then
 fi
 
 # in my nested tmux shells, my inherited `env` is old
-dbusSessionBusAddress="$(< ~/.dbus_address 2>/dev/null)"
-if [ -n "${dbusSessionBusAddress/ */}" ];then
+dbusSessionBusAddress="$(cat ~/.dbus_address 2>/dev/null)"
+[[ "${dbusSessionBusAddress:-x}" = x ]] ||
   export DBUS_SESSION_BUS_ADDRESS="$dbusSessionBusAddress"
-else
-  unset dbusSessionBusAddress
-fi
+unset dbusSessionBusAddress
 
 # for irssi's notify.pl
-[ -n ${DBUS_SESSION_BUS_ADDRESS/ */} ] &&
+[[ "${DBUS_SESSION_BUS_ADDRESS:-x}" = x ]] ||
   echo "$DBUS_SESSION_BUS_ADDRESS" > ~/.dbus_address
 
 ############################################################################
