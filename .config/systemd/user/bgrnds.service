@@ -1,6 +1,5 @@
 [Unit]
 Description=Sets random Gnome desktop background
-Wants=dbus.service
 
 [Service]
 Type=oneshot
