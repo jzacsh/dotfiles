@@ -4,6 +4,8 @@
 { [ -r ~/.dircolors ] && type dircolors >/dev/null 2>&1; } &&
     eval $(dircolors --bourne-shell ~/.dircolors)
 
+sourceExists() { [[ -s "$1" ]] || return 0; source "$1" ;}
+
 # shell opts
 shopt -s cdspell
 shopt -s extglob
@@ -74,7 +76,7 @@ unset bash_prompt
 source ~/bin/share/zacsh_exports
 type systemctl >/dev/null 2>&1 &&
   systemctl --user import-environment PATH
-[ -r ~/.bash_aliases ] && source ~/.bash_aliases
+sourceExists ~/.bash_aliases
 source $HOME/.host/pick  # Dynamic config
 if [ -z "${SSH_AUTH_SOCK/ */}" ]; then
   eval $(ssh-agent -s)
@@ -101,32 +103,30 @@ fi
 [ ! -e ~/.config/bash_completion.d/npm-run-completion.sh ] &&
   npm completion > ~/.config/bash_completion.d/npm-run-completion.sh
 
-sourceExists() { [[ -s "$1" ]] || return 0; source "$1" ;}
-
 sourceExists ~/.local/bin/aws_bash_completer
 
-[ -r /etc/bash_completion ] && source /etc/bash_completion
+sourceExists /etc/bash_completion
 for completion in ~/.config/bash_completion.d/*.sh; do
   source "$completion"
 done
 
 #must be after PATH:, apparently this will break if non-interactive shell `return`'s above.
-[ -s "$HOME/.rvm/scripts/rvm" ] && source "$HOME/.rvm/scripts/rvm"
+sourceExists "$HOME/.rvm/scripts/rvm"
 
-[ -r ~/.hgbashrc ] && source ~/.hgbashrc
+sourceExists ~/.hgbashrc
 
 # autocompletion for man pages
 source /usr/share/bash-completion/bash_completion
 source /usr/share/bash-completion/completions/man
 complete -F _man -- mann
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+sourceExists ~/.fzf.bash
 
 # Assumes you have ocaml setup, ie:
 #   1) once: installed ocaml (and its pkg mgmt system, "opam", etc, etc.)
 #   2) once: run `opam init`
 #   3) optionally, once: installed vim ocaml things && `opam install ocp-indent`
-[ -f ~/.opam/opam-init/init.sh ] && source ~/.opam/opam-init/init.sh
+sourceExists ~/.opam/opam-init/init.sh
 
 
 ######################################################
@@ -180,4 +180,5 @@ scowerForMail() (
 )
 scowerForMail; unset scowerForMail
 
+unset sourceExists
 true # don't assume last return status
