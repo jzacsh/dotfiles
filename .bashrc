@@ -119,6 +119,10 @@ source /usr/share/bash-completion/bash_completion
 source /usr/share/bash-completion/completions/man
 complete -F _man -- mann
 
+if type pip >/dev/null 2>&1; then
+  source <(pip completion --bash)
+fi
+
 sourceExists ~/.fzf.bash
 
 # Assumes you have ocaml setup, ie:
