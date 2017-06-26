@@ -175,7 +175,6 @@ scowerForMail() (
     echo -e '\n'$col_red'UNREAD'$col_end' messages; `mail` to read them:'
     printf '%s\n' "$headers"
   fi
-  unset mailHeaders
 )
 scowerForMail; unset scowerForMail
 
