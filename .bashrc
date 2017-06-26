@@ -101,6 +101,10 @@ fi
 [ ! -e ~/.config/bash_completion.d/npm-run-completion.sh ] &&
   npm completion > ~/.config/bash_completion.d/npm-run-completion.sh
 
+sourceExists() { [[ -s "$1" ]] || return 0; source "$1" ;}
+
+sourceExists ~/.local/bin/aws_bash_completer
+
 [ -r /etc/bash_completion ] && source /etc/bash_completion
 for completion in ~/.config/bash_completion.d/*.sh; do
   source "$completion"
