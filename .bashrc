@@ -101,12 +101,13 @@ unset dbusSessionBusAddress
 [ ! -e ~/.config/bash_completion.d/npm-run-completion.sh ] &&
   npm completion > ~/.config/bash_completion.d/npm-run-completion.sh
 
-sourceExists ~/.local/bin/aws_bash_completer
-
 sourceExists /etc/bash_completion
 for completion in ~/.config/bash_completion.d/*.sh; do
   source "$completion"
 done
+
+# AWS's CLI completion provided via pip installer
+sourceExists ~/.local/bin/aws_bash_completer
 
 #must be after PATH:, apparently this will break if non-interactive shell `return`'s above.
 sourceExists "$HOME/.rvm/scripts/rvm"
