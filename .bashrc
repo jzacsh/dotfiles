@@ -78,7 +78,7 @@ if type systemctl >/dev/null 2>&1;then
 fi
 sourceExists ~/.bash_aliases
 source $HOME/.host/pick  # Dynamic config
-if [[ "${SSH_AUTH_SOCK:-x}" != x ]] && ! ssh-add -l >/dev/null 2>&1; then
+if [[ "${SSH_AUTH_SOCK:-x}" = x ]] && ! ssh-add -l >/dev/null 2>&1; then
   eval $(ssh-agent -s)
   ssh-add ~/.ssh/add/*.add #load ssh keys
 fi
