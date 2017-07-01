@@ -137,7 +137,7 @@ sourceExists ~/.opam/opam-init/init.sh
 ######################################################
 
 # Highlight currently authenticated keys
-ssh-add -l | grep --extended-regexp '^|\.ssh\/.*\ '
+ssh-add -l | grep --color=always --extended-regexp '^|\.ssh\/.*\ '
 #NOTE: this should be first, since it always prints
 
 # Users
