@@ -168,12 +168,16 @@ hgunshelve () (
 #dictionary look ups
 lu() (
   local lang=en; # default
-  if [ -n "${LANG}" ] && [ -n "${LANG/_*/}" ];then
+  if [[ "${LANG:-x}" != x ]] && [[ -n "${LANG/_*/}" ]];then
     lang="${LANG/_*/}"
   fi
 
-  curl -sL "https://${lang}.wiktionary.org/wiki/$@" |
+  [[ "$#" -eq 1 ]] || { printf 'usage: WORD\n' >&2; return 1; }
+
+  local target="$1"
+  curl --silent --location "https://${lang}.wiktionary.org/wiki/$target" |
     w3m -dump -T text/html |
+    grep --color=always --extended-regexp '^|\b'"$target"'\b' |
     "${PAGER:-less}"
 )
 
