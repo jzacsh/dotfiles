@@ -3,7 +3,7 @@ Description=Autostart Unpriveleged LXCs
 
 [Service]
 Type=oneshot
-ExecStart=/bin/bash -c 'lxc-autostart'
+ExecStart=/bin/bash -c 'set -x; lxc-autostart'
 
 [Install]
 WantedBy=default.target
