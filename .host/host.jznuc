@@ -45,3 +45,5 @@ fi
 # GOROOT into my env. cannot find it referenced in any system or user file, and
 # umake isn't even installed anymore...
 unset GOROOT
+
+lxc-ls --fancy
