@@ -30,6 +30,8 @@ if [[ -r ~/.dircolors ]] && type dircolors >/dev/null 2>&1;then
   eval $(dircolors --bourne-shell ~/.dircolors)
 fi
 
+PROMPT_COMMAND='RET=$?' # see: man bash | less +/PROMPT_COMMAND
+PS1='\s^$RET  @\t \w\n\u@\h   $SHLVL:\$ ' # vcprompt-less version of below
 ############################################################################
 # $UID > 0 BELOW THIS LINE
 #   everything above *should* be plain old shell options, nothing executable
@@ -37,7 +39,6 @@ fi
 ############################################################################
 
 
-PROMPT_COMMAND='RET=$?' # see: man bash | less +/PROMPT_COMMAND
 PS1='\s^$RET  @\t $(vcprompt) \w\n\u@\h   $SHLVL:\$ ' # simple version of below
 # vcs and color-aware version of bash prompt:
 bash_prompt() {
