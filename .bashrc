@@ -38,7 +38,7 @@ fi
 
 
 PROMPT_COMMAND='RET=$?' # see: man bash | less +/PROMPT_COMMAND
-PS1='sh#$SHLVL [\u@\h] ${?} $(vcprompt) \w\n\$ ' # simple version of below
+PS1='\s^$RET  @\t $(vcprompt) \w\n\u@\h   $SHLVL:\$ ' # simple version of below
 # vcs and color-aware version of bash prompt:
 bash_prompt() {
   local col_end='\[\033[0m\]'
