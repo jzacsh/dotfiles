@@ -37,6 +37,7 @@ fi
 ############################################################################
 
 
+PROMPT_COMMAND='RET=$?' # see: man bash | less +/PROMPT_COMMAND
 PS1='sh#$SHLVL [\u@\h] ${?} $(vcprompt) \w\n\$ ' # simple version of below
 # vcs and color-aware version of bash prompt:
 bash_prompt() {
@@ -58,7 +59,6 @@ bash_prompt() {
   PS1="${col_usr}\u@${col_end}${col_blu}\h${col_end}${RET_VALUE}"' \[\033[0;32m\]$(vcprompt)\[\033[0m\]'" ${col_ylwB}\w${col_end}\n\t  ${col_grnB}${SHLVL}${col_end}:${col_ylw}\$${col_end} "
   PS4='+$BASH_SOURCE:$LINENO:$FUNCNAME: '
 }
-PROMPT_COMMAND='RET=$?' # see: man bash | less +/PROMPT_COMMAND
 bash_prompt
 unset bash_prompt
 
