@@ -11,7 +11,7 @@ shopt -s histappend
 shopt -s no_empty_cmd_completion
 shopt -s dirspell
 set -o notify
-set +o histexpand
+set -o histexpand
 set -o vi
 
 # turn off control character echoing
