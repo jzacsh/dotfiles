@@ -10,8 +10,6 @@ shopt -s histverify
 shopt -s histappend
 shopt -s no_empty_cmd_completion
 shopt -s dirspell
-
-# notify of completed background jobs immediately
 set -o notify
 set +o histexpand
 set -o vi
