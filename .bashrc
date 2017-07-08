@@ -14,7 +14,7 @@ set -o notify
 set -o histexpand
 set -o vi
 
-# turn off control character echoing
+# disable control character echoing
 stty -ctlecho
 
 # history options
