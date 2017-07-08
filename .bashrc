@@ -40,22 +40,13 @@ fi
 PS1='sh#$SHLVL [\u@\h] ${?} $(vcprompt) \w\n\$ ' # simple version of below
 # vcs and color-aware version of bash prompt:
 bash_prompt() {
-  case "$TERM" in
-    xterm*|rxvt*)
-      local TITLEBAR='\[\033]0;\u:${NEW_PWD}\007\]' ;;
-    *)
-      local TITLEBAR="" ;;
-  esac
-
   local col_end='\[\033[0m\]'
-  local col_blk='\[\e[0;30m\]'
   local col_red='\[\e[1;31m\]'
   local col_grn='\[\e[0;32m\]'
   local col_grnB='\[\e[1;32m\]'
   local col_ylwB='\[\e[1;33m\]'
   local col_ylw='\[\e[0;33m\]'
   local col_blu='\[\e[1;34m\]'
-  local col_wht='\[\e[0;37m\]'
 
   local col_usr=$col_grn
   if [[ "$UID" -eq "0" ]];then
@@ -64,7 +55,7 @@ bash_prompt() {
   fi
 
   RET_VALUE='$(if [[ $RET -ne 0 ]];then echo -n ":\[\033[1;31m\]$RET\[\033[0m\]";fi)'
-  PS1="${TITLEBAR}${col_blu}${col_end}${col_usr}\u@${col_end}${col_blu}\h${col_end}${RET_VALUE}"' \[\033[0;32m\]$(vcprompt)\[\033[0m\]'" ${col_ylwB}\w${col_end}\n\t  ${col_grnB}${SHLVL}${col_end}:${col_ylw}\$${col_end} "
+  PS1="${col_usr}\u@${col_end}${col_blu}\h${col_end}${RET_VALUE}"' \[\033[0;32m\]$(vcprompt)\[\033[0m\]'" ${col_ylwB}\w${col_end}\n\t  ${col_grnB}${SHLVL}${col_end}:${col_ylw}\$${col_end} "
   PS4='+$BASH_SOURCE:$LINENO:$FUNCNAME: '
 }
 PROMPT_COMMAND='RET=$?' # see: man bash | less +/PROMPT_COMMAND
