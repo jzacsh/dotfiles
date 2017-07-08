@@ -17,6 +17,9 @@ set -o vi
 # disable control character echoing
 stty -ctlecho
 
+# disable XON/XOFF flow control ("freeze" via ^q, ^s)
+stty -ixon
+
 # history options
 export HISTIGNORE="&:ls:[bf]g:exit:hg in:hg out:reset:clear:ca:cl:l:cd*"
 export HISTFILESIZE=20000
