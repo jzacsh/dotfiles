@@ -2,5 +2,9 @@
 Description=Autostart Unpriveleged LXCs
 
 [Service]
-Type=oneshot
+Type=simple
 ExecStart=/bin/bash -c 'lxc-autostart'
+TimeoutStopSec=20s
+
+[Install]
+WantedBy=default.target

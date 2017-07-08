@@ -40,3 +40,10 @@ if [[ "$(sed -n 's/DISTRIB_RELEASE=//p' /etc/lsb-release)" = '14.04' ]];then
     printf ' DONE.\n' >&2
   fi
 fi
+
+# TODO(zacsh) figure out how the f umake has managed to inject it's stupid
+# GOROOT into my env. cannot find it referenced in any system or user file, and
+# umake isn't even installed anymore...
+unset GOROOT
+
+lxc-ls --fancy
