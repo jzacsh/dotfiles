@@ -26,8 +26,6 @@ export HISTFILESIZE=20000
 export HISTCONTROL='ignoreboth'
 export HISTSIZE=5000
 
-PS1='sh#$SHLVL [\u@\h] ${?} \w\n\$ ' # vanilla version of my prompt, with no executables
-
 if [[ -r ~/.dircolors ]] && type dircolors >/dev/null 2>&1;then
   eval $(dircolors --bourne-shell ~/.dircolors)
 fi
