@@ -4,7 +4,7 @@ Description=Go Documentation Server (Headless)
 [Service]
 Type=simple
 # TODO(zacsh) when i've figured out env. variables for systemd user-files, use $GOPATH
-ExecStart=/bin/bash -c 'godoc -http=:6060'
+ExecStart=/bin/bash -c 'godoc -analysis=type -http=:6060'
 
 [Install]
 WantedBy=default.target
