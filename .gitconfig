@@ -7,7 +7,7 @@
 [alias]
   st = status
   last = log -1 HEAD
-  lg = log --show-signature --graph --decorate
+  lg = log --branches --show-signature --graph --decorate
 [core]
   pager = less --no-init --RAW-CONTROL-CHARS --quit-if-one-screen
   excludesFile = ~/.gitignore
