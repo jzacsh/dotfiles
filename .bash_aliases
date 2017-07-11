@@ -69,6 +69,10 @@ favipng() (
   set -euo pipefail
   local faviUrl
   faviUrl="$(curl -Ls "$@" | pup 'link[rel="icon"] attr{href}')"
+  if [[ "${faviUrl:-x}" = x ]];then
+    printf "Could not parse favicon from site's markup\n" >&2
+    return 1
+  fi
   local ext; ext="$(basename "$faviUrl")"; ext="${ext##*.}"
   local out; out="$(mktemp --tmpdir=. "favipng_XXXXX.${ext}")"
 
