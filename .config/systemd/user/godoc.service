@@ -7,7 +7,7 @@ Type=simple
 Environment="GOPATH=%h/usr/lib/go"
 ExecStart=/bin/bash -c 'godoc -analysis=type -http=:6060'
 LimitCORE=1
-LimitNICE=10
+LimitNICE=17
 # 20170710: with -analysis=type, takes 6+ minutes on my own $GOPATH (ie: not
 # only stdlib) on laptop w/8GB RAM and made it unresponsive for at least a
 # minute
