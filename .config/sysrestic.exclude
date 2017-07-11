@@ -10,7 +10,7 @@ back/local
 .thumbnails/
 .tor-browser*/
 .opam/
-.local/share/lxc/*/rootfs
+.local/share/lxc/
 tmp/
 usr/local/vm/
 usr/local/bin/
