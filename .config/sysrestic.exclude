@@ -1,0 +1,16 @@
+back/local
+.android/
+.cinnamon/
+.cache/
+.config/google-chrome/
+.mozilla/firefox/
+.gnome/apps/
+.gradle/
+.npm/
+.thumbnails/
+.tor-browser*/
+.opam/
+.local/share/lxc/*/rootfs
+tmp/
+usr/local/vm/
+usr/local/bin/
