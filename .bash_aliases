@@ -28,7 +28,6 @@ alias httpserve='python3 -m http.server'
 
 ######################################
 # preferred args/modes for given tools
-alias vim='vim -X' # better vim (i never use vim outside a terminal)
 alias diff='colordiff' # better diff ouput
 alias grep='grep --color=auto' # better grep ouput
 alias mutt='pgrep mutt && mutt -R || mutt' # single mutt PID management
