@@ -1,1 +1,1 @@
-/home/jzacsh/.vimrc
+../../.vimrc
