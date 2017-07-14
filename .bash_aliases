@@ -43,10 +43,10 @@ alias fixcaps='setxkbmap -option ctrl:swapcaps' # swaps caps with right-control
 
 ###############################
 ## common spelling mistakes ###
-alias vi='vim'
+alias vi='nvim'
 alias les='less'
 alias duff='echo "no beer here, try \`diff\`."'
-alias :w='echo "yeahh... this is not vim." >&2'
+alias :w='echo "yeahh... this is not [n]vim." >&2'
 alias :q=':w'
 alias :e=':w'
 alias :x=':w'
