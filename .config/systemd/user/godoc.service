@@ -18,3 +18,4 @@ LimitAS=2G:5G
 
 [Install]
 WantedBy=default.target
+Requires=network.target
