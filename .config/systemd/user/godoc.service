@@ -4,6 +4,7 @@ Documentation=https://godoc.org/golang.org/x/tools/cmd/godoc
 
 [Service]
 Type=simple
+Requires=network.target
 # TODO(zacsh) when i've figured out env. variables for systemd user-files, use $GOPATH
 Environment="GOPATH=%h/usr/lib/go"
 Environment="GOMAXPROCS=1"
@@ -18,4 +19,3 @@ LimitAS=2G:5G
 
 [Install]
 WantedBy=default.target
-Requires=network.target
