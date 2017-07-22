@@ -1,10 +1,10 @@
 [Unit]
 Description=Go Documentation Server (Headless)
 Documentation=https://godoc.org/golang.org/x/tools/cmd/godoc
+After=network.target
 
 [Service]
 Type=simple
-Requires=network.target
 # TODO(zacsh) when i've figured out env. variables for systemd user-files, use $GOPATH
 Environment="GOPATH=%h/usr/lib/go"
 Environment="GOMAXPROCS=1"
