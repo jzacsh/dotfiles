@@ -175,7 +175,7 @@ scowerForMail; unset scowerForMail
 
 # notify myself when degrated state
 if type systemctl >/dev/null 2>&1 &&
-  ! (systemctl --user --state=dead,failed | grep -E '^0 loaded units'; ) >/dev/null 2>&1;then
+  ! (systemctl --user --state=failed | grep -E '^0 loaded units'; ) >/dev/null 2>&1;then
   systemctl --user status
 fi
 
