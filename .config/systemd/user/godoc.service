@@ -6,7 +6,8 @@ Type=simple
 # TODO(zacsh) when i've figured out env. variables for systemd user-files, use $GOPATH
 Environment="GOPATH=%h/usr/lib/go"
 Environment="GOMAXPROCS=1"
-ExecStart=/bin/bash -c 'godoc -analysis=type -http=:6060'
+# TODO(zacsh) add back "-analysis=type" when you fix why it panics
+ExecStart=/bin/bash -c 'godoc -http=:6060'
 LimitCORE=1
 LimitNICE=18
 LimitAS=2G:5G
