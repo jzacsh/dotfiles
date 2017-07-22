@@ -173,5 +173,11 @@ scowerForMail() (
 )
 scowerForMail; unset scowerForMail
 
+# notify myself when degrated state
+if type systemctl >/dev/null 2>&1 &&
+  !systemctl --user status >/dev/null 2>&1;then
+  systemctl --user status
+fi
+
 unset sourceExists
 true # don't assume last return status
