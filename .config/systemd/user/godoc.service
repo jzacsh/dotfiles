@@ -8,7 +8,7 @@ Type=simple
 Environment="GOPATH=%h/usr/lib/go"
 Environment="GOMAXPROCS=1"
 # TODO(zacsh) add back "-analysis=type" when you fix why it panics
-ExecStart=/bin/bash -c 'godoc -notes=TODO -http=:6060'
+ExecStart=/bin/bash -c 'godoc -notes=TODO -http=:6060 -links=true'
 LimitCORE=1
 LimitNICE=18
 LimitAS=2G:5G
