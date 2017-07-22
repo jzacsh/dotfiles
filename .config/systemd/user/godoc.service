@@ -1,5 +1,6 @@
 [Unit]
 Description=Go Documentation Server (Headless)
+Documentation=https://godoc.org/golang.org/x/tools/cmd/godoc
 
 [Service]
 Type=simple
