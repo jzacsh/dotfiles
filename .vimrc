@@ -83,7 +83,7 @@ autocmd BufEnter * set mouse=
 " darkZ
 
 " current favorite: "slate" and "ron"
-colorscheme anotherdark
+colorscheme elflord
 
 " must be after colorscheme
 set cursorline
