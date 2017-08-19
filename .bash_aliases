@@ -41,8 +41,8 @@ alias git_diff_sbs='git difftool --no-prompt --extcmd="colordiff --side-by-side 
 # x env #######################
 alias fixcaps='setxkbmap -option ctrl:swapcaps' # swaps caps with right-control
 
-###############################
-## common spelling mistakes ###
+######################################
+## typos; common spelling mistakes ###
 alias vi='nvim'
 alias les='less'
 alias duff='echo "no beer here, try \`diff\`."'
@@ -50,6 +50,7 @@ alias :w='echo "yeahh... this is not [n]vim." >&2'
 alias :q=':w'
 alias :e=':w'
 alias :x=':w'
+alias gt='git'
 # prefixes to display-sensitive commands (tmux/ssh/console considerations)
 alias xf='DISPLAY=localhost:10.0 '
 alias xl='DISPLAY=:0.0 ' #eg: `xl xdg-open ./my.pdf`
