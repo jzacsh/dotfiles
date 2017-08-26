@@ -1,5 +1,5 @@
 [Unit]
-Description=Periodically change Gnome desktop background
+Description=Periodically change backdrops
 
 [Timer]
 OnUnitActiveSec=15m

@@ -1,6 +1,6 @@
 [Unit]
-Description=Sets random Gnome desktop background
+Description=Sets random desktop & login backdrops
 
 [Service]
 Type=oneshot
-ExecStart=/bin/bash -c 'gnome_desktop_rotate %h/media/bgrnd'
+ExecStart=/bin/bash -c 'backdrop_rotate %h/media/bgrnd'
