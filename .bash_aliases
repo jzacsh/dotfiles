@@ -169,6 +169,13 @@ hgunshelve () (
   fi
 )
 
+# `dict`, but treat args just as `echo` does, and add highlighting
+define() {
+  dict "$*" |
+    grep --ignore-case --color=always --extended-regexp '^|'"$*" |
+    less -LINE-NUMBERS
+}
+
 #dictionary look ups
 lu() (
   local lang=en; # default
