@@ -423,4 +423,24 @@ whiteboardify() (
     "$2"
 )
 
+# java-repl: make it easy for myself to remember this exists...
+#   https://github.com/albertlatacz/java-repl
+javacli() (
+   local repo="$HOME"/media/src/java-repl
+   [[ -e "$repo" && -r "$repo" && -d "$repo" ]] || {
+     printf \
+       'warning: did not find readable dir at; clone it?...\n\t%s\n' \
+       "$repo" >&2
+     return 1
+   }
+   local replJar="$repo"/build/libs/javarepl-dev.jar
+   [[ -r "$replJar" ]] || {
+     printf \
+       'warning: did not find java-repl jar; build it?\n\t%s\n' \
+       "$replJar" >&2
+     return 1
+   }
+   java -jar "$replJar"
+)
+
 # vim: et:ts=2:sw=2
