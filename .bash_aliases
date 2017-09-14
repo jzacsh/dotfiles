@@ -443,4 +443,12 @@ javacli() (
    java -jar "$replJar"
 )
 
+baseFromTo() (
+  local fro="$1"
+  local to="$2"
+  shift 2
+  set -x
+  printf -- 'obase=%d; ibase=%d; %s\n' "$to" "$fro" "$*"  | bc
+)
+
 # vim: et:ts=2:sw=2
