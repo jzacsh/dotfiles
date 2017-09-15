@@ -456,7 +456,7 @@ baseFromTo() (
   local to="$2"
   shift 2
   (( quiet )) || set -x
-  printf -- 'obase=%d; ibase=%d; %s\n' "$to" "$fro" "$*"  | bc
+  printf -- 'obase=%d; ibase=%d; %s\n' "$to" "$fro" "${*^^}"  | bc
 )
 
 # vim: et:ts=2:sw=2
