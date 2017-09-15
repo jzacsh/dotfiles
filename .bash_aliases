@@ -444,10 +444,18 @@ javacli() (
 )
 
 baseFromTo() (
+  local quiet=0
+  if [[ "$#" = 4 ]];then
+    [[ "$1" = -q ]] || {
+      printf 'usage: [-q] FROM TO FROM_VALUE\n' >&2
+      return 1;
+    }
+    shift; quiet=1;
+  fi
   local fro="$1"
   local to="$2"
   shift 2
-  set -x
+  (( quiet )) || set -x
   printf -- 'obase=%d; ibase=%d; %s\n' "$to" "$fro" "$*"  | bc
 )
 
