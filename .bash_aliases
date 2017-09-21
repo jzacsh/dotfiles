@@ -55,8 +55,10 @@ alias gt='git'
 alias xf='DISPLAY=localhost:10.0 '
 alias xl='DISPLAY=:0.0 ' #eg: `xl xdg-open ./my.pdf`
 
-
-
+# taking notes in a meeting or lecture, instead of futtzing around with my
+# gnome popdown calendar and navigating through months, or sleeping my notes and
+# running `cal -3`
+alias notes='"$EDITOR" +":Calendar -view=year -width=27 -split=vertical"'
 
 ############
 # one liners
