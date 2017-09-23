@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+#specific configs:
+ln -sf ~/.host/src/host.thepearl/.Xdefaults ~/
