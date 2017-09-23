@@ -46,4 +46,4 @@ fi
 # umake isn't even installed anymore...
 unset GOROOT
 
-lxc-ls --fancy
+lxc-ls --fancy | grep --color=always --extended-regexp '^|STOPPED'
