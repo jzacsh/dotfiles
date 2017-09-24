@@ -250,6 +250,59 @@ html() (
   fi
 )
 
+whiteboardify() (
+  [ $# -eq 2 ] || {
+    echo "usage: IN_FILE OUT_FILE
+      to generate a whiteboardified version of INFILE
+      and write it to OUTFILE" >&2
+    return 1
+  }
+  convert "$1" \
+    -morphology Convolve DoG:15,100,0 \
+    -negate \
+    -normalize \
+    -blur 0x1 \
+    -channel RBG \
+    -level 60%,91%,0.1 \
+    "$2"
+)
+
+# java-repl: make it easy for myself to remember this exists...
+#   https://github.com/albertlatacz/java-repl
+javacli() (
+   local repo="$HOME"/media/src/java-repl
+   [[ -e "$repo" && -r "$repo" && -d "$repo" ]] || {
+     printf \
+       'warning: did not find readable dir at; clone it?...\n\t%s\n' \
+       "$repo" >&2
+     return 1
+   }
+   local replJar="$repo"/build/libs/javarepl-dev.jar
+   [[ -r "$replJar" ]] || {
+     printf \
+       'warning: did not find java-repl jar; build it?\n\t%s\n' \
+       "$replJar" >&2
+     return 1
+   }
+   java -jar "$replJar"
+)
+
+baseFromTo() (
+  local quiet=0
+  if [[ "$#" = 4 ]];then
+    [[ "$1" = -q ]] || {
+      printf 'usage: [-q] FROM TO FROM_VALUE\n' >&2
+      return 1;
+    }
+    shift; quiet=1;
+  fi
+  local fro="$1"
+  local to="$2"
+  shift 2
+  (( quiet )) || set -x
+  printf -- 'obase=%d; ibase=%d; %s\n' "$to" "$fro" "${*^^}"  | bc
+)
+
 #########################################
 # `mktemp` wrappers/workflows ###########
 
@@ -416,59 +469,6 @@ vid_to_gif() (
   printf '[STEP 3 of 3]\tCleaning up frames and temporary directory "%s"\n' "$framesDir"
   rm "$framesDir"/*.png
   rmdir "$framesDir"
-)
-
-whiteboardify() (
-  [ $# -eq 2 ] || {
-    echo "usage: IN_FILE OUT_FILE
-      to generate a whiteboardified version of INFILE
-      and write it to OUTFILE" >&2
-    return 1
-  }
-  convert "$1" \
-    -morphology Convolve DoG:15,100,0 \
-    -negate \
-    -normalize \
-    -blur 0x1 \
-    -channel RBG \
-    -level 60%,91%,0.1 \
-    "$2"
-)
-
-# java-repl: make it easy for myself to remember this exists...
-#   https://github.com/albertlatacz/java-repl
-javacli() (
-   local repo="$HOME"/media/src/java-repl
-   [[ -e "$repo" && -r "$repo" && -d "$repo" ]] || {
-     printf \
-       'warning: did not find readable dir at; clone it?...\n\t%s\n' \
-       "$repo" >&2
-     return 1
-   }
-   local replJar="$repo"/build/libs/javarepl-dev.jar
-   [[ -r "$replJar" ]] || {
-     printf \
-       'warning: did not find java-repl jar; build it?\n\t%s\n' \
-       "$replJar" >&2
-     return 1
-   }
-   java -jar "$replJar"
-)
-
-baseFromTo() (
-  local quiet=0
-  if [[ "$#" = 4 ]];then
-    [[ "$1" = -q ]] || {
-      printf 'usage: [-q] FROM TO FROM_VALUE\n' >&2
-      return 1;
-    }
-    shift; quiet=1;
-  fi
-  local fro="$1"
-  local to="$2"
-  shift 2
-  (( quiet )) || set -x
-  printf -- 'obase=%d; ibase=%d; %s\n' "$to" "$fro" "${*^^}"  | bc
 )
 
 # vim: et:ts=2:sw=2
