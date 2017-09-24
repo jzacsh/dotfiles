@@ -251,7 +251,7 @@ html() (
 )
 
 whiteboardify() (
-  [ $# -eq 2 ] || {
+  [[ "$#" -eq 2 ]] || {
     echo "usage: IN_FILE OUT_FILE
       to generate a whiteboardified version of INFILE
       and write it to OUTFILE" >&2
