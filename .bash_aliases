@@ -16,7 +16,6 @@ alias ipt='sudo iptraf'
 alias pbcopy='xsel --clipboard --input'
 alias pbpaste='xsel --clipboard --output'
 alias eclimd='"$ECLIPSE_HOME"/eclimd'
-alias html='w3m -dump -T text/html'
 alias pastie="$PASTIE"
 alias json='python -mjson.tool'
 # most commonly I'd like to convert: decimal <=> hex
@@ -238,6 +237,17 @@ notifyhttp() (
       sleep "$retry"
     }
   done
+)
+
+html() (
+  if type w3m >/dev/null 2>&1; then
+    w3m -dump -T text/html
+  elif type lynx >/dev/null 2>&1; then
+    lynx -force_html -stdin -dump -nolist
+  else
+    printf 'error: no lynx or w3m to parse HTML with\n' >&2
+    return 1
+  fi
 )
 
 #########################################
