@@ -7,6 +7,7 @@ After=network.target
 Type=simple
 # TODO(zacsh) when i've figured out env. variables for systemd user-files, use $GOPATH
 Environment="GOPATH=%h/usr/lib/go"
+Environment="GOROOT=/usr/local/go"
 Environment="PATH=%h/usr/lib/go/bin:/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin"
 Environment="GOMAXPROCS=1"
 # TODO(zacsh) add back "-analysis=type" when you fix why it panics
