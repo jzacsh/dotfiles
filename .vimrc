@@ -83,7 +83,13 @@ autocmd BufEnter * set mouse=
 " darkZ
 
 " current favorite: "slate" and "ron"
-colorscheme darkZ
+"colorscheme darkZ
+
+" customizations to make adventurous work for me
+colorscheme adventurous
+highlight Normal ctermbg=none
+highlight Comment ctermfg=grey
+
 
 " must be after colorscheme
 set cursorline
