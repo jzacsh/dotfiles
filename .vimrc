@@ -87,7 +87,7 @@ colorscheme darkZ
 
 " must be after colorscheme
 set cursorline
-hi  cursorline   cterm=none
+hi  cursorline   cterm=none ctermbg=black
 hi  cursorlinenr term=bold ctermfg=white
 
 "" EXPERIMENTAL:
