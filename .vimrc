@@ -339,6 +339,9 @@ au Syntax * RainbowParenthesesLoadBraces
 " NOTE: inorder to work, this *must* come after RainbowParentheses plugin conf
 autocmd CursorMoved * exe printf('match Visual /\V\<%s\>/', escape(expand('<cword>'), '/\'))
 
+" custom colorscheme logic for the Visual group's matches
+highlight Visual cterm=standout
+
 set modeline
 
 " open by default
