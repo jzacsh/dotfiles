@@ -93,7 +93,7 @@ highlight Comment ctermfg=grey
 
 " must be after colorscheme
 set cursorline
-hi  cursorline   cterm=none ctermbg=black
+hi  cursorline   cterm=underline ctermbg=none
 hi  cursorlinenr term=bold ctermfg=white
 
 "" EXPERIMENTAL:
