@@ -19,8 +19,8 @@ URxvt.highlightColor:#4e4e4e
 URxvt.geometry: 180x70
 
 ! FYI: test fonts quickly with: `urxvt -fn 'xft:NimbusMonoL...'`
-URxvt.font: xft:Go Mono:pixelsize=18
-URxvt.boldFont: xft:Go Mono:pixelsize=18:bold
+URxvt.font: xft:Go Mono:pixelsize=16
+URxvt.boldFont: xft:Go Mono:pixelsize=16:bold
 URxvt.loginshell: true
 URxvt.internalborder: 0
 URxvt.underlinecolor: #999999
