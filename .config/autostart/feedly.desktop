@@ -7,3 +7,4 @@ Description=Feedly RSS Reader
 Exec=/opt/google/chrome/google-chrome --profile-directory=Default --app-id=hipbfijinpcgfogaopmgehiegacbhmob
 Icon=chrome-hipbfijinpcgfogaopmgehiegacbhmob-Default
 StartupWMClass=crx_hipbfijinpcgfogaopmgehiegacbhmob
+X-GNOME-Autostart-enabled=true

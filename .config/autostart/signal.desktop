@@ -6,3 +6,4 @@ Name=Signal Private Messenger
 Exec=/opt/google/chrome/google-chrome --profile-directory=Default --app-id=bikioccmkafdpakkkcpdbppfkghcmihk
 Icon=chrome-bikioccmkafdpakkkcpdbppfkghcmihk-Default
 StartupWMClass=crx_bikioccmkafdpakkkcpdbppfkghcmihk
+X-GNOME-Autostart-enabled=true

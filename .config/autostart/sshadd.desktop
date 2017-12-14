@@ -7,3 +7,4 @@ Exec=bash -c 'ssh-add .ssh/key.*[^pub]'
 StartupNotify=true
 Terminal=true
 Hidden=false
+X-GNOME-Autostart-enabled=true

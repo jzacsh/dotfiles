@@ -3,3 +3,4 @@ Comment=RXVT-Unicode terminal daemon
 Name=urxvtd
 Type=Application
 Exec=/usr/bin/urxvtd --opendisplay
+X-GNOME-Autostart-enabled=true
