@@ -343,6 +343,3 @@ autocmd CursorMoved * exe printf('match Visual /\V\<%s\>/', escape(expand('<cwor
 highlight Visual cterm=standout
 
 set modeline
-
-" open by default
-autocmd VimEnter,FileType java NERDTree
