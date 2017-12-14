@@ -438,6 +438,22 @@ vid_get_duration() (
 vid_to_gif() (
   set -e
 
+  if [[ "$#" -ne 2 && "$#" -ne 3 ]]; then
+    printf 'usage: [-k] SRC_VIDEO OUT_GIF\n' >&2
+    printf '  -k: keep temporary files used during construction\n' >&2
+    return 1
+  fi
+
+  local keepScraps=0
+  if [[ "$#" -eq 3 ]];then
+    [[ "$1" = -k ]] || {
+      printf 'unexpected second arg in 3-arg call; try zero-arg for help\n' >&2
+      return 1
+    }
+    keepScraps=1
+    shift
+  fi
+
   local inVid="$(readlink -f "$1")";
   [ -n "$inVid" ]; [ -r "$inVid" ]; [ -f "$inVid" ];
 
@@ -449,26 +465,31 @@ vid_to_gif() (
 
   # Figure out *which* utility to use
   local vidExec vfArgs
+  local scale=900
   if type avconv > /dev/null 2>&1;then
     vidExec=avconv
-    vfArgs="scale=320:-1:flags=lanczos -r 10"
+    vfArgs="scale=${scale}:-1:flags=lanczos -r 10"
   elif type ffmpeg > /dev/null 2>&1;then
     vidExec=ffmpeg
-    vfArgs="scale=320:-1:flags=lanczos,fps=10"
+    vfArgs="scale=${scale}:-1:flags=lanczos,fps=10"
   else
     printf 'ERROR: could not find `ffmpeg` or `avconv` utilities\n' >&2
     return 1
   fi
 
   printf '[STEP 1 of 3]\tExporting frames from "%s"\n' "$inVid"
-  "$vidExec" -loglevel quiet -i "$inVid" -vf $vfArgs "$framesDir"/ffout%03d.png
+  time { "$vidExec" -loglevel quiet -i "$inVid" -vf $vfArgs "$framesDir"/ffout%03d.png; }
 
   printf '[STEP 2 of 3]\tCompiling frames into single GIF in "%s"\n' "$outGif"
-  convert -loop 0 "$framesDir"/ffout*.png "$outGif"
+  time { convert -loop 0 "$framesDir"/ffout*.png "$outGif"; }
 
-  printf '[STEP 3 of 3]\tCleaning up frames and temporary directory "%s"\n' "$framesDir"
-  rm "$framesDir"/*.png
-  rmdir "$framesDir"
+  if (( keepScraps ));then
+    printf '[STEP 3 of 3]\tLeaving frames and temp dir intact:\n\t"%s"\n' "$framesDir"
+  else
+    printf '[STEP 3 of 3]\tCleaning up frames and temp dir:\n\t"%s"\n' "$framesDir"
+    rm "$framesDir"/*.png
+    rmdir "$framesDir"
+  fi
 )
 
 # vim: et:ts=2:sw=2
