@@ -46,6 +46,7 @@ set et
 " default spaces in tabs/indents:
 set ts=2
 set sw=2
+set tabstop=2
 
 " syntax hilighting
 syntax on
