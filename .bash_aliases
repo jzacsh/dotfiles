@@ -24,6 +24,7 @@ alias fromhex="printf '%0.0f\n'"
 alias beep=bell
 alias e='$EDITOR'
 alias httpserve='python3 -m http.server'
+alias csvpretty='column -t -s,' # eg: csvpretty < my.csv
 
 ######################################
 # preferred args/modes for given tools
