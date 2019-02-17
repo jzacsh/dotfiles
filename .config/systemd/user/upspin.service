@@ -1,8 +1,0 @@
-[Unit]
-Description=UpspinFS (Headless)
-
-[Service]
-ExecStart=/bin/bash -c "upspinfs %h/usr/share/upspin/"
-
-[Install]
-WantedBy=default.target
