@@ -23,8 +23,13 @@ alias tohex="printf '0x%x\n'"
 alias fromhex="printf '%0.0f\n'"
 alias beep=bell
 alias e='$EDITOR'
-alias httpserve='python3 -m http.server'
 alias csvpretty='column -t -s,' # eg: csvpretty < my.csv
+
+if type httpd >/dev/null 2>&1;then
+  alias httpserve='httpd'
+else
+  alias httpserve='(echo "~/bin/share/httpd.go not installed" >&2; [[ 1 = 2 ]]; )'
+fi
 
 ######################################
 # preferred args/modes for given tools
