@@ -1,6 +1,8 @@
 # If not running interactively, don't do anything
 [[ ${-} = ${-/i/} ]] && return
 
+umask 077
+
 sourceExists() { [[ -s "$1" ]] || return 0; source "$1" ;}
 
 # shell opts
