@@ -1,4 +1,5 @@
 [Default Applications]
+text/plain=nvim.desktop;vim.desktop;gvim.desktop;org.gnome.gedit.desktop
 image/jpeg=feh.desktop;display.desktop
 image/png=feh.desktop;display.desktop
 image/gif=mpv.desktop;feh.desktop;display.desktop
