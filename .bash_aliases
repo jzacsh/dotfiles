@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-[[ "$BASH_VERSINFO" != 4 ]] && {
-  printf 'zOMG,omg this is not have bashv4\n' >&2
+[[ "$BASH_VERSINFO" -ge 4 ]] || {
+  printf 'zOMG,omg this is below bashv4\n' >&2
   exit 1
 }
 
