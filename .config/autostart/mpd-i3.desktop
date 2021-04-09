@@ -7,3 +7,4 @@ Exec=mpd >>/home/jzacsh/usr/log/autostart-mpd.log 2>&1
 StartupNotify=false
 Terminal=false
 Hidden=false
+OnlyShowIn=i3

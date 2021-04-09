@@ -9,5 +9,5 @@ Categories=Utility;
 Hidden=false
 Icon=redshift
 Type=Application
-X-GNOME-Autostart-enabled=true
 Name=Redshift
+OnlyShowIn=i3
