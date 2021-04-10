@@ -24,6 +24,7 @@ alias fromhex="printf '%0.0f\n'"
 alias beep=bell
 alias e='$EDITOR'
 alias csvpretty='column -t -s,' # eg: csvpretty < my.csv
+alias pip=pip3
 
 if type httpd >/dev/null 2>&1;then
   alias httpserve='httpd'
