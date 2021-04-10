@@ -1,8 +1,8 @@
 [Default Applications]
 text/plain=nvim.desktop;vim.desktop;gvim.desktop;org.gnome.gedit.desktop
-image/jpeg=feh.desktop;display.desktop
-image/png=feh.desktop;display.desktop
-image/gif=mpv.desktop;feh.desktop;display.desktop
+image/jpeg=feh.desktop
+image/png=feh.desktop
+image/gif=mpv.desktop;feh.desktop
 text/html=google-chrome.desktop
 x-scheme-handler/http=google-chrome.desktop
 x-scheme-handler/https=google-chrome.desktop
