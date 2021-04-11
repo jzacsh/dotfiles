@@ -29,7 +29,7 @@ alias pip=pip3
 if type httpd >/dev/null 2>&1;then
   alias httpserve='httpd'
 else
-  alias httpserve='(echo "~/bin/share/httpd.go not installed" >&2; [[ 1 = 2 ]]; )'
+  alias httpserve='go run "$HOME"/bin/share/httpd.go'
 fi
 
 ######################################
