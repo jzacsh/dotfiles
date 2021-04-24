@@ -9,10 +9,12 @@ src_this() {
 }
 
 src_all() {
-    local dir; dir="$HOME/.host"
+    local prefix dir; dir="$HOME/.host"
 
+    #
     # generic distro-specific config
-    local prefix; prefix=$dir/distro.
+    #
+    prefix="$dir"/distro.
     if [[ -f /etc/arch-release ]]; then
         src_this "${prefix}arch"
     elif [[ -f /etc/lsb-release ]]; then
@@ -20,7 +22,9 @@ src_all() {
         src_this "$deb_dist_file"
     fi
 
+    #
     # host-specific configuration
+    #
     local hostfile; hostfile="$dir/host.${HOSTNAME/.*/}" #mimic `hostname -s`
     src_this "$hostfile"
 
