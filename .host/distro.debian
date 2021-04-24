@@ -1,0 +1,11 @@
+#!/bin/bash
+
+export DEBFULLNAME='Jonathan Zacsh'
+export DEBEMAIL='j@zac.sh'
+export CLOSURE_COMPILER="$HOME/usr/lib/js/closure-compiler"
+
+# not a rolling release; so need to point to manually installed golang bins
+export PATH="$PATH":"/usr/local/go/bin/"
+
+alias pman='pydoc3.1'
+alias pdb='pdb3.1'

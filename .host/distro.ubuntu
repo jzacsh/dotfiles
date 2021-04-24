@@ -1,18 +1,6 @@
 #!/usr/bin/env bash
 
-export BROWSER=chromium-browser
-export DEBFULLNAME='Jonathan Zacsh'
-export DEBEMAIL='jzacsh@gmail.com'
-export JAVA_HOME='/usr/lib/jvm/java-8-openjdk-amd64/'
-export CLOSURE_COMPILER="$HOME/usr/lib/js/closure-compiler"
-
-# not a rolling release; so need to point to manually installed golang bins
-export PATH="$PATH":"/usr/local/go/bin/"
-
-alias pman='pydoc3.1'
-alias pdb='pdb3.1'
-
-#specific configs:
+source ~/.host/distro.debian
 
 ln -sf ~/.host/src/distro.ubuntu/.pbuilderrc ~/
 

@@ -1,6 +1,12 @@
 #!/bin/bash
 
-src_this() { [[ -f "$1" ]] && source "$1"; }
+src_this() {
+  if ! [[ -f "$1" ]] || ! [[ -r "$1" ]];then
+    printf 'CRITICAL ERROR: .host/ forest: "%s" not a readable file\n' "$1" >&2
+    return # don't error return; don't want to stop my own shell login
+  fi
+  source "$1"
+}
 
 src_all() {
     local dir; dir="$HOME/.host"
