@@ -1,15 +1,25 @@
 #!/bin/bash
 
 src_this() {
-  if ! [[ -f "$1" ]] || ! [[ -r "$1" ]];then
-    printf 'CRITICAL ERROR: .host/ forest: "%s" not a readable file\n' "$1" >&2
+  local target="$1"
+  if ! [[ -f "$target" ]] || ! [[ -r "$target" ]];then
+    local col_ylw='\e[0;33m' col_end='\033[0m'
+    local t; printf -v t '%s%s' "${target/$HOME\/}"
+    local logPrefix="$col_ylw"'WARNING'"$col_end"
+    printf \
+      "$logPrefix"': ~/%-15s not readable file\n' \
+      "$t" >&2
     return # don't error return; don't want to stop my own shell login
   fi
-  source "$1"
+  source "$target"
 }
 
 src_all() {
     local prefix dir; dir="$HOME/.host"
+
+    local col_ylw='\e[1;34m' col_end='\033[0m'
+    local log_prefix="$col_ylw"'INFO'"$col_end"
+    printf "$log_prefix"': walking through ~/.host/ forrest...\n'
 
     #
     # generic distro-specific config
@@ -28,8 +38,12 @@ src_all() {
     local hostfile; hostfile="$dir/host.${HOSTNAME/.*/}" #mimic `hostname -s`
     src_this "$hostfile"
 
+    #
     # domain-specific configuration
+    #
     src_this "$dir/domain.$(hostname --domain)"
+
+    printf "$log_prefix"': ... DONE with ~/.host/ forrest.\n'
 }
 
 src_all
