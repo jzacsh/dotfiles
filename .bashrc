@@ -245,7 +245,7 @@ scowerForMail; unset scowerForMail
 if type systemctl >/dev/null 2>&1 &&
   ! (systemctl --user --state=failed | grep -E '^0 loaded units'; ) >/dev/null 2>&1;then
   systemctl --user status
-  printf -- 'Investigate with: %s\n' \
+  log_jzdots warn 'systemctl failures above; investigate with:\n\t%s\n' \
     'systemctl --user list-units --state=failed' >&2
 fi
 
