@@ -28,6 +28,37 @@ export HISTFILESIZE=20000
 export HISTCONTROL='ignoreboth'
 export HISTSIZE=5000
 
+# $1=info|warn|err
+log_jzdots() (
+  local log_prefix level="$1" fmt="$2"; shift 2
+  local col_start col_end='\033[0m'
+  local col_red='\e[0;31m' col_ylw='\e[0;33m' col_blu='\e[0;34m'
+
+  local log_lvl is_err=0
+  case "$level" in
+    info)
+      log_lvl=INFO
+      col_start="$col_blu"
+      ;;
+    warn)
+      log_lvl=WARN
+      col_start="$col_ylw"
+      ;;
+    *) # err; all else should be loud as it's just wrong
+      is_err=1
+      log_lvl="${level^^}"
+      col_start="$col_red"
+      ;;
+  esac
+
+  log_prefix="${col_start}${log_lvl}${col_end}[~jzacsh/.]"
+  if (( is_err ));then
+    printf "$log_prefix"' '"$fmt" "$*" >&2
+  else
+    printf "$log_prefix"' '"$fmt" "$*"
+  fi
+)
+
 if [[ -r ~/.dircolors ]] && type dircolors >/dev/null 2>&1;then
   eval $(dircolors --bourne-shell ~/.dircolors)
 fi
@@ -70,7 +101,11 @@ if type systemctl >/dev/null 2>&1;then
   systemctl --user import-environment PATH
 fi
 sourceExists ~/.bash_aliases
+
+log_jzdots info 'walking ~/.host/ forrest...\n'
 source $HOME/.host/pick  # Dynamic config
+log_jzdots info 'DONE walking ~/.host/ forrest...\n'
+
 if [[ "${SSH_AUTH_SOCK:-x}" = x ]];then
   eval $(ssh-agent -s)
 fi
@@ -186,4 +221,5 @@ if type systemctl >/dev/null 2>&1 &&
 fi
 
 unset sourceExists
+unset log_jzdots
 true # don't assume last return status
