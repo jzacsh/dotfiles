@@ -93,9 +93,9 @@ log_jzdots() (
 
   log_prefix="${col_start}${log_lvl}${col_end}[~jzacsh/.]"
   if (( is_err ));then
-    printf "$log_prefix"' '"$fmt" "$@" >&2
+    printf -- "$log_prefix"' '"$fmt" "$@" >&2
   else
-    printf "$log_prefix"' '"$fmt" "$@"
+    printf -- "$log_prefix"' '"$fmt" "$@"
   fi
 )
 
