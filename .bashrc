@@ -37,7 +37,7 @@ log_jzdots() (
   case "$level" in
     info)
       log_lvl=INFO
-      col_start='\e[0;34m' # blue
+      col_start='\e[0;36m' # cyan (blue~ish)
       ;;
     warn)
       log_lvl=WARN
