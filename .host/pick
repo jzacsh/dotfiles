@@ -61,7 +61,7 @@ src_all() {
     if is_known_desktop_env;then
       deEnv="$(get_desktop_env)"
       prefix="$dir"/deskenv.
-      src_this "${prefix}gnome"
+      src_this "${prefix}${deEnv}"
     fi
 
     #
