@@ -74,7 +74,7 @@ PS1='\s^$RET  @\t \w\n\u@\h   $SHLVL:\$ ' # vcprompt-less version of below
 
 PS1='\s^$RET  @\t $(vcprompt) \w\n\u@\h   $SHLVL:\$ ' # simple version of below
 # vcs and color-aware version of bash prompt:
-bash_prompt() {
+set_fancy_ps1() {
   local col_end='\[\033[0m\]'
   local col_red='\[\e[1;31m\]'
   local col_grn='\[\e[0;32m\]'
@@ -93,8 +93,7 @@ bash_prompt() {
   PS1="${col_usr}\u@${col_end}${col_blu}\h${col_end}${RET_VALUE}"' \[\033[0;32m\]$(vcprompt)\[\033[0m\]'" ${col_ylwB}\w${col_end}\n\t  ${col_grnB}${SHLVL}${col_end}:${col_ylw}\$${col_end} "
   PS4='+$BASH_SOURCE:$LINENO:$FUNCNAME: '
 }
-bash_prompt
-unset bash_prompt
+set_fancy_ps1; unset set_fancy_ps1
 
 source ~/bin/share/zacsh_exports
 if type systemctl >/dev/null 2>&1;then
@@ -131,8 +130,8 @@ if [[ "${dbusSessionBusAddress:-x}" != x ]] &&
       "$dbusSessionBusAddress"
   fi
   export DBUS_SESSION_BUS_ADDRESS="$dbusSessionBusAddress"
-  unset dbusSessionBusAddress
 fi
+unset dbusSessionBusAddress
 
 # for irssi's notify.pl
 [[ "${DBUS_SESSION_BUS_ADDRESS:-x}" = x ]] ||
