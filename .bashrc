@@ -28,6 +28,11 @@ export HISTFILESIZE=20000
 export HISTCONTROL='ignoreboth'
 export HISTSIZE=5000
 
+sourceExists /etc/bash_completion
+# autocompletion for man pages
+sourceExists /usr/share/bash-completion/completions/man
+complete -F _man -- mann
+
 PROMPT_COMMAND='RET=$?' # see: man bash | less +/PROMPT_COMMAND
 PS1='\s^$RET  @\t \w\n\u@\h   $SHLVL:\$ ' # vcprompt-less version of below
 ############################################################################
@@ -140,7 +145,6 @@ unset dbusSessionBusAddress
 [[ ! -e ~/.config/bash_completion.d/npm-run-completion.sh ]] &&
   npm completion > ~/.config/bash_completion.d/npm-run-completion.sh
 
-sourceExists /etc/bash_completion
 for completion in ~/.config/bash_completion.d/*.sh; do
   source "$completion"
 done
@@ -152,10 +156,6 @@ sourceExists ~/.local/bin/aws_bash_completer
 sourceExists "$HOME/.rvm/scripts/rvm"
 
 sourceExists ~/.hgbashrc
-
-# autocompletion for man pages
-source /usr/share/bash-completion/completions/man
-complete -F _man -- mann
 
 if type pip >/dev/null 2>&1; then
   source <(pip completion --bash)
