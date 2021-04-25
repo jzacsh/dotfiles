@@ -45,16 +45,19 @@ log_jzdots() (
   case "$level" in
     info)
       log_lvl=INFO
-      col_start='\e[0;36m' # cyan (blue~ish)
+      col_start='\e[0;38;5;81m'
+      [[ "$TERM" =~ 256color ]] || col_start='\e[0;36m' # cyan (blue~ish)
       ;;
     warn)
       log_lvl=WARN
-      col_start='\e[0;33m' # yellow
+      col_start='\e[0;48;5;190;38;5;232m'
+      [[ "$TERM" =~ 256color ]] || ccol_start='\e[0;33m' # yellow
       ;;
     *) # err; all else should be loud as it's just wrong
       is_err=1
       log_lvl="${level^^}"
-      col_start='\e[0;31m' # red
+      col_start='\e[5;4;38;5;196m\e[1m'
+      [[ "$TERM" =~ 256color ]] || col_start='\e[0;31m' # red
       ;;
   esac
 
