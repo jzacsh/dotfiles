@@ -198,7 +198,7 @@ ssh-add -l | grep --color=always --extended-regexp '^|\.ssh\/.*\ '
 
 # Users
 if who | grep --invert-match "$(whoami)" > /dev/null; then
-  printf '\nCurrently on %s, other than you:\n' "$(uname -snr)"
+  log_jzdots WARN 'currently on %s, other than you:\n' "$(uname -snr)"
   who --heading | grep --invert-match "$(whoami)"
 fi
 
