@@ -20,12 +20,7 @@ get_desktop_env() (
 src_this() {
   local target="$1"
   if ! [[ -f "$target" ]] || ! [[ -r "$target" ]];then
-    local col_ylw='\e[0;33m' col_end='\033[0m'
-    local t; printf -v t '%s%s' "${target/$HOME\/}"
-    local logPrefix="$col_ylw"'WARNING'"$col_end"
-    printf \
-      "$logPrefix"': ~/%-15s not readable file\n' \
-      "$t" >&2
+    log_jzdots warn '~/%-15s not readable file\n' "${target/$HOME\/}"
     return # don't error return; don't want to stop my own shell login
   fi
   source "$target"
