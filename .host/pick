@@ -1,5 +1,26 @@
 #!/bin/bash
 
+
+# TODO this is still experimental; no idea if DBUS_SESSION_BUS_ADDRESS is
+# really a reliable signal; not sure _which_ signals are really reliable.
+# just trying to make sure i don't see useless errors when i login via SSH
+# and/or a seated TTY
+is_desktop_env() (
+  [[ -n "$DISPLAY" ]] && [[ -n "$DBUS_SESSION_BUS_ADDRESS" ]]
+)
+
+get_desktop_env() (
+  local deEnv="$DE"
+  [[ -n "$DE" ]] || deEnv="$DESKTOP_SESSION"
+  echo "$deEnv"
+)
+
+# useful catalog of some env. variables in this space:
+#   https://wiki.archlinux.org/index.php/Environment_variables#Examples
+is_known_desktop_env() (
+  is_desktop_env && [[ -n "$(get_desktop_env)" ]]
+)
+
 src_this() {
   local target="$1"
   if ! [[ -f "$target" ]] || ! [[ -r "$target" ]];then
@@ -33,6 +54,15 @@ src_all() {
     #
     local hostfile; hostfile="$dir/host.${HOSTNAME/.*/}" #mimic `hostname -s`
     src_this "$hostfile"
+
+    #
+    # DE(GUI)-specific configuration
+    #
+    if is_known_desktop_env;then
+      deEnv="$(get_desktop_env)"
+      prefix="$dir"/deskenv.
+      src_this "${prefix}gnome"
+    fi
 
     #
     # domain-specific configuration

@@ -1,0 +1,21 @@
+#!/bin/bash
+#
+# Gnome specific configurations.
+
+
+#
+# gsettings is a multiplatform layer atop gconf (dconf replacement) made by the
+# gnome3 project. Not sure gsettings are used by any other desktop environment.
+#
+# Note: dconf editor tool inlines excellent documentation on every setting;
+# install it just for the easy reading!
+#
+
+# capslock should be just another control key
+gsettings set org.gnome.desktop.input-sources xkb-options "['ctrl:nocaps']"
+
+# Clicking a window while holding down this modifier key will move the window.
+#
+# popos tries to change what i'm used to on gnu/linux desktops; switch back to
+# good old alt
+gsettings set org.gnome.desktop.wm.preferences mouse-button-modifier '<Alt>'
