@@ -36,6 +36,31 @@ PS1='\s^$RET  @\t \w\n\u@\h   $SHLVL:\$ ' # vcprompt-less version of below
 [[ "$UID" -ne "0" ]] || return 0
 ############################################################################
 
+PS1='\s^$RET  @\t $(vcprompt) \w\n\u@\h   $SHLVL:\$ ' # simple version of below
+if [[ "$TERM" =~ 256color ]];then
+  # vcs and color-aware version of bash prompt:
+  set_fancy_ps1() {
+    local col_end='\[\033[0m\]'
+    local col_red='\[\e[1;31m\]'
+    local col_grn='\[\e[0;32m\]'
+    local col_grnB='\[\e[1;32m\]'
+    local col_ylwB='\[\e[1;33m\]'
+    local col_ylw='\[\e[0;33m\]'
+    local col_blu='\[\e[1;34m\]'
+
+    local col_usr=$col_grn
+    if [[ "$UID" -eq "0" ]];then
+      col_usr=$col_red #root's color
+      alias vcprompt='echo -n' # don't execute `vcprompt`
+    fi
+
+    RET_VALUE='$(if [[ "$RET" -ne 0 ]];then echo -n ":\[\033[1;31m\]$RET\[\033[0m\]";fi)'
+    PS1="${col_usr}\u@${col_end}${col_blu}\h${col_end}${RET_VALUE}"' \[\033[0;32m\]$(vcprompt)\[\033[0m\]'" ${col_ylwB}\w${col_end}\n\t  ${col_grnB}${SHLVL}${col_end}:${col_ylw}\$${col_end} "
+    PS4='+$BASH_SOURCE:$LINENO:$FUNCNAME: '
+  }
+  set_fancy_ps1; unset set_fancy_ps1
+fi
+
 # $1=info|warn|err
 log_jzdots() (
   local log_prefix level="$1" fmt="$2"; shift 2
@@ -68,31 +93,6 @@ log_jzdots() (
     printf "$log_prefix"' '"$fmt" "$@"
   fi
 )
-
-PS1='\s^$RET  @\t $(vcprompt) \w\n\u@\h   $SHLVL:\$ ' # simple version of below
-if [[ "$TERM" =~ 256color ]];then
-  # vcs and color-aware version of bash prompt:
-  set_fancy_ps1() {
-    local col_end='\[\033[0m\]'
-    local col_red='\[\e[1;31m\]'
-    local col_grn='\[\e[0;32m\]'
-    local col_grnB='\[\e[1;32m\]'
-    local col_ylwB='\[\e[1;33m\]'
-    local col_ylw='\[\e[0;33m\]'
-    local col_blu='\[\e[1;34m\]'
-
-    local col_usr=$col_grn
-    if [[ "$UID" -eq "0" ]];then
-      col_usr=$col_red #root's color
-      alias vcprompt='echo -n' # don't execute `vcprompt`
-    fi
-
-    RET_VALUE='$(if [[ "$RET" -ne 0 ]];then echo -n ":\[\033[1;31m\]$RET\[\033[0m\]";fi)'
-    PS1="${col_usr}\u@${col_end}${col_blu}\h${col_end}${RET_VALUE}"' \[\033[0;32m\]$(vcprompt)\[\033[0m\]'" ${col_ylwB}\w${col_end}\n\t  ${col_grnB}${SHLVL}${col_end}:${col_ylw}\$${col_end} "
-    PS4='+$BASH_SOURCE:$LINENO:$FUNCNAME: '
-  }
-  set_fancy_ps1; unset set_fancy_ps1
-fi
 
 log_jzdots info 'dircolors and other environment variables\n'
 if [[ -r ~/.dircolors ]] && type dircolors >/dev/null 2>&1;then
