@@ -205,8 +205,9 @@ if [[ "${SSH_AUTH_SOCK:-x}" = x ]];then
   log_jzdots warn 'SSH_AUTH_SOCK empty, starting new agent\n'
   eval $(ssh-agent -s)
 fi
+
 for privKey in ~/.ssh/key.*[^pub];do
-  ssh-add -l >/dev/null 2>&1 | grep "${privKey/$HOME\/}" >/dev/null 2>&1 ||
+  ssh-add -l 2>/dev/null | grep "${privKey/$HOME\/}" >/dev/null 2>&1 ||
     ssh-add "$privKey"
 done
 
