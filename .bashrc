@@ -28,6 +28,14 @@ export HISTFILESIZE=20000
 export HISTCONTROL='ignoreboth'
 export HISTSIZE=5000
 
+PROMPT_COMMAND='RET=$?' # see: man bash | less +/PROMPT_COMMAND
+PS1='\s^$RET  @\t \w\n\u@\h   $SHLVL:\$ ' # vcprompt-less version of below
+############################################################################
+# $UID > 0 BELOW THIS LINE
+#   everything above *should* be plain old shell options, nothing executable
+[[ "$UID" -ne "0" ]] || return 0
+############################################################################
+
 # $1=info|warn|err
 log_jzdots() (
   local log_prefix level="$1" fmt="$2"; shift 2
@@ -58,19 +66,6 @@ log_jzdots() (
   fi
 )
 
-if [[ -r ~/.dircolors ]] && type dircolors >/dev/null 2>&1;then
-  eval $(dircolors --bourne-shell ~/.dircolors)
-fi
-
-PROMPT_COMMAND='RET=$?' # see: man bash | less +/PROMPT_COMMAND
-PS1='\s^$RET  @\t \w\n\u@\h   $SHLVL:\$ ' # vcprompt-less version of below
-############################################################################
-# $UID > 0 BELOW THIS LINE
-#   everything above *should* be plain old shell options, nothing executable
-[[ "$UID" -ne "0" ]] || return 0
-############################################################################
-
-
 PS1='\s^$RET  @\t $(vcprompt) \w\n\u@\h   $SHLVL:\$ ' # simple version of below
 # vcs and color-aware version of bash prompt:
 set_fancy_ps1() {
@@ -94,6 +89,10 @@ set_fancy_ps1() {
 }
 set_fancy_ps1; unset set_fancy_ps1
 
+log_jzdots info 'dircolors and other environment variables\n'
+if [[ -r ~/.dircolors ]] && type dircolors >/dev/null 2>&1;then
+  eval $(dircolors --bourne-shell ~/.dircolors)
+fi
 source ~/bin/share/zacsh_exports
 if type systemctl >/dev/null 2>&1;then
   log_jzdots info 'detected systemd, importing environ\n'
