@@ -28,6 +28,30 @@ export HISTFILESIZE=20000
 export HISTCONTROL='ignoreboth'
 export HISTSIZE=5000
 
+# SMALL subset of env. (safe for root); ret is set way down in this file
+export EDITOR=vim
+export DIFF=' up '
+export LESS=' XFR '
+export PAGER=less
+export RLWRAP=' AaN '
+export LESSOPEN='|lesspipe %s'
+
+# tput trick from http://unix.stackexchange.com/a/147
+# ANSI color table: https://en.wikipedia.org/wiki/ANSI_escape_code#Colors
+export LESS_TERMCAP_mb=$(tput bold; tput setaf 2) # green: 2
+export LESS_TERMCAP_md=$(tput bold; tput setaf 1) # cyan: 6
+export LESS_TERMCAP_me=$(tput sgr0)
+export LESS_TERMCAP_so=$(tput bold; tput setaf 3; tput setab 4) # yellow on blue
+export LESS_TERMCAP_se=$(tput rmso; tput sgr0)
+export LESS_TERMCAP_us=$(tput smul; tput bold; tput setaf 7) # white
+export LESS_TERMCAP_ue=$(tput rmul; tput sgr0)
+export LESS_TERMCAP_mr=$(tput rev)
+export LESS_TERMCAP_mh=$(tput dim)
+export LESS_TERMCAP_ZN=$(tput ssubm)
+export LESS_TERMCAP_ZV=$(tput rsubm)
+export LESS_TERMCAP_ZO=$(tput ssupm)
+export LESS_TERMCAP_ZW=$(tput rsupm)
+
 sourceExists /etc/bash_completion
 # autocompletion for man pages
 sourceExists /usr/share/bash-completion/completions/man
