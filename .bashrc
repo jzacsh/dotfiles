@@ -107,15 +107,6 @@ sourceExists ~/.bash_aliases
 log_jzdots info 'walking ~/.host/ forrest...\n'
 source $HOME/.host/pick  # Dynamic config
 
-if [[ "${SSH_AUTH_SOCK:-x}" = x ]];then
-  log_jzdots warn 'SSH_AUTH_SOCK empty, starting new agent\n'
-  eval $(ssh-agent -s)
-fi
-for privKey in ~/.ssh/key.*[^pub];do
-  ssh-add -l >/dev/null 2>&1 | grep "${privKey/$HOME\/}" >/dev/null 2>&1 ||
-    ssh-add "$privKey"
-done
-
 # in my nested tmux shells, my inherited `env` is old
 dbusSessionBusAddress="$(cat ~/.dbus_address 2>/dev/null)"
 if [[ "${dbusSessionBusAddress:-x}" != x ]] &&
@@ -175,6 +166,22 @@ sourceExists ~/.fzf.bash
 #   3) optionally, once: installed vim ocaml things && `opam install ocp-indent`
 sourceExists ~/.opam/opam-init/init.sh
 
+
+################################################################################
+# This section for things that might prompt me, which I might interrupt; if i do
+# then the rest of my ~/.bashrc will not run
+#
+# Therefore anything below this sectino should be a nice-to-have only!
+################################################################################
+
+if [[ "${SSH_AUTH_SOCK:-x}" = x ]];then
+  log_jzdots warn 'SSH_AUTH_SOCK empty, starting new agent\n'
+  eval $(ssh-agent -s)
+fi
+for privKey in ~/.ssh/key.*[^pub];do
+  ssh-add -l >/dev/null 2>&1 | grep "${privKey/$HOME\/}" >/dev/null 2>&1 ||
+    ssh-add "$privKey"
+done
 
 ######################################################
 # Below this line is strictly for messages to myself #
