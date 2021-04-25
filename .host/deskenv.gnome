@@ -7,7 +7,7 @@
 # gsettings is a multiplatform layer atop gconf (dconf replacement) made by the
 # gnome3 project. Not sure gsettings are used by any other desktop environment.
 #
-# Note: dconf editor tool inlines excellent documentation on every setting;
+# Note: dconf-editor tool inlines excellent documentation on every setting;
 # install it just for the easy reading!
 #
 
@@ -19,3 +19,9 @@ gsettings set org.gnome.desktop.input-sources xkb-options "['ctrl:nocaps']"
 # popos tries to change what i'm used to on gnu/linux desktops; switch back to
 # good old alt
 gsettings set org.gnome.desktop.wm.preferences mouse-button-modifier '<Alt>'
+
+# prefer 24-hour time format
+gsettings set org.gnome.desktop.interface clock-format 24h
+
+# yay malware from the 90s
+gsettings set org.gnome.desktop.media-handling autorun-never true
