@@ -184,8 +184,10 @@ for privKey in ~/.ssh/key.*[^pub];do
 done
 
 ######################################################
-# Below this line is strictly for messages to myself #
+# Below this line is strictly for _messages_ to myself
 ######################################################
+
+log_jzdots info 'DONE most of ~/.bashrc; just helpful messages below:\n'
 
 # Highlight currently authenticated keys
 ssh-add -l | grep --color=always --extended-regexp '^|\.ssh\/.*\ '
@@ -205,14 +207,17 @@ fi
 scowerForTmuxSessions() (
   [[ "${TMUX:-x}" = x ]] || return 0 # do not run inside tmux
 
-  local havePrinted=0
+  local firstPrinting=1
   local col_end='\033[0m'; local col_grn='\e[0;32m'
   local commonTmSocks=(default main "${USER}main")
   for sock in "${commonTmSocks[@]}"; do
     local tmSessions="$(tmux -L "$sock" list-sessions 2>/dev/null)"
     [[ "${tmSessions:-x}" != x ]] || continue
 
-    (( havePrinted )) || { havePrinted=1; echo; } # initial padding
+    if (( firstPrinting ));then
+      havePrinted=0
+      log_jzdots info 'found some tmux sessions (rettach via `tmux attach -t NAME`):\n'
+    fi
     printf "tmux -L ${col_grn}%s${col_end} sessions:\n" "$sock"
     printf '%s\n' "$tmSessions" |
         GREP_COLORS='mt=01;33' \grep --color=always '^\w*:'
@@ -241,8 +246,7 @@ if type systemctl >/dev/null 2>&1 &&
     'systemctl --user list-units --state=failed' >&2
 fi
 
-log_jzdots info 'DONE with ~/.bashrc\n'
-
 unset sourceExists
 unset log_jzdots
+
 true # don't assume last return status
