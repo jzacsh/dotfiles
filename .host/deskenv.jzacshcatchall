@@ -1,0 +1,5 @@
+#!/bin/bash
+
+pushd "$HOME"
+ln -sv ~/.config/xmodmaprc ~/.Xmodmap
+popd

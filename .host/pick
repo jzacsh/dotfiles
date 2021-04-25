@@ -9,16 +9,12 @@ is_desktop_env() (
   [[ -n "$DISPLAY" ]] && [[ -n "$DBUS_SESSION_BUS_ADDRESS" ]]
 )
 
+# useful catalog of some env. variables in this space:
+#   https://wiki.archlinux.org/index.php/Environment_variables#Examples
 get_desktop_env() (
   local deEnv="$DE"
   [[ -n "$DE" ]] || deEnv="$DESKTOP_SESSION"
   echo "$deEnv"
-)
-
-# useful catalog of some env. variables in this space:
-#   https://wiki.archlinux.org/index.php/Environment_variables#Examples
-is_known_desktop_env() (
-  is_desktop_env && [[ -n "$(get_desktop_env)" ]]
 )
 
 src_this() {
@@ -58,9 +54,13 @@ src_all() {
     #
     # DE(GUI)-specific configuration
     #
-    if is_known_desktop_env;then
-      deEnv="$(get_desktop_env)"
+    if is_desktop_env;then
       prefix="$dir"/deskenv.
+      deEnv="$(get_desktop_env)"
+
+      # provide a fallback with some basics that are X11 "specific" but not
+      # really DE-specific
+      [[ -n "$deEnv" ]] || deEnv=_jzacshcatchall
       src_this "${prefix}${deEnv}"
     fi
 
