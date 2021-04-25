@@ -111,9 +111,10 @@ if [[ "${SSH_AUTH_SOCK:-x}" = x ]];then
   log_jzdots warn 'SSH_AUTH_SOCK empty, starting new agent\n'
   eval $(ssh-agent -s)
 fi
-if ! ssh-add -l >/dev/null 2>&1; then
-  ssh-add ~/.ssh/key.*[^pub]
-fi
+for privKey in ~/.ssh/key.*[^pub];do
+  ssh-add -l >/dev/null 2>&1 | grep "${privKey/$HOME\/}" >/dev/null 2>&1 ||
+    ssh-add "$privKey"
+done
 
 # in my nested tmux shells, my inherited `env` is old
 dbusSessionBusAddress="$(cat ~/.dbus_address 2>/dev/null)"
