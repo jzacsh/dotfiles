@@ -160,7 +160,6 @@ sourceExists "$HOME/.rvm/scripts/rvm"
 sourceExists ~/.hgbashrc
 
 # autocompletion for man pages
-source /usr/share/bash-completion/bash_completion
 source /usr/share/bash-completion/completions/man
 complete -F _man -- mann
 
