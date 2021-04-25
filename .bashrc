@@ -98,15 +98,18 @@ unset bash_prompt
 
 source ~/bin/share/zacsh_exports
 if type systemctl >/dev/null 2>&1;then
+  log_jzdots info 'detected systemd, importing environ\n'
   systemctl --user import-environment PATH
 fi
+
+log_jzdots info 'sourcing custom ~/.bash_aliases\n'
 sourceExists ~/.bash_aliases
 
 log_jzdots info 'walking ~/.host/ forrest...\n'
 source $HOME/.host/pick  # Dynamic config
-log_jzdots info 'DONE walking ~/.host/ forrest...\n'
 
 if [[ "${SSH_AUTH_SOCK:-x}" = x ]];then
+  log_jzdots warn 'SSH_AUTH_SOCK empty, starting new agent\n'
   eval $(ssh-agent -s)
 fi
 if ! ssh-add -l >/dev/null 2>&1; then
@@ -115,9 +118,21 @@ fi
 
 # in my nested tmux shells, my inherited `env` is old
 dbusSessionBusAddress="$(cat ~/.dbus_address 2>/dev/null)"
-[[ "${dbusSessionBusAddress:-x}" = x ]] ||
+if [[ "${dbusSessionBusAddress:-x}" != x ]] &&
+   [[ "$DBUS_SESSION_BUS_ADDRESS" != "$dbusSessionBusAddress" ]];then
+  if [[ -n "$DBUS_SESSION_BUS_ADDRESS" ]];then
+    log_jzdots warn \
+      'Blowing away _current_ $%s\n\tfrom: "%s"\n\t  to: "%s"\n' \
+      DBUS_SESSION_BUS_ADDRESS \
+      "$DBUS_SESSION_BUS_ADDRESS" "$dbusSessionBusAddress"
+  else
+    log_jzdots info \
+      'resurrecting _some_ old $DBUS_SESSION_BUS_ADDRESS (%s) from ~/.dbus_address\n' \
+      "$dbusSessionBusAddress"
+  fi
   export DBUS_SESSION_BUS_ADDRESS="$dbusSessionBusAddress"
-unset dbusSessionBusAddress
+  unset dbusSessionBusAddress
+fi
 
 # for irssi's notify.pl
 [[ "${DBUS_SESSION_BUS_ADDRESS:-x}" = x ]] ||
@@ -216,9 +231,11 @@ scowerForMail; unset scowerForMail
 if type systemctl >/dev/null 2>&1 &&
   ! (systemctl --user --state=failed | grep -E '^0 loaded units'; ) >/dev/null 2>&1;then
   systemctl --user status
-  printf -- 'Investiaget with: %s\n' \
+  printf -- 'Investigate with: %s\n' \
     'systemctl --user list-units --state=failed' >&2
 fi
+
+log_jzdots info 'DONE with ~/.bashrc\n'
 
 unset sourceExists
 unset log_jzdots
