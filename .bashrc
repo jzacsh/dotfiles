@@ -67,6 +67,8 @@ PS1='\s^$RET  @\t \w\n\u@\h   $SHLVL:\$ ' # vcprompt-less version of below
 
 PS1='\s^$RET  @\t $(vcprompt) \w\n\u@\h   $SHLVL:\$ ' # simple version of below
 if [[ "$TERM" =~ 256color ]];then
+  # TODO: invert hostname if SSH!
+
   # vcs and color-aware version of bash prompt:
   set_fancy_ps1() {
     local col_end='\[\033[0m\]'
