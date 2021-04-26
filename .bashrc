@@ -255,11 +255,11 @@ scowerForTmuxSessions; unset scowerForTmuxSessions
 
 # Print local mail waiting for me
 scowerForMail() (
-  local headers; headers="$(mail -H 2>&1)"
-  if [[ "$?" -eq 0 ]];then
-    log_jzdots err \
-      'Unread local mail for some reason; `mail` to read them:\n%s\n' "$headers"
-  fi
+  local mailSpool=/var/mail/"$(whoami)"
+  [[ -s "$mailSpool" ]] || return 0
+  log_jzdots err \
+    'Unread local mail for some reason (`mail` to delete, manage them)\n%s\n' \
+    "$mailSpool"
 )
 scowerForMail; unset scowerForMail
 
