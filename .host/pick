@@ -27,42 +27,55 @@ src_this() {
 }
 
 src_all() {
-    local prefix dir; dir="$HOME/.host"
+    local distroSuffix hostSuffix deSuffix domainSuffix
 
     #
     # generic distro-specific config
     #
-    prefix="$dir"/distro.
     if [[ -f /etc/arch-release ]]; then
-        src_this "${prefix}arch"
+      distroSuffix=arch
     elif [[ -f /etc/lsb-release ]]; then
-        deb_dist_file=${prefix}$(awk -F'=' '/^DISTRIB_ID/{print tolower($2)}' /etc/lsb-release)
-        src_this "$deb_dist_file"
+      distroSuffix="$(awk -F'=' '/^DISTRIB_ID/{print tolower($2)}' /etc/lsb-release)"
+    elif [[ -f /etc/debian_version ]];then
+      distroSuffix=debian
     fi
 
     #
     # host-specific configuration
     #
-    local hostfile; hostfile="$dir/host.${HOSTNAME/.*/}" #mimic `hostname -s`
-    src_this "$hostfile"
+    hostSuffix="${HOSTNAME/.*/}" #mimic `hostname -s`
 
     #
     # DE(GUI)-specific configuration
     #
     if is_desktop_env;then
-      prefix="$dir"/deskenv.
-      deEnv="$(get_desktop_env)"
+      deSuffix="$(get_desktop_env)"
 
       # provide a fallback with some basics that are X11 "specific" but not
       # really DE-specific
-      [[ -n "$deEnv" ]] || deEnv=_jzacshcatchall
-      src_this "${prefix}${deEnv}"
+      [[ -n "$deSuffix" ]] || deSuffix=_jzacshcatchall
     fi
 
     #
     # domain-specific configuration
     #
-    src_this "$dir/domain.$(hostname --domain)"
+    domainSuffix="$(hostname --domain)"
+
+    #
+    # actually source everything all at once
+    #
+    local dir="$HOME/.host"
+
+    log_jzdots info \
+      '~/.host forest-walk: distro="%s", host="%s", DE="%s" domain="%s"\n' \
+      "$distroSuffix" "$hostSuffix" "${deSuffix:-n/a}" "$domainSuffix"
+
+    src_this "${dir}/distro.${distroSuffix}"
+    src_this "${dir}/host.${hostSuffix}"
+    [[ -z "$deSuffix" ]] ||
+      src_this "${dir}/deskenv.${deSuffix}"
+    [[ -z "$domainSuffix" ]] ||
+      src_this "${dir}/domain.${domainSuffix}"
 }
 
 src_all

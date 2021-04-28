@@ -138,7 +138,6 @@ fi
 log_jzdots info 'sourcing custom ~/.bash_aliases\n'
 sourceExists ~/.bash_aliases
 
-log_jzdots info 'walking ~/.host/ forrest...\n'
 source $HOME/.host/pick  # Dynamic config
 
 # in my nested tmux shells, my inherited `env` is old
