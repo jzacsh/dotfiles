@@ -117,7 +117,7 @@ log_jzdots() (
       ;;
   esac
 
-  log_prefix="${col_start}${log_lvl}${col_end}[~jzacsh/.]"
+  log_prefix="${col_start}${log_lvl}${col_end}[~$(whoami)/.]"
   if (( is_err ));then
     printf -- "$log_prefix"' '"$fmt" "$@" >&2
   else
