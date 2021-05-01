@@ -67,7 +67,12 @@ PS1='\s^$RET  @\t \w\n\u@\h   $SHLVL:\$ ' # vcprompt-less version of below
 
 PS1='\s^$RET  @\t $(vcprompt) \w\n\u@\h   $SHLVL:\$ ' # simple version of below
 if [[ "$TERM" =~ 256color ]];then
-  # TODO: invert hostname if SSH!
+  # TODO: this is ENTIRELy untested!
+  isSshSession=0
+  if [[ -n "$SSH_CLIENT" ]] || [[ -n "$SSH_TTY" ]] ||
+    (ps -o comm= -p "$PPID" | grep -E '(sshd|*/sshd)' >/dev/null 2>&1;) ;then
+    isSshSession=1
+  fi
 
   # vcs and color-aware version of bash prompt:
   set_fancy_ps1() {
@@ -79,6 +84,11 @@ if [[ "$TERM" =~ 256color ]];then
     local col_ylw='\[\e[0;33m\]'
     local col_blu='\[\e[1;34m\]'
 
+    local col_host="$col_blu"
+    if (( isSshSession ));then
+      col_host='\e[0;48;5;196;38;5;232m'
+    fi
+
     local col_usr=$col_grn
     if [[ "$UID" -eq "0" ]];then
       col_usr=$col_red #root's color
@@ -86,7 +96,7 @@ if [[ "$TERM" =~ 256color ]];then
     fi
 
     RET_VALUE='$(if [[ "$RET" -ne 0 ]];then echo -n ":\[\033[1;31m\]$RET\[\033[0m\]";fi)'
-    PS1="${col_usr}\u@${col_end}${col_blu}\h${col_end}${RET_VALUE}"' \[\033[0;32m\]$(vcprompt)\[\033[0m\]'" ${col_ylwB}\w${col_end}\n\t  ${col_grnB}${SHLVL}${col_end}:${col_ylw}\$${col_end} "
+    PS1="${col_usr}\u@${col_end}${col_host}\h${col_end}${RET_VALUE}"' \[\033[0;32m\]$(vcprompt)\[\033[0m\]'" ${col_ylwB}\w${col_end}\n\t  ${col_grnB}${SHLVL}${col_end}:${col_ylw}\$${col_end} "
     PS4='+$BASH_SOURCE:$LINENO:$FUNCNAME: '
   }
   set_fancy_ps1; unset set_fancy_ps1
