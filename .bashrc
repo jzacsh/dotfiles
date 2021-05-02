@@ -213,7 +213,8 @@ sourceExists ~/.opam/opam-init/init.sh
 ################################################################################
 
 if [[ "${SSH_AUTH_SOCK:-x}" = x ]];then
-  log_jzdots warn 'SSH_AUTH_SOCK empty, starting new agent\n'
+  log_jzdots warn \
+    'SSH_AUTH_SOCK="%s" empty, starting new agent\n' "$SSH_AUTH_SOCK"
   eval $(ssh-agent -s)
 fi
 
