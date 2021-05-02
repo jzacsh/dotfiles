@@ -1,7 +1,10 @@
 #!/bin/bash
 #
-# Gnome specific configurations.
+# Gnome/GTK specific configurations.
 
+host_forest_link \
+  ~/.host/common/gtk3-bookmarks \
+  "$HOME"/.config/gtk-3.0/bookmarks
 
 #
 # gsettings is a multiplatform layer atop gconf (dconf replacement) made by the
