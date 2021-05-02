@@ -125,14 +125,45 @@ type ag >/dev/null 2>&1 || ag() (
 #   $ lsb_release --all | pastie # win
 cliMock() ( printf '$ %s\n%s\n\n' "$*" "$(bash -c "$*" 2>&1)"; );
 
+# Set wallpaper in gnome
+#
+# $1=wallpaper image
+# $2=optional picture-options; any of:
+#     none|wallpaper|centered|scaled|stretched|zoom|spanned
+#
+# zero arguments reset all gsettings values
 gnome-background() (
   set -euo pipefail
 
-  local fileUri; printf -v fileUri 'file://%s' "$(readlink -f "$1")"
+  if ! (( $# ));then
+    set -x
+    gsettings reset org.gnome.desktop.background picture-uri
+    gsettings reset org.gnome.desktop.background picture-options
+    return
+  fi
 
-  # found dconf URI in http://askubuntu.com/a/510135/426803
+  local fileUri picOpt="${2:-}"
+  printf -v fileUri 'file://%s' "$(readlink -f "$1")"
+  if (( $# > 1 ));then
+    local validPicOptRegexp='^(wallpaper|centered|scaled|stretched|zoom|spanned)$'
+    if ! [[ "$picOpt" =~ $validPicOptRegexp ]];then
+      printf 'error: got optional picture-option "%s" not matching "%s"\n' \
+        "$picOpt" "$validPicOptRegexp" >&2
+      return 1
+    fi
+  fi
+
+  set -x
   gsettings set org.gnome.desktop.background picture-uri "$fileUri"
+  (( $# == 1 )) ||
+      gsettings set org.gnome.desktop.background picture-options "$picOpt"
+  gsettings set org.gnome.desktop.background primary-color '#000000'
+  gsettings set org.gnome.desktop.background secondary-color '#000000'
+  set +x
+  echo 'done; for more options, see `gsettings list-recursively org.gnome.desktop.background`'
 )
+
+alias gnome_wallpaper='gnome-background'
 
 keyboard() (
 # NOTE: step #1 might not be necessary, perhaps bluez just expects a PIN typed
