@@ -1,1 +1,12 @@
-common/deskenv.gsettings
+#!/bin/bash
+#
+# Gnome desktop environment settings
+
+source ~/.host/common/deskenv.gsettings
+
+#
+# setup "nightlight" - gnome's builtin redshift (bluelight filter)
+# functionality; see:
+#   gsettings list-recursively org.gnome.settings-daemon.plugins.color
+gsettings set org.gnome.settings-daemon.plugins.color night-light-enabled true
+gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-automatic true
