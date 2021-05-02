@@ -128,8 +128,9 @@ cliMock() ( printf '$ %s\n%s\n\n' "$*" "$(bash -c "$*" 2>&1)"; );
 # Set wallpaper in gnome
 #
 # $1=wallpaper image
-# $2=optional picture-options; any of:
+# $2=picture-options; any of:
 #     none|wallpaper|centered|scaled|stretched|zoom|spanned
+# $3=optional bg color as 6 digits of a hex code, else black is used
 #
 # zero arguments reset all gsettings values
 gnome-background() (
@@ -142,23 +143,30 @@ gnome-background() (
     return
   fi
 
-  local fileUri picOpt="${2:-}"
+  local fileUri picOpt="$2" bgColor="${3:-'000000'}"
+
   printf -v fileUri 'file://%s' "$(readlink -f "$1")"
-  if (( $# > 1 ));then
-    local validPicOptRegexp='^(wallpaper|centered|scaled|stretched|zoom|spanned)$'
-    if ! [[ "$picOpt" =~ $validPicOptRegexp ]];then
-      printf 'error: got optional picture-option "%s" not matching "%s"\n' \
-        "$picOpt" "$validPicOptRegexp" >&2
+  local validPicOptRegexp='^(wallpaper|centered|scaled|stretched|zoom|spanned)$'
+  if ! [[ "$picOpt" =~ $validPicOptRegexp ]];then
+    printf 'error: got picture-option "%s" not matching "%s"\n' \
+      "$picOpt" "$validPicOptRegexp" >&2
+    return 1
+  fi
+
+  if (( $# > 2 ));then
+    local validHex='^([[:alnum:]][[:alnum:]][[:alnum:]][[:alnum:]][[:alnum:]][[:alnum:]])$'
+    if ! [[ "$bgColor" =~ $validHex ]];then
+      printf 'error: got optional bg color "%s" not matching regexp for 6 digits\n' \
+        "$bgColor" >&2
       return 1
     fi
   fi
 
   set -x
   gsettings set org.gnome.desktop.background picture-uri "$fileUri"
-  (( $# == 1 )) ||
-      gsettings set org.gnome.desktop.background picture-options "$picOpt"
-  gsettings set org.gnome.desktop.background primary-color '#000000'
-  gsettings set org.gnome.desktop.background secondary-color '#000000'
+  gsettings set org.gnome.desktop.background picture-options "$picOpt"
+  gsettings set org.gnome.desktop.background primary-color "#$bgColor"
+  gsettings set org.gnome.desktop.background secondary-color "#$bgColor"
   set +x
   echo 'done; for more options, see `gsettings list-recursively org.gnome.desktop.background`'
 )
