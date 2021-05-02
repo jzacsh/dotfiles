@@ -212,10 +212,30 @@ sourceExists ~/.opam/opam-init/init.sh
 # Therefore anything below this sectino should be a nice-to-have only!
 ################################################################################
 
+# TODO(UNTESTED) - am i missing my own ~/.ssh/ socket i leave behind for tmux??
 if [[ "${SSH_AUTH_SOCK:-x}" = x ]];then
-  log_jzdots warn \
-    'SSH_AUTH_SOCK="%s" empty, starting new agent\n' "$SSH_AUTH_SOCK"
-  eval $(ssh-agent -s)
+  # TODO(UNTESTED) - document what's going on in answer to above TODO
+  # line
+  # very relevant:
+  #   https://unix.stackexchange.com/a/360309
+  #   https://bugzilla.gnome.org/show_bug.cgi?id=738205#c40
+  if [[ -n "$DISPLAY" ]] &&
+    [[ -n "$DBUS_SESSION_BUS_ADDRESS" ]] &&
+    [[ "$XDG_SESSION_TYPE" = wayland ]] &&
+    [[ -n "${DE:-$DESKTOP_SESSION}" ]] ;then
+      log_jzdots warn \
+        'modern gnome session in use; setting empty SSH_AUTH_SOCK="%s"\n' \
+        "$SSH_AUTH_SOCK"
+    # per https://bugzilla.gnome.org/show_bug.cgi?id=738205#c40
+#   export $(/usr/bin/gnome-keyring-daemon --start)
+    # --components=ssh per /etc/xdg/autostart/gnome-keyring-ssh.desktop
+    export $(/usr/bin/gnome-keyring-daemon --start --components=ssh)
+  else
+    log_jzdots warn \
+      'SSH_AUTH_SOCK="%s" empty, starting new agent\n' "$SSH_AUTH_SOCK"
+    # TODO(UNTESTED) disable temporarily while we figure out why gnome isn't doing this
+#   eval $(ssh-agent -s)
+  fi
 fi
 
 for privKey in ~/.ssh/key.*[^pub];do
