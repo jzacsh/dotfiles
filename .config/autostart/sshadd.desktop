@@ -6,5 +6,4 @@ Comment=ssh-add keys to local ssh agent
 Exec=bash -c 'ssh-add .ssh/key.*[^pub]'
 StartupNotify=true
 Terminal=true
-Hidden=false
-X-GNOME-Autostart-enabled=true
+OnlyShowIn=XFCE
