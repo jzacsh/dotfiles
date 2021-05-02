@@ -6,4 +6,6 @@ Comment=ssh-add keys to local ssh agent
 Exec=bash -c 'ssh-add .ssh/key.*[^pub]'
 StartupNotify=true
 Terminal=true
-OnlyShowIn=XFCE
+# this should have the values that OnlyShowIn= has for a gnome install's
+#     /etc/xdg/autostart/gnome-keyring-ssh.desktop
+NotShowIn=GNOME;Unity;MATE;
