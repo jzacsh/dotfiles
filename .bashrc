@@ -230,7 +230,7 @@ done
 log_jzdots info 'DONE most of ~/.bashrc; just helpful messages below:\n'
 
 # Highlight currently authenticated keys
-ssh-add -l | grep --color=always --extended-regexp '^|\.ssh\/.*\ ' || continue
+ssh-add -l | grep --color=always --extended-regexp '^|\.ssh\/.*\ ' || true
 #NOTE: this should be first, since it always prints
 
 # Users
