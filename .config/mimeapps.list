@@ -1,8 +1,30 @@
 [Default Applications]
 text/plain=nvim.desktop;vim.desktop;gvim.desktop;org.gnome.gedit.desktop
-image/jpeg=feh.desktop
-image/png=feh.desktop
-image/gif=mpv.desktop;feh.desktop
+image/bmp=qview.desktop
+image/gif=qview.desktop
+image/jpeg=qview.desktop
+image/jpg=qview.desktop
+image/pjpeg=qview.desktop
+image/png=qview.desktop
+image/svg+xml=qview.desktop
+image/svg+xml-compressed=qview.desktop
+image/tiff=qview.desktop
+image/vnd.wap.wbmp=qview.desktop
+image/webp=qview.desktop
+image/x-bmp=qview.desktop
+image/x-gray=qview.desktop
+image/x-icb=qview.desktop
+image/x-icns=qview.desktop
+image/x-ico=qview.desktop
+image/x-pcx=qview.desktop
+image/x-png=qview.desktop
+image/x-portable-anymap=qview.desktop
+image/x-portable-bitmap=qview.desktop
+image/x-portable-graymap=qview.desktop
+image/x-portable-pixmap=qview.desktop
+image/x-xbitmap=qview.desktop
+image/x-xpixmap=qview.desktop
+image/gif=mpv.desktop;qview.desktop
 text/html=google-chrome.desktop
 video/mp4=mpv.desktop
 video/ogg=mpv.desktop
@@ -15,3 +37,7 @@ x-scheme-handler/unknown=google-chrome.desktop
 x-scheme-handler/mailto=google-chrome.desktop
 x-scheme-handler/webcal=google-chrome.desktop
 x-scheme-handler/web+tg=google-chrome.desktop
+text/calendar=thunderbird.desktop
+
+[Added Associations]
+text/calendar=thunderbird.desktop;
