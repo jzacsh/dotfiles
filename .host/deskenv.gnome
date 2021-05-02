@@ -8,5 +8,13 @@ source ~/.host/common/deskenv.gsettings
 # setup "nightlight" - gnome's builtin redshift (bluelight filter)
 # functionality; see:
 #   gsettings list-recursively org.gnome.settings-daemon.plugins.color
+#
 gsettings set org.gnome.settings-daemon.plugins.color night-light-enabled true
+
+# because default 'exact' is ridiculous
+gsettings set org.gnome.system.location max-accuracy-level city
+
+ # pre-req for the next one
+gsettings set org.gnome.system.location enabled true
+
 gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-automatic true
