@@ -1,4 +1,9 @@
 #!/bin/bash
 
+for dir in ~/.config/borgmatic/ ~/.config/systemd/user/; do
+  [[ -d "$dir" ]] || mkdir -vp "$dir"
+done
+
+host_forest_link ~/.host/src/host.wajinru/borgmatic-config.yaml ~/.config/borgmatic/config.yaml
 host_forest_link ~/.host/src/host.wajinru/borgmatic.service ~/.config/systemd/user/
 host_forest_link ~/.host/src/host.wajinru/borgmatic.timer   ~/.config/systemd/user/
