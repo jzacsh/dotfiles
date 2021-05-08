@@ -1,0 +1,4 @@
+#!/bin/bash
+
+host_forest_link ~/.host/src/host.wajinru/borgmatic.service ~/.config/systemd/user/
+host_forest_link ~/.host/src/host.wajinru/borgmatic.timer   ~/.config/systemd/user/

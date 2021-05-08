@@ -40,7 +40,7 @@ host_forest_link() {
   if [[ -s "$landing" ]];then
     backup="$(mktemp --tmpdir=  'host_forest_link_XXXXXXXX.backup')"
     cp -v "$landing" "$backup"
-    log_jzdots warn 'overwriting %s, backup is at %s\n' \
+    log_jzdots warn 'overwriting target at %s, backup is at %s\n' \
       "$landing" "$backup" >&2
   fi
   ln -svf "$dotFile" "$landing"
