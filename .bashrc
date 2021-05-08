@@ -67,10 +67,9 @@ PS1='\s^$RET  @\t \w\n\u@\h   $SHLVL:\$ ' # vcprompt-less version of below
 
 PS1='\s^$RET  @\t $(vcprompt) \w\n\u@\h   $SHLVL:\$ ' # simple version of below
 if [[ "$TERM" =~ 256color ]];then
-  # TODO: this is ENTIRELy untested!
   isSshSession=0
   if [[ -n "$SSH_CLIENT" ]] || [[ -n "$SSH_TTY" ]] ||
-    (ps -o comm= -p "$PPID" | grep -E '(sshd|*/sshd)' >/dev/null 2>&1;) ;then
+    (ps -o comm= -p "$PPID" | grep -E '(sshd|*/sshd)' >/dev/null 2>&1;);then
     isSshSession=1
   fi
 
