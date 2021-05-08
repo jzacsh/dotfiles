@@ -14,7 +14,7 @@ LockPersonality=true
 # Certain borgmatic features like Healthchecks integration need MemoryDenyWriteExecute to be off.
 # But you can try setting it to "yes" for improved security if you don't use those features.
 
-#same erorr as github.com/systemd/systemd/issues/4959 if below is used
+# same erorr as github.com/systemd/systemd/issues/4959 if below is used
 #
 #MemoryDenyWriteExecute=no
 #NoNewPrivileges=yes
@@ -23,7 +23,7 @@ LockPersonality=true
 # github.com/systemd/systemd/issues/4959 claims this is all that's wrong:
 #ProtectKernelModules=yes
 #
-#same erorr as github.com/systemd/systemd/issues/4959 if above is used
+# same erorr as github.com/systemd/systemd/issues/4959 if above is used
 
 #ProtectControlGroups=yes
 # jzacsh@ commented out; debian 10.9 systemd doesn't recognize this
@@ -53,6 +53,7 @@ SystemCallErrorNumber=EPERM
 ProtectSystem=strict
 ReadWritePaths=-/backup/user/jzacsh/vorta-local
 
+# same erorr as github.com/systemd/systemd/issues/4959 if used
 #CapabilityBoundingSet=CAP_DAC_READ_SEARCH CAP_NET_RAW
 
 # Lower CPU and I/O priority.
@@ -71,4 +72,3 @@ LogRateLimitIntervalSec=0
 # dbus-user-session to be installed.
 ExecStartPre=sleep 1m
 ExecStart=systemd-inhibit --who="borgmatic" --why="Prevent interrupting scheduled backup" %h/.local/bin/borgmatic --syslog-verbosity 1
-#ExecStart=systemd-inhibit --who="borgmatic" --why="Prevent interrupting scheduled backup" /home/jzacsh/.local/bin/borgmatic --syslog-verbosity 1
