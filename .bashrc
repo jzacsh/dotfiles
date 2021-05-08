@@ -302,6 +302,13 @@ if type systemctl >/dev/null 2>&1 &&
     'systemctl --user list-units --state=failed' >&2
 fi
 
+# just once, as i typically only one terminal and the rest is tmux window/pane shells
+if [[ "$SHLVL" -eq 1 ]];then
+  if type neofetch >/dev/null 2>&1;then
+    neofetch
+  fi
+fi
+
 unset sourceExists
 unset log_jzdots
 
