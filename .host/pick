@@ -36,6 +36,7 @@ src_this() {
 host_forest_link() {
   local dotFile="$1" landing="$2"
   if [[ -L "$landing" ]];then return; fi
+  if [[ -d "$landing" && -L "$landing"/"$(basename "$dotFile")" ]]; then return;fi
 
   if [[ -s "$landing" ]];then
     backup="$(mktemp --tmpdir=  'host_forest_link_XXXXXXXX.backup')"
