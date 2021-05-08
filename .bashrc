@@ -186,9 +186,6 @@ done
 # AWS's CLI completion provided via pip installer
 sourceExists ~/.local/bin/aws_bash_completer
 
-#must be after PATH:, apparently this will break if non-interactive shell `return`'s above.
-sourceExists "$HOME/.rvm/scripts/rvm"
-
 sourceExists ~/.hgbashrc
 
 if type pip >/dev/null 2>&1; then
@@ -203,6 +200,10 @@ sourceExists ~/.fzf.bash
 #   3) optionally, once: installed vim ocaml things && `opam install ocp-indent`
 sourceExists ~/.opam/opam-init/init.sh
 
+# need `rbenv init` github.com/rbenv/rbenv#using-package-managers
+if type rbenv >/dev/null 2>&1;then
+  eval "$(rbenv init -)"
+fi
 
 ################################################################################
 # This section for things that might prompt me, which I might interrupt; if i do
