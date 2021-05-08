@@ -88,9 +88,9 @@ if [[ "$TERM" =~ 256color ]];then
       col_host='\e[0;48;5;196;38;5;232m'
     fi
 
-    local col_usr=$col_grn
+    local col_usr="$col_grn"
     if [[ "$UID" -eq "0" ]];then
-      col_usr=$col_red #root's color
+      col_usr="$col_red" #root's color
       alias vcprompt='echo -n' # don't execute `vcprompt`
     fi
 
