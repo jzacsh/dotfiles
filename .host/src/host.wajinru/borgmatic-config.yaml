@@ -325,6 +325,7 @@ consistency:
 # prevent potential shell injection or privilege escalation.
 hooks:
     before_backup:
+        - /home/jzacsh/bin/share/is_power_sufficient 24
         - echo "`date --iso-8601=ns` - Starting backup"
 
     after_backup:

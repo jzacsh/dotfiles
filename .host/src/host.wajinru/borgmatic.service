@@ -2,8 +2,9 @@
 Description=borgmatic backup
 Wants=network-online.target
 After=network-online.target
-# TODO: put _some_ critical-low-power check in place
-#   https://projects.torsion.org/witten/borgmatic/issues/419
+# Purposely disabled in favor of custom "before_backup" borgmatic hook added
+# after this discussion:
+#   https://projects.torsion.org/witten/borgmatic/issues/419#issuecomment-3410
 #ConditionACPower=true
 
 [Service]
