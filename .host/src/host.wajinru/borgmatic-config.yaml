@@ -327,9 +327,11 @@ hooks:
     before_backup:
         - /home/jzacsh/bin/share/is_power_sufficient 24
         - echo "`date --iso-8601=ns` - Starting backup"
+        - notify-send  'backing up $HOME'
 
     after_backup:
         - echo "`date --iso-8601=ns` - Finished backup"
+        - notify-send  'backup done of $HOME'
 
     # List of one or more shell commands or scripts to execute
     # before creating a backup, run once per configuration file.
