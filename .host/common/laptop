@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
-display-external advisory
+if is_desktop_env; then
+  # TODO(jzacsh) consider deleting this ~/bin/share xrandr helper; probably not
+  # necessary anymore with modern DE polish like gnome's.
+  display-external advisory
+fi
 
 true

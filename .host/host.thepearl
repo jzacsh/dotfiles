@@ -4,3 +4,5 @@
 if is_desktop_env; then
   host_forest_link ~/.host/src/host.thepearl/.Xdefaults ~/
 fi
+
+source ~/.host/common/laptop

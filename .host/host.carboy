@@ -5,7 +5,6 @@ if is_desktop_env; then
   host_forest_link ~/.host/src/host.carboy/.Xdefaults ~/
 fi
 
-
 source ~/.host/common/laptop
 
 # vim: et:ts=2:sw=2
