@@ -6,6 +6,7 @@
 .vim/ruby/command-t/*.so
 .vim/ruby/command-t/Makefile
 .vim/ruby/command-t/mkmf.log
+.vim/spell
 .w3m/w3m*
 .w3m/history
 .w3m/mailcap
