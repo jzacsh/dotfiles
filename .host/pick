@@ -26,6 +26,8 @@ src_this() {
   source "$target"
 }
 
+is_same_file() ( [[ "$(readlink --canonicalize "$1")" = "$(readlink --canonicalize "$2")" ]]; )
+
 # Ensures a personal dotfile ($1) is used in your system, where you expect ($2).
 #
 # Ultimately equivalent to `ln -svf "$1" "$2"`
@@ -33,19 +35,26 @@ src_this() {
 # $1 = path to a tracked file in the dotfile forest
 # $2 = path to a file somewhere on your system you want to ensure is _actually_
 #      just a symlink to $1
-host_forest_link() {
-  local dotFile="$1" landing="$2"
-  if [[ -L "$landing" ]];then return; fi
-  if [[ -d "$landing" && -L "$landing"/"$(basename "$dotFile")" ]]; then return;fi
+host_forest_link() (
+  local dotFile="$1" landing="$2" implied="$landing"
+
+  if [[ -L "$landing" ]] && is_same_file "$dotFile" "$landing"; then
+    return
+  elif [[ -d "$landing" ]]; then
+    implied="${landing%/}"/"$(basename "$dotFile")"
+    if is_same_file "$dotFile" "$implied"; then
+      return
+    fi
+  fi
 
   if [[ -s "$landing" ]];then
-    backup="$(mktemp --tmpdir=  'host_forest_link_XXXXXXXX.backup')"
-    cp -v "$landing" "$backup"
+    local backup="$(mktemp --tmpdir=  'host_forest_link_XXXXXXXX.backup')"
+    cp -d -v "$implied" "$backup"
     log_jzdots warn 'overwriting target at %s, backup is at %s\n' \
-      "$landing" "$backup" >&2
+      "$implied" "$backup" >&2
   fi
   ln -svf "$dotFile" "$landing"
-}
+)
 # TODO replace all `ln -svf` lines with `host_forest_link` usage
 
 src_all() {
@@ -101,4 +110,4 @@ src_all() {
 }
 
 src_all
-unset src_all src_this
+unset src_all src_this is_desktop_env get_desktop_env host_forest_link is_same_file
