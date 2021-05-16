@@ -55,7 +55,6 @@ host_forest_link() (
   fi
   ln -svf "$dotFile" "$landing"
 )
-# TODO replace all `ln -svf` lines with `host_forest_link` usage
 
 src_all() {
     local distroSuffix hostSuffix deSuffix domainSuffix

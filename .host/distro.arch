@@ -133,7 +133,9 @@ check_shutdowns() {
 check_shutdowns
 
 #host-specific configs:
-ln -sf ~/.host/src/distro.arch/.gtkrc-2.0.mine ~/
-ln -sf ~/.host/src/distro.arch/.tmux.conf ~/
+if is_desktop_env; then
+    host_forest_link ~/.host/src/distro.arch/.gtkrc-2.0.mine ~/
+fi
+host_forest_link ~/.host/src/distro.arch/.tmux.conf ~/
 
 # vim: et:ts=4:sw=4

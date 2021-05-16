@@ -4,6 +4,8 @@ unalias goh
 alias m='mutt'
 unset wfls wfon wfnp
 
-ln -sf ~/.host/src/host.blackbox/.Xdefaults ~/
+if is_desktop_env; then
+  host_forest_link ~/.host/src/host.blackbox/.Xdefaults ~/
+fi
 
 # vim: et:ts=2:sw=2

@@ -2,6 +2,6 @@
 
 source ~/.host/distro.debian
 
-ln -sf ~/.host/src/distro.ubuntu/.pbuilderrc ~/
+host_forest_link ~/.host/src/distro.ubuntu/.pbuilderrc ~/
 
 # vim: et:ts=2:sw=2

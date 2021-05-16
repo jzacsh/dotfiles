@@ -1,5 +1,7 @@
 #!/bin/bash
 
 pushd "$HOME"
-ln -sv ~/.config/xmodmaprc ~/.Xmodmap
+if is_desktop_env; then
+  host_forest_link ~/.config/xmodmaprc ~/.Xmodmap
+fi
 popd

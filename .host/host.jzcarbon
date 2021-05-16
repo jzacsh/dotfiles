@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-ln -sf ~/.host/src/host.jzcarbon/.tmux.conf ~/
+host_forest_link ~/.host/src/host.jzcarbon/.tmux.conf ~/
 
 startDropboxDaemon() {
   local daemonPid daemonLogFile daemonStartedMsg

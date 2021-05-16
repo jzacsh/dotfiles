@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
 
 #specific configs:
-ln -sf ~/.host/src/host.thepearl/.Xdefaults ~/
+if is_desktop_env; then
+  host_forest_link ~/.host/src/host.thepearl/.Xdefaults ~/
+fi
