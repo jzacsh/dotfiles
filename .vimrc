@@ -59,6 +59,10 @@ set laststatus=2
 set statusline=%t%(\ [buf:\ %n%M]%)%(\ %H%R%W%)\ %L\ lines\ \|\ scroll:\ %P\ \|\ [cursor]\ %(col:\ %c,\ byte:\ #%o,\ val:\ %b=0x%B%)
 set hidden
 
+" enable spellchecking; `:setlocal spell` to trigger
+set spelllang=en_us
+set spell
+
 " too annoying:
 """"""""""""""
 " enables mouse for any of mode:
