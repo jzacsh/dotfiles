@@ -7,3 +7,7 @@ done
 host_forest_link ~/.host/src/host.wajinru/borgmatic-config.yaml ~/.config/borgmatic/config.yaml
 host_forest_link ~/.host/src/host.wajinru/borgmatic.service ~/.config/systemd/user/
 host_forest_link ~/.host/src/host.wajinru/borgmatic.timer   ~/.config/systemd/user/
+
+if is_desktop_env; then
+  host_forest_link ~/.host/src/host.wajinru/.Xdefaults  ~/
+fi
