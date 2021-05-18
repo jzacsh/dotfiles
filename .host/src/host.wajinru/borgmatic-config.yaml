@@ -84,7 +84,7 @@ location:
     # Globs and tildes are expanded. See the output of "borg help
     # patterns" for more details.
     exclude_patterns:
-        - ~/.thunderbird
+        - ~/tmp/
 
     # Read exclude patterns from one or more separate named files,
     # one pattern per line. See the output of "borg help patterns"
