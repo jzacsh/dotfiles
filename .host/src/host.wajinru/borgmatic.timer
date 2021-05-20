@@ -4,7 +4,7 @@ Description=Scheduler of borgmatic backups
 # https://www.freedesktop.org/software/systemd/man/systemd.timer.html#OnCalendar=
 # https://www.freedesktop.org/software/systemd/man/systemd.time.html#Calendar%20Events
 [Timer]
-OnCalendar=00:39
+OnCalendar=*-*-* *:39:32
 Persistent=true
 
 [Install]
