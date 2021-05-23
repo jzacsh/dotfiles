@@ -16,8 +16,8 @@ location:
     # is used, then add local repository paths in the systemd
     # service file to the ReadWritePaths list.
     repositories:
-        - v240632r@v240632r.repo.borgbase.com:repo
         - /backup/user/jzacsh/vorta-local
+        - v240632r@v240632r.repo.borgbase.com:repo
 
     # Stay in same file system (do not cross mount points).
     # Defaults to false. But when a database hook is used, the
