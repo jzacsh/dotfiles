@@ -1,10 +1,20 @@
 [Unit]
 Description=Scheduler of borgmatic backups
 
+# Test with `systemctl --user list-timers`
 # https://www.freedesktop.org/software/systemd/man/systemd.timer.html#OnCalendar=
 # https://www.freedesktop.org/software/systemd/man/systemd.time.html#Calendar%20Events
 [Timer]
-OnCalendar=*-*-* *:39:32
+# hourly at the 39th minute:
+#OnCalendar=*-*-* *:39:32
+#
+#   > Values may be suffixed with "/" and a repetition value, which indicates
+#   > that the value itself and the value plus all multiples of the repetition
+#   > value are matched.
+#   -- https://www.freedesktop.org/software/systemd/man/systemd.time.html#Calendar%20Events
+# every 4 hours:
+OnCalendar=*-*-* 00/3:27
+
 Persistent=true
 
 [Install]
