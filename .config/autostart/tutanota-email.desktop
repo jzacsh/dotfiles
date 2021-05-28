@@ -1,0 +1,7 @@
+[Desktop Entry]
+Comment=Tutanota Desktop Email Client
+Name=tutanota
+Type=Application
+Exec=/home/jzacsh/bin/local/tutanota-email
+Hidden=false
+
