@@ -17,6 +17,13 @@ URxvt.scrollBar:false
 URxvt.saveLines:5000
 URxvt.cursorColor:#83C048
 URxvt.highlightColor:#4e4e4e
+
+! Fonts I've liked:
+! - a) 'Go Mono' is a nice serif font
+! - b) 'bitstream vera sans mono' is nice sans serif
+! - c) 'ubuntu mono' is an even softr sans than (b)
+!
+! FYI: test fonts quickly with: `urxvt -fn 'xft:NimbusMonoL...'`
 !temporary fix:
 URxvt.font: -*-terminus-*-*-*-*-12-*-*-*-*-*-*-*
 !URxvt.font: xft:DroidSansMono:pixelsize=10

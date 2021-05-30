@@ -18,6 +18,11 @@ URxvt.cursorColor:#83C048
 URxvt.highlightColor:#4e4e4e
 URxvt.geometry: 180x70
 
+! Fonts I've liked:
+! - a) 'Go Mono' is a nice serif font
+! - b) 'bitstream vera sans mono' is nice sans serif
+! - c) 'ubuntu mono' is an even softr sans than (b)
+!
 ! FYI: test fonts quickly with: `urxvt -fn 'xft:NimbusMonoL...'`
 URxvt.font: xft:Go Mono:pixelsize=10
 URxvt.boldFont: xft:Go Mono:pixelsize=10:bold
