@@ -45,8 +45,10 @@ gsettings set org.gnome.gedit.preferences.editor bracket-matching true
 gsettings set org.gnome.gedit.preferences.editor scheme oblivion
 gsettings set org.gnome.gedit.preferences.editor display-line-numbers true
 gsettings set org.gnome.gedit.preferences.editor insert-spaces true
-gsettings set org.gnome.gedit.preferences.editor right-margin-position uint32 80
-gsettings set org.gnome.gedit.preferences.editor tabs-size uint32 4
+gsettings set org.gnome.gedit.preferences.editor right-margin-position \
+  'uint32 80'
+gsettings set org.gnome.gedit.preferences.editor tabs-size \
+  'uint32 4'
 gsettings set org.gnome.gedit.preferences.editor use-default-font true
 gsettings set org.gnome.gedit.preferences.editor auto-indent true
 gsettings set org.gnome.gedit.preferences.editor syntax-highlighting true
