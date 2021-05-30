@@ -35,10 +35,14 @@ x-scheme-handler/http=google-chrome.desktop
 x-scheme-handler/https=google-chrome.desktop
 x-scheme-handler/about=google-chrome.desktop
 x-scheme-handler/unknown=google-chrome.desktop
-x-scheme-handler/mailto=google-chrome.desktop
+x-scheme-handler/mailto=userapp-Thunderbird-JCTZ30.desktop
 x-scheme-handler/webcal=google-chrome.desktop
 x-scheme-handler/web+tg=google-chrome.desktop
 text/calendar=thunderbird.desktop
+message/rfc822=userapp-Thunderbird-JCTZ30.desktop
 
 [Added Associations]
 text/calendar=thunderbird.desktop;
+image/jpeg=gimp.desktop;qview.desktop;
+x-scheme-handler/mailto=userapp-Thunderbird-JCTZ30.desktop;
+message/rfc822=userapp-Thunderbird-JCTZ30.desktop;
