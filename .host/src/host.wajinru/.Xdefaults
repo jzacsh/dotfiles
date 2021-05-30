@@ -24,8 +24,8 @@ URxvt.geometry: 180x70
 ! - c) 'ubuntu mono' is an even softr sans than (b)
 !
 ! FYI: test fonts quickly with: `urxvt -fn 'xft:NimbusMonoL...'`
-URxvt.font: xft:Go Mono:pixelsize=10
-URxvt.boldFont: xft:Go Mono:pixelsize=10:bold
+URxvt.font: xft:ubuntu mono:pixelsize=14
+URxvt.boldFont: xft:ubuntu mono:pixelsize=14:bold
 URxvt.loginshell: true
 URxvt.internalborder: 0
 URxvt.underlinecolor: #999999
