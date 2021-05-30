@@ -1,5 +1,23 @@
 #!/bin/bash
 
+forest_runtime_dir="$XDG_RUNTIME_DIR"/"$(whoami)".dotfiles.management.d
+
+# help ensure dotfiles for task "$1" only run once per boot
+has_run_forest() (
+  set -eou pipefail
+  mkdir -p "$forest_runtime_dir"
+
+  local dots_subset="$1"
+  local has_run_semaphore="$forest_runtime_dir"/"$dots_subset"
+  if [[ -r "$has_run_semaphore" ]]; then
+    return 0 # _has_ run
+  else
+    log_jzdots warn \
+      'dotfile forest not yet run for "%s", running now...\n' "$dots_subset"
+    date --iso-8601=ns > "$has_run_semaphore"
+    return 1 # has _not_ run
+  fi
+)
 
 # TODO this is still experimental; no idea if DBUS_SESSION_BUS_ADDRESS is
 # really a reliable signal; not sure _which_ signals are really reliable.
@@ -97,16 +115,20 @@ src_all() {
     local dir="$HOME/.host"
 
     log_jzdots info \
-      '~/.host forest-walk: distro="%s", host="%s", DE="%s" domain="%s"\n' \
-      "$distroSuffix" "$hostSuffix" "${deSuffix:-n/a}" "$domainSuffix"
+      '~/.host forest-walk (dir="%s"): distro="%s", host="%s", DE="%s" domain="%s"\n' \
+       "$forest_runtime_dir" \
+       "$distroSuffix" "$hostSuffix" \
+       "${deSuffix:-n/a}" "${domainSuffix:-n/a}"
 
-    src_this "${dir}/distro.${distroSuffix}"
-    src_this "${dir}/host.${hostSuffix}"
-    [[ -z "$deSuffix" ]] ||
+    has_run_forest distro ||
+      src_this "${dir}/distro.${distroSuffix}"
+    has_run_forest host ||
+      src_this "${dir}/host.${hostSuffix}"
+    { [[ -z "$deSuffix" ]] || has_run_forest deskenv; } ||
       src_this "${dir}/deskenv.${deSuffix}"
-    [[ -z "$domainSuffix" ]] ||
+    { [[ -z "$domainSuffix" ]] || has_run_forest domain; } ||
       src_this "${dir}/domain.${domainSuffix}"
 }
 
 src_all
-unset src_all src_this is_desktop_env get_desktop_env host_forest_link is_same_file
+unset src_all src_this has_run_forest forest_runtime_dir is_desktop_env get_desktop_env host_forest_link is_same_file
