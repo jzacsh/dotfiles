@@ -28,3 +28,35 @@ gsettings set org.gnome.desktop.interface clock-format 24h
 
 # yay malware from the 90s
 gsettings set org.gnome.desktop.media-handling autorun-never true
+
+#
+# gedit editor settings
+#
+gsettings set org.gnome.gedit.preferences.ui statusbar-visible true
+gsettings set org.gnome.gedit.preferences.ui side-panel-visible false
+gsettings set org.gnome.gedit.preferences.ui toolbar-visible true
+gsettings set org.gnome.gedit.preferences.editor wrap-mode word
+gsettings set org.gnome.gedit.preferences.editor display-right-margin true
+gsettings set org.gnome.gedit.preferences.editor highlight-current-line true
+gsettings set org.gnome.gedit.preferences.editor search-highlighting true
+gsettings set org.gnome.gedit.preferences.editor display-overview-map true
+gsettings set org.gnome.gedit.preferences.editor restore-cursor-position true
+gsettings set org.gnome.gedit.preferences.editor bracket-matching true
+gsettings set org.gnome.gedit.preferences.editor scheme oblivion
+gsettings set org.gnome.gedit.preferences.editor display-line-numbers true
+gsettings set org.gnome.gedit.preferences.editor insert-spaces true
+gsettings set org.gnome.gedit.preferences.editor right-margin-position uint32 80
+gsettings set org.gnome.gedit.preferences.editor tabs-size uint32 4
+gsettings set org.gnome.gedit.preferences.editor use-default-font true
+gsettings set org.gnome.gedit.preferences.editor auto-indent true
+gsettings set org.gnome.gedit.preferences.editor syntax-highlighting true
+
+# plugin choices:
+gsettings set org.gnome.gedit.plugins active-plugins \
+  "['docinfo', 'spell', 'time', 'modelines', 'git', 'filebrowser']"
+
+# "time" plugin preferences:
+gsettings set org.gnome.gedit.plugins.time selected-format '%c'
+gsettings set org.gnome.gedit.plugins.time prompt-type 'prompt-selected-format'
+#equivalent to `date --iso-8601=s`
+gsettings set org.gnome.gedit.plugins.time custom-format '%Y-%m-%dT%H:%M:%S%:z'
