@@ -1,5 +1,6 @@
 [Default Applications]
 text/plain=nvim.desktop;vim.desktop;gvim.desktop;org.gnome.gedit.desktop
+text/markdown=nvim.desktop;vim.desktop;gvim.desktop;org.gnome.gedit.desktop
 image/bmp=qview.desktop
 image/gif=qview.desktop
 image/jpeg=qview.desktop
