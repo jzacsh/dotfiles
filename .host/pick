@@ -12,7 +12,7 @@ has_run_forest() (
   if [[ -r "$has_run_semaphore" ]]; then
     return 0 # _has_ run
   else
-    log_jzdots warn \
+    log_jzdots info \
       'dotfile forest not yet run for "%s", running now...\n' "$dots_subset"
     date --iso-8601=ns > "$has_run_semaphore"
     return 1 # has _not_ run

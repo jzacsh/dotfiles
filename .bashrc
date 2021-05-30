@@ -276,7 +276,7 @@ scowerForTmuxSessions() (
 
     if (( firstPrinting ));then
       havePrinted=0
-      log_jzdots info 'found some tmux sessions (rettach via `tmux attach -t NAME`):\n'
+      log_jzdots warn 'found some tmux sessions (rettach via `tmux attach -t NAME`):\n'
     fi
     printf "tmux -L ${col_grn}%s${col_end} sessions:\n" "$sock"
     printf '%s\n' "$tmSessions" |
@@ -298,9 +298,9 @@ scowerForMail; unset scowerForMail
 # notify myself when degrated state
 if type systemctl >/dev/null 2>&1 &&
   ! (systemctl --user --state=failed | grep -E '^0 loaded units'; ) >/dev/null 2>&1;then
-  systemctl --user status
-  log_jzdots warn 'systemctl failures above; investigate with:\n\t%s\n' \
-    'systemctl --user list-units --state=failed' >&2
+  log_jzdots err 'systemctl failures above; investigate with:\n\t%s # %s\n' \
+    'systemctl --user list-units --state=failed' \
+    '`systemctl --user status` for an overall report' >&2
 fi
 
 # just once, as i typically only one terminal and the rest is tmux window/pane shells
