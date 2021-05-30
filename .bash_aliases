@@ -101,6 +101,11 @@ zpdf() ( zathura "$1" >/dev/null 2>&1 & disown; )
 # bump font on the fly; from https://bbs.archlinux.org/viewtopic.php?id=44121
 urxvtc_font() { printf '\33]50;%s%d\007' "xft:Terminus:pixelsize=" $1; }
 
+xdg-query() (
+  set -x
+  xdg-mime query default "$(xdg-mime query filetype "$1")"
+)
+
 # (nice defaults) silversearcher-style; assume i want to grep all local files
 type ag >/dev/null 2>&1 || ag() (
   (( $# )) || { printf 'usage: REGEXP [FILE|DIR]\n' >&2; return 1; }
