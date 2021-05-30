@@ -176,7 +176,7 @@ unset dbusSessionBusAddress
 # widely standard.
 ############################################################################
 
-[[ ! -e ~/.config/bash_completion.d/npm-run-completion.sh ]] &&
+[[ -e ~/.config/bash_completion.d/npm-run-completion.sh ]] ||
   npm completion > ~/.config/bash_completion.d/npm-run-completion.sh
 
 for completion in ~/.config/bash_completion.d/*.sh; do
@@ -310,7 +310,6 @@ if [[ "$SHLVL" -eq 1 ]];then
   fi
 fi
 
-unset sourceExists
-unset log_jzdots
+unset sourceExists log_jzdots
 
 true # don't assume last return status
