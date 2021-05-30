@@ -12,8 +12,8 @@ Description=Scheduler of borgmatic backups
 #   > that the value itself and the value plus all multiples of the repetition
 #   > value are matched.
 #   -- https://www.freedesktop.org/software/systemd/man/systemd.time.html#Calendar%20Events
-# every 4 hours:
-OnCalendar=*-*-* 00/3:27
+# every 6 hours:
+OnCalendar=*-*-* 00/6:27
 
 Persistent=true
 
