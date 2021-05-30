@@ -44,11 +44,13 @@ src_this() {
   source "$target"
 }
 
+is_same_content() ( diff "$1" "$2" >/dev/null 2>&1; )
 is_same_file() ( [[ "$(readlink --canonicalize "$1")" = "$(readlink --canonicalize "$2")" ]]; )
 
 # Ensures a personal dotfile ($1) is used in your system, where you expect ($2).
 #
-# Ultimately equivalent to `ln -svf "$1" "$2"`
+# Ultimately equivalent to `ln -svf "$1" "$2"`. This is utilized by various
+# scripts called under `src_all`.
 #
 # $1 = path to a tracked file in the dotfile forest
 # $2 = path to a file somewhere on your system you want to ensure is _actually_
@@ -65,11 +67,11 @@ host_forest_link() (
     fi
   fi
 
-  if [[ -s "$landing" ]];then
+  if [[ -s "$implied" ]] && ! is_same_content "$dotFile" "$implied";then
     local backup="$(mktemp --tmpdir=  'host_forest_link_XXXXXXXX.backup')"
-    cp -d -v "$implied" "$backup"
     log_jzdots warn 'overwriting target at %s, backup is at %s\n' \
       "$implied" "$backup" >&2
+    cp -d -v "$implied" "$backup"
   fi
   ln -svf "$dotFile" "$landing"
 )
