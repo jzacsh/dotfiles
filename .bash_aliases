@@ -460,11 +460,19 @@ tmp_encrypt_mail() (
 #
 # $1 = keyword
 #    Some human-readable phrase that will be memorable/identifiable later.
+# $2 = type
+#    Either "build" to indicate these are potentially very large files we
+#    _likely_ don't want backed up, or any other string (e.g. "scrap") to
+#    indicate it's just discard files, but we're not necessarily creating an
+#    explosion in disk space usage.
 mkScratchDir() (
   set -euo pipefail
   local keyword="${1:-scratch}"
+  local scratchType="${2:-build}"
 
   local tmpDir=~/tmp/build/
+  [[ "$scratchType" = build ]] || tmpDir="$(xdg-user-dir DOCUMENTS)"/scraps
+  mkdir -vp "$tmpDir" >&2
 
   # eg: "20210531T14.46-0500" for "Mon 31 May 2021 02:46:40 PM CDT"
   local when; when="$(date +'%Y%m%dT%H.%M%z')"
@@ -481,7 +489,8 @@ mkScratchDir() (
 
   printf '%s\n' "$newTmpDir"
 )
-scratchDir() { pushd "$(mkScratchDir $@)"; }
+scrap_dir() { pushd "$(mkScratchDir "${1:-nolabel}" scraps)"; }
+build_dir() { pushd "$(mkScratchDir "${1:-nolabel}" build)"; }
 
 vid_get_duration() (
   avconv -i "$1" 2>&1 |
