@@ -461,15 +461,13 @@ tmp_encrypt_mail() (
 # $1 = keyword
 #    Some human-readable phrase that will be memorable/identifiable later.
 mkScratchDir() (
+  set -euo pipefail
   local keyword="${1:-scratch}"
 
   local tmpDir=~/tmp/build/
 
-  local when
-  when="$(
-    date --iso-8601=minutes |
-      sed -e 's|:|.|g' -e 's|-||g'
-  )"
+  # eg: "20210531T14.46-0500" for "Mon 31 May 2021 02:46:40 PM CDT"
+  local when; when="$(date +'%Y%m%dT%H.%M%z')"
 
   local mktempTemplate
   mktempTemplate="${when}_$(whoami)_${keyword}-dir_XXXXXXXX"
