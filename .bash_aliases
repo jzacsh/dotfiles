@@ -454,6 +454,12 @@ tmp_encrypt_mail() (
   gpg --sign --armor $recipArgs --encrypt "$msgF"
 )
 
+# Thin wrapper for mktemp(1) to quickly create a directory with a memorable
+# phrase and prefixed with the current date and time, so the likelihood of
+# identifying what the directory is _much later_ is greater.
+#
+# $1 = keyword
+#    Some human-readable phrase that will be memorable/identifiable later.
 mkScratchDir() (
   local keyword="${1:-scratch}"
 
