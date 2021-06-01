@@ -20,6 +20,9 @@ fi
 
 # TODO(zacsh) write something for `deno` bin
 
-# TODO(zacsh) write something for `rustup` bin
+if haveBin rustup; then
+  rustup update --no-self-update ||
+      log_jzdots warn 'side-loader: rust version is stale - `rustup update` to update'
+fi
 
 unset haveBin
