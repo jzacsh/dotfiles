@@ -18,7 +18,10 @@ if haveBin go; then
       log_jzdots warn 'side-loader: golang version is outdated'
 fi
 
-# TODO(zacsh) write something for `deno` bin
+# TODO(jzacsh) write something for `deno` bin; eg:
+#  Refactor ~/.host/common/sideload-check-golang.ts to pull out its core logic,
+#  so as to utilize this JSON output:
+#     curl   -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/denoland/deno/releases
 
 if haveBin rustup; then
   rustup update --no-self-update ||
