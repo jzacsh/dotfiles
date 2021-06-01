@@ -14,7 +14,9 @@ gsettings set org.gnome.settings-daemon.plugins.color night-light-enabled true
 # because default 'exact' is ridiculous
 gsettings set org.gnome.system.location max-accuracy-level city
 
- # pre-req for the next one
+# pre-req for the next one
 gsettings set org.gnome.system.location enabled true
 
 gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-automatic true
+
+source ~/.host/common/sideload # produces AIs I'll typically need a browser for

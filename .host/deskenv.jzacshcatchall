@@ -1,7 +1,5 @@
 #!/bin/bash
 
-pushd "$HOME"
-if is_desktop_env; then
-  host_forest_link ~/.config/xmodmaprc ~/.Xmodmap
-fi
-popd
+host_forest_link ~/.config/xmodmaprc ~/.Xmodmap
+
+source ~/.host/common/sideload # produces AIs I'll typically need a browser for

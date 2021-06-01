@@ -1,0 +1,23 @@
+#!/bin/bash
+#
+# System package manager is bypassed for a LOT of things. It's good to have
+# something automatically check those other bypassing channels periodically and
+# let myself know.
+#
+# NOTE: the AIs produced by this script probably involve a lot of research and
+# annoying investigation, so don't run this if you're unlikely to be able to act
+# (e.g. if you're in a tty without a desktop environment).
+
+
+log_jzdots info 'checking for AIs from non-system package managers...'
+
+haveBin() ( type "$1" >/dev/null 2>&1; )
+
+if haveBin go; then
+  ~/.host/common/sideload-check-golang.ts ||
+      log_jzdots warn 'side-loader: golang version is outdated'
+fi
+
+# TODO(zacsh) write something for `deno` bin
+
+# TODO(zacsh) write something for `rustup` bin
