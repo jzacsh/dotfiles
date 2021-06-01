@@ -21,3 +21,5 @@ fi
 # TODO(zacsh) write something for `deno` bin
 
 # TODO(zacsh) write something for `rustup` bin
+
+unset haveBin
