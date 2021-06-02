@@ -130,7 +130,18 @@ src_all() {
       src_this "${dir}/deskenv.${deSuffix}"
     { [[ -z "$domainSuffix" ]] || has_run_forest domain; } ||
       src_this "${dir}/domain.${domainSuffix}"
+
+    # this should _always_ run
+    src_this "${dir}/host.${hostSuffix}.umask"
 }
 
 src_all
+
+# Warn myself if I've not yet `visudo`d to set umask for admin tasks.
+if umask | grep --extended-regexp '022$' >/dev/null 2>&1;then
+  log_jzdots err \
+      'system not yet configured w/sudoer umask & host-specific user-umask\n\t%s\n'  \
+      'See comments & instruction in ~/.host/common/umask for more.'
+fi
+
 unset src_all src_this has_run_forest forest_runtime_dir is_desktop_env get_desktop_env host_forest_link is_same_file

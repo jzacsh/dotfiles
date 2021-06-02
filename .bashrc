@@ -1,7 +1,7 @@
 # If not running interactively, don't do anything
 [[ ${-} = ${-/i/} ]] && return
 
-umask 077
+# WARNING: do NOT set umask here; see ~/.host/pick and ~/.host/common/umask
 
 sourceExists() { [[ -s "$1" ]] || return 0; source "$1" ;}
 

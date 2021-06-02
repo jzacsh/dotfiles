@@ -1,0 +1,25 @@
+#!/bin/bash
+#
+# Instructions to fix erorr in ~/.host/pick about umask not being restricted to
+# 077 yet:
+#
+# 1) ensure admin stuff via `sudo` will be a sane 0022:
+#    a) sudo EDITOR="$EDITOR" visudo
+#    b) Set the following lines:
+#       # jzacsh@ set manually on 2021-06-02 so his own personal umask could
+#       # be restrictive without messing up `sudo` administrative tasks.
+#       #
+#       # For more: https://wiki.archlinux.org/title/Sudo#Permissive_umask
+#       Defaults umask = 0022
+#       Defaults umask_override
+#
+# 2) Drop _your personal_ stuff down to more restrictive 0077:
+#   echo 'ln -sv ~/.host/common/umask' ~/.host/host."$(uname -n).umask"
+# 3) confirm things are working as intended now - your...
+#    a) ... personal umask is strict: `umask` prints 0077
+#    b) ... admin actions are useful: `sudo bash -c umask` prints 0022
+
+
+# Drop my own defaults so my files aren't world-readable unless intentional.
+# This is only safe if admin tasks (see above) retain umask of 0022.
+umask 077
