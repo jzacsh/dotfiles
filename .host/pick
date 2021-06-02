@@ -2,21 +2,34 @@
 
 forest_runtime_dir="$XDG_RUNTIME_DIR"/"$(whoami)".dotfiles.management.d
 
-# help ensure dotfiles for task "$1" only run once per boot
+# Help ensure dotfiles for task "$1" only run once per boot.
+#
+# $1=subset of dots (e.g. "host")
+# [$2]=n: dry-run: Optionally indicate we should NOT make changes
 has_run_forest() (
   set -eou pipefail
   mkdir -p "$forest_runtime_dir"
 
   local dots_subset="$1"
+  local real_run="${2:-R}" # default to real run
   local has_run_semaphore="$forest_runtime_dir"/"$dots_subset"
   if [[ -r "$has_run_semaphore" ]]; then
     return 0 # _has_ run
   else
-    log_jzdots info \
-      'dotfile forest not yet run for "%s", running now...\n' "$dots_subset"
-    date --iso-8601=ns > "$has_run_semaphore"
+    if [[ "$real_run" = R ]];then
+      log_jzdots info \
+        'dotfile forest not yet run for "%s", running now...\n' "$dots_subset"
+      date --iso-8601=ns > "$has_run_semaphore"
+    fi
     return 1 # has _not_ run
   fi
+)
+
+tree_report() (
+  local tree="$1" name="$2"
+  local status_tag='S'
+  has_run_forest "$tree" -n || status_tag='R'
+  printf '%s[%s]="%s"' "$tree" "$status_tag" "$name"
 )
 
 # TODO this is still experimental; no idea if DBUS_SESSION_BUS_ADDRESS is
@@ -117,10 +130,14 @@ src_all() {
     local dir="$HOME/.host"
 
     log_jzdots info \
-      '~/.host forest-walk (dir="%s"): distro="%s", host="%s", DE="%s" domain="%s"\n' \
-       "$forest_runtime_dir" \
-       "$distroSuffix" "$hostSuffix" \
-       "${deSuffix:-n/a}" "${domainSuffix:-n/a}"
+      '~/.host forest-walk: %s\n\t[S=skip, R=try to run];  %s\n' \
+       "$(printf '%s, ' \
+           "$(tree_report distro "$distroSuffix")" \
+           "$(tree_report host "$hostSuffix")"  \
+           "$(tree_report deskenv "${deSuffix:-n/a}")" \
+           "$(tree_report domain "${domainSuffix:-n/a}")"
+       )" \
+       "${forest_runtime_dir/$XDG_RUNTIME_DIR/\$XDG_RUNTIME_DIR}"
 
     has_run_forest distro ||
       src_this "${dir}/distro.${distroSuffix}"
@@ -144,4 +161,4 @@ if umask | grep --extended-regexp '022$' >/dev/null 2>&1;then
       'See comments & instruction in ~/.host/common/umask for more.'
 fi
 
-unset src_all src_this has_run_forest forest_runtime_dir is_desktop_env get_desktop_env host_forest_link is_same_file
+unset src_all src_this has_run_forest tree_report forest_runtime_dir is_desktop_env get_desktop_env host_forest_link is_same_file
