@@ -557,4 +557,19 @@ vid_to_gif() (
   fi
 )
 
+# list all things you could call.
+# Defaults to only showing executables in $PATH, unless 'all' is passed, then
+# functions, aliases, bash builtins, etc. are all shown.
+#
+# Really helpful if there's a command you remember, but you're not sure the name
+# of and want to do some creative grepping.
+list_bins() {
+  while read thing; do
+    if (( $# == 0 )); then # default behavior
+      [[ -n "$(type -p "$thing")" ]] || continue
+    fi
+    echo "$thing"
+  done < <(compgen -c | sort | uniq)
+}
+
 # vim: et:ts=2:sw=2
