@@ -1,7 +1,7 @@
 [user]
   name = Jonathan Zacsh
   email = j@zac.sh
-  signingkey = 0xDDA2191017339886
+  signingkey = 0x897F3D2E5C0A523D
 [help]
   autocorrect = 1
 [alias]
