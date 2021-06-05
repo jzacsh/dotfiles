@@ -1,0 +1,14 @@
+[Desktop Entry]
+Name=KeePassXC
+GenericName=Password Manager
+Exec=/usr/bin/keepassxc
+TryExec=/usr/bin/keepassxc
+Icon=keepassxc
+StartupWMClass=keepassxc
+StartupNotify=true
+Terminal=false
+Type=Application
+Version=1.0true
+Categories=Utility;Security;Qt;
+MimeType=application/x-keepass2;
+X-GNOME-Autostart-enabled=true
