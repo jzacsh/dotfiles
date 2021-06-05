@@ -1,14 +1,24 @@
 [Unit]
 Description=Oasis - Friendly Scuttlebutt Web Interface
 Documentation=https://github.com/fraction/oasis
-After=network.target
+Wants=network-online.target
+After=network-online.target
 
 [Service]
 Type=simple
 # %s : run in the user's shell because they might have a custom PATH
 # -l : invoke a login shell to make sure to source .profile, .zprofile, .bash_profile, ...
 # -c : invoke a shell because we'd have to hardcode a path using ExecStart
-ExecStart=%s -c 'oasis --host localhost --port 4515 --no-open'
+#ExecStart=%s -c 'oasis --host localhost --port 4515 --no-open'
+#
+# custom to jzacsh@wajinru:
+# TODO(jzacsh)  get the above working by first:
+#  1) refactor: allow non-interactive (ie: .bash_profile invocation of .bashrc
+#     that happens when gnome starts) to get environment variables
+#  2) switch from network dependence above to "graphical.target" so we know (1)
+#     is made use of, and $PATH will be set correctly.
+#  3) switch back to above ExecStart line & test the service starts now
+ExecStart=%h/usr/lib/npm/global/bin/oasis --host localhost --port 4515 --no-open
 Restart=on-failure
 
 [Install]
