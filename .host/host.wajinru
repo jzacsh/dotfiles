@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# mkdir -vp ~/.config/borgmatic/ ~/.config/systemd/user/ # TODO do this instead
 for dir in ~/.config/borgmatic/ ~/.config/systemd/user/; do
   [[ -d "$dir" ]] || mkdir -vp "$dir"
 done
