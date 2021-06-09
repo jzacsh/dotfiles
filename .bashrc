@@ -138,11 +138,12 @@ log_jzdots info 'dircolors and other environment variables\n'
 if [[ -r ~/.dircolors ]] && type dircolors >/dev/null 2>&1;then
   eval $(dircolors --bourne-shell ~/.dircolors)
 fi
-source ~/bin/share/zacsh_exports
 if type systemctl >/dev/null 2>&1;then
   log_jzdots info 'detected systemd, importing environ\n'
   systemctl --user import-environment PATH
+  systemctl --user import-environment DISPLAY
 fi
+source ~/bin/share/zacsh_exports
 
 log_jzdots info 'sourcing custom ~/.bash_aliases\n'
 sourceExists ~/.bash_aliases
