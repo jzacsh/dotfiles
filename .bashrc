@@ -66,7 +66,7 @@ PS1='\s^$RET  @\t \w\n\u@\h   $SHLVL:\$ ' # vcprompt-less version of below
 ############################################################################
 
 jzdots_is_ssh() {
-  [[ -n "$SSH_CLIENT" ]] || [[ -n "$SSH_TTY" ]] ||
+  [[ -n "${SSH_CLIENT:-}" ]] || [[ -n "${SSH_TTY:-}" ]] ||
     ( ps -o comm= -p "$PPID" | grep -E '(sshd|*/sshd)' >/dev/null 2>&1; )
 }
 
