@@ -65,13 +65,14 @@ PS1='\s^$RET  @\t \w\n\u@\h   $SHLVL:\$ ' # vcprompt-less version of below
 [[ "$UID" -ne "0" ]] || return 0
 ############################################################################
 
+jzdots_is_ssh() {
+  [[ -n "${SSH_CLIENT:-}" ]] || [[ -n "${SSH_TTY:-}" ]] ||
+    ( ps -o comm= -p "$PPID" | grep -E '(sshd|*/sshd)' >/dev/null 2>&1; )
+}
+
 PS1='\s^$RET  @\t $(vcprompt) \w\n\u@\h   $SHLVL:\$ ' # simple version of below
 if [[ "$TERM" =~ 256color ]];then
-  isSshSession=0
-  if [[ -n "$SSH_CLIENT" ]] || [[ -n "$SSH_TTY" ]] ||
-    (ps -o comm= -p "$PPID" | grep -E '(sshd|*/sshd)' >/dev/null 2>&1;);then
-    isSshSession=1
-  fi
+   isSshSession=1; jzdots_is_ssh || isSshSession=0
 
   # vcs and color-aware version of bash prompt:
   set_fancy_ps1() {
@@ -138,11 +139,12 @@ log_jzdots info 'dircolors and other environment variables\n'
 if [[ -r ~/.dircolors ]] && type dircolors >/dev/null 2>&1;then
   eval $(dircolors --bourne-shell ~/.dircolors)
 fi
-source ~/bin/share/zacsh_exports
 if type systemctl >/dev/null 2>&1;then
   log_jzdots info 'detected systemd, importing environ\n'
   systemctl --user import-environment PATH
+  systemctl --user import-environment DISPLAY
 fi
+source ~/bin/share/zacsh_exports
 
 log_jzdots info 'sourcing custom ~/.bash_aliases\n'
 sourceExists ~/.bash_aliases
@@ -314,6 +316,6 @@ if [[ "$SHLVL" -eq 1 ]];then
   fi
 fi
 
-unset sourceExists log_jzdots
+unset sourceExists log_jzdots jzdots_is_ssh
 
 true # don't assume last return status

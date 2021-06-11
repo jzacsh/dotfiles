@@ -2,18 +2,23 @@
 
 forest_runtime_dir="$XDG_RUNTIME_DIR"/"$(whoami)".dotfiles.management.d
 
-# Help ensure dotfiles for task "$1" only run once per boot.
+is_ssh_login() ( jzdots_is_ssh && [[ "$SHLVL" -eq 1 ]]; )
+
+# Help ensure dotfiles for task "$1" only run once per login session.
+#
+# In the event of an SSH login, we rely on detecting that it's an SSH login heuristically.
+# Otherwise, we just keep track of whether we've run before in some runtime files.
 #
 # $1=subset of dots (e.g. "host")
 # [$2]=n: dry-run: Optionally indicate we should NOT make changes
-has_run_forest() (
+should_skip_forest() (
   set -eou pipefail
   mkdir -p "$forest_runtime_dir"
 
   local dots_subset="$1"
   local real_run="${2:-R}" # default to real run
   local has_run_semaphore="$forest_runtime_dir"/"$dots_subset"
-  if [[ -r "$has_run_semaphore" ]]; then
+  if ! is_ssh_login && [[ -r "$has_run_semaphore" ]]; then
     return 0 # _has_ run
   else
     if [[ "$real_run" = R ]];then
@@ -28,7 +33,7 @@ has_run_forest() (
 tree_report() (
   local tree="$1" name="$2"
   local status_tag='S'
-  has_run_forest "$tree" -n || status_tag='R'
+  should_skip_forest "$tree" -n || status_tag='R'
   printf '%s[%s]="%s"' "$tree" "$status_tag" "$name"
 )
 
@@ -141,13 +146,13 @@ src_all() {
 
     cd "$HOME" # allow forest of scripts below to assume a simple $PWD
 
-    has_run_forest distro ||
+    should_skip_forest distro ||
       src_this "${src_all_pick_dir}/distro.${distroSuffix}"
-    has_run_forest host ||
+    should_skip_forest host ||
       src_this "${src_all_pick_dir}/host.${hostSuffix}"
-    { [[ -z "$deSuffix" ]] || has_run_forest deskenv; } ||
+    { [[ -z "$deSuffix" ]] || should_skip_forest deskenv; } ||
       src_this "${src_all_pick_dir}/deskenv.${deSuffix}"
-    { [[ -z "$domainSuffix" ]] || has_run_forest domain; } ||
+    { [[ -z "$domainSuffix" ]] || should_skip_forest domain; } ||
       src_this "${src_all_pick_dir}/domain.${domainSuffix}"
 
     # this should _always_ run
@@ -163,4 +168,4 @@ if umask | grep --extended-regexp '022$' >/dev/null 2>&1;then
       'See comments & instruction in ~/.host/common/umask for more.'
 fi
 
-unset src_all src_this has_run_forest tree_report forest_runtime_dir is_desktop_env get_desktop_env host_forest_link is_same_file
+unset src_all src_this should_skip_forest tree_report forest_runtime_dir is_desktop_env get_desktop_env host_forest_link is_same_file is_ssh_login
