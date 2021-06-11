@@ -121,7 +121,7 @@ src_all() {
 
       # provide a fallback with some basics that are X11 "specific" but not
       # really DE-specific
-      [[ -n "$deSuffix" ]] || deSuffix=_jzacshcatchall
+      [[ -n "$deSuffix" ]] || deSuffix=jzacshcatchall
     fi
 
     #
