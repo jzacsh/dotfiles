@@ -572,4 +572,33 @@ list_bins() {
   done < <(compgen -c | sort | uniq)
 }
 
+secret() (
+  set -euo pipefail
+  # adapted from https://github.com/drduh/YubiKey-Guide#using-keys about
+  # 20dd0687cdd70a3b8072f379157e1fac7fa711d6
+  local output="$1".enc
+  if [[ -s "$output" ]]; then
+    echo 'output file already exists' >&2
+    return 1
+  fi
+
+  (
+    set -x
+    gpg \
+      --output "$output" -r "$2" \
+      --encrypt --armor "$1"
+  ) && echo "$1 -> $output"
+)
+
+reveal() (
+  set -euo pipefail
+  # adapted from https://github.com/drduh/YubiKey-Guide#using-keys about
+  # 20dd0687cdd70a3b8072f379157e1fac7fa711d6
+  local input="$1"
+  local output; # strip ".TIMESTAMP.enc" file suffix
+  output="$(echo "$input" | sed --expression 's,\.[[:digit:]]*\.enc$,,g')"
+  ( set -x; gpg --decrypt --output "$output" "$input"; ) &&
+      echo "$input -> $output"
+)
+
 # vim: et:ts=2:sw=2
