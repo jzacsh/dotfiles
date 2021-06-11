@@ -1,1 +1,7 @@
-common/deskenv.gsettings
+#!/bin/bash
+#
+# XFCE configuration
+
+# basic stuff xfce utilizes, but not actually xfce specific
+source ~/.host/common/deskenv.gsettings
+source ~/.host/common/deskenv-baseline

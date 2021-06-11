@@ -1,0 +1,5 @@
+#!/bin/bash
+
+host_forest_link ~/.config/xmodmaprc ~/.Xmodmap
+
+source ~/.host/common/sideload # produces AIs I'll typically need a browser for

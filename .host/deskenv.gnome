@@ -19,4 +19,4 @@ gsettings set org.gnome.system.location enabled true
 
 gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-automatic true
 
-source ~/.host/common/sideload # produces AIs I'll typically need a browser for
+source ~/.host/common/deskenv-baseline

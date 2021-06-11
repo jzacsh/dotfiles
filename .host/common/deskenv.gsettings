@@ -62,5 +62,3 @@ gsettings set org.gnome.gedit.plugins.time selected-format '%c'
 gsettings set org.gnome.gedit.plugins.time prompt-type 'prompt-selected-format'
 #equivalent to `date --iso-8601=s`
 gsettings set org.gnome.gedit.plugins.time custom-format '%Y-%m-%dT%H:%M:%S%:z'
-
-source ~/.host/common/sideload # produces AIs I'll typically need a browser for
