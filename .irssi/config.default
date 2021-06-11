@@ -11,7 +11,7 @@ servers = (
     use_ssl = "yes";
   },
   {
-    address = "weber.freenode.net";
+    address = "irc.libera.chat";
     chatnet = "Freenode";
     port = "6697";
     # password = ""; SET THIS!

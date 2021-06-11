@@ -236,7 +236,8 @@ freenode.sasl_username = "jzaksh"
 freenode.sasl_key
 freenode.sasl_timeout
 freenode.sasl_fail
-freenode.autoconnect = on
+#disabled as i'm switching to libera.chat
+# freenode.autoconnect = on
 freenode.autoreconnect
 freenode.autoreconnect_delay
 freenode.nicks = "jzaksh,jzacsh"
@@ -258,3 +259,42 @@ freenode.default_msg_kick
 freenode.default_msg_part
 freenode.default_msg_quit
 freenode.notify
+liberachat.addresses = "irc.libera.chat/6697"
+liberachat.proxy
+liberachat.ipv6
+liberachat.ssl = on
+liberachat.ssl_cert
+liberachat.ssl_priorities
+liberachat.ssl_dhkey_size
+liberachat.ssl_fingerprint
+liberachat.ssl_verify
+liberachat.password
+liberachat.capabilities
+liberachat.sasl_mechanism
+liberachat.sasl_username = "jzaksh"
+# liberachat.sasl_password = "" SET THIS!
+liberachat.sasl_key
+liberachat.sasl_timeout
+liberachat.sasl_fail
+liberachat.autoconnect = on
+liberachat.autoreconnect
+liberachat.autoreconnect_delay
+liberachat.nicks = "jzaksh,jzacsh"
+liberachat.nicks_alternate
+liberachat.username
+liberachat.realname = "Jonathan Zacsh"
+liberachat.local_hostname
+liberachat.command
+liberachat.command_delay
+liberachat.autojoin = "#purism,#restic,#rkt-dev,#scuttlebutt,#lxcontainers"
+liberachat.autorejoin
+liberachat.autorejoin_delay
+liberachat.connection_timeout
+liberachat.anti_flood_prio_high
+liberachat.anti_flood_prio_low
+liberachat.away_check
+liberachat.away_check_max_nicks
+liberachat.default_msg_kick
+liberachat.default_msg_part
+liberachat.default_msg_quit
+liberachat.notify

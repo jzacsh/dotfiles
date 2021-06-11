@@ -481,7 +481,7 @@ B<NOTE:> This script is still under heavy development, and there may be bugs.
 Please submit reproducible sequences to the bug-tracker at:
 L<http://github.com/shabble/irssi-scripts/issues/new>
 
-or contact rudi_s or shabble on irc.freenode.net (#irssi and #irssi_vim)
+or contact rudi_s or shabble on irc.libera.chat (#irssi and #irssi_vim)
 
 =head1 AUTHORS
 
