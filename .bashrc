@@ -244,10 +244,22 @@ if [[ "${SSH_AUTH_SOCK:-x}" = x ]];then
   fi
 fi
 
-for privKey in ~/.ssh/key.*[^pub];do
-  ssh-add -l 2>/dev/null | grep "${privKey/$HOME\/}" >/dev/null 2>&1 ||
-    ssh-add "$privKey"
-done
+autoAddSshKeys() (
+  local hasWarned=0 privKey fingerprint
+  for privKey in ~/.ssh/key.*[^pub];do
+    fingerprint="$(ssh-keygen -l -f "$privKey")"
+    ssh-add -l 2>/dev/null | grep "$fingerprint" >/dev/null 2>&1 || {
+      if ! (( hasWarned )); then
+        log_jzdots info \
+          'found key missing $SSH_AUTH_SOCK="%s" (this one %s)...\n' \
+          "$SSH_AUTH_SOCK" "$privKey"
+        hasWarned=1
+      fi
+      ssh-add "$privKey"
+    }
+  done
+)
+autoAddSshKeys; unset autoAddSshKeys
 
 ######################################################
 # Below this line is strictly for _messages_ to myself
