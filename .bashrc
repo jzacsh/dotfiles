@@ -218,17 +218,16 @@ fi
 # Therefore anything below this sectino should be a nice-to-have only!
 ################################################################################
 
-# TODO(UNTESTED) - am i missing my own ~/.ssh/ socket i leave behind for tmux??
 if [[ "${SSH_AUTH_SOCK:-x}" = x ]];then
-  # TODO(UNTESTED) - document what's going on in answer to above TODO
-  # line
+  # Seems to be required for modern Gnome+Wayland
+  #
   # very relevant:
   #   https://unix.stackexchange.com/a/360309
   #   https://bugzilla.gnome.org/show_bug.cgi?id=738205#c40
   if [[ -n "$DISPLAY" ]] &&
     [[ -n "$DBUS_SESSION_BUS_ADDRESS" ]] &&
     [[ "$XDG_SESSION_TYPE" = wayland ]] &&
-    [[ -n "${DE:-$DESKTOP_SESSION}" ]] ;then
+    [[ "${DE:-$DESKTOP_SESSION}" = gnome ]] ;then
       log_jzdots warn \
         'modern gnome session in use; setting empty SSH_AUTH_SOCK="%s"\n' \
         "$SSH_AUTH_SOCK"
@@ -237,10 +236,31 @@ if [[ "${SSH_AUTH_SOCK:-x}" = x ]];then
     # --components=ssh per /etc/xdg/autostart/gnome-keyring-ssh.desktop
     export $(/usr/bin/gnome-keyring-daemon --start --components=ssh)
   else
+    log_jzdots info \
+      'SSH_AUTH_SOCK was empty, starting new agent (now="%s")\n' "$SSH_AUTH_SOCK"
+    eval $(ssh-agent -s)
+  fi
+else
+  # tmux management
+  #TODO: maybe use $XDG_RUNTIME_DIR instead?
+  if [[ -e "$SSH_AUTH_SOCK" ]];then
+    tmuxSshSock="${TMPDIR:-"$HOME"/.ssh}"/ssh-auth-sock.tmux
+    if [[ "$(readlink -f "$SSH_AUTH_SOCK")" != "$(readlink -f "$tmuxSshSock")" ]];then
+      was="$SSH_AUTH_SOCK"
+      rm -f "$tmuxSshSock"
+      ln -sf "$SSH_AUTH_SOCK" "$tmuxSshSock"
+      export SSH_AUTH_SOCK="$tmuxSshSock"
+      log_jzdots warn \
+        'stabilized $SSH_AUTH_SOCK; was "%s", is now (via symlink) "%s"\n' \
+        "$was" "$SSH_AUTH_SOCK" >&2
+    fi
+    unset tmuxSshSock
+  else
     log_jzdots warn \
-      'SSH_AUTH_SOCK="%s" empty, starting new agent\n' "$SSH_AUTH_SOCK"
-    # TODO(UNTESTED) disable temporarily while we figure out why gnome isn't doing this
-#   eval $(ssh-agent -s)
+      'found dead file on $SSH_AUTH_SOCK(%s); cleaning its export\n' \
+      "$SSH_AUTH_SOCK" >&2
+    export SSH_AUTH_SOCK=''
+    unset SSH_AUTH_SOCK
   fi
 fi
 
