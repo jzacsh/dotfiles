@@ -236,9 +236,9 @@ if [[ "${SSH_AUTH_SOCK:-x}" = x ]];then
     # --components=ssh per /etc/xdg/autostart/gnome-keyring-ssh.desktop
     export $(/usr/bin/gnome-keyring-daemon --start --components=ssh)
   else
+    eval $(ssh-agent -s)
     log_jzdots info \
       'SSH_AUTH_SOCK was empty, starting new agent (now="%s")\n' "$SSH_AUTH_SOCK"
-    eval $(ssh-agent -s)
   fi
 else
   # tmux management
