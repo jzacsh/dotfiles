@@ -347,4 +347,9 @@ autocmd CursorMoved * exe printf('match Visual /\V\<%s\>/', escape(expand('<cwor
 " custom colorscheme logic for the Visual group's matches
 highlight Visual cterm=standout
 
+" enable syntax highlighting for markdown's codeblocks
+" found at https://github.com/tpope/vim-markdown
+" (at 9d87cc19179496db50fb6d902987737c4b522e38)
+let g:markdown_fenced_languages = ['html', 'css', 'python', 'bash=sh', 'java', 'go', 'rust']
+
 set modeline
