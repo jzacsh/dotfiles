@@ -236,6 +236,10 @@ if [[ "${SSH_AUTH_SOCK:-x}" = x ]];then
     # --components=ssh per /etc/xdg/autostart/gnome-keyring-ssh.desktop
     export $(/usr/bin/gnome-keyring-daemon --start --components=ssh)
   else
+    if pgrep -l ssh-agent >/dev/null 2>&1 ;then
+      log_jzdots err \
+        'ssh-agent already present (`pgrep -l ssh-agent`) but undiscoverable via $SSH_AUTH_SOCK\n'
+    fi
     eval $(ssh-agent -s)
     log_jzdots info \
       'SSH_AUTH_SOCK was empty, starting new agent (now="%s")\n' "$SSH_AUTH_SOCK"
