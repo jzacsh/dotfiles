@@ -65,6 +65,10 @@ PS1='\s^$RET  @\t \w\n\u@\h   $SHLVL:\$ ' # vcprompt-less version of below
 [[ "$UID" -ne "0" ]] || return 0
 ############################################################################
 
+# before running anything complicated below, save our $PWD so scripts can change their $PWD without
+# messing up my shell's landing place
+bashrc_landing="$(pwd)"
+
 jzdots_is_ssh() {
   [[ -n "${SSH_CLIENT:-}" ]] || [[ -n "${SSH_TTY:-}" ]] ||
     ( ps -o comm= -p "$PPID" | grep -E '(sshd|*/sshd)' >/dev/null 2>&1; )
@@ -352,6 +356,8 @@ if [[ "$SHLVL" -eq 1 ]];then
   fi
 fi
 
-unset sourceExists log_jzdots jzdots_is_ssh
+cd "$bashrc_landing"
+
+unset bashrc_landing sourceExists log_jzdots jzdots_is_ssh
 
 true # don't assume last return status
