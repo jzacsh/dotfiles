@@ -303,10 +303,15 @@ html() (
 )
 
 whiteboardify() (
-  [[ "$#" -eq 2 ]] || {
-    echo "usage: IN_FILE OUT_FILE
+  local default_levels='60%,91%,0.1'
+  local levels="${3:-"$default_levels"}"
+  { [[ "$#" -eq 2 ]] || [[ "$#" -eq 3 ]]; } || {
+    echo "usage: IN_FILE OUT_FILE [LEVELS]
       to generate a whiteboardified version of INFILE
-      and write it to OUTFILE" >&2
+      and write it to OUTFILE
+
+      LEVELS: defaults to $default_levels
+    " >&2
     return 1
   }
   convert "$1" \
@@ -315,7 +320,7 @@ whiteboardify() (
     -normalize \
     -blur 0x1 \
     -channel RBG \
-    -level 60%,91%,0.1 \
+    -level "$levels" \
     "$2"
 )
 
