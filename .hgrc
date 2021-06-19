@@ -50,6 +50,10 @@ opts.cdiff = -uprN
 changelog = outgoing --no-merges --template "Revision {node|short} by {author} on {date|shortdate}:\n{desc}\n\n"
 #push = push --new-branch #breaks on v1.4
 
+#alias "discard" uses _current_ revision (.) per:
+# https://hg.mozilla.org/mozilla-central/help/revsets
+discard = update --rev . --clean
+
 [hooks]
 #update = ''
 #pre-push = "hg out -p | grep -in -e 'dd(' -e 'dsm(' -e 'console.*(' && false"
