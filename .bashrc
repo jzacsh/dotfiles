@@ -275,7 +275,7 @@ fi
 autoAddSshKeys() (
   local hasWarned=0 privKey fingerprint
   for privKey in ~/.ssh/key.*[^pub];do
-    fingerprint="$(ssh-keygen -l -f "$privKey")"
+    fingerprint="$(ssh-keygen -l -f "$privKey" | cut -f 2 -d ' ')"
     ssh-add -l 2>/dev/null | grep "$fingerprint" >/dev/null 2>&1 || {
       if ! (( hasWarned )); then
         log_jzdots info \
