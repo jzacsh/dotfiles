@@ -162,7 +162,7 @@ src_all() {
 src_all
 
 # Warn myself if I've not yet `visudo`d to set umask for admin tasks.
-if umask | grep --extended-regexp '022$' >/dev/null 2>&1;then
+if umask | grep --quiet --extended-regexp '022$';then
   log_jzdots err \
       'system not yet configured w/sudoer umask & host-specific user-umask\n\t%s\n'  \
       'See comments & instruction in ~/.host/common/umask for more.'

@@ -71,7 +71,7 @@ bashrc_landing="$(pwd)"
 
 jzdots_is_ssh() {
   [[ -n "${SSH_CLIENT:-}" ]] || [[ -n "${SSH_TTY:-}" ]] ||
-    ( ps -o comm= -p "$PPID" | grep -E '(sshd|*/sshd)' >/dev/null 2>&1; )
+    ( ps -o comm= -p "$PPID" | grep --quiet --extended-regexp '(sshd|*/sshd)'; )
 }
 
 PS1='\s^$RET  @\t $(vcprompt) \w\n\u@\h   $SHLVL:\$ ' # simple version of below
@@ -276,7 +276,7 @@ autoAddSshKeys() (
   local hasWarned=0 privKey fingerprint
   for privKey in ~/.ssh/key.*[^pub];do
     fingerprint="$(ssh-keygen -l -f "$privKey" | cut -f 2 -d ' ')"
-    ssh-add -l 2>/dev/null | grep "$fingerprint" >/dev/null 2>&1 || {
+    ssh-add -l 2>/dev/null | grep --quiet "$fingerprint" || {
       if ! (( hasWarned )); then
         log_jzdots info \
           'found key missing $SSH_AUTH_SOCK="%s" (this one %s)...\n' \
@@ -300,7 +300,7 @@ ssh-add -l | grep --color=always --extended-regexp '^|\.ssh\/.*\ ' || true
 #NOTE: this should be first, since it always prints
 
 # Users
-if who | grep --invert-match "$(whoami)" > /dev/null; then
+if who | grep --quiet --invert-match "$(whoami)"; then
   log_jzdots WARN 'currently on %s, other than you:\n' "$(uname -snr)"
   who --heading | grep --invert-match "$(whoami)"
 fi
@@ -343,7 +343,7 @@ scowerForMail; unset scowerForMail
 
 # notify myself when degrated state
 if type systemctl >/dev/null 2>&1 &&
-  ! (systemctl --user --state=failed | grep -E '^0 loaded units'; ) >/dev/null 2>&1;then
+  ! ( systemctl --user --state=failed | grep --quiet --extended-regexp '^0 loaded units'; );then
   log_jzdots err 'systemctl failures above; investigate with:\n\t%s # %s\n' \
     'systemctl --user list-units --state=failed' \
     '`systemctl --user status` for an overall report' >&2
