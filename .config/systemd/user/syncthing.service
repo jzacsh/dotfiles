@@ -1,8 +1,0 @@
-[Unit]
-Description=Syncthing Daemon (Headless)
-
-[Service]
-ExecStart=/bin/bash -c "syncthing -no-browser -home=%h/.config/syncthing/"
-
-[Install]
-WantedBy=default.target
