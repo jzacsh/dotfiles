@@ -9,13 +9,13 @@
 # (e.g. if you're in a tty without a desktop environment).
 
 
-log_jzdots info 'checking for AIs from non-system package managers...'
+log_jzdots info 'checking for AIs from non-system package managers...\n'
 
 haveBin() ( type "$1" >/dev/null 2>&1; )
 
 if haveBin go; then
   ~/.host/common/sideload-check-golang.ts ||
-      log_jzdots warn 'side-loader: golang version is outdated'
+      log_jzdots warn 'side-loader: golang version is outdated\n'
 fi
 
 # TODO(jzacsh) write something for `deno` bin; eg:
@@ -24,9 +24,9 @@ fi
 #     curl   -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/denoland/deno/releases
 
 if haveBin rustup; then
-  log_jzdots info 'checking rustlang `rustup`...'
+  log_jzdots info 'checking rustlang `rustup`...\n'
   rustup update --no-self-update ||
-      log_jzdots err 'side-loader: `rustup update` update failed'
+      log_jzdots err 'side-loader: `rustup update` update failed\n'
 fi
 
 unset haveBin
