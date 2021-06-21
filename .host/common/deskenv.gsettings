@@ -26,6 +26,17 @@ gsettings set org.gnome.desktop.wm.preferences mouse-button-modifier '<Alt>'
 # prefer 24-hour time format
 gsettings set org.gnome.desktop.interface clock-format 24h
 
+# better default for my personal screenshot collection to not muddy my actual
+# photos:
+declare -r img_dir="$(xdg-user-dir PICTURES)"/sshot
+[[ -d "$img_dir" ]] || {
+  log_jzdots warn \
+    "sshot dir didn't exist, creating now:\n\t%s\n" "$img_dir"
+  mkdir -p "$img_dir"
+}
+gsettings set org.gnome.gnome-screenshot auto-save-directory "file://$img_dir/"
+unset img_dir
+
 # yay malware from the 90s
 gsettings set org.gnome.desktop.media-handling autorun-never true
 
