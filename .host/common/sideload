@@ -29,4 +29,9 @@ if haveBin rustup; then
       log_jzdots err 'side-loader: `rustup update` update failed\n'
 fi
 
+# TODO(jzacsh) rclone version checker to compare:
+# their for repo in ~/media/src/rclone `git tag --list` output
+# against `rclone version` output
+# https://rclone.org/install/#install-from-source
+
 unset haveBin
