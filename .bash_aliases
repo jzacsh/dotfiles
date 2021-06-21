@@ -476,7 +476,8 @@ mkScratchDir() (
   local scratchType="${2:-build}"
 
   local tmpDir=~/tmp/build/
-  [[ "$scratchType" = build ]] || tmpDir="$(xdg-user-dir DOCUMENTS)"/scraps
+  [[ "$scratchType" = build ]] ||
+    tmpDir="$(readlink -f "$(xdg-user-dir DOCUMENTS)"/../scraps)"
   mkdir -vp "$tmpDir" >&2
 
   # eg: "20210531T14.46-0500" for "Mon 31 May 2021 02:46:40 PM CDT"
