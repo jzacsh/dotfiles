@@ -185,9 +185,6 @@ unset dbusSessionBusAddress
 # nodejs/npm things
 [[ -e ~/.config/bash_completion.d/npm-run-completion.sh ]] ||
   npm completion > ~/.config/bash_completion.d/npm-run-completion.sh
-if type npx >/dev/null 2>&1;then
-  source <(npx --shell-auto-fallback bash)
-fi
 
 for completion in ~/.config/bash_completion.d/*.sh; do
   source "$completion"
