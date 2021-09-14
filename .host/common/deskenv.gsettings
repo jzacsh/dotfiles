@@ -36,7 +36,7 @@ gsettings set org.gnome.desktop.interface clock-format 24h
 
 # better default for my personal screenshot collection to not muddy my actual
 # photos:
-declare -r img_dir="$(xdg-user-dir PICTURES)"/sshot
+img_dir="$(xdg-user-dir PICTURES)"/sshot
 [[ -d "$img_dir" ]] || {
   log_jzdots warn \
     "sshot dir didn't exist, creating now:\n\t%s\n" "$img_dir"
