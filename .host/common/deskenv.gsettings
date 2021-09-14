@@ -2,8 +2,16 @@
 #
 # Gnome/GTK specific configurations.
 
+gtk_home_bookmarks=~/.host/src/host."$(forest_get_host_suffix)"/gtk3-bookmarks
+[[ -s "$gtk_home_bookmarks" ]] || {
+    printf "file://$HOME/%s\n" \
+        media/src/usergit \
+        pub/src/github \
+        tmp/build \
+      > "$gtk_home_bookmarks"
+}
 host_forest_link \
-  ~/.host/common/gtk3-bookmarks \
+  "$gtk_home_bookmarks" \
   "$HOME"/.config/gtk-3.0/bookmarks
 
 #

@@ -94,6 +94,12 @@ host_forest_link() (
   ln -svf "$dotFile" "$landing"
 )
 
+# Prints the suffix used for 'host.*' dirs under ~/.host/, for use not just below but in other
+# scripts that may need it.
+forest_get_host_suffix() {
+  echo "${HOSTNAME/.*/}" #mimic `hostname -s`
+}
+
 src_all() {
     local distroSuffix hostSuffix deSuffix domainSuffix
 
@@ -111,7 +117,7 @@ src_all() {
     #
     # host-specific configuration
     #
-    hostSuffix="${HOSTNAME/.*/}" #mimic `hostname -s`
+    hostSuffix="$(forest_get_host_suffix)"
 
     #
     # DE(GUI)-specific configuration
@@ -145,6 +151,8 @@ src_all() {
        "${forest_runtime_dir/$XDG_RUNTIME_DIR/\$XDG_RUNTIME_DIR}"
 
     cd "$HOME" # allow forest of scripts below to assume a simple $PWD
+
+    mkdir -p "${src_all_pick_dir}/src/host.$hostSuffix" # maybe empty; that's fine
 
     should_skip_forest distro ||
       src_this "${src_all_pick_dir}/distro.${distroSuffix}"
